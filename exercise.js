@@ -9,7 +9,7 @@ export class Exercise {
     return '';
   }
 
-  handleRun({ selects, codeArea, imgDiv, level = 'easy' }) {
+  handleRun({ selects = [], inputs = [], ex = null, level = 'easy' }) {
     // Default: do nothing. Child classes should override if needed.
   }
 
@@ -152,7 +152,7 @@ export function renderExercise(ex, idx) {
       }
       if (result && result.valid) {
         if (typeof ex.handleRun === 'function') {
-          const outcome = ex.handleRun({ selects, inputs, codeArea, imgDiv, ex, level: currentLevel });
+          const outcome = ex.handleRun({ selects, inputs, ex, level: currentLevel });
           if (outcome !== null && outcome !== undefined) {
             imgDiv.innerHTML = outcome;
           }

@@ -1,5 +1,5 @@
 //python -m http.server
-
+//http://localhost:8000/
 import { renderMenu, setActiveMenu } from './menu.js';
 import { renderExercise } from './exercise.js';
 
