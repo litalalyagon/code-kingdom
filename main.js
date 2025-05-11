@@ -1,3 +1,5 @@
+//python -m http.server
+
 import { renderMenu, setActiveMenu } from './menu.js';
 import { renderExercise } from './exercise.js';
 
