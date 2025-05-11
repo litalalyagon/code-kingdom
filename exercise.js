@@ -18,8 +18,10 @@ export class Exercise {
     return { valid: true, message: '' };
   }
 
-  composeImageHtml(color, clouds, rainbow, colorMap = {}, folder = 'ex1') {
-    // To be implemented in child classes if needed
+  composeImageHtml(vars) {
+    // To be implemented in child classes. 'vars' is an object with exercise-specific keys.
+    // Example: { color, clouds, rainbow }
+    return '';
   }
 
   getCodeParts(level = 'easy') {

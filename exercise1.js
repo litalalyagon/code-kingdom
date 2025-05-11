@@ -10,7 +10,7 @@ class Exercise1 extends Exercise {
     'כתום': 'orange' 
   };
   static validColors = Object.keys(Exercise1.colorMap);
-  static validClouds = ['1', '2', '3'];
+  static validClouds = ['0', '1', '2', '3'];
   static validRainbow = ['כן', 'לא'];
   static defaultColor = 'כחול';
   static defaultClouds = '3';
@@ -42,28 +42,31 @@ class Exercise1 extends Exercise {
     }
   }
 
-  composeImageHtml(color, clouds, rainbow) {
+  composeImageHtml(vars) {
+    const { color, clouds, rainbow } = vars;
     const colorKey = Exercise1.colorMap[color] || color;
     const forestImg = `ex1/forest_${colorKey}.png`;
-    const cloudsImg = `ex1/clouds_${clouds}.png`;
+    const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
     const rainbowImg = rainbow === 'כן' ? 'ex1/rainbow.png' : null;
     let html = `<div style="position:relative;display:inline-block;">`;
     if (rainbowImg) {
       html += `<img src='${rainbowImg}' alt='rainbow' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;'>`;
     }
     html += `<img src='${forestImg}' alt='forest' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;'>`;
-    html += `<img src='${cloudsImg}' alt='clouds' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;'>`;
+    if (cloudsImg) {
+      html += `<img src='${cloudsImg}' alt='clouds' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;'>`;
+    }
     html += `<img src='${forestImg}' alt='' style='visibility:hidden;position:relative;width:100%;height:auto;'>`;
     html += '</div>';
     return html;
   }
 
   getDefaultHtml(level = 'easy') {
-    return this.composeImageHtml(
-      Exercise1.defaultColor,
-      Exercise1.defaultClouds,
-      Exercise1.defaultRainbow
-    );
+    return this.composeImageHtml({
+      color: Exercise1.defaultColor,
+      clouds: Exercise1.defaultClouds,
+      rainbow: Exercise1.defaultRainbow
+    });
   }
 
   handleRun({ selects, inputs, codeArea, imgDiv, level = 'easy' }) {
@@ -74,7 +77,7 @@ class Exercise1 extends Exercise {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
     if (!this.isValid(color, clouds, rainbow)) return null;
-    return this.composeImageHtml(color, clouds, rainbow);
+    return this.composeImageHtml({ color, clouds, rainbow });
   }
 
   isValid(color, clouds, rainbow) {
