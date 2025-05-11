@@ -12,6 +12,22 @@ export class Exercise {
   handleRun({ selects, codeArea, imgDiv, level = 'easy' }) {
     // Default: do nothing. Child classes should override if needed.
   }
+
+  validate({ selects, inputs, level = 'easy' }) {
+    // Default: always valid. Child classes should override for custom validation.
+    return { valid: true, message: '' };
+  }
+
+  composeImageHtml(color, clouds, rainbow, colorMap = {}, folder = 'ex1') {
+    // To be implemented in child classes if needed
+  }
+
+  getCodeParts(level = 'easy') {
+    // To be implemented in child classes if needed
+    return this.levels[level].codeParts || [];
+  }
+
+  
 }
 
 export function renderExercise(ex, idx) {
@@ -28,7 +44,6 @@ export function renderExercise(ex, idx) {
   const easyBtn = document.createElement('button');
   easyBtn.textContent = 'קל';
   easyBtn.className = 'run-btn level-btn';
-  easyBtn.style.background = '#0a84ff';
   easyBtn.onclick = () => switchLevel('easy');
   const hardBtn = document.createElement('button');
   hardBtn.textContent = 'קשה';
@@ -40,8 +55,13 @@ export function renderExercise(ex, idx) {
 
   function switchLevel(level) {
     currentLevel = level;
-    easyBtn.classList.toggle('selected', level === 'easy');
-    hardBtn.classList.toggle('selected', level === 'hard');
+    easyBtn.classList.remove('selected');
+    hardBtn.classList.remove('selected');
+    if (level === 'easy') {
+      easyBtn.classList.add('selected');
+    } else {
+      hardBtn.classList.add('selected');
+    }
     renderLevel();
   }
 
@@ -62,7 +82,9 @@ export function renderExercise(ex, idx) {
     // Code area
     const codeArea = document.createElement('div');
     codeArea.className = 'code-area';
-    ex.levels[currentLevel].codeParts.forEach((part) => {
+    const codeParts = ex.getCodeParts(currentLevel);
+    
+    codeParts.forEach((part) => {
       if (part.type === 'text') {
         if (part.value === '\n') {
           codeArea.appendChild(document.createElement('br'));
@@ -110,19 +132,37 @@ export function renderExercise(ex, idx) {
     }
     exDiv.appendChild(imgDiv);
     
+    // Message area
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'answer-msg';
+    msgDiv.style.marginTop = '12px';
+    msgDiv.style.fontWeight = 'bold';
+    exDiv.appendChild(msgDiv);
+
     // Run logic
     runBtn.onclick = () => {
-      if (typeof ex.handleRun === 'function') {
-        const selects = codeArea.querySelectorAll('select');
-        ex.handleRun({ selects, codeArea, imgDiv, ex, level: currentLevel });
+      const selects = codeArea.querySelectorAll('select');
+      const inputs = codeArea.querySelectorAll('input');
+      // Validation first
+      let result = { valid: true, message: '' };
+      if (typeof ex.validate === 'function') {
+        result = ex.validate({ selects, inputs, level: currentLevel });
       }
+      if (result && result.valid) {
+        if (typeof ex.handleRun === 'function') {
+          const outcome = ex.handleRun({ selects, inputs, codeArea, imgDiv, ex, level: currentLevel });
+          if (outcome !== null && outcome !== undefined) {
+            imgDiv.innerHTML = outcome;
+          }
+        }
+        msgDiv.style.color = '#1a7f37';
+      } else {
+        msgDiv.style.color = '#c00';
+      }
+      msgDiv.textContent = result.message;
     };
     container.appendChild(exDiv);
   }
 
   switchLevel('easy');
-}
-
-export function showResult(imgDiv, img) {
-  imgDiv.innerHTML = `<img src="${img}" alt="Result" style="max-width:100%;max-height:100%;">`;
 }

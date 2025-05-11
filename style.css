@@ -59,7 +59,7 @@ main {
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 24px;
-  max-width: 500px;
+  max-width: 1000px;
   width: 100%;
   margin-top: 20px;
   display: flex;
@@ -135,19 +135,20 @@ main {
   border-radius: 2px;
   transition: 0.3s;
 }
-.level-btn.selected {
-  background: #ffb300;
-  color: #222;
-  border: 2px solid #ff9800;
-  font-weight: bold;
-  box-shadow: 0 0 6px #ffb30044;
-}
 .level-btn {
   background: #eee;
   color: #222;
   border: 1px solid #bbb;
   font-weight: normal;
   box-shadow: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.level-btn.selected {
+  background: #ffb300;
+  color: #222;
+  border: 2px solid #ff9800;
+  font-weight: bold;
+  box-shadow: 0 0 6px #ffb30044;
 }
 .menu-cover-img {
   display: block;
@@ -207,6 +208,13 @@ main {
   .exercise {
     padding: 10px;
     max-width: 98vw;
+  }
+  .code-area {
+    width: 100vw;
+    max-width: 98vw;
+    box-sizing: border-box;
+    margin-left: -10px;
+    margin-right: -10px;
   }
   .result-img {
     width: 98vw;

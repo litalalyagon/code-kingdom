@@ -4,7 +4,7 @@ export function renderMenu(exercises, onSelect) {
   exercises.forEach((ex, idx) => {
     const li = document.createElement('li');
     const btn = document.createElement('button');
-    btn.textContent = `תרגיל ${idx + 1}`;
+    btn.textContent = `משימה ${idx + 1}`;
     btn.className = 'exercise-menu-btn run-btn';
     btn.onclick = () => {
       setActiveMenu(idx);
