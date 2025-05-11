@@ -58,57 +58,77 @@ main {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 24px;
-  max-width: 1000px;
+  padding: 32px 28px;
+  max-width: 1100px;
   width: 100%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.15em;
+  width: 600px;
+  max-width: 100%;
+  min-width: 320px;
+  box-sizing: border-box;
+}
+.exercise h3 {
+  font-size: 1.45em;
+  margin-bottom: 22px;
 }
 .code-area {
   background: #222;
   color: #fff;
   font-family: 'Fira Mono', monospace;
-  font-size: 1.1em;
+  font-size: 1.13em;
   border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 18px;
+  padding: 20px 16px;
+  margin-bottom: 24px;
   width: 100%;
   min-height: 60px;
   display: block;
   white-space: pre-line;
-  /* Remove flex and gap for line breaks to work */
+  min-width: 260px;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
-.code-area select {
+.code-area select,
+.code-area input {
   font-size: 1em;
-  margin: 0 2px;
+  margin: 0 3px 8px 3px;
+  min-width: 70px;
+  padding: 6px 8px;
+  box-sizing: border-box;
 }
 .run-btn {
   background: #0a84ff;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 24px;
-  font-size: 1em;
+  padding: 12px 32px;
+  font-size: 1.08em;
   cursor: pointer;
-  margin-bottom: 18px;
-  margin-top: 8px;
+  margin-bottom: 22px;
+  margin-top: 12px;
   transition: background 0.2s;
 }
 .run-btn:hover {
   background: #005bb5;
 }
 .result-img {
-  width: 180px;
-  height: 120px;
+  width: 220px;
+  height: 140px;
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 18px;
+  margin-bottom: 8px;
   font-size: 1.1em;
   color: #888;
   position: relative;
@@ -142,6 +162,11 @@ main {
   font-weight: normal;
   box-shadow: none;
   transition: background 0.2s, color 0.2s, border 0.2s;
+  padding: 12px 32px;
+  min-width: 120px;
+  font-size: 1.08em;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 .level-btn.selected {
   background: #ffb300;
@@ -165,6 +190,11 @@ main {
   border: 2px solid #ff9800;
   font-weight: bold;
   box-shadow: 0 0 6px #ffb30044;
+}
+.answer-msg {
+  margin-top: 18px !important;
+  font-size: 1.08em;
+  min-height: 28px;
 }
 @media (max-width: 900px) {
   .burger {
@@ -203,21 +233,48 @@ main {
   main {
     padding-top: 60px;
   }
-}
-@media (max-width: 600px) {
   .exercise {
-    padding: 10px;
     max-width: 98vw;
-  }
-  .code-area {
-    width: 100vw;
-    max-width: 98vw;
-    box-sizing: border-box;
-    margin-left: -10px;
-    margin-right: -10px;
+    padding: 18px 4vw;
   }
   .result-img {
     width: 98vw;
+    max-width: 180px;
+    height: 80px;
+  }
+}
+@media (max-width: 700px) {
+  .exercise {
+    width: 98vw;
+    min-width: 0;
+    max-width: 99vw;
+    padding: 10px 2vw;
+  }
+  .code-area {
+    width: 99vw;
+    max-width: 99vw;
+    min-width: 0;
+    margin-left: -2vw;
+    margin-right: -2vw;
+    padding: 14px 2vw;
+  }
+}
+@media (max-width: 600px) {
+  .exercise {
+    padding: 10px 2vw;
+    max-width: 99vw;
+  }
+  .code-area {
+    width: 99vw;
+    max-width: 99vw;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-left: -2vw;
+    margin-right: -2vw;
+    padding: 14px 2vw;
+  }
+  .result-img {
+    width: 99vw;
     max-width: 180px;
     height: 80px;
   }
