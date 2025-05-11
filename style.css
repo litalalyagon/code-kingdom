@@ -29,7 +29,7 @@ nav ul {
   width: 100%;
 }
 nav li {
-  margin: 10px 0;
+  margin: 4px 0;
   width: 100%;
 }
 nav button {
@@ -157,6 +157,13 @@ main {
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.exercise-menu-btn.selected {
+  background: #ffb300;
+  color: #222;
+  border: 2px solid #ff9800;
+  font-weight: bold;
+  box-shadow: 0 0 6px #ffb30044;
 }
 @media (max-width: 900px) {
   .burger {

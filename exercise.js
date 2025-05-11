@@ -1,3 +1,19 @@
+export class Exercise {
+  constructor(title, levels) {
+    this.title = title;
+    this.levels = levels;
+  }
+
+  getDefaultHtml(level = 'easy') {
+    // Default: show nothing. Child classes should override if needed.
+    return '';
+  }
+
+  handleRun({ selects, codeArea, imgDiv, level = 'easy' }) {
+    // Default: do nothing. Child classes should override if needed.
+  }
+}
+
 export function renderExercise(ex, idx) {
   const container = document.getElementById('exercise-container');
   container.innerHTML = '';
@@ -32,13 +48,17 @@ export function renderExercise(ex, idx) {
   function renderLevel() {
     // Remove previous exercise if exists
     const oldEx = container.querySelector('.exercise');
-    if (oldEx) oldEx.remove();
+    if (oldEx) {
+      oldEx.remove();
+    }
     const exDiv = document.createElement('div');
     exDiv.className = 'exercise';
+    
     // Title
     const title = document.createElement('h3');
     title.textContent = ex.title;
     exDiv.appendChild(title);
+
     // Code area
     const codeArea = document.createElement('div');
     codeArea.className = 'code-area';
@@ -81,7 +101,9 @@ export function renderExercise(ex, idx) {
     // Result image
     const imgDiv = document.createElement('div');
     imgDiv.className = 'result-img';
-    if (ex.levels[currentLevel].image) {
+    if (typeof ex.getDefaultHtml === 'function') {
+      imgDiv.innerHTML = ex.getDefaultHtml(currentLevel);
+    } else if (ex.levels[currentLevel].image) {
       imgDiv.innerHTML = `<img src="${ex.levels[currentLevel].image}" alt="Result" style="max-width:100%;max-height:100%;">`;
     } else {
       imgDiv.innerHTML = '';
@@ -90,9 +112,9 @@ export function renderExercise(ex, idx) {
     
     // Run logic
     runBtn.onclick = () => {
-      if (typeof ex.levels[currentLevel].handleRun === 'function') {
+      if (typeof ex.handleRun === 'function') {
         const selects = codeArea.querySelectorAll('select');
-        ex.levels[currentLevel].handleRun({ selects, codeArea, imgDiv, ex });
+        ex.handleRun({ selects, codeArea, imgDiv, ex, level: currentLevel });
       }
     };
     container.appendChild(exDiv);
