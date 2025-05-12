@@ -1,19 +1,20 @@
 export class Exercise {
-  constructor(title, levels) {
+  level = 'easy';
+
+  constructor(title) {
     this.title = title;
-    this.levels = levels;
   }
 
-  getDefaultHtml(level = 'easy') {
+  getDefaultHtml() {
     // Default: show nothing. Child classes should override if needed.
     return '';
   }
 
-  handleRun({ selects = [], inputs = [], ex = null, level = 'easy' }) {
+  handleRun({ selects = [], inputs = [], ex = null }) {
     // Default: do nothing. Child classes should override if needed.
   }
 
-  validate({ selects, inputs, level = 'easy' }) {
+  validate({ selects, inputs }) {
     // Default: always valid. Child classes should override for custom validation.
     return { valid: true, message: '' };
   }
@@ -24,9 +25,13 @@ export class Exercise {
     return '';
   }
 
-  getCodeParts(level = 'easy') {
+  getCodeParts() {
     // To be implemented in child classes if needed
-    return this.levels[level].codeParts || [];
+    return [];
+  }
+
+  setLevel(level) {
+    this.level = level;
   }
 
   
@@ -64,6 +69,7 @@ export function renderExercise(ex, idx) {
     } else {
       hardBtn.classList.add('selected');
     }
+    ex.setLevel(level);
     renderLevel();
   }
 
@@ -84,7 +90,7 @@ export function renderExercise(ex, idx) {
     // Code area
     const codeArea = document.createElement('div');
     codeArea.className = 'code-area';
-    const codeParts = ex.getCodeParts(currentLevel);
+    const codeParts = ex.getCodeParts();
     
     codeParts.forEach((part) => {
       if (part.type === 'text') {
@@ -126,9 +132,7 @@ export function renderExercise(ex, idx) {
     const imgDiv = document.createElement('div');
     imgDiv.className = 'result-img';
     if (typeof ex.getDefaultHtml === 'function') {
-      imgDiv.innerHTML = ex.getDefaultHtml(currentLevel);
-    } else if (ex.levels[currentLevel].image) {
-      imgDiv.innerHTML = `<img src="${ex.levels[currentLevel].image}" alt="Result" style="max-width:100%;max-height:100%;">`;
+      imgDiv.innerHTML = ex.getDefaultHtml();
     } else {
       imgDiv.innerHTML = '';
     }
@@ -145,14 +149,12 @@ export function renderExercise(ex, idx) {
     runBtn.onclick = () => {
       const selects = codeArea.querySelectorAll('select');
       const inputs = codeArea.querySelectorAll('input');
-      // Validation first
+      // Validation 
       let result = { valid: true, message: '' };
-      if (typeof ex.validate === 'function') {
-        result = ex.validate({ selects, inputs, level: currentLevel });
-      }
+      result = ex.validate({ selects, inputs });
       if (result && result.valid) {
         if (typeof ex.handleRun === 'function') {
-          const outcome = ex.handleRun({ selects, inputs, ex, level: currentLevel });
+          const outcome = ex.handleRun({ selects, inputs, ex });
           if (outcome !== null && outcome !== undefined) {
             imgDiv.innerHTML = outcome;
           }

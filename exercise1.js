@@ -16,8 +16,8 @@ class Exercise1 extends Exercise {
   defaultClouds = '3';
   defaultRainbow = 'לא';
 
-  getCodeParts(level = 'easy') {
-    if (level === 'easy') {
+  getCodeParts() {
+    if (this.level === 'easy') {
       return [
         { type: 'text', value: 'צבע עצים = ' },
         { type: 'dropdown', options: this.validColors, default: this.defaultColor },
@@ -61,7 +61,7 @@ class Exercise1 extends Exercise {
     return html;
   }
 
-  getDefaultHtml(level = 'easy') {
+  getDefaultHtml() {
     return this.composeImageHtml({
       color: this.defaultColor,
       clouds: this.defaultClouds,
@@ -69,14 +69,13 @@ class Exercise1 extends Exercise {
     });
   }
 
-  handleRun({ selects, inputs, level = 'easy' }) {
+  handleRun({ selects, inputs }) {
     let color, clouds, rainbow;
-    if (level === 'easy') {
+    if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
     } else {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
-    if (!this.isValid(color, clouds, rainbow)) return null;
     return this.composeImageHtml({ color, clouds, rainbow });
   }
 
@@ -88,25 +87,25 @@ class Exercise1 extends Exercise {
     );
   }
 
-  validate({ selects, inputs, level = 'easy' }) {
+  validate({ selects, inputs }) {
     let color, clouds, rainbow;
-    if (level === 'easy') {
+    if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
     } else {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
     if (this.isValid(color, clouds, rainbow)) {
-      return { valid: true, message: this.getCorrectMessage(level) };
+      return { valid: true, message: this.getCorrectMessage() };
     }
-    return { valid: false, message: 'נסה שוב. ודא שבחרת צבע, מספר עננים, וקשת תקינים.' };
+    return { valid: false, message: this.getErrorMessage() };
   }
 
-  getCorrectMessage(level = 'easy') {
+  getCorrectMessage() {
     return 'כל הכבוד! אפשר לנסות לשנות שוב את היער!';
   }
 
-  getValidString(level = 'easy') {
-    return `${Exercthisise1.defaultColor},${this.defaultClouds},${this.defaultRainbow}`;
+  getErrorMessage() {
+    return 'נסה שוב. ודא שבחרת צבע, מספר עננים, וקשת תקינים.';
   }
 }
 
