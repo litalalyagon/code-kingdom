@@ -1,4 +1,5 @@
 import { Exercise } from './exercise.js';
+import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise1 extends Exercise {
   constructor() {
@@ -11,32 +12,32 @@ class Exercise1 extends Exercise {
   };
   validColors = Object.keys(this.colorMap);
   validClouds = ['0', '1', '2', '3'];
-  validRainbow = ['כן', 'לא'];
-  defaultColor = 'כחול';
+  validRainbow = [hebrewDict.no, hebrewDict.yes];
+  defaultColor = hebrewDict.colors.blue;
   defaultClouds = '3';
-  defaultRainbow = 'לא';
+  defaultRainbow = hebrewDict.no;
 
   getCodeParts() {
     if (this.level === 'easy') {
       return [
-        { type: 'text', value: 'צבע עצים = ' },
+        { type: 'text', value: `${hebrewDict.ex1.trees_color} = ` },
         { type: 'dropdown', options: this.validColors, default: this.defaultColor },
         { type: 'text', value: '\n' },
-        { type: 'text', value: 'עננים = ' },
+        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
         { type: 'dropdown', options: this.validClouds, default: this.defaultClouds },
         { type: 'text', value: '\n' },
-        { type: 'text', value: 'קשת = ' },
+        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
         { type: 'dropdown', options: this.validRainbow, default: this.defaultRainbow }
       ];
     } else {
       return [
-        { type: 'text', value: 'צבע עצים = ' },
+        { type: 'text', value:  `${hebrewDict.ex1.trees_color} = ` },
         { type: 'input', default: this.defaultColor },
         { type: 'text', value: '\n' },
-        { type: 'text', value: 'עננים = ' },
+        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
         { type: 'input', default: this.defaultClouds },
         { type: 'text', value: '\n' },
-        { type: 'text', value: 'קשת = ' },
+        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
         { type: 'input', default: this.defaultRainbow }
       ];
     }
@@ -47,7 +48,7 @@ class Exercise1 extends Exercise {
     const colorKey = this.colorMap[color] || color;
     const forestImg = `ex1/forest_${colorKey}.png`;
     const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
-    const rainbowImg = rainbow === 'כן' ? 'ex1/rainbow.png' : null;
+    const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
 
     let html = `<div class="image-container">`;
     if (rainbowImg) {
@@ -101,11 +102,11 @@ class Exercise1 extends Exercise {
   }
 
   getCorrectMessage() {
-    return 'כל הכבוד! אפשר לנסות לשנות שוב את היער!';
+    return hebrewDict.ex1.success;
   }
 
   getErrorMessage() {
-    return 'נסה שוב. ודא שבחרת צבע, מספר עננים, וקשת תקינים.';
+    return hebrewDict.ex1.error_message;
   }
 }
 

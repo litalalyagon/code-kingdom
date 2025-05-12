@@ -1,3 +1,5 @@
+import { hebrewDict } from './hebrew-dict.js';
+
 export class Exercise {
   level = 'easy';
 
@@ -48,13 +50,15 @@ export function renderExercise(ex, idx) {
   levelDiv.style.justifyContent = 'center';
   levelDiv.style.gap = '10px';
   levelDiv.style.marginBottom = '10px';
+
   const easyBtn = document.createElement('button');
-  easyBtn.textContent = 'קל';
+  easyBtn.textContent = hebrewDict.easy;
   easyBtn.className = 'run-btn level-btn';
   easyBtn.onclick = () => switchLevel('easy');
   const hardBtn = document.createElement('button');
-  hardBtn.textContent = 'קשה';
+  hardBtn.textContent = hebrewDict.hard;
   hardBtn.className = 'run-btn level-btn';
+
   hardBtn.onclick = () => switchLevel('hard');
   levelDiv.appendChild(easyBtn);
   levelDiv.appendChild(hardBtn);
@@ -125,7 +129,7 @@ export function renderExercise(ex, idx) {
     // Run button
     const runBtn = document.createElement('button');
     runBtn.className = 'run-btn';
-    runBtn.textContent = 'הרץ';
+    runBtn.textContent = hebrewDict.run;
     exDiv.appendChild(runBtn);
 
     // Result image

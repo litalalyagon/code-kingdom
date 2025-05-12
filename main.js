@@ -26,6 +26,6 @@ async function showExercise(idx) {
   const ex = await loadExercise(idx);
   renderExercise(ex, idx);
 }
-
 renderMenu(Array(exerciseFiles.length).fill({}), showExercise);
 showExercise(0);
+

@@ -1,4 +1,5 @@
 import { Exercise } from './exercise.js';
+import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise2 extends Exercise {
   constructor() {
@@ -95,11 +96,11 @@ class Exercise2 extends Exercise {
   }
 
   getCorrectMessage() {
-    return 'כל הכבוד! אפשר לנסות לשנות שוב את היער!';
+    return hebrewDict.ex2.success;
   }
 
   getErrorMessage() {
-    return 'נסה שוב. ודא שבחרת צבע, מספר עננים, וקשת תקינים.';
+    return hebrewDict.ex2.error_message;
   }
 }
 
