@@ -5,43 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" href="assets/favicon.ico">
+  <script type="text/javascript" src="main.js"></script>  
+
 </head>
 <body>
-  <button class="burger" id="burgerBtn" aria-label="תפריט">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <div class="container">
-    <nav>
-      <button id="menu-home-btn" class="run-btn" style="width:90%;margin-bottom:10px;">דף הבית</button>
-      <img src="book-cover.png" alt="book cover" class="menu-cover-img" />
-      <h2>תרגילים</h2>
-      <ul id="exercise-list">
-        <!-- Menu items will be injected here -->
-      </ul>
-    </nav>
-    <main>
-      <div id="exercise-container"></div>
-    </main>
-  </div>
-  <script type="module" src="main.js"></script>
-  <script>
-    // Burger menu logic
-    const burgerBtn = document.getElementById('burgerBtn');
-    const nav = document.querySelector('nav');
-    burgerBtn.addEventListener('click', () => {
-      nav.classList.toggle('open');
-    });
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 900 && nav.classList.contains('open')) {
-        if (!nav.contains(e.target) && e.target !== burgerBtn) {
-          nav.classList.remove('open');
-        }
-      }
-    });
+
+    <img src="assets/book-cover.png" alt="book cover" />
+  <h1>אורי והדס בממלכת הקוד</h1>
+  <button onclick="handleEnter()" class="enter-btn">כניסה לתרגילים</button>
+
   </script>
 </body>
 </html>
