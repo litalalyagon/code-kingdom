@@ -5,16 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="assets/favicon.ico">
-  <script type="text/javascript" src="main.js"></script>  
-
 </head>
 <body>
-
     <img src="assets/book-cover.png" alt="book cover" />
   <h1>אורי והדס בממלכת הקוד</h1>
   <button onclick="handleEnter()" class="enter-btn">כניסה לתרגילים</button>
-
+  <script>
+    function handleEnter() {
+      const password = prompt('הכנס סיסמה:');
+      if (password === 'robi') { // Change '1234' to your desired password
+        window.location.href = 'tasks/index.html';
+      } else if (password !== null) {
+        alert('סיסמה שגויה');
+      }
+    }
   </script>
 </body>
 </html>

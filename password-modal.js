@@ -1,5 +1,5 @@
 // password-modal.js
-export function showPasswordModal(onSuccess) {
+function showPasswordModal(onSuccess) {
   let modal = document.getElementById('password-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -37,7 +37,7 @@ export function showPasswordModal(onSuccess) {
   }
 }
 
-export function hidePasswordModal() {
+function hidePasswordModal() {
   const modal = document.getElementById('password-modal');
   if (modal) modal.style.display = 'none';
 }
