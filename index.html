@@ -2,18 +2,62 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <img src="assets/book-cover.png" alt="book cover" />
-  <h1>אורי והדס בממלכת הקוד</h1>
-  <button onclick="handleEnter()" class="enter-btn">כניסה לתרגילים</button>
-  <script>
-    function handleEnter() {
-        window.location.href = 'tasks/index.html';
-    }
-  </script>
+    <header class="landing-header">
+        <h1>ברוכים הבאים לממלכת הקוד!</h1>
+        <p class="tagline">בואו ללמוד תכנות בדרך חוויתית! באלאן יחפור לכם על זה עוד קצת. <br>
+             עוד שורה כי זה נראה טוב יותר</p>
+        <button class="cta-button" onclick="window.location.href='tasks/index.html';">לעמוד המשימות</button>
+    </header>
+
+    <main class="landing-main">
+        <section class="book-cover-section">
+            
+            <section class="cta-section">
+                <p class="book-description">
+                משהו על זה שהיינו בהדסטארט וזה ספר מגניב <br>
+                ועכשיו אפשר להזמין את הספר <br>
+                ויש בו תרגילים וחידות ברמות משתנות <br>
+                ואולי שיש הנחה לקנייה בכמות. אני סתם כותבת כדי שתהיה לי פסקה <br>
+                </p>
+                <button id="order-button" class="cta-button">הזמן עכשיו</button>
+            </section>
+            <img src="assets/book-cover.png" alt="כריכת הספר" class="book-cover">
+        </section>
+        
+        
+
+        <section class="details-section">
+            <h2>תרצו שנחזור אליכם? השאירו פרטים</h2>
+            <form id="contact-form" class="details-form">
+                <text id="message-placeholder"> </text> </text>
+                <input type="text" id="name" name="name" placeholder="שם" required>
+                <input type="email" id="email" name="email" placeholder="אימייל" required>
+                <textarea id="message" name="message" rows="4" placeholder="הודעה" required></textarea>
+                <div class="form-submit">
+                    <button type="submit" class="cta-button">שליחה</button>
+              </div>
+          </form> 
+        </section>
+    </main>
+
+    <footer class="landing-footer">
+         <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">פייסבוק</a> | 
+            <a href="mailto:kidscodebook@gmail.com">מייל</a>
+        </div>
+        <p> הוצאת ממלכת הקוד. כל הזכויות שמורות 2025 &copy; </p>
+       
+    </footer>
+
+    <script type="text/javascript" src="main.js"></script>
+
 </body>
 </html>
