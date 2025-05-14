@@ -37,6 +37,7 @@ export const hebrewDict = {
     "ex3": {
         "title": "משימה 3: עוברים את הצוק",
         "ladder": "סולם",
+        "valid_tree_phrases": ["עץ", "גובה העץ"],
         "success": "כל הכבוד! יש סולם!",
         "error_message": "נסה שוב."
 

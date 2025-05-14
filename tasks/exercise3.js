@@ -74,13 +74,13 @@ class Exercise3 extends Exercise {
 
   isCorrect(tree, bird) {
     return (
-      tree === "גובה עץ" && bird === "3"
+      hebrewDict.ex3.valid_tree_phrases.includes(tree) && bird === "3"
     );
   }
 
   isValid(tree, sign, bird) {
     return (
-      tree === "גובה עץ" &&
+      hebrewDict.ex3.valid_tree_phrases.includes(tree) &&
       ['+', '-'].includes(sign) &&
       !isNaN(bird) && bird.trim() !== ''
     );
