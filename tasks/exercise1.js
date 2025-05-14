@@ -6,7 +6,7 @@ class Exercise1 extends Exercise {
     super('משימה 1: משנים את הנוף');
   }
   levelFieldTypes = {'easy': 'dropdown', 'hard': 'input'};
-  validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור'];
+  validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור','אדום','צהוב'];
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
   
