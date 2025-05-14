@@ -46,7 +46,7 @@ class Exercise1 extends Exercise {
     } else {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
-    return this.composeImageHtml({ color, clouds, rainbow });
+    return this.composeImageHtml({color, clouds, rainbow});
   }
 
   isValid(color, clouds, rainbow) {

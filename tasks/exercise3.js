@@ -73,10 +73,12 @@ class Exercise3 extends Exercise {
   }
 
   isCorrect(tree, bird) {
-    return (
-      hebrewDict.ex3.valid_tree_phrases.includes(tree) && bird === "3"
-    );
+    if (hebrewDict.ex3.valid_tree_phrases.includes(tree) && bird === "3") {
+      return { valid: true, message: this.getValidMessage()};
+    }
+    return { valid: false, message: "קלט תקין אבל לא"};
   }
+
 
   isValid(tree, sign, bird) {
     return (
@@ -91,7 +93,7 @@ class Exercise3 extends Exercise {
       return {valid: false, message: this.getErrorMessage()};
     } 
 
-    return { valid: true, message: this.getValidMessage()};
+    return { valid: true, message: ''};
   }
   getValidMessage() {
     return hebrewDict.ex3.success;

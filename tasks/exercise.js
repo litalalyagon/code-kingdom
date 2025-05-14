@@ -20,6 +20,10 @@ export class Exercise {
     // Default: always valid. Child classes should override for custom validation.
     return { valid: true, message: '' };
   }
+  isCorrect() {
+    // Default: always false. Child classes should override for custom correctness check.
+    return false;
+  }
 
   composeImageHtml(vars) {
     // To be implemented in child classes. 'vars' is an object with exercise-specific keys.
@@ -189,14 +193,18 @@ export function renderExercise(ex, idx) {
       let result = { valid: true, message: '' };
       result = ex.validate({ selects, inputs });
       if (result && result.valid) {
+        result = ex.isCorrect();
         if (typeof ex.handleRun === 'function') {
           const outcome = ex.handleRun({ selects, inputs, ex });
           if (outcome !== null && outcome !== undefined) {
             imgDiv.innerHTML = outcome;
           }
         }
+      }
+      if (result && result.valid) {
         msgDiv.style.color = '#1a7f37';
-      } else {
+      }
+      else {
         msgDiv.style.color = '#c00';
       }
       msgDiv.innerHTML = result.message;
