@@ -6,6 +6,8 @@ class Exercise3 extends Exercise {
     super(hebrewDict.ex3.title);
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
+  inputTree;
+  inputBird;
   getCodeParts() {
       let tree_field, bird_field, full_field;
       if (this.level === 'easy') {
@@ -72,11 +74,14 @@ class Exercise3 extends Exercise {
     return this.composeImageHtml({sign, bird});
   }
 
-  isCorrect(tree, bird) {
-    return (
-      hebrewDict.ex3.valid_tree_phrases.includes(tree) && bird === "3"
-    );
+  isCorrect() {
+    if (hebrewDict.ex3.valid_tree_phrases.includes(this.inputTree) && 
+    this.inputBird === "3") {
+      return { valid: true, message: this.getValidMessage()};
+    }
+    return { valid: false, message: "קלט תקין אבל לא"};
   }
+
 
   isValid(tree, sign, bird) {
     return (
@@ -87,11 +92,13 @@ class Exercise3 extends Exercise {
   }
   validate({selects, inputs}) {
     const {tree, sign, bird} = this.extractInputs(selects, inputs);
+    this.inputTree = tree;
+    this.inputBird = bird;
     if (!this.isValid(tree, sign, bird)) {
       return {valid: false, message: this.getErrorMessage()};
     } 
 
-    return { valid: true, message: this.getValidMessage()};
+    return { valid: true, message: ''};
   }
   getValidMessage() {
     return hebrewDict.ex3.success;

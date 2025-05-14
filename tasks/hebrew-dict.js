@@ -34,6 +34,13 @@ export const hebrewDict = {
         "error_message": "נסה שוב.",
         "fields_error_message": "שגיאה: שדות לא תקינים. אנא בדוק את השדות שוב.",
     },
+    "ex3": {
+        "title": "משימה 3: עוברים את הצוק",
+        "ladder": "סולם",
+        "valid_tree_phrases": ["עץ", "גובה עץ"],
+        "success": "כל הכבוד! יש סולם!",
+        "error_message": "נסה שוב."
+    },
     "ex8": {
         "title": "משימה 8: האח הראשון",
         "crowns": "כתרים",
@@ -46,14 +53,5 @@ export const hebrewDict = {
         "failure_var_doesnt_exist": "השתשמשתם בשם משתנה שלא קיים. יש להשתמש בשמות \"כתרים\" ו\"פרחים\".",
         "failure_var_is_missing": "יש להשתמש בשני המשתנים \"כתרים\" ו\"פרחים\".",
         "wrong_answer": "התנאי עדיין לא מתקיים כדי שהאח ייכבה, נסו שוב",
-
     },
-    "ex3": {
-        "title": "משימה 3: עוברים את הצוק",
-        "ladder": "סולם",
-        "valid_tree_phrases": ["עץ", "גובה העץ"],
-        "success": "כל הכבוד! יש סולם!",
-        "error_message": "נסה שוב."
-
-    }
 };
