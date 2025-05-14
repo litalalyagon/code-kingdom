@@ -25,7 +25,7 @@ class Exercise1 extends Exercise {
   }
 
   composeImageHtml(vars) {
-    const { color, clouds, rainbow } = vars;
+    const {color, clouds, rainbow} = vars;
     const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
     const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
     const forestImg = `ex1/forest_${colorKey}.png`;
@@ -41,7 +41,7 @@ class Exercise1 extends Exercise {
     });
   }
 
-  handleRun({ selects, inputs }) {
+  handleRun({selects, inputs}) {
     let color, clouds, rainbow;
     if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
