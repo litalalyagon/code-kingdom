@@ -5,58 +5,35 @@ class Exercise2 extends Exercise {
   constructor() {
     super('משימה 2: הפטריות הקסומות');
   }
-  colorMap = { 
-    'כחול': 'blue', 
-    'ירוק': 'green', 
-    'כתום': 'orange',
-    'אדום': 'red',
-    'סגול': 'purple',
-    'צהוב': 'yellow',
-  };
-  validColors = Object.keys(this.colorMap);
-  defaultSpots = null;
-  defaultColor = null
+  levelFieldTypes = {'easy': 'dropdown', 'hard': 'input'};
+  validColors = ['כחול', 'ירוק', 'ורוד', , 'סגול', 'אדום', 'צהוב'];
+  validSpots = ['0', '1', '2', '3', '4', '5'];
+  defaultSpots = 1;
+  defaultColor = "אדום";
 
   getCodeParts() {
-    if (this.level === 'easy') {
-      return [
-        { type: 'text', value: 'צבע = ' },
-        { type: 'input', default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: 'נקודות = ' },
-        { type: 'input', default: this.defaultSpots },
-      ];
-    } else {
-      return [
-        { type: 'text', value: 'צבע = ' },
-        { type: 'input', default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: 'נקודות = ' },
-        { type: 'input', default: this.defaultSpots },
-      ];
-    }
+    const color_field = this.createFieldDisplayDetails(`${hebrewDict.ex2.mushrooms_color} = `, null, this.validColors, this.defaultColor);
+    const spots_field = this.createFieldDisplayDetails(`${hebrewDict.ex2.spots} = `, null, this.validSpots, this.defaultSpots);
+    const combined = color_field.concat(spots_field);
+    console.log(combined);
+    combined.pop();
+    return combined;
   }
 
   composeImageHtml(vars) {
-    return this.getDefaultHtml();
+    const {color, spots} = vars;
+    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
     
-    // const { color, spots } = vars;
-    // const colorKey = this.colorMap[color] || color;
-    // //const forestImg = `ex1/forest_${colorKey}.png`;
-    // //const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
-    // let html = `<div style="position:relative;display:inline-block;">`;
-   
-    // html += `<img src='${forestImg}' alt='forest' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;'>`;
-    // if (cloudsImg) {
-    //   html += `<img src='${cloudsImg}' alt='clouds' style='position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;'>`;
-    // }
-    // html += `<img src='${forestImg}' alt='' style='visibility:hidden;position:relative;width:100%;height:auto;'>`;
-    // html += '</div>';
-    // return html;
+    const backgroundImg = 'ex2/mushrooms_def.png'
+    const mushroomImg = `ex2/mushroom_${colorKey}.png`;
+    const spotsImg = spots !== '0' ? `ex2/spots_${spots}.png` : null;
+  
+    return this.generateImageHTML([backgroundImg, mushroomImg, spotsImg]);
   }
 
   getDefaultHtml() {
-    const img = 'ex2/mushrooms_def.png';  
+    const backgroundImg = 'ex2/mushrooms_bg.png';  
+    const mushroomImg = `ex2/mushroom_missing.png`;
     let html = `<div class="image-container">`;
     html += `<img src='${img}' alt='forest' class="main-image" style="z-index: 2;">`;
     html += '</div>';
@@ -64,32 +41,31 @@ class Exercise2 extends Exercise {
   }
 
   handleRun({ selects, inputs }) {
-    let color, clouds, rainbow;
+    let color, spots;
     if (this.level === 'easy') {
-      [color, spots] = Array.from(inputs).map(s => s.value);
+      [color, spots] = Array.from(selects).map(s => s.value);
     } else {
       [code] = Array.from(inputs).map(i => i.value.trim());
     }
    // if (!this.isValid(color, clouds, rainbow)) return null;
-    return this.composeImageHtml({ color, clouds, rainbow });
+    return this.composeImageHtml({color, spots});
   }
 
-  isValid(color, clouds, rainbow) {
+  isValid(color, spots) {
     return (
       this.validColors.includes(color) &&
-      this.validClouds.includes(clouds) &&
-      this.validRainbow.includes(rainbow)
+      this.validSpots.includes(spots)
     );
   }
 
   validate({ selects, inputs }) {
-    let color, clouds, rainbow;
+    let color, spots;
     if (this.level === 'easy') {
-      [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
+      [color, spots] = Array.from(selects).map(s => s.value);
     } else {
-      [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
+      [color, spots] = Array.from(inputs).map(i => i.value.trim());
     }
-    if (this.isValid(color, clouds, rainbow)) {
+    if (this.isValid(color, spots)) {
       return { valid: true, message: this.getCorrectMessage() };
     }
     return { valid: false, message: this.getErrorMessage() };
