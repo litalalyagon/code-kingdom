@@ -1,14 +1,104 @@
-export default {
-  title: 'הדפס חיבור',
-  codeParts: [
-    { type: 'text', value: 'print(' },
-    { type: 'dropdown', options: ['2+3', '"2+3"', '5'], answer: '2+3' },
-    { type: 'text', value: ')' }
-  ],
-  image: 'placeholder3.png',
-  outcomes: {
-    '2+3': 'placeholder3.png',
-    '"2+3"': 'placeholder_wrong.png',
-    '5': 'placeholder_wrong.png'
+import { Exercise } from './exercise.js';
+import { hebrewDict } from './hebrew-dict.js';
+
+class Exercise3 extends Exercise {
+  constructor() {
+    super(hebrewDict.ex3.title);
   }
-};
+  levelFieldTypes = {'easy': 'input', 'hard': 'input'};
+  getCodeParts() {
+      let tree_field, bird_field, full_field;
+      if (this.level === 'easy') {
+        tree_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex3.ladder} = `, new_line: false});
+        bird_field = this.createFieldDisplayDetails({pretext: ` + `}); 
+        const combined = tree_field.concat(bird_field);
+        return combined;
+      }
+      else {
+        full_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex3.ladder} = `});
+      }
+      return full_field;
+  }
+  composeImageHtml(vars) {
+    const {sign, bird} = vars;
+    let bird_num = parseInt(bird, 10);
+    if (sign === '-') {
+      bird_num = -bird_num;
+    }
+
+    const backgroundImg = 'ex3/ex3_def.png'
+    let ladderImg = '';
+    if (bird_num==3) {
+      ladderImg = 'ex3/ladder_correct.png';
+    }
+    else if (bird_num == 2) {
+      ladderImg = 'ex3/ladder_tree_2.png';
+    }
+    else if (bird_num == 1) {
+      ladderImg = 'ex3/ladder_tree_1.png';
+    } 
+    else if (bird_num==0) {
+      ladderImg = 'ex3/ladder_tree.png';
+    }
+    else if (bird_num < 0) {
+      ladderImg = 'ex3/ladder_short.png';
+    }  
+    else {
+      ladderImg = 'ex3/ladder_long.png';
+    }
+    return this.generateImageHTML([backgroundImg, ladderImg]);
+  }
+  getDefaultHtml() {
+    const backgroundImg = 'ex3/ex3_def.png';  
+    return this.generateImageHTML([backgroundImg]);
+  }
+  extractInputs(selects, inputs, only_values=false) {
+    let tree, sign, bird, full_string;
+    if (this.level === 'easy') {
+      [tree, bird] = Array.from(inputs).map(s => s.value.trim());
+      sign = '+';
+    }
+    else {
+      [full_string] = Array.from(inputs).map(i => i.value.trim());
+      const match = full_string.match(/^(.+)\s*([+-])\s*(\d+)$/);
+      tree = match[1].trim();
+      sign = match[2];
+      bird = match[3].trim();
+    }
+    return {tree, sign, bird}
+  }
+  handleRun({ selects, inputs }) {
+    const {sign, bird} = this.extractInputs(selects, inputs, true);
+    return this.composeImageHtml({sign, bird});
+  }
+
+  isCorrect(tree, bird) {
+    return (
+      hebrewDict.ex3.valid_tree_phrases.includes(tree) && bird === "3"
+    );
+  }
+
+  isValid(tree, sign, bird) {
+    return (
+      hebrewDict.ex3.valid_tree_phrases.includes(tree) &&
+      ['+', '-'].includes(sign) &&
+      !isNaN(bird) && bird.trim() !== ''
+    );
+  }
+  validate({selects, inputs}) {
+    const {tree, sign, bird} = this.extractInputs(selects, inputs);
+    if (!this.isValid(tree, sign, bird)) {
+      return {valid: false, message: this.getErrorMessage()};
+    } 
+
+    return { valid: true, message: this.getValidMessage()};
+  }
+  getValidMessage() {
+    return hebrewDict.ex3.success;
+  }
+
+  getErrorMessage() {
+    return hebrewDict.ex3.error_message;
+  }
+}
+export default new Exercise3();

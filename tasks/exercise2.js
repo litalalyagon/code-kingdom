@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise2 extends Exercise {
   constructor() {
-    super('משימה 2: הפטריות הקסומות');
+    super(hebrewDict.ex2.title);
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   validColors = ['כחול', 'ירוק', 'ורוד', , 'סגול', 'אדום', 'צהוב'];
@@ -14,8 +14,8 @@ class Exercise2 extends Exercise {
   getCodeParts() {
     let color_field, spots_field;
     if (this.level === 'easy') {
-      color_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.mushrooms_color} = `, valid_values: this.validColors, default_value: this.defaultColor});
-      spots_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.spots} = `, valid_values: this.validSpots, default_value: this.defaultSpots}); 
+      color_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.mushrooms_color} = `, default_value: this.defaultColor});
+      spots_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.spots} = `, default_value: this.defaultSpots}); 
     }
     else {
       color_field = this.createFieldDisplayDetails({default_value: this.defaultColor});
@@ -86,7 +86,6 @@ class Exercise2 extends Exercise {
     let color, spots;
     if (this.level === 'easy') {
       const {color, spots} = this.extractInputs(selects, inputs);
-      console.log(color, spots);
       if (!this.isValid(color, spots)) {
         return { valid: false, message: this.getErrorMessage() };
       }

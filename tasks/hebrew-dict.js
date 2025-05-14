@@ -27,6 +27,7 @@ export const hebrewDict = {
         "rainbow_error": "הקשת יכולה להיות שווה רק לכן או לא, לא משהו אחר",
     },
     "ex2": {
+        "title": "משימה 2: הפטריות הקסומות",
         "mushrooms_color": "צבע הפטריות",
         "spots": "כתמים",
         "success": "כל הכבוד! הפטריה מוכנה סימן קריאה סימן קריאה!",
@@ -47,4 +48,12 @@ export const hebrewDict = {
         "wrong_answer": "התנאי עדיין לא מתקיים כדי שהאח ייכבה, נסו שוב",
 
     },
+    "ex3": {
+        "title": "משימה 3: עוברים את הצוק",
+        "ladder": "סולם",
+        "valid_tree_phrases": ["עץ", "גובה העץ"],
+        "success": "כל הכבוד! יש סולם!",
+        "error_message": "נסה שוב."
+
+    }
 };
