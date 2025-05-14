@@ -30,6 +30,7 @@ export const hebrewDict = {
         "mushrooms_color": "צבע הפטריות",
         "spots": "כתמים",
         "success": "כל הכבוד! הפטריה מוכנה סימן קריאה סימן קריאה!",
-        "error_message": "נסה שוב."
+        "error_message": "נסה שוב.",
+        "fields_error_message": "שגיאה: שדות לא תקינים. אנא בדוק את השדות שוב.",
     }
 };
