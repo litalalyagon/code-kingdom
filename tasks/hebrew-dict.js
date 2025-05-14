@@ -27,6 +27,8 @@ export const hebrewDict = {
         "rainbow_error": "הקשת יכולה להיות שווה רק לכן או לא, לא משהו אחר",
     },
     "ex2": {
+        "mushrooms_color": "צבע הפטריות",
+        "spots": "כתמים",
         "success": "כל הכבוד! הפטריה מוכנה סימן קריאה סימן קריאה!",
         "error_message": "נסה שוב."
     }

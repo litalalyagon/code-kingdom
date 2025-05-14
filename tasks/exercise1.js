@@ -15,17 +15,15 @@ class Exercise1 extends Exercise {
   defaultRainbow = hebrewDict.no;
 
   getCodeParts() {
-    const color_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.trees_color} = `, null, this.validColors, this.defaultColor);
-    const clouds_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.clouds} = `, null, this.validClouds, this.defaultClouds);
-    const rainbow_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.rainbow} = `, null, this.validRainbow, this.defaultRainbow);
-    
+    const color_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex1.trees_color} = `, valid_values: this.validColors, default_value: this.defaultColor});
+    const clouds_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex1.clouds} = `, valid_values: this.validClouds, default_value: this.defaultClouds});
+    const rainbow_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex1.rainbow} = `, valid_values: this.validRainbow, default_value: this.defaultRainbow, new_line: false}); 
     const combined = color_field.concat(clouds_field, rainbow_field);
-    combined.pop();
     return combined;
   }
 
   composeImageHtml(vars) {
-    const { color, clouds, rainbow } = vars;
+    const {color, clouds, rainbow} = vars;
     const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
     const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
     const forestImg = `ex1/forest_${colorKey}.png`;
@@ -41,7 +39,7 @@ class Exercise1 extends Exercise {
     });
   }
 
-  handleRun({ selects, inputs }) {
+  handleRun({selects, inputs}) {
     let color, clouds, rainbow;
     if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
@@ -67,12 +65,12 @@ class Exercise1 extends Exercise {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
     if (this.isValid(color, clouds, rainbow)) {
-      return { valid: true, message: this.getCorrectMessage() };
+      return { valid: true, message: this.getValidMessage() };
     }
     return { valid: false, message: this.getErrorMessage(color, clouds, rainbow) };
   }
 
-  getCorrectMessage() {
+  getValidMessage() {  // TODO: Add "get correct message" logic
     return hebrewDict.ex1.success;
   }
 

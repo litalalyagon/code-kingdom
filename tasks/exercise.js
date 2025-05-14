@@ -48,7 +48,8 @@ export class Exercise {
     return html;
   }
 
-  createFieldDisplayDetails(pretext='', posttext='', valid_values, default_value, indentation=false) {
+  createFieldDisplayDetails({pretext='', posttext='', valid_values, default_value, indentation=false, new_line=true}) {
+    console.log('createFieldDisplayDetails', {pretext, posttext, valid_values, default_value, indentation, new_line});
     let field_details = [];
     const field_type = this.levelFieldTypes[this.level];
     if (indentation) {
@@ -62,7 +63,9 @@ export class Exercise {
       field_details.push({type: 'input', default: default_value});
     }
     field_details.push({type: 'text', value: posttext});
-    field_details.push({type: 'text', value: '\n'});
+    if (new_line) {
+      field_details.push({type: 'text', value: '\n'});
+    }
     return field_details;
     } 
 
