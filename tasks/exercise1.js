@@ -30,17 +30,7 @@ class Exercise1 extends Exercise {
     const forestImg = `ex1/forest_${colorKey}.png`;
     const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
     const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
-
-    let html = `<div class="image-container">`;
-    if (rainbowImg) {
-        html += `<img src='${rainbowImg}' alt='rainbow' class="main-image" style="z-index: 1;">`;
-    }
-    html += `<img src='${forestImg}' alt='forest' class="main-image" style="z-index: 2;">`;
-    if (cloudsImg) {
-        html += `<img src='${cloudsImg}' alt='clouds' class="main-image" style="z-index: 3;">`;
-    }
-    html += '</div>';
-    return html;
+    return this.generateImageHTML([forestImg, cloudsImg, rainbowImg]);
   }
 
   getDefaultHtml() {
