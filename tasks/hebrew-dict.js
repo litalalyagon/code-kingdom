@@ -11,7 +11,10 @@ export const hebrewDict = {
         "orange": "כתום",
         "red": "אדום",
         "purple": "סגול",
-        "yellow": "צהוב"
+        "yellow": "צהוב",
+        "black" : "שחור",
+        "pink": "ורוד",
+        "grey": "אפור"
     },
     "ex1": {
         "title": "משימה 1: משנים את הנוף",

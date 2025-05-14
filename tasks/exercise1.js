@@ -5,14 +5,11 @@ class Exercise1 extends Exercise {
   constructor() {
     super('משימה 1: משנים את הנוף');
   }
-  colorMap = { 
-    'כחול': 'blue', 
-    'ירוק': 'green', 
-    'כתום': 'orange' 
-  };
-  validColors = Object.keys(this.colorMap);
+
+  validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור'];
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
+  
   defaultColor = hebrewDict.colors.blue;
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
@@ -45,7 +42,7 @@ class Exercise1 extends Exercise {
 
   composeImageHtml(vars) {
     const { color, clouds, rainbow } = vars;
-    const colorKey = this.colorMap[color] || color;
+    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
     const forestImg = `ex1/forest_${colorKey}.png`;
     const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
     const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
