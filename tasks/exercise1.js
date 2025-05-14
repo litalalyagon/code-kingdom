@@ -5,7 +5,7 @@ class Exercise1 extends Exercise {
   constructor() {
     super('משימה 1: משנים את הנוף');
   }
-
+  levelFieldTypes = {'easy': 'dropdown', 'hard': 'input'};
   validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור'];
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
@@ -14,21 +14,10 @@ class Exercise1 extends Exercise {
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
 
-  fieldDisplayDetails(field_name, valid_values, default_value) {
-    if (this.level === 'easy') {
-      return [{ type: 'text', value: `${field_name} = ` },
-        { type: 'dropdown', options: valid_values, default: default_value },
-        { type: 'text', value: '\n' },];
-    }
-    return [{ type: 'text', value:  `${field_name} = ` },
-        { type: 'input', default: default_value},
-        { type: 'text', value: '\n' },];
-    } 
-
   getCodeParts() {
-    const color_field = this.fieldDisplayDetails(hebrewDict.ex1.trees_color, this.validColors, this.defaultColor);
-    const clouds_field = this.fieldDisplayDetails(hebrewDict.ex1.clouds, this.validClouds, this.defaultClouds);
-    const rainbow_field = this.fieldDisplayDetails(hebrewDict.ex1.rainbow, this.validRainbow, this.defaultRainbow);
+    const color_field = this.createFieldDisplayDetails(hebrewDict.ex1.trees_color, this.validColors, this.defaultColor);
+    const clouds_field = this.createFieldDisplayDetails(hebrewDict.ex1.clouds, this.validClouds, this.defaultClouds);
+    const rainbow_field = this.createFieldDisplayDetails(hebrewDict.ex1.rainbow, this.validRainbow, this.defaultRainbow);
     
     const combined = color_field.concat(clouds_field, rainbow_field);
     combined.pop();

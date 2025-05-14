@@ -36,6 +36,38 @@ export class Exercise {
     this.level = level;
   }
 
+  dropdownField(field_name, valid_values, default_value) {
+    return [
+      { type: 'text', value: `${field_name} = ` },
+      { type: 'dropdown', options: valid_values, default: default_value },
+    ];
+  }
+  inputField(field_name, default_value) {
+    return [
+      { type: 'text', value: `${field_name} = ` },
+      { type: 'input', default: default_value},
+    ];
+  }
+  textField(default_value) {
+    return [
+      { type: 'text', value: default_value },
+    ];
+  }
+
+  createFieldDisplayDetails(field_name, valid_values, default_value) {
+    let field_details = [];
+    if (this.levelFieldTypes[this.level] === 'dropdown') {
+      field_details =  this.dropdownField(field_name, valid_values, default_value);}
+    if (this.levelFieldTypes[this.level] === 'input') {
+      field_details = this.inputField(field_name, default_value);}
+    if (this.levelFieldTypes[this.level] === 'text') {
+      field_details =  this.textField(default_value);}
+    
+    field_details.push({ type: 'text', value: '\n' });
+    return field_details;
+  
+    } 
+
   
 }
 
