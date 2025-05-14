@@ -14,30 +14,25 @@ class Exercise1 extends Exercise {
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
 
-  getCodeParts() {
+  fieldDisplayDetails(field_name, valid_values, default_value) {
     if (this.level === 'easy') {
-      return [
-        { type: 'text', value: `${hebrewDict.ex1.trees_color} = ` },
-        { type: 'dropdown', options: this.validColors, default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
-        { type: 'dropdown', options: this.validClouds, default: this.defaultClouds },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
-        { type: 'dropdown', options: this.validRainbow, default: this.defaultRainbow }
-      ];
-    } else {
-      return [
-        { type: 'text', value:  `${hebrewDict.ex1.trees_color} = ` },
-        { type: 'input', default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
-        { type: 'input', default: this.defaultClouds },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
-        { type: 'input', default: this.defaultRainbow }
-      ];
+      return [{ type: 'text', value: `${field_name} = ` },
+        { type: 'dropdown', options: valid_values, default: default_value },
+        { type: 'text', value: '\n' },];
     }
+    return [{ type: 'text', value:  `${field_name} = ` },
+        { type: 'input', default: default_value},
+        { type: 'text', value: '\n' },];
+    } 
+
+  getCodeParts() {
+    const color_field = this.fieldDisplayDetails(hebrewDict.ex1.trees_color, this.validColors, this.defaultColor);
+    const clouds_field = this.fieldDisplayDetails(hebrewDict.ex1.clouds, this.validClouds, this.defaultClouds);
+    const rainbow_field = this.fieldDisplayDetails(hebrewDict.ex1.rainbow, this.validRainbow, this.defaultRainbow);
+    
+    const combined = color_field.concat(clouds_field, rainbow_field);
+    combined.pop();
+    return combined;
   }
 
   composeImageHtml(vars) {
