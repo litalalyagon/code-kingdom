@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise1 extends Exercise {
   constructor() {
-    super('משימה 1: משנים את הנוף');
+    super(hebrewDict.ex1.title);
   }
   levelFieldTypes = {'easy': 'dropdown', 'hard': 'input'};
   validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור','אדום','צהוב'];
