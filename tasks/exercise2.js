@@ -14,12 +14,12 @@ class Exercise2 extends Exercise {
   getCodeParts() {
     let color_field, spots_field;
     if (this.level === 'easy') {
-      color_field = this.createFieldDisplayDetails(`${hebrewDict.ex2.mushrooms_color} = `, null, this.validColors, this.defaultColor);
-      spots_field = this.createFieldDisplayDetails(`${hebrewDict.ex2.spots} = `, null, this.validSpots, this.defaultSpots);
+      color_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.mushrooms_color} = `, valid_values: this.validColors, default_value: this.defaultColor});
+      spots_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex2.spots} = `, valid_values: this.validSpots, default_value: this.defaultSpots}); 
     }
     else {
-      color_field = this.createFieldDisplayDetails(null, null, null, this.defaultColor);
-      spots_field = this.createFieldDisplayDetails(null, null, null, this.defaultSpots);
+      color_field = this.createFieldDisplayDetails({default_value: this.defaultColor});
+      spots_field = this.createFieldDisplayDetails({default_value: this.defaultSpots});
     }
     const combined = color_field.concat(spots_field);
 
