@@ -49,7 +49,6 @@ export class Exercise {
   }
 
   createFieldDisplayDetails({pretext='', posttext='', valid_values, default_value, indentation=false, new_line=true}) {
-    console.log('createFieldDisplayDetails', {pretext, posttext, valid_values, default_value, indentation, new_line});
     let field_details = [];
     const field_type = this.levelFieldTypes[this.level];
     if (indentation) {

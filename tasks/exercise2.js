@@ -43,9 +43,29 @@ class Exercise2 extends Exercise {
     return this.generateImageHTML([backgroundImg, mushroomImg]);
   }
 
+  extractInputs(selects, inputs, only_values=false) {
+    let color_string, spots_string, color_var, spots_var, color, spots;
+    if (this.level === 'easy') {
+      [color, spots] = Array.from(inputs).map(s => s.value.trim());
+    }
+    else {
+      [color_string, spots_string] = Array.from(inputs).map(i => i.value.trim());
+      const color_parts = color_string.split('=');
+      if (color_parts.length < 2) return '';
+      color_var = color_parts[0].trim();
+      color = color_parts[1].trim();
+
+      const spots_parts = spots_string.split('=');
+      if (spots_parts.length < 2) return '';
+      spots_var = spots_parts[0].trim();
+      spots = spots_parts[1].trim();
+    }
+    if (only_values) return { color, spots };
+    return {color_var, color, spots_var, spots};
+  }
+
   handleRun({ selects, inputs }) {
-    let color, spots;
-    [color, spots] = Array.from(inputs).map(i => i.value.trim());
+    const {color, spots} = this.extractInputs(selects, inputs, true);
     return this.composeImageHtml({color, spots});
   }
 
@@ -65,14 +85,23 @@ class Exercise2 extends Exercise {
   validate({ selects, inputs }) {
     let color, spots;
     if (this.level === 'easy') {
-      [color, spots] = Array.from(selects).map(s => s.value);
-    } else {
-      [color, spots] = Array.from(inputs).map(i => i.value.trim());
+      const {color, spots} = this.extractInputs(selects, inputs);
+      console.log(color, spots);
+      if (!this.isValid(color, spots)) {
+        return { valid: false, message: this.getErrorMessage() };
+      }
     }
-    if (this.isValid(color, spots)) {
-      return { valid: true, message: this.getValidMessage() };
+    else {
+      const {color_var, color, spots_var, spots} = this.extractInputs(selects, inputs);
+      if (!this.isValid(color, spots)) {
+        return { valid: false, message: this.getErrorMessage() };
+      }
+      if (color_var !== 'צבע' || spots_var !== 'נקודות') {
+        return { valid: false, message: hebrewDict.ex2.fields_error_message };
+      }
     }
-    return { valid: true, message: this.getErrorMessage() };
+
+    return { valid: true, message: this.getValidMessage()};
   }
 
   getValidMessage() {
