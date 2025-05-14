@@ -36,6 +36,17 @@ export class Exercise {
     this.level = level;
   }
 
+  generateImageHTML(image_array) {
+    let html = `<div class="image-container">`;
+    for (let i = 0; i < image_array.length; i++) {
+      const img_path = image_array[i];
+      if (img_path) {
+        html += `<img src='${img_path}' alt='image' class="main-image" style="z-index: ${i + 1};">`;
+      }
+    } 
+    html += '</div>';
+    return html;
+  }
 
   createFieldDisplayDetails(pretext='', posttext='', valid_values, default_value, indentation=false) {
     let field_details = [];
