@@ -167,7 +167,7 @@ export function renderExercise(ex, idx) {
       } else {
         msgDiv.style.color = '#c00';
       }
-      msgDiv.textContent = result.message;
+      msgDiv.innerHTML = result.message;
     };
     container.appendChild(exDiv);
   }
