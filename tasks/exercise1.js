@@ -17,10 +17,8 @@ class Exercise1 extends Exercise {
   getCodeParts() {
     const color_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.trees_color} = `, null, this.validColors, this.defaultColor);
     const clouds_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.clouds} = `, null, this.validClouds, this.defaultClouds);
-    const rainbow_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.rainbow} = `, null, this.validRainbow, this.defaultRainbow);
-    
+    const rainbow_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.rainbow} = `, null, this.validRainbow, this.defaultRainbow, false, false);
     const combined = color_field.concat(clouds_field, rainbow_field);
-    combined.pop();
     return combined;
   }
 
@@ -67,12 +65,12 @@ class Exercise1 extends Exercise {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
     if (this.isValid(color, clouds, rainbow)) {
-      return { valid: true, message: this.getCorrectMessage() };
+      return { valid: true, message: this.getValidMessage() };
     }
     return { valid: false, message: this.getErrorMessage(color, clouds, rainbow) };
   }
 
-  getCorrectMessage() {
+  getValidMessage() {  // TODO: Add "get correct message" logic
     return hebrewDict.ex1.success;
   }
 
