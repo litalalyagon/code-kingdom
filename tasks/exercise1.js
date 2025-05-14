@@ -15,9 +15,9 @@ class Exercise1 extends Exercise {
   defaultRainbow = hebrewDict.no;
 
   getCodeParts() {
-    const color_field = this.createFieldDisplayDetails(hebrewDict.ex1.trees_color, this.validColors, this.defaultColor);
-    const clouds_field = this.createFieldDisplayDetails(hebrewDict.ex1.clouds, this.validClouds, this.defaultClouds);
-    const rainbow_field = this.createFieldDisplayDetails(hebrewDict.ex1.rainbow, this.validRainbow, this.defaultRainbow);
+    const color_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.trees_color} = `, this.validColors, this.defaultColor);
+    const clouds_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.clouds} = `, this.validClouds, this.defaultClouds);
+    const rainbow_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.rainbow} = `, this.validRainbow, this.defaultRainbow);
     
     const combined = color_field.concat(clouds_field, rainbow_field);
     combined.pop();
