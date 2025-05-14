@@ -36,6 +36,25 @@ export class Exercise {
     this.level = level;
   }
 
+
+  createFieldDisplayDetails(pretext='', posttext='', valid_values, default_value, indentation=false) {
+    let field_details = [];
+    const field_type = this.levelFieldTypes[this.level];
+    if (indentation) {
+      pretext = "\u00A0\u00A0\u00A0\u00A0" + pretext;
+    }
+    field_details.push({type: 'text', value: pretext});
+    if (field_type === 'dropdown') {
+      field_details.push({type: 'dropdown', options: valid_values, default: default_value});
+    }
+    if (field_type === 'input') {
+      field_details.push({type: 'input', default: default_value});
+    }
+    field_details.push({type: 'text', value: posttext});
+    field_details.push({type: 'text', value: '\n'});
+    return field_details;
+    } 
+
   
 }
 

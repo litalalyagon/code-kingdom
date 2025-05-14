@@ -5,7 +5,7 @@ class Exercise1 extends Exercise {
   constructor() {
     super('משימה 1: משנים את הנוף');
   }
-
+  levelFieldTypes = {'easy': 'dropdown', 'hard': 'input'};
   validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור'];
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
@@ -15,29 +15,13 @@ class Exercise1 extends Exercise {
   defaultRainbow = hebrewDict.no;
 
   getCodeParts() {
-    if (this.level === 'easy') {
-      return [
-        { type: 'text', value: `${hebrewDict.ex1.trees_color} = ` },
-        { type: 'dropdown', options: this.validColors, default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
-        { type: 'dropdown', options: this.validClouds, default: this.defaultClouds },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
-        { type: 'dropdown', options: this.validRainbow, default: this.defaultRainbow }
-      ];
-    } else {
-      return [
-        { type: 'text', value:  `${hebrewDict.ex1.trees_color} = ` },
-        { type: 'input', default: this.defaultColor },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.clouds} = ` },
-        { type: 'input', default: this.defaultClouds },
-        { type: 'text', value: '\n' },
-        { type: 'text', value: `${hebrewDict.ex1.rainbow} = ` },
-        { type: 'input', default: this.defaultRainbow }
-      ];
-    }
+    const color_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.trees_color} = `, null, this.validColors, this.defaultColor);
+    const clouds_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.clouds} = `, null, this.validClouds, this.defaultClouds);
+    const rainbow_field = this.createFieldDisplayDetails(`${hebrewDict.ex1.rainbow} = `, null, this.validRainbow, this.defaultRainbow);
+    
+    const combined = color_field.concat(clouds_field, rainbow_field);
+    combined.pop();
+    return combined;
   }
 
   composeImageHtml(vars) {
