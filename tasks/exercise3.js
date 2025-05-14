@@ -6,7 +6,6 @@ class Exercise3 extends Exercise {
     super(hebrewDict.ex3.title);
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
-  validHeights = ['0', '1', '2', '3', '4', '5'];
   getCodeParts() {
       let tree_field, bird_field, full_field;
       if (this.level === 'easy') {
@@ -21,18 +20,32 @@ class Exercise3 extends Exercise {
       return full_field;
   }
   composeImageHtml(vars) {
-    const {bird} = vars;
+    const {sign, bird} = vars;
     let bird_num = parseInt(bird, 10);
-    console.log(bird_num, typeof bird_num);
+    if (sign === '-') {
+      bird_num = -bird_num;
+    }
 
     const backgroundImg = 'ex3/ex3_def.png'
     let ladderImg = '';
     if (bird_num==3) {
       ladderImg = 'ex3/ladder_correct.png';
     }
-    if (bird_num==0) {
+    else if (bird_num == 2) {
+      ladderImg = 'ex3/ladder_tree_2.png';
+    }
+    else if (bird_num == 1) {
+      ladderImg = 'ex3/ladder_tree_1.png';
+    } 
+    else if (bird_num==0) {
       ladderImg = 'ex3/ladder_tree.png';
+    }
+    else if (bird_num < 0) {
+      ladderImg = 'ex3/ladder_short.png';
     }  
+    else {
+      ladderImg = 'ex3/ladder_long.png';
+    }
     return this.generateImageHTML([backgroundImg, ladderImg]);
   }
   getDefaultHtml() {
@@ -40,22 +53,23 @@ class Exercise3 extends Exercise {
     return this.generateImageHTML([backgroundImg]);
   }
   extractInputs(selects, inputs, only_values=false) {
-    let tree, bird, full_string;
+    let tree, sign, bird, full_string;
     if (this.level === 'easy') {
       [tree, bird] = Array.from(inputs).map(s => s.value.trim());
+      sign = '+';
     }
     else {
       [full_string] = Array.from(inputs).map(i => i.value.trim());
-      const full_parts = full_string.split('+');
-      if (full_parts.length < 2) return '';
-      tree = full_parts[0].trim();
-      bird = full_parts[1].trim();
+      const match = full_string.match(/^(.+)\s*([+-])\s*(\d+)$/);
+      tree = match[1].trim();
+      sign = match[2];
+      bird = match[3].trim();
     }
-    return {tree, bird}
+    return {tree, sign, bird}
   }
   handleRun({ selects, inputs }) {
-    const {tree, bird} = this.extractInputs(selects, inputs, true);
-    return this.composeImageHtml({tree, bird});
+    const {sign, bird} = this.extractInputs(selects, inputs, true);
+    return this.composeImageHtml({sign, bird});
   }
 
   isCorrect(tree, bird) {
@@ -64,16 +78,16 @@ class Exercise3 extends Exercise {
     );
   }
 
-  isValid(tree, bird) {
+  isValid(tree, sign, bird) {
     return (
-
       tree === "גובה עץ" &&
-      this.validHeights.includes(bird)
+      ['+', '-'].includes(sign) &&
+      !isNaN(bird) && bird.trim() !== ''
     );
   }
   validate({selects, inputs}) {
-    const {tree, bird} = this.extractInputs(selects, inputs);
-    if (!this.isValid(tree, bird)) {
+    const {tree, sign, bird} = this.extractInputs(selects, inputs);
+    if (!this.isValid(tree, sign, bird)) {
       return {valid: false, message: this.getErrorMessage()};
     } 
 
