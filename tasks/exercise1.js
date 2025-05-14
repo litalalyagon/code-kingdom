@@ -5,9 +5,11 @@ class Exercise1 extends Exercise {
   constructor() {
     super('משימה 1: משנים את הנוף');
   }
+
   validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור'];
-  validClouds = ['0', '1', '2', '3'];
+  validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
+  
   defaultColor = hebrewDict.colors.blue;
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
@@ -93,15 +95,25 @@ class Exercise1 extends Exercise {
     if (this.isValid(color, clouds, rainbow)) {
       return { valid: true, message: this.getCorrectMessage() };
     }
-    return { valid: false, message: this.getErrorMessage() };
+    return { valid: false, message: this.getErrorMessage(color, clouds, rainbow) };
   }
 
   getCorrectMessage() {
     return hebrewDict.ex1.success;
   }
 
-  getErrorMessage() {
-    return hebrewDict.ex1.error_message;
+  getErrorMessage(color, clouds, rainbow) {
+    let message = [];
+    if (!this.validColors.includes(color)) {
+      message.push(hebrewDict.ex1.color_error);
+    }
+    if (!this.validClouds.includes(clouds)) {
+      message.push(hebrewDict.ex1.clouds_error);
+    }
+    if (!this.validRainbow.includes(rainbow)) {
+      message.push(hebrewDict.ex1.rainbow_error);
+    }
+    return message.join('<br>');
   }
 }
 
