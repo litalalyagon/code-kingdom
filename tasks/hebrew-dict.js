@@ -49,6 +49,17 @@ export const hebrewDict = {
         "success": "כל הכבוד! יש סולם!",
         "error_message": "נסה שוב."
     },
+    "ex4": {
+        "title": "משימה 4: מתקנים את הגשר",
+        "first_bridge": "גשר ראשון",
+        "second_bridge": "גשר שני",
+        "bridge": "גשר",
+        "success": "כל הכבוד! הגשר מוכן!",
+        "error_var_doesnt_exist": "שגיאה: משתנה לא קיים.",
+        "error_equals_doesnt_exist": "שגיאה: חסר סימן שווה.",
+        "error_no_plus_sign": "שגיאה: חסר סימן חיבור.",
+        "success": "כל הכבוד! יש גשר!",
+    },
     "ex8": {
         "title": "משימה 8: האח הראשון",
         "crowns": "כתרים",
