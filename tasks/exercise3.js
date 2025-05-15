@@ -5,7 +5,6 @@ class Exercise3 extends Exercise {
   constructor() {
     super(hebrewDict.ex3.title);
   }
-  levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   inputTree;
   inputBird;
   getCodeParts() {

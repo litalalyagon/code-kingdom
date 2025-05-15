@@ -5,7 +5,6 @@ class Exercise2 extends Exercise {
   constructor() {
     super(hebrewDict.ex2.title);
   }
-  levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   validColors = [
     hebrewDict.colors.blue,
     hebrewDict.colors.green,
