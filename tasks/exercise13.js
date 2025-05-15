@@ -1,7 +1,7 @@
 import { Exercise } from './exercise.js';
 import { hebrewDict } from './hebrew-dict.js';
 
-class Exercise9 extends Exercise {
+class Exercise13 extends Exercise {
   constructor() {
     super(hebrewDict.ex9.title);
   }
@@ -195,4 +195,4 @@ class Exercise9 extends Exercise {
 
 }
 
-export default new Exercise9();
+export default new Exercise13();
