@@ -5,7 +5,6 @@ class Exercise8 extends Exercise {
   constructor() {
     super(hebrewDict.ex8.title);
   }
-  levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   validCrowns = ['0', '1', '2', '3', '4', '5', '6', '7'];
   defaultCrowns = 3;
   validFlowers = ['0', '1', '2', '3', '4', '5', '6'];
@@ -17,18 +16,12 @@ class Exercise8 extends Exercise {
   getCodeParts() {
     let crown_field, flower_field;
     if (this.level === 'easy') {
-      crown_field = this.createFieldDisplayDetails({
-        pretext: `${hebrewDict.ex8.crowns} = `, 
-        valid_values: this.validCrowns
-      });
-      flower_field = this.createFieldDisplayDetails({
-        pretext: `${hebrewDict.ex8.flowers} = `, 
-        valid_values: this.validFlowers
-      }); 
+      crown_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex8.crowns} = `});
+      flower_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex8.flowers} = `, new_line: false}); 
     }
     else {
       crown_field = this.createFieldDisplayDetails({});
-      flower_field = this.createFieldDisplayDetails({});
+      flower_field = this.createFieldDisplayDetails({new_line: false});
     }
     const combined = crown_field.concat(flower_field);
 

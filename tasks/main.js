@@ -15,8 +15,6 @@ const exerciseFiles = [
   './exercise11.js',
   './exercise12.js',
   './exercise13.js',
-  './exercise14.js',
-  // Add more as needed
 ];
 
 let loadedExercises = Array(exerciseFiles.length).fill(null);

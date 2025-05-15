@@ -52,9 +52,30 @@ export class Exercise {
     return html;
   }
 
-  createFieldDisplayDetails({pretext='', posttext='', valid_values, default_value, indentation=false, new_line=true}) {
+  evaluateCondition(variable, operator, value) {
+    switch (operator) {
+      case '<':
+        return variable < value;
+      case '>':
+        return variable > value;
+      case '==':
+        return variable === value;
+      default:
+        return false;
+    }
+  }
+
+
+  createFieldDisplayDetails(data) {
+    let field_type = data.field_type || 'input'; // input / dropdown / text
+    let pretext = data.pretext || '';
+    let posttext = data.posttext || '';
+    let valid_values = data.valid_values || []; // for dropdowns
+    let default_value = data.default_value || ''; 
+    let indentation = data.indentation || false;
+    let new_line = data.new_line || true;
+    
     let field_details = [];
-    const field_type = this.levelFieldTypes[this.level];
     if (indentation) {
       pretext = "\u00A0\u00A0\u00A0\u00A0" + pretext;
     }
