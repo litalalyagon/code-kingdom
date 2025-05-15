@@ -68,7 +68,7 @@ class Exercise8 extends Exercise {
       
       const match = input.match(regex);
       if (!match) {
-        return null;
+        return [null, null];
       }
       const varName = match[1].trim();
       const val = match[2].trim();
