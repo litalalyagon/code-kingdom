@@ -18,7 +18,10 @@ getCodeParts() {
       combined = key_field.concat(color_field, unlock_line);
       return combined;
     } else {
-      return this.createFieldDisplayDetails({});
+      key_field = this.createFieldDisplayDetails({posttext: ':'});
+      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex6.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
+      combined = key_field.concat(unlock_line);
+      return combined;
     }
   }
 
