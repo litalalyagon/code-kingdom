@@ -197,6 +197,13 @@ export function renderExercise(ex, idx) {
     runBtn.textContent = hebrewDict.run;
     exDiv.appendChild(runBtn);
 
+    codeArea.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      runBtn.click();
+      }});
+    });
+
     // Result image
     const imgDiv = document.createElement('div');
     imgDiv.className = 'result-img';
