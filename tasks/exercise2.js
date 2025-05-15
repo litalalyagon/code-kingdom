@@ -4,6 +4,8 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise2 extends Exercise {
   constructor() {
     super(hebrewDict.ex2.title);
+    this.description = hebrewDict.ex2.description;
+    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validColors = [
     hebrewDict.colors.blue,
@@ -14,7 +16,6 @@ class Exercise2 extends Exercise {
     hebrewDict.colors.yellow,
   ]
   validSpots = ['0', '1', '2', '3', '4', '5'];
-
   inputColor = '';
   inputSpots = '';
 

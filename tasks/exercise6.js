@@ -4,6 +4,7 @@ class Exercise6 extends Exercise {
   constructor() {
     super(hebrewDict.ex6.title);
     this.description = hebrewDict.ex6.description;
+    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
 
   inputKey;

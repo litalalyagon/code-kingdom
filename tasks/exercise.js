@@ -3,6 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 export class Exercise {
   level = 'easy';
   description = '';
+  input_sizes = {'easy': 'medium', 'hard': 'medium'};
 
   constructor(title) {
     this.title = title;
@@ -184,8 +185,9 @@ export function renderExercise(ex, idx) {
         codeArea.appendChild(select);
       } else if (part.type === 'input') {
         const input = document.createElement('input');
+        const input_size_options = {'large': 15, 'medium': 10, 'small': 5};
         input.type = 'text';
- //       input.size = 10;
+        input.size = input_size_options[ex.input_sizes[currentLevel]];
         if (part.default) input.value = part.default;
         codeArea.appendChild(input);
       }

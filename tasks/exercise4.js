@@ -4,6 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise4 extends Exercise {
   constructor() {
     super(hebrewDict.ex4.title);
+    this.input_sizes = {'easy': 'large', 'hard': 'large'};
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   defaultBridgeState = hebrewDict.ex4.first_bridge;

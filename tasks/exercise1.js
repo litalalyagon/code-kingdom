@@ -5,6 +5,7 @@ class Exercise1 extends Exercise {
   constructor() {
     super(hebrewDict.ex1.title);
     this.description = hebrewDict.ex1.description;
+    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור','אדום','צהוב'];
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
