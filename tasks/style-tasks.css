@@ -347,3 +347,9 @@ main {
   min-width: 320px;
   transition: box-shadow 0.2s;
 }
+
+.code-area {
+  border-radius: 14px;
+  background: #46a2da;
+  border: 2.5px solid #3a5a98; 
+}
