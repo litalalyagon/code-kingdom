@@ -35,9 +35,9 @@ class Exercise8 extends Exercise {
     return combined;
   }
 
-  composeImageHtml() {
-    const crowns = parseInt(this.inputCrowns, 10); 
-    const flowers = parseInt(this.inputFlowers, 10); 
+  composeImageHtml(vars) {
+    const crowns = parseInt(vars.crowns, 10); 
+    const flowers = parseInt(vars.flowers, 10); 
 
     const fire = (crowns > 4 && flowers < 2) ? 'off' : 'on';
     const backgroundImg = "ex8/fire_" + fire + ".png";
@@ -49,13 +49,13 @@ class Exercise8 extends Exercise {
   }
 
   getDefaultHtml() {
-    const backgroundImg = 'ex8/fire_on.png';  
-    const crownsImg = `ex8/crown_${this.defaultCrowns}.png`;
-    const flowersImg = `ex8/flower_${this.defaultFlowers}.png`;
-    return this.generateImageHTML([backgroundImg, crownsImg, flowersImg]);
+    return this.composeImageHtml({
+      crowns: this.defaultCrowns, 
+      flowers: this.defaultFlowers
+    });
   }
 
-  extractInputs(inputs, only_values=false) {
+  extractInputs(inputs) {
     let input1, input2, val1, val2, varName1, varName2;
     if (this.level === 'easy') {
       [val1, val2] = Array.from(inputs).map(s => s.value.trim());
@@ -82,8 +82,11 @@ class Exercise8 extends Exercise {
       return [ varName, val ];
   }
 
-  handleRun({ selects, inputs }) {
-    return this.composeImageHtml();
+  handleRun() {
+    return this.composeImageHtml({
+      crowns: this.inputCrowns, 
+      flowers: this.inputFlowers
+    });
   }
 
   isCorrect() {
