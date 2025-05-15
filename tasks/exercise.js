@@ -74,11 +74,11 @@ export class Exercise {
     let valid_values = data.valid_values || []; // for dropdowns
     let default_value = data.default_value || ''; 
     let indentation = data.indentation || false;
-    let new_line = data.new_line || true;
+    let new_line = data.new_line !== undefined ? data.new_line : true;
     
     let field_details = [];
     if (indentation) {
-      pretext = "\u00A0\u00A0\u00A0\u00A0" + pretext;
+      pretext = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0" + pretext;
     }
     field_details.push({type: 'text', value: pretext});
     if (field_type === 'dropdown') {
@@ -185,6 +185,7 @@ export function renderExercise(ex, idx) {
       } else if (part.type === 'input') {
         const input = document.createElement('input');
         input.type = 'text';
+ //       input.size = 10;
         if (part.default) input.value = part.default;
         codeArea.appendChild(input);
       }
