@@ -12,7 +12,7 @@ export class Exercise {
     return '';
   }
 
-  handleRun({ selects = [], inputs = [], ex = null }) {
+  composeImageHtml() {
     // Default: do nothing. Child classes should override if needed.
   }
 
@@ -194,8 +194,8 @@ export function renderExercise(ex, idx) {
       result = ex.validate({ selects, inputs });
       if (result && result.valid) {
         result = ex.isCorrect();
-        if (typeof ex.handleRun === 'function') {
-          const outcome = ex.handleRun({ selects, inputs, ex });
+        if (typeof ex.composeImageHtml === 'function') {
+          const outcome = ex.composeImageHtml();
           if (outcome !== null && outcome !== undefined) {
             imgDiv.innerHTML = outcome;
           }

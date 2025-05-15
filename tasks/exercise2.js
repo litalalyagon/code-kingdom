@@ -11,6 +11,9 @@ class Exercise2 extends Exercise {
   defaultSpots = 1;
   defaultColor = "אדום";
 
+  inputColors;
+  inputSpots;
+
   getCodeParts() {
     let color_field, spots_field;
     if (this.level === 'easy') {
@@ -26,13 +29,12 @@ class Exercise2 extends Exercise {
     return combined;
   }
 
-  composeImageHtml(vars) {
-    const {color, spots} = vars;
-    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
+  composeImageHtml() {
+    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === this.inputColors);
     
     const backgroundImg = 'ex2/mushrooms_bg.png'
     const mushroomImg = `ex2/mushroom_${colorKey}.png`;
-    const spotsImg = spots !== '0' ? `ex2/spots_${spots}.png` : null;
+    const spotsImg = spots !== '0' ? `ex2/spots_${this.inputSpots}.png` : null;
   
     return this.generateImageHTML([backgroundImg, mushroomImg, spotsImg]);
   }
@@ -64,15 +66,12 @@ class Exercise2 extends Exercise {
     return {color_var, color, spots_var, spots};
   }
 
-  handleRun({ selects, inputs }) {
-    const {color, spots} = this.extractInputs(selects, inputs, true);
-    return this.composeImageHtml({color, spots});
-  }
 
   isCorrect(color, spots) {
-    return (
-      color === "אדום" && spots === "4"
-    );
+    if (color === "אדום" && spots === "4") {
+      return { valid: true, message: hebrewDict.ex2.success};
+    }
+    return { valid: false, message: "אחלה קלט תשובה לא משהו" };
   }
 
   isValid(color, spots) {
@@ -86,12 +85,16 @@ class Exercise2 extends Exercise {
     let color, spots;
     if (this.level === 'easy') {
       const {color, spots} = this.extractInputs(selects, inputs);
+      this.inputColors = color;
+      this.inputSpots = spots;
       if (!this.isValid(color, spots)) {
         return { valid: false, message: this.getErrorMessage() };
       }
     }
     else {
       const {color_var, color, spots_var, spots} = this.extractInputs(selects, inputs);
+      this.inputColors = color;
+      this.inputSpots = spots;
       if (!this.isValid(color, spots)) {
         return { valid: false, message: this.getErrorMessage() };
       }
@@ -100,12 +103,9 @@ class Exercise2 extends Exercise {
       }
     }
 
-    return { valid: true, message: this.getValidMessage()};
+    return { valid: true, message: ''};
   }
 
-  getValidMessage() {
-    return hebrewDict.ex2.success;
-  }
 
   getErrorMessage() {
     return hebrewDict.ex2.error_message;

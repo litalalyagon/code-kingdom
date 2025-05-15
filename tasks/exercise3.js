@@ -22,8 +22,7 @@ class Exercise3 extends Exercise {
       return full_field;
   }
   composeImageHtml(vars) {
-    const {sign, bird} = vars;
-    let bird_num = parseInt(bird, 10);
+    let bird_num = parseInt(this.inputBird, 10);
     if (sign === '-') {
       bird_num = -bird_num;
     }
@@ -69,15 +68,11 @@ class Exercise3 extends Exercise {
     }
     return {tree, sign, bird}
   }
-  handleRun({ selects, inputs }) {
-    const {sign, bird} = this.extractInputs(selects, inputs, true);
-    return this.composeImageHtml({sign, bird});
-  }
 
   isCorrect() {
     if (hebrewDict.ex3.valid_tree_phrases.includes(this.inputTree) && 
     this.inputBird === "3") {
-      return { valid: true, message: this.getValidMessage()};
+      return { valid: true, message: hebrewDict.ex3.success};
     }
     return { valid: false, message: "קלט תקין אבל לא"};
   }
@@ -99,9 +94,6 @@ class Exercise3 extends Exercise {
     } 
 
     return { valid: true, message: ''};
-  }
-  getValidMessage() {
-    return hebrewDict.ex3.success;
   }
 
   getErrorMessage() {

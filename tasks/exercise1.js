@@ -14,6 +14,10 @@ class Exercise1 extends Exercise {
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
 
+  inputColor;
+  inputClouds;
+  inputRainbow;
+
   getCodeParts() {
     const color_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex1.trees_color} = `, valid_values: this.validColors, default_value: this.defaultColor});
     const clouds_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex1.clouds} = `, valid_values: this.validClouds, default_value: this.defaultClouds});
@@ -22,12 +26,11 @@ class Exercise1 extends Exercise {
     return combined;
   }
 
-  composeImageHtml(vars) {
-    const {color, clouds, rainbow} = vars;
-    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
-    const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
+  composeImageHtml() {
+    const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === this.inputColor);
+    const rainbowImg = this.inputRainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
     const forestImg = `ex1/forest_${colorKey}.png`;
-    const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
+    const cloudsImg = clouds !== '0' ? `ex1/clouds_${this.inputClouds}.png` : null;
     return this.generateImageHTML([rainbowImg, forestImg, cloudsImg]);
   }
 
@@ -39,13 +42,19 @@ class Exercise1 extends Exercise {
     });
   }
 
-  handleRun({selects, inputs}) {
+  extractInputs(selects, inputs, only_values=false) {
     let color, clouds, rainbow;
     if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
-    } else {
+    }
+    else {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
+    return {color, clouds, rainbow};
+  }
+
+  handleRun({selects, inputs}) {
+    const {color, clouds, rainbow} = this.extractInputs(selects, inputs)
     return this.composeImageHtml({color, clouds, rainbow});
   }
 
@@ -57,21 +66,25 @@ class Exercise1 extends Exercise {
     );
   }
 
+  isCorrect() {
+    return { valid: true, message: hebrewDict.ex1.success};
+  }
+
   validate({ selects, inputs }) {
     let color, clouds, rainbow;
+
     if (this.level === 'easy') {
       [color, clouds, rainbow] = Array.from(selects).map(s => s.value);
     } else {
       [color, clouds, rainbow] = Array.from(inputs).map(i => i.value.trim());
     }
+    this.inputColor = color;
+    this.inputClouds = clouds;
+    this.inputRainbow = rainbow;
     if (this.isValid(color, clouds, rainbow)) {
-      return { valid: true, message: this.getValidMessage() };
+      return { valid: true, message: '' };
     }
     return { valid: false, message: this.getErrorMessage(color, clouds, rainbow) };
-  }
-
-  getValidMessage() {  // TODO: Add "get correct message" logic
-    return hebrewDict.ex1.success;
   }
 
   getErrorMessage(color, clouds, rainbow) {
