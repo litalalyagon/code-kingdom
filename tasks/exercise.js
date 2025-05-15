@@ -185,7 +185,7 @@ export function renderExercise(ex, idx) {
       } else if (part.type === 'input') {
         const input = document.createElement('input');
         input.type = 'text';
-        input.size = 10;
+ //       input.size = 10;
         if (part.default) input.value = part.default;
         codeArea.appendChild(input);
       }
