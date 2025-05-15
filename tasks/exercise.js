@@ -78,7 +78,7 @@ export class Exercise {
     
     let field_details = [];
     if (indentation) {
-      pretext = "\u00A0\u00A0\u00A0\u00A0" + pretext;
+      pretext = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0" + pretext;
     }
     field_details.push({type: 'text', value: pretext});
     if (field_type === 'dropdown') {
