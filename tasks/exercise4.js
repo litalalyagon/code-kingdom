@@ -39,7 +39,7 @@ class Exercise4 extends Exercise {
         bridgeImg = 'ex4/bridge_complete.png';
       }
     }
-    else if (firstBridge === hebrewDict.ex4.first_bridge && sign === '+' && secondBridge === hebrewDict.ex4.second_bridge) {
+    else if (this.isCorrect()["valid"]) {
       bridgeImg = 'ex4/bridge_complete.png';
     }
     else {
@@ -64,15 +64,16 @@ class Exercise4 extends Exercise {
       }
       return { firstBridge: full_string, sign: '', secondBridge: '' };
     }
-    match = full_string.match(/^(.+?)\s*(=)\s*(.+?)\s*([+-])\s*(.+)$/);
+    match = full_string.match(/^(.+?)\s*(=)\s*(.+?)(?:\s*([+-])\s*(.+))?$/);
     if (match) {
       const variable = match[1].trim();
       const equal_sign = match[2]; // This will be '='
       const firstBridge = match[3].trim();
-      const sign = match[4];
-      const secondBridge = match[5].trim();
+      const sign = match[4] ? match[4] : '';
+      const secondBridge = match[5] ? match[5].trim() : '';
       return { variable, equal_sign, firstBridge, sign, secondBridge };
-    } else {
+    }
+    else {
       return { variable: '', equal_sign: '', firstBridge: '', sign: '', secondBridge: '' };
     }
   }
@@ -99,6 +100,15 @@ class Exercise4 extends Exercise {
     }
     return { valid: false, message: "קלט תקין אבל לא"};
   }
+  isValidStringHelper(str) {
+    let s = str;
+    s = s.replaceAll(hebrewDict.ex4.first_bridge, '');
+    s = s.replaceAll(hebrewDict.ex4.second_bridge, '');
+    s = s.replace(/\d+/g, '');
+    s = s.replace(/[+-]/g, '');
+    s = s.replace(/\s+/g, '');
+    return s === '';
+  }
   isValid(vars) {
     let variable, equal_sign, firstBridge, sign, secondBridge;
     if(this.level === 'easy') {
@@ -115,11 +125,9 @@ class Exercise4 extends Exercise {
       this.inputSign = sign;
       this.inputSecondBridge = secondBridge;
     }
-    if ((firstBridge.includes(hebrewDict.ex4.first_bridge) 
-      && secondBridge.includes(hebrewDict.ex4.second_bridge)) ||
-        (firstBridge.includes(hebrewDict.ex4.second_bridge)
-        && secondBridge.includes(hebrewDict.ex4.first_bridge))) {
-      return { valid: true, message: hebrewDict.ex4.success };
+    if (this.isValidStringHelper(firstBridge) &&
+        this.isValidStringHelper(secondBridge)) {
+      return { valid: true, message: hebrewDict.ex4.success};
     }
     return { valid: false, message: "sad" };
   }
