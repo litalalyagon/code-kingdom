@@ -52,9 +52,17 @@ export class Exercise {
     return html;
   }
 
-  createFieldDisplayDetails({pretext='', posttext='', valid_values, default_value, indentation=false, new_line=true}) {
+
+  createFieldDisplayDetails(data) {
+    const field_type = data.field_type || 'input'; // input / dropdown / text
+    const pretext = data.pretext || '';
+    const posttext = data.posttext || '';
+    const valid_values = data.valid_values || []; // for dropdowns
+    const default_value = data.default_value || ''; 
+    const indentation = data.indentation || false;
+    const new_line = data.new_line || true;
+    
     let field_details = [];
-    const field_type = this.levelFieldTypes[this.level];
     if (indentation) {
       pretext = "\u00A0\u00A0\u00A0\u00A0" + pretext;
     }
