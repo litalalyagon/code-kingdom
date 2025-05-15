@@ -54,13 +54,13 @@ export class Exercise {
 
 
   createFieldDisplayDetails(data) {
-    const field_type = data.field_type || 'input'; // input / dropdown / text
-    const pretext = data.pretext || '';
-    const posttext = data.posttext || '';
-    const valid_values = data.valid_values || []; // for dropdowns
-    const default_value = data.default_value || ''; 
-    const indentation = data.indentation || false;
-    const new_line = data.new_line || true;
+    let field_type = data.field_type || 'input'; // input / dropdown / text
+    let pretext = data.pretext || '';
+    let posttext = data.posttext || '';
+    let valid_values = data.valid_values || []; // for dropdowns
+    let default_value = data.default_value || ''; 
+    let indentation = data.indentation || false;
+    let new_line = data.new_line || true;
     
     let field_details = [];
     if (indentation) {

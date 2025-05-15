@@ -17,11 +17,11 @@ class Exercise8 extends Exercise {
     let crown_field, flower_field;
     if (this.level === 'easy') {
       crown_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex8.crowns} = `});
-      flower_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex8.flowers} = `}); 
+      flower_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex8.flowers} = `, new_line: false}); 
     }
     else {
       crown_field = this.createFieldDisplayDetails({});
-      flower_field = this.createFieldDisplayDetails({});
+      flower_field = this.createFieldDisplayDetails({new_line: false});
     }
     const combined = crown_field.concat(flower_field);
 
