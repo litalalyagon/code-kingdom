@@ -21,6 +21,7 @@ export const hebrewDict = {
     },
     "ex1": {
         "title": "משימה 1: משנים את הנוף",
+        "description":  "המשימה הראשונה היא לשנות את הנוף. יש לנו יער עם עצים, קשת ועננים. אפשר לשנות את צבע העצים, מספר העננים והאם תהיה קשת או לא.",
         "trees_color": "צבע העצים",
         "clouds": "עננים",
         "rainbow": "קשת",
@@ -49,7 +50,18 @@ export const hebrewDict = {
         "success": "כל הכבוד! יש סולם!",
         "error_message": "נסה שוב."
     },
-    "ex5": {
+    "ex4": {
+        "title": "משימה 4: מתקנים את הגשר",
+        "first_bridge": "גשר ראשון",
+        "second_bridge": "גשר שני",
+        "bridge": "גשר",
+        "success": "כל הכבוד! הגשר מוכן!",
+        "error_var_doesnt_exist": "שגיאה: משתנה לא קיים.",
+        "error_equals_doesnt_exist": "שגיאה: חסר סימן שווה.",
+        "error_no_plus_sign": "שגיאה: חסר סימן חיבור.",
+        "success": "כל הכבוד! יש גשר!",
+    },
+   "ex5": {
         "title": "משימה 5: שער הטירה",
         "height": "גובה",
         "success_open": "יפה מאוד, עכשיו כשרובי בגובה המתאים השער נפתח",
