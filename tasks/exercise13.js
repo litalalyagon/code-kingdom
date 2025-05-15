@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise13 extends Exercise {
   constructor() {
-    super(hebrewDict.ex9.title);
+    super(hebrewDict.ex13.title);
   }
   validColors = [
     hebrewDict.colors.blue,
