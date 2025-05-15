@@ -4,6 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise5 extends Exercise {
   constructor() {
     super(hebrewDict.ex5.title);
+    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   defaultHeight = 100;
   inputHeight = '';

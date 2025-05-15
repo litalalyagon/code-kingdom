@@ -4,6 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise8 extends Exercise {
   constructor() {
     super(hebrewDict.ex8.title);
+    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validCrowns = ['0', '1', '2', '3', '4', '5', '6', '7'];
   defaultCrowns = 3;
