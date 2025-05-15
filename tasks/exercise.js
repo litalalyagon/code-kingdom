@@ -2,6 +2,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 export class Exercise {
   level = 'easy';
+  description = '';
 
   constructor(title) {
     this.title = title;
@@ -147,6 +148,13 @@ export function renderExercise(ex, idx) {
     const title = document.createElement('h3');
     title.textContent = ex.title;
     exDiv.appendChild(title);
+
+    // Description
+    const description = document.createElement('p');
+    description.className = 'exercise-description';
+    description.textContent = ex.description;
+    description.style.textAlign = 'center';
+    exDiv.appendChild(description);
 
     // Code area
     const codeArea = document.createElement('div');
