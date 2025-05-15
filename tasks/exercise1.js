@@ -6,7 +6,17 @@ class Exercise1 extends Exercise {
     super(hebrewDict.ex1.title);
     this.description = hebrewDict.ex1.description;
   }
-  validColors = ['כחול', 'ירוק', 'כתום', 'שחור', 'ורוד', 'סגול', 'אפור','אדום','צהוב'];
+  validColors = [
+    hebrewDict.colors.blue,
+    hebrewDict.colors.green,
+    hebrewDict.colors.orange,
+    hebrewDict.colors.black,
+    hebrewDict.colors.pink,
+    hebrewDict.colors.purple,
+    hebrewDict.colors.grey,
+    hebrewDict.colors.red,
+    hebrewDict.colors.yellow
+  ]
   validClouds = ['0', '1', '2', '3', '4', '5', '6'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
   
