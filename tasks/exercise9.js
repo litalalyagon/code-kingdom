@@ -95,19 +95,6 @@ class Exercise9 extends Exercise {
     return this.composeImageHtml({cond1: this.cond1, cond2: this.cond2});
   }
 
-  evaluateCondition(variable, operator, value) {
-    switch (operator) {
-      case '<':
-        return variable < value;
-      case '>':
-        return variable > value;
-      case '==':
-        return variable === value;
-      default:
-        return false;
-    }
-  }
-
   checkCondition(condition) {
     const value = parseInt(condition.val, 10);
 

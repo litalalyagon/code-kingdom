@@ -52,6 +52,19 @@ export class Exercise {
     return html;
   }
 
+  evaluateCondition(variable, operator, value) {
+    switch (operator) {
+      case '<':
+        return variable < value;
+      case '>':
+        return variable > value;
+      case '==':
+        return variable === value;
+      default:
+        return false;
+    }
+  }
+
 
   createFieldDisplayDetails(data) {
     let field_type = data.field_type || 'input'; // input / dropdown / text
