@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 360px;
+      margin: 40px auto;
+      direction: rtl;
+      text-align: right;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      cursor: pointer;
+      background-color: #0066cc;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #004999;
+    }
+    #status {
+      margin-top: 12px;
+      min-height: 1.5em;
+      font-weight: bold;
+    }
+    #status.error {
+      color: #cc0000;
+    }
+    #status.success {
+      color: #007700;
+    }
+  </style>
+</head>
+<body>
+  <h2>התחברות</h2>
+
+  <form id="loginForm" novalidate>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="כתובת אימייל"
+      required
+      autocomplete="username"
+    />
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="סיסמה"
+      required
+      autocomplete="current-password"
+    />
+    <button type="submit">התחבר</button>
+  </form>
+
+  <p>אין לך חשבון? <a href="register.html">צור חשבון חדש</a></p>
+
+  <p id="status"></p>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDf_N4F-1mlh5_IxyLpEjqJ_8J5X8rb38Q",
+      authDomain: "code-kingdom-a5310.firebaseapp.com",
+      projectId: "code-kingdom-a5310",
+      storageBucket: "code-kingdom-a5310.firebasestorage.app",
+      messagingSenderId: "39839215522",
+      appId: "1:39839215522:web:20bb7fc1ebc61ae8b10cfb",
+      measurementId: "G-N0Y63EPX4T"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("loginForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "";
+      status.className = "";
+
+      if (!form.checkValidity()) {
+        status.textContent = "אנא מלא/י את כל השדות כראוי.";
+        status.className = "error";
+        return;
+      }
+
+      const email = form.email.value.trim();
+      const password = form.password.value.trim();
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        status.textContent = "התחברת בהצלחה!";
+        status.className = "success";
+        window.location.href = "tasks/index.html"; // Redirect to the exercises page after successful login
+      } catch (error) {
+        status.textContent = "שגיאה: " + error.message;
+        status.className = "error";
+      }
+    });
+  </script>
+</body>
+</html>
