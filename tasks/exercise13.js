@@ -4,6 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise13 extends Exercise {
   constructor() {
     super(hebrewDict.ex13.title);
+    this.input_sizes = {'easy': 'medium', 'hard': 'xlarge'};
   }
   validColors = [
     hebrewDict.colors.blue,
@@ -32,8 +33,7 @@ class Exercise13 extends Exercise {
         indentation: true,
         new_line: false
       });
-    }
-    else {
+    } else {
       condition_field = this.createFieldDisplayDetails({
         posttext: ":",
       });

@@ -185,7 +185,7 @@ export function renderExercise(ex, idx) {
         codeArea.appendChild(select);
       } else if (part.type === 'input') {
         const input = document.createElement('input');
-        const input_size_options = {'large': 15, 'medium': 10, 'small': 5};
+        const input_size_options = {'xlarge': 25, 'large': 15, 'medium': 10, 'small': 5};
         input.type = 'text';
         input.size = input_size_options[ex.input_sizes[currentLevel]];
         if (part.default) input.value = part.default;

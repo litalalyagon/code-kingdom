@@ -4,7 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise9 extends Exercise {
   constructor() {
     super(hebrewDict.ex9.title);
-    this.input_sizes = {'easy': 'medium', 'hard': 'large'};
+    this.input_sizes = {'easy': 'medium', 'hard': 'xlarge'};
   }
 
   swords = 3;
