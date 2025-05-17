@@ -14,7 +14,7 @@
         <h1>ברוכים הבאים לממלכת הקוד!</h1>
         <p class="tagline">בואו ללמוד תכנות בדרך חוויתית! באלאן יחפור לכם על זה עוד קצת. <br>
              עוד שורה כי זה נראה טוב יותר</p>
-        <button class="cta-button" onclick="window.location.href='tasks/index.html';">לעמוד המשימות</button>
+        <button class="cta-button" id="exercisePortalBtn">לעמוד המשימות</button>
     </header>
 
     <main class="landing-main">
@@ -96,6 +96,21 @@
     </footer>
 
     <script type="text/javascript" src="main.js"></script>
+    <script type="module">
+        import { isLoggedIn } from './auth.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const exercisePortalBtn = document.getElementById('exercisePortalBtn');
+
+          exercisePortalBtn.addEventListener('click', () => {
+            if (isLoggedIn()) {
+              window.location.href = './tasks/index.html';
+            } else {
+              window.location.href = './login.html'; // Redirect to login page instead of register
+            }
+          });
+        });
+    </script>
 
 </body>
 </html>
