@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise3 extends Exercise {
   constructor() {
-    super(hebrewDict.ex3.title);
+    super("ex3");
     this.input_sizes = {'easy': 'small', 'hard': 'large'};
   }
   inputTree;
@@ -28,30 +28,30 @@ class Exercise3 extends Exercise {
       bird_num = -bird_num;
     }
 
-    const backgroundImg = 'ex3/ex3_def.png'
+    const backgroundImg = this.path('ex3_def.png');
     let ladderImg = '';
     if (bird_num==3) {
-      ladderImg = 'ex3/ladder_correct.png';
+      ladderImg = this.path('ladder_correct.png');
     }
     else if (bird_num == 2) {
-      ladderImg = 'ex3/ladder_tree_2.png';
+      ladderImg = this.path('ladder_tree_2.png');
     }
     else if (bird_num == 1) {
-      ladderImg = 'ex3/ladder_tree_1.png';
+      ladderImg = this.path('ladder_tree_1.png');
     } 
     else if (bird_num==0) {
-      ladderImg = 'ex3/ladder_tree.png';
+      ladderImg = this.path('ladder_tree.png');
     }
     else if (bird_num < 0) {
-      ladderImg = 'ex3/ladder_short.png';
+      ladderImg = this.path('ladder_short.png');
     }  
     else {
-      ladderImg = 'ex3/ladder_long.png';
+      ladderImg = this.path('ladder_long.png');
     }
     return this.generateImageHTML([backgroundImg, ladderImg]);
   }
   getDefaultHtml() {
-    const backgroundImg = 'ex3/ex3_def.png';  
+    const backgroundImg = this.path('ex3_def.png');
     return this.generateImageHTML([backgroundImg]);
   }
   extractInputs(selects, inputs, only_values=false) {

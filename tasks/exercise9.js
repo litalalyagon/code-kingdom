@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise9 extends Exercise {
   constructor() {
-    super(hebrewDict.ex9.title);
+    super("ex9");
     this.input_sizes = {'easy': 'medium', 'hard': 'xlarge'};
   }
 
@@ -49,12 +49,20 @@ class Exercise9 extends Exercise {
     const cond1Correct = this.checkCondition(vars.cond1);
     const cond2Correct = this.checkCondition(vars.cond2);
     const fire = (cond1Correct && cond2Correct) ? 'off' : 'on';
-    const fireImg = `ex9/fire_${fire}.png`;
-    return this.generateImageHTML([fireImg, "ex9/stars.png", "ex9/swords.png"]);
+    const fireImg = this.path(`fire_${fire}.png`);
+    return this.generateImageHTML([
+        fireImg,
+        this.path("stars.png"),
+        this.path("swords.png")
+    ]);
   }
 
   getDefaultHtml() {
-    return this.generateImageHTML(["ex9/fire_on.png", "ex9/stars.png", "ex9/swords.png"]);
+    return this.generateImageHTML([
+        this.path("fire_on.png"),
+        this.path("stars.png"),
+        this.path("swords.png")
+    ]);
   }
 
   extractInputs(inputs) {

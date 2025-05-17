@@ -3,8 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise2 extends Exercise {
   constructor() {
-    super(hebrewDict.ex2.title);
-    this.description = hebrewDict.ex2.description;
+    super("ex2"); 
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validColors = [
@@ -38,16 +37,16 @@ class Exercise2 extends Exercise {
     const {color, spots} = vars;
     const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
     
-    const backgroundImg = 'ex2/mushrooms_bg.png'
-    const mushroomImg = `ex2/mushroom_${colorKey}.png`;
-    const spotsImg = spots !== '0' ? `ex2/spots_${spots}.png` : null;
+    const backgroundImg = this.path('mushrooms_bg.png');
+    const mushroomImg = this.path(`mushroom_${colorKey}.png`);
+    const spotsImg = spots !== '0' ? this.path(`spots_${spots}.png`) : null;
   
     return this.generateImageHTML([backgroundImg, mushroomImg, spotsImg]);
   }
 
   getDefaultHtml() {
-    const backgroundImg = 'ex2/mushrooms_bg.png';  
-    const mushroomImg = 'ex2/mushroom_missing.png';
+    const backgroundImg = this.path('mushrooms_bg.png');  
+    const mushroomImg = this.path('mushroom_missing.png');
     return this.generateImageHTML([backgroundImg, mushroomImg]);
   }
 

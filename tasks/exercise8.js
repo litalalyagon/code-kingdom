@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise8 extends Exercise {
   constructor() {
-    super(hebrewDict.ex8.title);
+    super("ex8");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validCrowns = ['0', '1', '2', '3', '4', '5', '6', '7'];
@@ -34,10 +34,10 @@ class Exercise8 extends Exercise {
     const flowers = parseInt(vars.flowers, 10); 
 
     const fire = (crowns > 4 && flowers < 2) ? 'off' : 'on';
-    const backgroundImg = "ex8/fire_" + fire + ".png";
+    const backgroundImg = this.path(`fire_${fire}.png`);
 
-    const crownsImg = crowns ? `ex8/crown_${crowns}.png` : null;
-    const flowersImg = flowers ? `ex8/flower_${flowers}.png` : null;
+    const crownsImg = crowns ? this.path(`crown_${crowns}.png`) : null;
+    const flowersImg = flowers ? this.path(`flower_${flowers}.png`) : null;
 
     return this.generateImageHTML([backgroundImg, crownsImg, flowersImg]);
   }

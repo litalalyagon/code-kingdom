@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise5 extends Exercise {
   constructor() {
-    super(hebrewDict.ex5.title);
+    super("ex5");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   defaultHeight = 100;
@@ -19,22 +19,22 @@ class Exercise5 extends Exercise {
 
   composeImageHtml(vars) {
     const height = parseInt(vars.height, 10);
-    
+
     let robiImg;
     if (height < 100) {
-      robiImg = 'ex5/robi_little.png';
+      robiImg = this.path('robi_little.png');
     } else if (height == 100) {
-      robiImg = 'ex5/robi_100.png';
+      robiImg = this.path('robi_100.png');
     } else if (height < 200) {
-      robiImg = 'ex5/robi_150.png';
+      robiImg = this.path('robi_150.png');
     } else if (height < 301) {
-      robiImg = 'ex5/robi_200.png';
+      robiImg = this.path('robi_200.png');
     } else {
-      robiImg = 'ex5/robi_long_legs.png'; 
+      robiImg = this.path('robi_long_legs.png'); 
     }
     const gateStatus = this.isGateOpen(height) ? 'open' : 'close';
-    const gateImg = `ex5/gate_${gateStatus}.png`;
-  
+    const gateImg = this.path(`gate_${gateStatus}.png`);
+
     return this.generateImageHTML([gateImg, robiImg]);
   }
 

@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise4 extends Exercise {
   constructor() {
-    super(hebrewDict.ex4.title);
+    super("ex4");
     this.input_sizes = {'easy': 'large', 'hard': 'large'};
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
@@ -20,8 +20,9 @@ class Exercise4 extends Exercise {
     full_field = this.createFieldDisplayDetails({pretext: pretext});
     return full_field;
   }
+  // Ensure consistency for all exercises
   composeImageHtml(vars) {
-    const {firstBridge, sign, secondBridge} = vars;
+    const { firstBridge, sign, secondBridge } = vars;
     let bridgeImg, number;
     const match = secondBridge.match(/^(.+?)\s*([+-])\s*(\d+)$/);
     if (match) {
@@ -31,22 +32,20 @@ class Exercise4 extends Exercise {
         number = -number;
       }
       if (number > 0) {
-        bridgeImg = 'ex4/bridge_long.png';
+        bridgeImg = this.path('bridge_long.png');
       }
       if (number < 0) {
-        bridgeImg = 'ex4/bridge_broken.png';
+        bridgeImg = this.path('bridge_broken.png');
       }
       if (number == 0) {
-        bridgeImg = 'ex4/bridge_complete.png';
+        bridgeImg = this.path('bridge_complete.png');
       }
+    } else if (this.isCorrect()["valid"]) {
+      bridgeImg = this.path('bridge_complete.png');
+    } else {
+      bridgeImg = this.path('bridge_broken.png');
     }
-    else if (this.isCorrect()["valid"]) {
-      bridgeImg = 'ex4/bridge_complete.png';
-    }
-    else {
-      bridgeImg = 'ex4/bridge_broken.png';
-    }
-    let backgroundImg = 'ex4/river.png';
+    let backgroundImg = this.path('river.png');
     return this.generateImageHTML([backgroundImg, bridgeImg]);
   }
   getDefaultHtml() {

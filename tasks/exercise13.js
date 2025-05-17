@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise13 extends Exercise {
   constructor() {
-    super(hebrewDict.ex13.title);
+    super("ex13");
     this.input_sizes = {'easy': 'medium', 'hard': 'xlarge'};
   }
   validColors = [
@@ -49,12 +49,12 @@ class Exercise13 extends Exercise {
   }
 
   composeImageHtml(vars) {
-    const backgroundImg = "ex13/board.png";
+    const backgroundImg = this.path("board.png");
     let colorImages = [];
     if (vars.action.val === hebrewDict.yes && vars.conditions.length > 0) {
       let colors = vars.conditions.map(c => c.val);
       let colorKeys = colors.map(color => Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color));
-      colorImages = colorKeys.map(key => `ex13/light_${key}.png`);
+      colorImages = colorKeys.map(key => this.path(`light_${key}.png`));
     } 
     
     return this.generateImageHTML([backgroundImg, ...colorImages]);

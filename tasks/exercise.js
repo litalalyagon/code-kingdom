@@ -5,8 +5,14 @@ export class Exercise {
   description = '';
   input_sizes = {'easy': 'medium', 'hard': 'medium'};
 
-  constructor(title) {
-    this.title = title;
+  constructor(ex_indentifier) {
+    this.title = hebrewDict[ex_indentifier].title;
+    this.description = hebrewDict[ex_indentifier].description;
+    this.img_path = `../assets/tasks_images/${ex_indentifier}/`;
+  }
+
+  path(img_name) {
+    return this.img_path + img_name;
   }
 
   getDefaultHtml() {

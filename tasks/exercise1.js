@@ -3,8 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise1 extends Exercise {
   constructor() {
-    super(hebrewDict.ex1.title);
-    this.description = hebrewDict.ex1.description;
+    super("ex1");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   validColors = [
@@ -53,9 +52,9 @@ class Exercise1 extends Exercise {
   composeImageHtml(vars) {
     const {color, clouds, rainbow} = vars;
     const colorKey = Object.keys(hebrewDict.colors).find(key => hebrewDict.colors[key] === color);
-    const rainbowImg = rainbow === hebrewDict.yes ? 'ex1/rainbow.png' : null;
-    const forestImg = `ex1/forest_${colorKey}.png`;
-    const cloudsImg = clouds !== '0' ? `ex1/clouds_${clouds}.png` : null;
+    const rainbowImg = rainbow === hebrewDict.yes ? this.path('rainbow.png') : null;
+    const forestImg = this.path(`forest_${colorKey}.png`);
+    const cloudsImg = clouds !== '0' ? this.path(`clouds_${clouds}.png`) : null;
     return this.generateImageHTML([rainbowImg, forestImg, cloudsImg]);
   }
 
