@@ -6,23 +6,7 @@
   <title>אורי והדס בממלכת הקוד</title>
   <link rel="stylesheet" href="style-tasks.css">
   <link rel="icon" href="../assets/favicon.ico">
-  <script type="module">
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-    import { auth } from "../authMiddleware.js";
-
-    // Pre-check authentication before rendering the page
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.href = "../login.html";
-      }
-    });
-  </script>
-  <script type="module">
-    import { checkAuthentication } from "../authMiddleware.js";
-
-    // Perform authentication check before rendering the page
-    checkAuthentication();
-  </script>
+  <script type="module" src="authHandler.js"></script>
 </head>
 <body>
 
@@ -63,40 +47,6 @@
           nav.classList.remove('open');
         }
       }
-    });
-  </script>
-  <script type="module">
-    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-    import { app, checkAuthentication, auth } from "../authMiddleware.js";
-
-    document.addEventListener('DOMContentLoaded', () => {
-      checkAuthentication();
-
-      // Firebase-dependent code
-      const loginStatus = document.getElementById("loginStatus");
-      const logoutBtn = document.getElementById("logoutBtn");
-
-      logoutBtn.addEventListener("click", async () => {
-        try {
-          await signOut(auth);
-          loginStatus.textContent = "התנתקת בהצלחה.";
-          logoutBtn.style.display = "none";
-          window.location.href = "../index.html"; // Redirect to home page
-        } catch (error) {
-          loginStatus.textContent = "שגיאה: " + error.message;
-        }
-      });
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          loginStatus.textContent = `מחובר כ: ${user.email}`;
-          logoutBtn.style.display = "block";
-        } else {
-          loginStatus.textContent = "לא מחובר.";
-          logoutBtn.style.display = "none";
-          window.location.href = "../login.html"; // Redirect to login page if not authenticated
-        }
-      });
     });
   </script>
 </body>
