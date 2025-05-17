@@ -2,8 +2,7 @@ import { Exercise } from './exercise.js';
 import { hebrewDict } from './hebrew-dict.js';
 class Exercise6 extends Exercise {
   constructor() {
-    super(hebrewDict.ex6.title);
-    this.description = hebrewDict.ex6.description;
+    super("ex6");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
 
@@ -27,7 +26,7 @@ getCodeParts() {
   }
 
 composeImageHtml(vars) {
-    let doorImg = this.isCorrect()["valid"]? 'ex6/door_open.png' : 'ex6/door_closed.png';
+    let doorImg = this.isCorrect()["valid"] ? this.path('door_open.png') : this.path('door_closed.png');
     return this.generateImageHTML([doorImg]);
   }
 

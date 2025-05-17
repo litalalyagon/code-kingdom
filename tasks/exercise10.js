@@ -3,7 +3,7 @@ import { hebrewDict } from './hebrew-dict.js';
 
 class Exercise10 extends Exercise {
   constructor() {
-    super(hebrewDict.ex10.title);
+    super("ex10");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
 
   }
@@ -70,12 +70,12 @@ class Exercise10 extends Exercise {
   }
 
   composeImageHtml() {
-    const backgroundImg = "ex10/wall.png";
+    const backgroundImg = this.path('wall.png');
     let colorImages = [];
 
     this.torches.forEach((t, ind) => {
       if (t.light) {
-        colorImages.push(`ex10/flame_${ind+1}.png`);
+        colorImages.push(this.path(`flame_${ind}.png`));
       }
     });
     
