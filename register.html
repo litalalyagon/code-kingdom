@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 360px;
+      margin: 40px auto;
+      direction: rtl;
+      text-align: right;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      cursor: pointer;
+      background-color: #0066cc;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #004999;
+    }
+    #status {
+      margin-top: 12px;
+      min-height: 1.5em;
+      font-weight: bold;
+    }
+    #status.error {
+      color: #cc0000;
+    }
+    #status.success {
+      color: #007700;
+    }
+  </style>
+</head>
+<body>
+  <h2>הרשמה</h2>
+
+  <form id="registerForm" novalidate>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="כתובת אימייל"
+      required
+      autocomplete="username"
+    />
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="סיסמה (לפחות 6 תווים)"
+      minlength="6"
+      required
+      autocomplete="new-password"
+    />
+    <input
+      type="text"
+      id="signupCode"
+      name="signupCode"
+      placeholder="קוד הרשמה"
+      required
+    />
+    <button type="submit">הרשם</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    import { logInUser } from './auth.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDf_N4F-1mlh5_IxyLpEjqJ_8J5X8rb38Q",
+    authDomain: "code-kingdom-a5310.firebaseapp.com",
+    projectId: "code-kingdom-a5310",
+    storageBucket: "code-kingdom-a5310.firebasestorage.app",
+    messagingSenderId: "39839215522",
+    appId: "1:39839215522:web:20bb7fc1ebc61ae8b10cfb",
+    measurementId: "G-N0Y63EPX4T"
+  };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("registerForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "";
+      status.className = "";
+
+      console.log('Form validity:', form.checkValidity());
+      console.log('Email:', form.email.value.trim());
+      console.log('Password:', form.password.value.trim());
+      console.log('Signup Code:', form.signupCode.value.trim());
+
+      // Perform custom validation first
+      const email = form.email.value.trim();
+      const password = form.password.value.trim();
+      const signupCode = form.signupCode.value.trim();
+
+      if (!email || !email.includes('@')) {
+        status.textContent = 'אנא הזן כתובת אימייל חוקית';
+        status.className = 'error';
+        return;
+      }
+
+      if (password.length < 6) {
+        status.textContent = 'הסיסמה חייבת להיות באורך של לפחות 6 תווים';
+        status.className = 'error';
+        return;
+      }
+
+      // Then check built-in form validity
+      if (!form.checkValidity()) {
+        status.textContent = "אנא מלא/י את כל השדות כראוי.";
+        status.className = "error";
+        return;
+      }
+
+      try {
+        // Step 1: Retrieve signup code from Firestore
+        const codeDoc = await getDoc(doc(db, "config", "signup"));
+        if (!codeDoc.exists()) {
+          status.textContent = "Error: Signup code is not set.";
+          status.className = "error";
+          return;
+        }
+
+        const correctCode = codeDoc.data().code;
+
+        // Step 2: Validate signup code
+        if (signupCode !== correctCode) {
+          status.textContent = "קוד ההרשמה שגוי.";
+          status.className = "error";
+          return;
+        }
+
+        // Step 3: Register user
+        await createUserWithEmailAndPassword(auth, email, password);
+
+        status.textContent = "נרשמת בהצלחה!";
+        status.className = "success";
+        form.reset();
+
+        // Log in the user and redirect to exercise portal
+        logInUser();
+        window.location.href = './tasks/index.html';
+      } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+          status.innerHTML = "האימייל כבר קיים במערכת. <a href='./login.html'>התחבר כאן</a>.";
+          status.className = "error";
+        } else {
+          status.textContent = "שגיאה: " + error.message;
+          status.className = "error";
+        }
+      }
+    });
+  </script>
+
+  <script type="module">
+    import { logInUser } from './auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const registerBtn = document.getElementById('registerBtn');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const status = document.getElementById('status');
+
+      if (registerBtn) {
+        registerBtn.addEventListener('click', () => {
+          const email = emailInput.value.trim();
+          const password = passwordInput.value.trim();
+
+          // Validate email and password
+          if (!email || !email.includes('@')) {
+            status.textContent = 'אנא הזן כתובת אימייל חוקית';
+            status.className = 'error';
+            return;
+          }
+
+          if (password.length < 6) {
+            status.textContent = 'הסיסמה חייבת להיות באורך של לפחות 6 תווים';
+            status.className = 'error';
+            return;
+          }
+
+          // Simulate registration logic
+          logInUser();
+          window.location.href = './tasks/index.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
