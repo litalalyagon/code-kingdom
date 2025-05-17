@@ -347,3 +347,41 @@ main {
   min-width: 320px;
   transition: box-shadow 0.2s;
 }
+
+.user-status-bar {
+  display: flex;
+  flex-direction: row-reverse; /* Button on the left in RTL */
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 18px 0 24px 0;
+  font-size: 1.08em;
+}
+
+#loginStatus {
+  background: #d4d6dd;
+  color: #3a5a98;
+  padding: 7px 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 1px 4px #3a5a9811;
+  letter-spacing: 0.5px;
+}
+
+#logoutBtn {
+  background: #3579bd;      /* Solid blue */
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 7px 22px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: none;         /* Remove glimmer */
+}
+
+#logoutBtn:hover {
+  background: #005bb5;      /* Slightly darker blue on hover */
+  box-shadow: none;         /* No glimmer on hover */
+}
