@@ -9,7 +9,7 @@ class Exercise6 extends Exercise {
 
   validColors = [
     hebrewDict.colors.blue,
-    hebrewDict.colors.purple,
+    hebrewDict.colors.yellow,
     hebrewDict.colors.red,
   ];
 
@@ -34,7 +34,7 @@ class Exercise6 extends Exercise {
       })); 
       fields = fields.concat(this.createFieldDisplayDetails({
         field_type: 'text',
-        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==${hebrewDict.colors.purple}`, 
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==${hebrewDict.colors.yellow}`, 
         posttext: ":",
       })); 
       fields = fields.concat(this.createFieldDisplayDetails({
@@ -83,10 +83,10 @@ class Exercise6 extends Exercise {
 
   composeImageHtml(colors_directions) {
     const blue_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.blue]);
-    const purple_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.purple]);
+    const yellow_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.yellow]);
     const red_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.red]);
 
-    const route_img = this.path(`b${blue_dir}_p${purple_dir}_r${red_dir}.png`);
+    const route_img = this.path(`b${blue_dir}_y${yellow_dir}_r${red_dir}.png`);
     
     return this.generateImageHTML([this.path("maze.png"), route_img]);
   }
@@ -111,7 +111,7 @@ class Exercise6 extends Exercise {
     if (this.level === 'easy') {
       let arr = Array.from(inputs).map(i => i.value.trim());
       colors_directions[0] = {color: hebrewDict.colors.blue, direction: arr[0]};
-      colors_directions[1] = {color: hebrewDict.colors.purple, direction: arr[1]};
+      colors_directions[1] = {color: hebrewDict.colors.yellow, direction: arr[1]};
       colors_directions[2] = {color: hebrewDict.colors.red, direction: arr[2]};
     }
     else {
@@ -131,7 +131,7 @@ class Exercise6 extends Exercise {
 
   isCorrect() {
     if (this.colors_directions[hebrewDict.colors.blue] == hebrewDict.ex6.left
-      && this.colors_directions[hebrewDict.colors.purple] == hebrewDict.ex6.right
+      && this.colors_directions[hebrewDict.colors.yellow] == hebrewDict.ex6.right
       && this.colors_directions[hebrewDict.colors.red] == hebrewDict.ex6.right) {
         return { valid: true, message: hebrewDict.ex6.success };
     }
