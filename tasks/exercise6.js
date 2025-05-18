@@ -1,85 +1,178 @@
 import { Exercise } from './exercise.js';
 import { hebrewDict } from './hebrew-dict.js';
+
 class Exercise6 extends Exercise {
   constructor() {
     super("ex6");
-    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
+    this.input_sizes = {'easy': 'small', 'hard': 'small'};
   }
 
-  inputKey;
-  inputSymbol;
-  inputColor;
-getCodeParts() {
-    let key_field, color_field, unlock_line, combined;
+  validColors = [
+    hebrewDict.colors.blue,
+    hebrewDict.colors.purple,
+    hebrewDict.colors.red,
+  ];
+
+  validDirections = [
+    hebrewDict.ex6.left,
+    hebrewDict.ex6.right,
+  ];
+
+  colors_directions = {};
+
+  getCodeParts() {
+    let fields = [];
     if (this.level === 'easy') {
-      key_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.if} `, new_line: false}); 
-      color_field = this.createFieldDisplayDetails({pretext: ` == `, posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex6.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
-      combined = key_field.concat(color_field, unlock_line);
-      return combined;
-    } else {
-      key_field = this.createFieldDisplayDetails({posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex6.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
-      combined = key_field.concat(unlock_line);
-      return combined;
+      fields = this.createFieldDisplayDetails({
+        field_type: 'text',
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==${hebrewDict.colors.blue}`, 
+        posttext: ":",
+      });
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        field_type: 'text',
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==${hebrewDict.colors.purple}`, 
+        posttext: ":",
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        field_type: 'text',
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==${hebrewDict.colors.red}`, 
+        posttext: ":",
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+    }
+    else {
+      fields = this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==`, 
+        posttext: ":",
+      });
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==`, 
+        posttext: ":",
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.if} ${hebrewDict.ex6.flag}==`, 
+        posttext: ":",
+      })); 
+      fields = fields.concat(this.createFieldDisplayDetails({
+        pretext: `${hebrewDict.ex6.turn} `, 
+        indentation: true,
+      })); 
+    }  
+
+    return fields;
+  }
+
+  composeImageHtml(colors_directions) {
+    const blue_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.blue]);
+    const purple_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.purple]);
+    const red_dir = this.getDirectionKey(colors_directions[hebrewDict.colors.red]);
+
+    const route_img = this.path(`b${blue_dir}_p${purple_dir}_r${red_dir}.png`);
+    
+    return this.generateImageHTML([this.path("maze.png"), route_img]);
+  }
+
+  getDirectionKey(direction) {
+    switch (direction) {
+      case hebrewDict.ex6.left:
+        return "l";
+      case hebrewDict.ex6.right:
+        return "r";
+      default:
+        return null;
     }
   }
 
-composeImageHtml(vars) {
-    let doorImg = this.isCorrect()["valid"] ? this.path('door_open.png') : this.path('door_closed.png');
-    return this.generateImageHTML([doorImg]);
+  getDefaultHtml() {
+    return this.generateImageHTML([this.path("maze.png")]);
   }
 
-getDefaultHtml() {
-    return this.composeImageHtml();
-  }
-
-extractInputs(selects, inputs) {
-  let key_string, symbol_string, color_string, full_string;
-  if (this.level === 'easy') {
-    [key_string, color_string] = Array.from(inputs).map(s => s.value.trim());
-  } else {
-    [full_string] = Array.from(inputs).map(s => s.value.trim());
-    const match = full_string.match(/^(.+?)\s*([=!<>]+)\s*(.+)$/);
-    if (match) {
-      key_string = match[1].trim();
-      symbol_string = match[2].trim();
-      color_string = match[3].trim();
-    } else {
-      key_string = '';
-      symbol_string = '';
-      color_string = '';
+  extractInputs(inputs) {
+    let colors_directions = [];
+    if (this.level === 'easy') {
+      let arr = Array.from(inputs).map(i => i.value.trim());
+      colors_directions[0] = {color: hebrewDict.colors.blue, direction: arr[0]};
+      colors_directions[1] = {color: hebrewDict.colors.purple, direction: arr[1]};
+      colors_directions[2] = {color: hebrewDict.colors.red, direction: arr[2]};
     }
-  }
-  return {key_string, symbol_string, color_string};
-  }
-handleRun() {
-    return this.composeImageHtml();
+    else {
+      let arr = Array.from(inputs).map(i => i.value.trim());
+      colors_directions[0] = {color: arr[0], direction: arr[1]};
+      colors_directions[1] = {color: arr[2], direction: arr[3]};  
+      colors_directions[2] = {color: arr[4], direction: arr[5]};
+    }
+
+    return colors_directions;
   }
 
-isCorrect() {
-  if (this.level === "hard" && this.inputSymbol !== "==")
-  {
-    return{valid: false, message: hebrewDict.ex6.error_wrong_symbol}
+  handleRun() {
+    return this.composeImageHtml(this.colors_directions);
   }
-  if (this.inputKey === hebrewDict.ex6.key && this.inputColor === hebrewDict.colors.blue) {
-    return { valid: true, message: hebrewDict.ex6.success };
-  }
-  return { valid: false, message: hebrewDict.ex6.error_but_valid };
-  }
-  isValid() {
-    if (this.level === "hard" && this.inputSymbol !== "==")
-    {
-      return{valid: false, message: hebrewDict.ex6.error_wrong_symbol};
+
+
+  isCorrect() {
+    if (this.colors_directions[hebrewDict.colors.blue] == hebrewDict.ex6.left
+      && this.colors_directions[hebrewDict.colors.purple] == hebrewDict.ex6.right
+      && this.colors_directions[hebrewDict.colors.red] == hebrewDict.ex6.right) {
+        return { valid: true, message: hebrewDict.ex6.success };
     }
-    return ({valid: true, message: ''});
+    return { valid: false, message: hebrewDict.ex9.wrong_answer };
   }
-  validate({selects, inputs}) {
-    const { key_string, symbol_string, color_string } = this.extractInputs(selects, inputs);
-    this.inputKey = key_string;
-    this.inputSymbol = symbol_string;
-    this.inputColor = color_string;
-    return this.isValid();
+
+  validate({ inputs }) {
+    const colors_directions = this.extractInputs(inputs);
+    if (!colors_directions || colors_directions.length !== 3 || colors_directions.some(c => !c.color || !c.direction)) {
+      return { valid: false, message: hebrewDict.ex6.failure };
+    }
+
+    // validation of the colors and directions
+    for (const cond of colors_directions) {
+      if (!this.isValidColor(cond.color)) {
+        return { valid: false, message: hebrewDict.ex6.failure_wrong_color };
+      }
+      if (!this.isValidDirection(cond.direction)) {
+        return { valid: false, message: hebrewDict.ex6.failure_wrong_direction };
+      }
+      this.colors_directions[cond.color] = cond.direction;
+
+    }
+    // check if there are two equals colors
+    const colors = colors_directions.map(c => c.color);
+    const uniqueColors = new Set(colors);
+    if (uniqueColors.size !== colors.length) {
+      return { valid: false, message: hebrewDict.ex6.failure_two_equals_colors };
+    }
+
+    return { valid: true, message: ""};
   }
+
+  isValidColor(color) { 
+    return this.validColors.includes(color);
+  }
+
+  isValidDirection(direction) {
+    return this.validDirections.includes(direction);
+  }
+
 }
+
 export default new Exercise6();
