@@ -135,7 +135,7 @@ class Exercise6 extends Exercise {
       && this.colors_directions[hebrewDict.colors.red] == hebrewDict.ex6.right) {
         return { valid: true, message: hebrewDict.ex6.success };
     }
-    return { valid: false, message: hebrewDict.ex9.wrong_answer };
+    return { valid: false, message: hebrewDict.ex6.wrong_answer };
   }
 
   validate({ inputs }) {
