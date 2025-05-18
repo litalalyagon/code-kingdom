@@ -14,12 +14,12 @@ getCodeParts() {
     if (this.level === 'easy') {
       key_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.if} `, new_line: false}); 
       color_field = this.createFieldDisplayDetails({pretext: ` == `, posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex6.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
+      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
       combined = key_field.concat(color_field, unlock_line);
       return combined;
     } else {
       key_field = this.createFieldDisplayDetails({posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex6.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
+      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
       combined = key_field.concat(unlock_line);
       return combined;
     }
@@ -60,17 +60,17 @@ handleRun() {
 isCorrect() {
   if (this.level === "hard" && this.inputSymbol !== "==")
   {
-    return{valid: false, message: hebrewDict.ex6.error_wrong_symbol}
+    return{valid: false, message: hebrewDict.ex7.error_wrong_symbol}
   }
-  if (this.inputKey === hebrewDict.ex6.key && this.inputColor === hebrewDict.colors.blue) {
-    return { valid: true, message: hebrewDict.ex6.success };
+  if (this.inputKey === hebrewDict.ex7.key && this.inputColor === hebrewDict.colors.blue) {
+    return { valid: true, message: hebrewDict.ex7.success };
   }
-  return { valid: false, message: hebrewDict.ex6.error_but_valid };
+  return { valid: false, message: hebrewDict.ex7.error_but_valid };
   }
   isValid() {
     if (this.level === "hard" && this.inputSymbol !== "==")
     {
-      return{valid: false, message: hebrewDict.ex6.error_wrong_symbol};
+      return{valid: false, message: hebrewDict.ex7.error_wrong_symbol};
     }
     return ({valid: true, message: ''});
   }
