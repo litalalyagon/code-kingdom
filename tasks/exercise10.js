@@ -11,7 +11,7 @@ class Exercise10 extends Exercise {
     hebrewDict.colors.blue,
     hebrewDict.colors.green,
     hebrewDict.colors.brown,
-  ]
+  ];
 
   validSizes = [
     hebrewDict.ex10.small,
@@ -75,7 +75,7 @@ class Exercise10 extends Exercise {
 
     this.torches.forEach((t, ind) => {
       if (t.light) {
-        colorImages.push(this.path(`flame_${ind}.png`));
+        colorImages.push(this.path(`flame_${ind+1}.png`));
       }
     });
     
