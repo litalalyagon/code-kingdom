@@ -7,7 +7,7 @@ class Exercise5 extends Exercise {
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
   }
   defaultHeight = 100;
-  inputHeight = '';
+  inputHeight; // number
   
   getCodeParts() {
     if (this.level === 'easy') {
@@ -18,7 +18,7 @@ class Exercise5 extends Exercise {
   }
 
   composeImageHtml(vars) {
-    const height = parseInt(vars.height, 10);
+    const height = vars.height;
 
     let robiImg;
     if (height < 100) {
@@ -102,7 +102,7 @@ class Exercise5 extends Exercise {
     }
 
     // set the values
-    this.inputHeight = val;
+    this.inputHeight = parseInt(val, 10);
 
     return { valid: true, message: ""};
   }
