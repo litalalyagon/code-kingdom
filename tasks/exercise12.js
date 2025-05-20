@@ -30,26 +30,25 @@ class Exercise12 extends Exercise {
     return combined;
 }
     composeImageHtml(vars) {
-    const {weightLimit} = vars;
-    let bagImg;
-    let images = [];
-    const backgroundImg = this.path("balloon.png");
-    images.push(backgroundImg);
-    let colorImages = [];
-    for (const weight of this.bagWeights) {
-    if(weight > parseInt(weightLimit, 10)) {
-    bagImg = this.path(`bag_${weight}_off.png`);
-    } else {
-        bagImg = this.path(`bag_${weight}.png`);
+        const {sign, weightLimit} = vars;
+        let bagImg;
+        let images = [];
+        const backgroundImg = this.path("balloon.png");
+        images.push(backgroundImg);
+        for (const weight of this.bagWeights) {
+            if(this.evaluateCondition(weight, sign, parseInt(weightLimit, 10))) {
+               bagImg = this.path(`bag_${weight}_off.png`);
+            } else {
+                bagImg = this.path(`bag_${weight}.png`);
+            }
+            images.push(bagImg);
+        }
+        return this.generateImageHTML(images);    
     }
-    images.push(bagImg);
-    }
-    return this.generateImageHTML(images);    
-}
     getDefaultHtml() {
-        return this.composeImageHtml({weightLimit: 100});
+        return this.composeImageHtml({sign: ">", weightLimit: 100});
 
-}
+    }
     extractInputs(inputs) {
     let ifWord, weightWord, sign, weightValue, fullString;
     if (this.level === 'easy') {
@@ -69,13 +68,16 @@ class Exercise12 extends Exercise {
     return {ifWord, weightWord, sign, weightValue};
     }
     handleRun() {
-        return this.composeImageHtml({weightLimit: this.inputWeightLimit});
+        return this.composeImageHtml({sign: this.inputSign, weightLimit: this.inputWeightLimit});
     }
     isCorrect() {
         let weightLimit = parseInt(this.inputWeightLimit, 10);
+        if (this.inputSign !== '>') {
+            return { valid: false, message: hebrewDict.ex12.signError };
+        }
         if (weightLimit < 40) {
             return { valid: false, message: hebrewDict.ex12.weightLimitTooLowError };
-        } else if (weightLimit > 55) {
+        } else if (weightLimit >= 55) {
             return { valid: false, message: hebrewDict.ex12.weightLimitTooHighError };
         }
         return { valid: true, message: hebrewDict.ex12.success};
@@ -92,7 +94,7 @@ class Exercise12 extends Exercise {
         if (this.inputWeightWord !== hebrewDict.ex12.weight) {
             return {valid:false, message: hebrewDict.ex12.weightWordError};
         }
-        if (this.inputSign !== '>') {
+        if (this.inputSign !== '>' && this.inputSign !== '<') {
             return {valid:false, message: hebrewDict.ex12.signError};
         }
         return {valid:true, message: ''};

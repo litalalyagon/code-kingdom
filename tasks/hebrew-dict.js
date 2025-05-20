@@ -158,7 +158,7 @@ export const hebrewDict = {
         "detach": "ניתוק=כן",
         "ifError": "שגיאה: חסר תנאי \"אם\"",
         "weightWordError": "שגיאה: חסר משתנה \"משקל\"",
-        "signError": "שגיאה: חסר סימן \"<\"",
+        "signError": "שגיאה: חסר סימן \">\"",
         "weightLimitTooLowError": "שגיאה: המשקל שהגדרתם קטן מדי",
         "weightLimitTooHighError": "שגיאה: המשקל שהגדרתם גבוה מדי",
         "success": "כל הכבוד! ניתקתם את שקי החול הנכונים!",
