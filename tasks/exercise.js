@@ -1,7 +1,7 @@
 import { hebrewDict } from './hebrew-dict.js';
 
 export class Exercise {
-  level = 'easy';
+  level = '';
   description = '';
   input_sizes = {'easy': 'medium', 'hard': 'medium'};
 
@@ -107,7 +107,7 @@ export class Exercise {
 export function renderExercise(ex, idx) {
   const container = document.getElementById('exercise-container');
   container.innerHTML = '';
-  let currentLevel = 'easy';
+  let currentLevel = '';
 
   // Difficulty selector
   const levelDiv = document.createElement('div');
@@ -116,16 +116,18 @@ export function renderExercise(ex, idx) {
   levelDiv.style.gap = '10px';
   levelDiv.style.marginBottom = '10px';
 
-  const easyBtn = document.createElement('button');
-  easyBtn.textContent = hebrewDict.easy;
-  easyBtn.className = 'run-btn level-btn';
-  easyBtn.onclick = () => switchLevel('easy');
   const hardBtn = document.createElement('button');
   hardBtn.textContent = hebrewDict.hard;
   hardBtn.className = 'run-btn level-btn';
   hardBtn.onclick = () => switchLevel('hard');
-  levelDiv.appendChild(easyBtn);
   levelDiv.appendChild(hardBtn);
+
+   const easyBtn = document.createElement('button');
+  easyBtn.textContent = hebrewDict.easy;
+  easyBtn.className = 'run-btn level-btn';
+  easyBtn.onclick = () => switchLevel('easy');
+  levelDiv.appendChild(easyBtn);
+
   container.appendChild(levelDiv);
 
   function switchLevel(level) {
@@ -269,5 +271,5 @@ export function renderExercise(ex, idx) {
     container.appendChild(exDiv);
   }
 
-  switchLevel('easy');
+  switchLevel('hard');
 }
