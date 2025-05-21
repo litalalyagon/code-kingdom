@@ -123,7 +123,6 @@ export function renderExercise(ex, idx) {
   const hardBtn = document.createElement('button');
   hardBtn.textContent = hebrewDict.hard;
   hardBtn.className = 'run-btn level-btn';
-
   hardBtn.onclick = () => switchLevel('hard');
   levelDiv.appendChild(easyBtn);
   levelDiv.appendChild(hardBtn);
@@ -150,7 +149,7 @@ export function renderExercise(ex, idx) {
     }
     const exDiv = document.createElement('div');
     exDiv.className = 'exercise';
-    
+
     // Title
     const title = document.createElement('h3');
     title.textContent = ex.title;
@@ -163,11 +162,27 @@ export function renderExercise(ex, idx) {
     description.style.textAlign = 'center';
     exDiv.appendChild(description);
 
-    // Code area
+    // --- FLEX WRAP FOR IMAGE AND CODE ---
+    const flexWrap = document.createElement('div');
+    flexWrap.className = 'exercise-flex-wrap';
+
+    // Result image
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'result-img';
+    if (typeof ex.getDefaultHtml === 'function') {
+      imgDiv.innerHTML = ex.getDefaultHtml();
+    } else {
+      imgDiv.innerHTML = '';
+    }
+
+    // Code area and run button
+    const codeWrap = document.createElement('div');
+    codeWrap.className = 'code-wrap';
+
     const codeArea = document.createElement('div');
     codeArea.className = 'code-area';
     const codeParts = ex.getCodeParts();
-    
+
     codeParts.forEach((part) => {
       if (part.type === 'text') {
         if (part.value === '\n') {
@@ -198,37 +213,34 @@ export function renderExercise(ex, idx) {
         codeArea.appendChild(input);
       }
     });
-    exDiv.appendChild(codeArea);
+
+    codeWrap.appendChild(codeArea);
 
     // Run button
     const runBtn = document.createElement('button');
     runBtn.className = 'run-btn';
     runBtn.textContent = hebrewDict.run;
-    exDiv.appendChild(runBtn);
+    codeWrap.appendChild(runBtn);
 
     codeArea.querySelectorAll('input').forEach(input => {
-    input.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      runBtn.click();
-      }});
+      input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          runBtn.click();
+        }
+      });
     });
 
-    // Result image
-    const imgDiv = document.createElement('div');
-    imgDiv.className = 'result-img';
-    if (typeof ex.getDefaultHtml === 'function') {
-      imgDiv.innerHTML = ex.getDefaultHtml();
-    } else {
-      imgDiv.innerHTML = '';
-    }
-    exDiv.appendChild(imgDiv);
-    
     // Message area
     const msgDiv = document.createElement('div');
     msgDiv.className = 'answer-msg';
     msgDiv.style.marginTop = '12px';
     msgDiv.style.fontWeight = 'bold';
-    exDiv.appendChild(msgDiv);
+    codeWrap.appendChild(msgDiv);
+
+    // Add both to flex container
+    flexWrap.appendChild(codeWrap);
+    flexWrap.appendChild(imgDiv);
+    exDiv.appendChild(flexWrap);
 
     // Run logic
     runBtn.onclick = () => {
