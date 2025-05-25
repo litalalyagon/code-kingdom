@@ -145,7 +145,6 @@ export function renderExercise(ex, idx) {
     const description = document.createElement('p');
     description.className = 'exercise-description';
     description.textContent = ex.description;
-    description.style.textAlign = 'center';
     exDiv.appendChild(description);
 
     // --- FLEX WRAP FOR IMAGE AND CODE ---
@@ -219,8 +218,6 @@ export function renderExercise(ex, idx) {
     // Message area
     const msgDiv = document.createElement('div');
     msgDiv.className = 'answer-msg';
-    msgDiv.style.marginTop = '12px';
-    msgDiv.style.fontWeight = 'bold';
     codeWrap.appendChild(msgDiv);
 
     // Add both to flex container
@@ -244,11 +241,12 @@ export function renderExercise(ex, idx) {
           }
         }
       }
+      msgDiv.classList.remove('success', 'error');
       if (result && result.valid) {
-        msgDiv.style.color = '#1a7f37';
+        msgDiv.classList.add('success');
       }
       else {
-        msgDiv.style.color = '#c00';
+        msgDiv.classList.add('error');
       }
       msgDiv.innerHTML = result.message;
     };

@@ -231,9 +231,14 @@ main {
   box-shadow: 0 0 6px #ffb30044;
 }
 .answer-msg {
-  margin-top: 18px !important;
-  font-size: 1.08em;
-  min-height: 28px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+.answer-msg.success {
+  color: #1a7f37;
+}
+.answer-msg.error {
+  color: #c00;
 }
 .image-container {
     position: relative;
