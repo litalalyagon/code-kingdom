@@ -77,23 +77,25 @@ main {
   justify-content: flex-start;
   padding: 30px 10px;
 }
+
 .exercise {
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 0px 28px;
-  max-width: 1100px;
-  width: 100%;
+  font-size: 1.15em;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
+  padding: 32px 24px 24px 24px;
+  margin: 32px auto;
   margin-top: 20px;
+  max-width: 1100px;   /* Wide enough for side-by-side layout */
+  width: 100%;
+  min-width: 320px;
+  transition: box-shadow 0.2s;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.15em;
-  width: 600px;
-  max-width: 100%;
-  min-width: 320px;
-  box-sizing: border-box;
 }
+
 .exercise h3 {
   font-size: 1.45em;
   margin-bottom: 22px;
@@ -352,17 +354,6 @@ main {
   line-height: 1.5;
 }
 
-.exercise {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
-  padding: 32px 24px 24px 24px;
-  margin: 32px auto;
-  max-width: 480px;
-  min-width: 320px;
-  transition: box-shadow 0.2s;
-}
-
 .user-status-bar {
   display: flex;
   flex-direction: row-reverse; /* Button on the left in RTL */
@@ -442,21 +433,6 @@ main {
   }
 }
 
-.exercise {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
-  padding: 32px 24px 24px 24px;
-  margin: 32px auto;
-  max-width: 1100px;   /* Wide enough for side-by-side layout */
-  width: 100%;
-  min-width: 320px;
-  transition: box-shadow 0.2s;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .code-wrap .run-btn {
   align-self: center;
