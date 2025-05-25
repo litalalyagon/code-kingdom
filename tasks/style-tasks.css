@@ -373,6 +373,13 @@ main {
   font-size: 1.08em;
 }
 
+#level-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 #loginStatus {
   background: #d4d6dd;
   color: #3a5a98;

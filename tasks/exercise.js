@@ -105,30 +105,11 @@ export class Exercise {
 }
 
 export function renderExercise(ex, idx) {
+  const easyBtn = document.getElementById('easyBtn');
+  const hardBtn = document.getElementById('hardBtn');
   const container = document.getElementById('exercise-container');
   container.innerHTML = '';
   let currentLevel = '';
-
-  // Difficulty selector
-  const levelDiv = document.createElement('div');
-  levelDiv.style.display = 'flex';
-  levelDiv.style.justifyContent = 'center';
-  levelDiv.style.gap = '10px';
-  levelDiv.style.marginBottom = '10px';
-
-  const hardBtn = document.createElement('button');
-  hardBtn.textContent = hebrewDict.hard;
-  hardBtn.className = 'run-btn level-btn';
-  hardBtn.onclick = () => switchLevel('hard');
-  levelDiv.appendChild(hardBtn);
-
-   const easyBtn = document.createElement('button');
-  easyBtn.textContent = hebrewDict.easy;
-  easyBtn.className = 'run-btn level-btn';
-  easyBtn.onclick = () => switchLevel('easy');
-  levelDiv.appendChild(easyBtn);
-
-  container.appendChild(levelDiv);
 
   function switchLevel(level) {
     currentLevel = level;
@@ -142,6 +123,9 @@ export function renderExercise(ex, idx) {
     ex.setLevel(level);
     renderLevel();
   }
+
+  easyBtn.onclick = () => switchLevel('easy');
+  hardBtn.onclick = () => switchLevel('hard');
 
   function renderLevel() {
     // Remove previous exercise if exists
