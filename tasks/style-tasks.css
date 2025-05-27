@@ -175,27 +175,6 @@ main {
     position: relative;
     overflow: hidden;
 }
-.burger {
-  display: none;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-}
-.burger span {
-  display: block;
-  width: 28px;
-  height: 4px;
-  margin: 5px auto;
-  background: #222;
-  border-radius: 2px;
-  transition: 0.3s;
-}
 .level-btn {
   background: #eee;
   color: #222;
@@ -233,9 +212,14 @@ main {
   box-shadow: 0 0 6px #ffb30044;
 }
 .answer-msg {
-  margin-top: 18px !important;
-  font-size: 1.08em;
-  min-height: 28px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+.answer-msg.success {
+  color: #1a7f37;
+}
+.answer-msg.error {
+  color: #c00;
 }
 .image-container {
     position: relative;
@@ -254,8 +238,15 @@ main {
     object-fit: cover; /* Ensures the image scales properly */
 }
 @media (max-width: 900px) {
-  .burger {
+  .container {
+    flex-direction: column;
     display: block;
+  }
+  .navbar-toggler {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1001;
   }
   nav {
     position: fixed;
@@ -299,6 +290,9 @@ main {
   .result-img {
     width: 98vw;
     max-width: 180px;
+  }
+  .burger {
+    display: flex;
   }
 }
 @media (max-width: 700px) {
@@ -362,6 +356,13 @@ main {
   gap: 18px;
   margin: 18px 0 24px 0;
   font-size: 1.08em;
+}
+
+#level-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 #loginStatus {
@@ -440,9 +441,33 @@ main {
   min-width: 0 !important;
   display: inline-block !important;
 }
+.burger {
+  display: none;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1001;
+  transition: background 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
 @media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-    display: block;
+  button.burger {
+    display: flex
+  }
+  .burger:hover {
+    background: #f0f0f0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  }
+  .burger i.fas.fa-bars {
+    font-size: 1.5em;
+    color: #222;
   }
 }
