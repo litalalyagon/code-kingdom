@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="style-tasks.css">
   <link rel="icon" href="../assets/favicon.ico">
   <script type="module" src="authHandler.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-  <button class="burger" id="burgerBtn" aria-label="תפריט">
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- Bootstrap burger button -->
+  <button class="burger navbar-toggler" id="burgerBtn" type="button" aria-label="תפריט">
+    <i class="fas fa-bars"></i>
   </button>
   <div class="container">
     <nav>
@@ -28,10 +28,15 @@
     </nav>
     <main>
       <div class="user-status-bar">
-      <button id="logoutBtn" style="display: none;">התנתק</button>
-      <p id="loginStatus"></p>
+        <button id="logoutBtn" style="display: none;">התנתק</button>
+        <p id="loginStatus"></p>
+      </div>
+      <div id="level-selector">
+        <button id="hardBtn" class="run-btn level-btn">קשה</button>
+        <button id="easyBtn" class="run-btn level-btn">קל</button>
       </div>
       <div id="exercise-container"></div>
+
     </main>
   </div>
   <script type="module" src="main.js"></script>

@@ -105,30 +105,11 @@ export class Exercise {
 }
 
 export function renderExercise(ex, idx) {
+  const easyBtn = document.getElementById('easyBtn');
+  const hardBtn = document.getElementById('hardBtn');
   const container = document.getElementById('exercise-container');
   container.innerHTML = '';
   let currentLevel = '';
-
-  // Difficulty selector
-  const levelDiv = document.createElement('div');
-  levelDiv.style.display = 'flex';
-  levelDiv.style.justifyContent = 'center';
-  levelDiv.style.gap = '10px';
-  levelDiv.style.marginBottom = '10px';
-
-  const hardBtn = document.createElement('button');
-  hardBtn.textContent = hebrewDict.hard;
-  hardBtn.className = 'run-btn level-btn';
-  hardBtn.onclick = () => switchLevel('hard');
-  levelDiv.appendChild(hardBtn);
-
-   const easyBtn = document.createElement('button');
-  easyBtn.textContent = hebrewDict.easy;
-  easyBtn.className = 'run-btn level-btn';
-  easyBtn.onclick = () => switchLevel('easy');
-  levelDiv.appendChild(easyBtn);
-
-  container.appendChild(levelDiv);
 
   function switchLevel(level) {
     currentLevel = level;
@@ -142,6 +123,9 @@ export function renderExercise(ex, idx) {
     ex.setLevel(level);
     renderLevel();
   }
+
+  easyBtn.onclick = () => switchLevel('easy');
+  hardBtn.onclick = () => switchLevel('hard');
 
   function renderLevel() {
     // Remove previous exercise if exists
@@ -161,7 +145,6 @@ export function renderExercise(ex, idx) {
     const description = document.createElement('p');
     description.className = 'exercise-description';
     description.textContent = ex.description;
-    description.style.textAlign = 'center';
     exDiv.appendChild(description);
 
     // --- FLEX WRAP FOR IMAGE AND CODE ---
@@ -235,8 +218,6 @@ export function renderExercise(ex, idx) {
     // Message area
     const msgDiv = document.createElement('div');
     msgDiv.className = 'answer-msg';
-    msgDiv.style.marginTop = '12px';
-    msgDiv.style.fontWeight = 'bold';
     codeWrap.appendChild(msgDiv);
 
     // Add both to flex container
@@ -260,11 +241,12 @@ export function renderExercise(ex, idx) {
           }
         }
       }
+      msgDiv.classList.remove('success', 'error');
       if (result && result.valid) {
-        msgDiv.style.color = '#1a7f37';
+        msgDiv.classList.add('success');
       }
       else {
-        msgDiv.style.color = '#c00';
+        msgDiv.classList.add('error');
       }
       msgDiv.innerHTML = result.message;
     };
