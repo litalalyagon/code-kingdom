@@ -12,13 +12,26 @@
 </head>
 <body>
     <header class="landing-header">
-        <img src="assets/logo.png" alt="Between the Lines Logo" class="company-logo" style="max-width:180px; display:block; margin:0 auto 16px auto;">
+        <div class="header-bar">
+            <nav class="main-nav">
+                <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+                <label for="nav-toggle" class="nav-toggle-label">
+                    <span></span>
+                </label>
+                <ul class="nav-links">
+                    <li><a href="#products-section">המוצרים שלנו</a></li>
+                    <li><a href="#about-us-section">מי אנחנו</a></li>
+                    <li><a href="#contact-section">צור קשר</a></li>
+                </ul>
+            </nav>
+        </div>
+        <img src="assets/logo.png" alt="Between the Lines Logo" class="hero-logo">
         <p class="tagline">מתמחים בפיתוח חוויות למידה, משחקים, ספרים ופתרונות טכנולוגיים חדשניים לילדים, בני נוער ומבוגרים. אנו מאמינים בכוחו של סיפור, משחק ויצירתיות להנגיש ידע, לעורר השראה ולבנות קהילות לומדות.</p>
         <button class="cta-button" id="contactUsBtn">דברו איתנו</button>
     </header>
 
     <main class="landing-main">
-        <section class="products-section">
+        <section class="products-section" id="products-section">
             <h2>המוצרים שלנו</h2>
             <ul class="products-list">
                 <li class="product-item" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
@@ -32,7 +45,7 @@
             </ul>
         </section>
         <!-- About Us Section -->
-        <section class="about-us-section">
+        <section class="about-us-section" id="about-us-section">
             <h2>מי אנחנו?</h2>
             <img src="assets/about-us.jpg" alt="About Us Photo" class="about-us-photo">
               <p><b>ליטל אליגון: </b>אני ליטל, מתכנתת כעשר שנים, ובעבר מדריכת פסיכומטרי, מתרגלת באוניברסיטה ומכינה לבגרות. 
@@ -42,7 +55,7 @@
                     בשנים האחרונות זכיתי לעבוד כחלק מעמותת בוגרי 8200, בהנגשת עולם התכנות לבני נוער בכל רחבי הארץ. 
                     חוץ מזה, אני בעל עסק לכתיבת חדרי בריחה ופרוייקטים משחקיים חינוכיים לחברות, ארגונים ובתי ספר בארץ ובעולם, ומורה בהתנדבות.</p>
         </section>
-        <section class="contact-section">
+        <section class="contact-section" id="contact-section">
             <h2>רוצים לשמוע עוד? דברו איתנו</h2>
             <form id="contact-form" class="details-form">
                 <span id="message-placeholder"></span>
