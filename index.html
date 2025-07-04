@@ -5,58 +5,31 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אורי והדס בממלכת הקוד</title>
+  <title>בין השורות</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header class="landing-header">
-        <h1>ברוכים הבאים לממלכת הקוד!</h1>
-        <p class="tagline">הכירו את "אורי והדס בממלכת הקוד" - סדרת ספרי הרפתקאות לילדים המשלבים אתר ייעודי, שבעזרתם הילדים שלכם יצעדו את הצעדים הראשונים שלהם בעולם הקוד, ילמדו את יסודות התכנות, ויפתחו חשיבה תכנותית! <br>
-        ממלכת הקוד היא ספר מודפס המשלב משחק אינטרנטי, שנועדו לילדים סקרנים בגילאי היסודי.</p>
-        <button class="cta-button" id="exercisePortalBtn">לעמוד המשימות</button>
+        <img src="assets/logo.png" alt="Between the Lines Logo" class="company-logo" style="max-width:180px; display:block; margin:0 auto 16px auto;">
+        <p class="tagline">מתמחים בפיתוח חוויות למידה, משחקים, ספרים ופתרונות טכנולוגיים חדשניים לילדים, בני נוער ומבוגרים. אנו מאמינים בכוחו של סיפור, משחק ויצירתיות להנגיש ידע, לעורר השראה ולבנות קהילות לומדות.</p>
+        <button class="cta-button" id="contactUsBtn">דברו איתנו</button>
     </header>
 
     <main class="landing-main">
-        <section class="book-cover-section">
-            
-            <section class="cta-section">
-                <p class="book-description">
-               230% לאחר קמפיין מימון המונים מוצלח דרך הדסטארט, בו גייסנו מעל <br>
-                !מהיעד המקורי שלנו, הספר נמצא כעת במכירה מוקדמת<br>
-                </p>
-                <button id="order-button" class="cta-button">הזמן עכשיו</button>
-            </section>
-            <img src="assets/book-cover.png" alt="כריכת הספר" class="book-cover">
+        <section class="products-section">
+            <h2>המוצרים שלנו</h2>
+            <ul class="products-list">
+                <li class="product-item" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                    <a href="/code-kingdom/" title="לעמוד המוצר" style="display:inline-block;">
+                        <img src="assets/book-cover.png" alt="כריכת ממלכת הקוד" style="max-width:120px; height:auto; border-radius:8px; box-shadow:0 2px 8px #0002; transition:transform 0.2s;">
+                    </a>
+                    <div>
+                        <b>אורי והדס בממלכת הקוד</b> – ספר התכנות האינטראקטיבי הראשון לילדים<br>
+                    </div>
+                </li>
+            </ul>
         </section>
-        
-        <section class="features-section">
-            <h2>למה הספר שלנו מיוחד?</h2>
-            <p>הספר מעניק לילדים את הכלים הדרושים להבנת עולם התכנות באופן חוויתי ומהנה</p>
-            <div class="features-container">
-                <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3>תוכן מותאם גיל</h3>
-                    <p>תכנים מותאמים במיוחד לילדים בגילאי יסודי, עם רמות קושי משתנות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>חשיבה יצירתית</h3>
-                    <p>פיתוח יכולת לוגית ויצירתית דרך אתגרי תכנות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>תרגילים אינטראקטיביים</h3>
-                    <p>פעילויות מעשיות להרגשת חווית הלמידה</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>יסודות תכנות</h3>
-                    <p>לימוד מושגי יסוד בתכנות בשפה פשוטה ונגישה לילדים</p>
-                </div>
-            </div>
-        </section>
-
         <!-- About Us Section -->
         <section class="about-us-section">
             <h2>מי אנחנו?</h2>
@@ -67,20 +40,18 @@
                 <p><b>לי באלאן: </b>היי! אני לי, בוגר 8200 ומתכנת לשעבר, עם אהבה עצומה לתחום החינוך לילדים. 
                     בשנים האחרונות זכיתי לעבוד כחלק מעמותת בוגרי 8200, בהנגשת עולם התכנות לבני נוער בכל רחבי הארץ. 
                     חוץ מזה, אני בעל עסק לכתיבת חדרי בריחה ופרוייקטים משחקיים חינוכיים לחברות, ארגונים ובתי ספר בארץ ובעולם, ומורה בהתנדבות.</p>
-         
         </section>
-
-        <section class="details-section">
-            <h2>תרצו שנחזור אליכם? השאירו פרטים</h2>
+        <section class="contact-section">
+            <h2>רוצים לשמוע עוד? דברו איתנו</h2>
             <form id="contact-form" class="details-form">
-                <text id="message-placeholder"> </text> </text>
+                <span id="message-placeholder"></span>
                 <input type="text" id="name" name="name" placeholder="שם" required>
                 <input type="email" id="email" name="email" placeholder="אימייל" required>
-                <textarea id="message" name="message" rows="4" placeholder="הודעה" required></textarea>
+                <textarea id="message" name="message" rows="4" placeholder="איך נוכל לעזור?" required></textarea>
                 <div class="form-submit">
                     <button type="submit" class="cta-button">שליחה</button>
-              </div>
-          </form> 
+                </div>
+            </form>
         </section>
     </main>
 
@@ -89,24 +60,18 @@
             <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">פייסבוק</a> | 
             <a href="mailto:kidscodebook@gmail.com">מייל</a>
         </div>
-        <p> הוצאת ממלכת הקוד. כל הזכויות שמורות 2025 &copy; </p>
-       
+        <p>בין השורות | Between the Lines. כל הזכויות שמורות 2025 &copy;</p>
     </footer>
 
     <script type="text/javascript" src="main.js"></script>
     <script type="module">
-        import { isLoggedIn } from './auth.js';
-
         document.addEventListener('DOMContentLoaded', () => {
-          const exercisePortalBtn = document.getElementById('exercisePortalBtn');
-
-          exercisePortalBtn.addEventListener('click', () => {
-            if (isLoggedIn()) {
-              window.location.href = './tasks/index.html';
-            } else {
-              window.location.href = './login.html'; // Redirect to login page instead of register
-            }
-          });
+          const contactUsBtn = document.getElementById('contactUsBtn');
+          if (contactUsBtn) {
+            contactUsBtn.addEventListener('click', () => {
+              document.querySelector('.contact-section').scrollIntoView({ behavior: 'smooth' });
+            });
+          }
         });
     </script>
 
