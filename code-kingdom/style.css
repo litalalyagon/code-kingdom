@@ -1,0 +1,350 @@
+/* Landing Page Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    direction: rtl; /* Ensure the entire page follows RTL direction */
+    text-align: center; /* Align all text to the center */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensure padding and borders are included in width and height calculations */
+}
+
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.enter-btn {
+  background: #0a84ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 32px;
+  font-size: 1.00em;
+  cursor: pointer;
+  margin-bottom: 12px;
+  margin-top: 2px;
+  transition: background 0.2s;
+}
+
+.run-enter:hover {
+  background: #005bb5;
+}
+
+/* Hero Section */
+.landing-header {
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.landing-header h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.landing-header .tagline {
+    font-size: 1.5em;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+/* Book Cover Section */
+.book-cover-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    direction: ltr;
+}
+
+.book-cover {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+}
+
+.cta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.cta-section .book-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.book-description {
+    text-align: right; /* Align the book description text to the right */
+}
+
+.cta-button {
+    background: #007bff; /* Changed to a more appealing blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.cta-button:hover {
+    background: #0056b3; /* Darker blue for hover effect */
+    transform: scale(1.05);
+}
+
+/* Details Section */
+.details-section {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.details-form input, .details-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: Arial, sans-serif; /* Ensure consistent font across all form elements */
+}
+
+.details-form textarea {
+    resize: none; /* Prevent the message box from being resizable */
+}
+
+/* Footer */
+.landing-footer {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #1abc9c;
+    margin: 0 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #16a085;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Features Section */
+.features-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.features-section h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.features-section p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Ensure all feature cards have the same width */
+.feature-card {
+    width: 300px; /* Set a fixed width for uniformity */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    min-height: 200px; /* Ensure all cards have the same height */
+    text-align: center;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align content evenly */
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #7f8c8d;
+}
+
+/* Enhanced About Us Section */
+.about-us-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.about-us-section h2 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-us-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-section p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.about-us-section p b {
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .book-cover {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .book-description {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    .details-section {
+        width: 90%;
+        padding: 0 20px; /* Add some padding for smaller screens */
+    }
+
+    .form-submit {
+        flex-direction: column; /* Stack the submit button below the inputs */
+        align-items: center; /* Center align the submit button */
+        gap: 10px;
+    }
+
+    .details-form input, .details-form textarea {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .details-form button {
+        width: 100%;
+    }
+
+    .landing-header h1 {
+        font-size: 2em;
+    }
+
+    .landing-header .tagline {
+        font-size: 1em;
+    }
+
+    .book-cover-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-section {
+        text-align: center;
+    }
+
+    .details-section {
+        padding: 15px;
+    }
+
+    .features-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-card {
+        max-width: 100%;
+    }
+}
+
+.landing-header, .landing-footer {
+    width: 100%; /* Ensure the header and footer span the full width of the page */
+    box-sizing: border-box; /* Include padding and borders in the width calculation */
+}
