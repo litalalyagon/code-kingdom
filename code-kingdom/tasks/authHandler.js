@@ -1,6 +1,7 @@
 import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { checkAuthentication } from "../authMiddleware.js";
-import { auth } from "../firebaseConfig.js";
+import { auth, db } from "../firebaseConfig.js";
 
 document.addEventListener('DOMContentLoaded', () => {
   checkAuthentication();
@@ -21,11 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Enhanced error handling for onAuthStateChanged
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     try {
       if (user) {
         loginStatus.textContent = `מחובר כ: ${user.email}`;
         logoutBtn.style.display = "block";
+
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          await setDoc(userRef, {
+            email: user.email,
+            completedStages: []
+          });
+        }
       } else {
         loginStatus.textContent = "לא מחובר.";
         logoutBtn.style.display = "none";
@@ -37,3 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+export async function markStageAsCompleted(stageId) {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const userRef = doc(db, "users", user.uid);
+
+  await updateDoc(userRef, {
+    completedStages: arrayUnion(stageId)
+  });
+}
