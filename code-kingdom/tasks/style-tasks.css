@@ -12,15 +12,7 @@ nav button.completed::after {
   font-size: 1.1em;
   color: #fff;
 }
-/* Styles for the exercises portal (moved from style.css) */
-/* body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #222;
-  direction: rtl;
-} */
- body {
+body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
