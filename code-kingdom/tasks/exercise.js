@@ -1,11 +1,14 @@
 import { hebrewDict } from './hebrew-dict.js';
+import { markStageAsCompleted } from './authHandler.js';
 
 export class Exercise {
   level = '';
   description = '';
   input_sizes = {'easy': 'medium', 'hard': 'medium'};
+  ex_indentifier = '';
 
   constructor(ex_indentifier) {
+    this.ex_indentifier = ex_indentifier;
     this.title = hebrewDict[ex_indentifier].title;
     this.description = hebrewDict[ex_indentifier].description;
     this.img_path = `../assets/tasks_images/${ex_indentifier}/`;
@@ -99,8 +102,20 @@ export class Exercise {
       field_details.push({type: 'text', value: '\n'});
     }
     return field_details;
-    } 
+  } 
 
+  markAsCompleted() {
+    if (typeof markStageAsCompleted === 'function') {
+      markStageAsCompleted(this.ex_indentifier);
+      // Also update the menu visually
+      const btn = document.querySelector(`button[data-level='${this.ex_indentifier}']`);
+      if (btn) {
+        btn.classList.add('completed');
+      }
+    } else {
+      console.warn('markStageAsCompleted function is not defined.');
+    }
+  }
   
 }
 
@@ -244,6 +259,8 @@ export function renderExercise(ex, idx) {
       msgDiv.classList.remove('success', 'error');
       if (result && result.valid) {
         msgDiv.classList.add('success');
+        // mark the stage as completed
+        ex.markAsCompleted();
       }
       else {
         msgDiv.classList.add('error');

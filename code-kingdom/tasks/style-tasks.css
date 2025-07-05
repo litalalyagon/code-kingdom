@@ -1,12 +1,18 @@
-/* Styles for the exercises portal (moved from style.css) */
-/* body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #222;
-  direction: rtl;
-} */
- body {
+nav button.completed {
+  background: #1a7f37;
+  color: #fff;
+  position: relative;
+}
+nav button.completed::after {
+  content: '✔';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+  color: #fff;
+}
+body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
