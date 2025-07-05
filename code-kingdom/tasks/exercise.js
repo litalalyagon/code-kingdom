@@ -107,6 +107,11 @@ export class Exercise {
   markAsCompleted() {
     if (typeof markStageAsCompleted === 'function') {
       markStageAsCompleted(this.ex_indentifier);
+      // Also update the menu visually
+      const btn = document.querySelector(`button[data-level='${this.ex_indentifier}']`);
+      if (btn) {
+        btn.classList.add('completed');
+      }
     } else {
       console.warn('markStageAsCompleted function is not defined.');
     }

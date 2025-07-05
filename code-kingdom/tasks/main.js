@@ -1,4 +1,23 @@
-import { renderMenu, setActiveMenu } from './menu.js';
+import { renderMenu, setActiveMenu, setCompletedStages } from './menu.js';
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { auth, db } from "../firebaseConfig.js";
+
+// Fetch completed stages from Firestore and update menu
+function fetchAndSetCompletedStages() {
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        setCompletedStages(data.completedStages || []);
+        // Re-render menu to update completed status
+        renderMenu(Array(exerciseFiles.length).fill({}), showExercise);
+      }
+    }
+  });
+}
 import { renderExercise } from './exercise.js';
 
 const exerciseFiles = [
@@ -32,6 +51,7 @@ async function showExercise(idx) {
   const ex = await loadExercise(idx);
   renderExercise(ex, idx);
 }
-renderMenu(Array(exerciseFiles.length).fill({}), showExercise);
+
+fetchAndSetCompletedStages();
 showExercise(0);
 
