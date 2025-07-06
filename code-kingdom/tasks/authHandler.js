@@ -25,18 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
     try {
       if (user) {
-        loginStatus.textContent = `מחובר כ: ${user.email}`;
-        logoutBtn.style.display = "block";
-
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (!userSnap.exists()) {
-          await setDoc(userRef, {
-            email: user.email,
-            completedStages: []
-          });
+        const childName = await getChildName();
+        if (childName) {
+          loginStatus.textContent = `שלום ${childName}!`;
+        } else {
+          loginStatus.textContent = `מחובר כ: ${user.email}`;
         }
+        logoutBtn.style.display = "block";        
+        
       } else {
         loginStatus.textContent = "לא מחובר.";
         logoutBtn.style.display = "none";
@@ -44,10 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       loginStatus.textContent = "שגיאה: אירעה בעיה בבדיקת המצב.";
+      window.location.href = "../login.html"; // Redirect to login page if not authenticated
       console.error("Error during auth state change:", error);
     }
   });
 });
+
+async function getChildName() {
+  const user = auth.currentUser;
+  if (!user) return null;
+
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    return userSnap.data().childName || null;
+  }
+
+  return null;
+}
 
 export async function markStageAsCompleted(stageId) {
   const user = auth.currentUser;

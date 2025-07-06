@@ -71,19 +71,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDf_N4F-1mlh5_IxyLpEjqJ_8J5X8rb38Q",
-      authDomain: "code-kingdom-a5310.firebaseapp.com",
-      projectId: "code-kingdom-a5310",
-      storageBucket: "code-kingdom-a5310.firebasestorage.app",
-      messagingSenderId: "39839215522",
-      appId: "1:39839215522:web:20bb7fc1ebc61ae8b10cfb",
-      measurementId: "G-N0Y63EPX4T"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    import { auth } from "./firebaseConfig.js";
 
     const form = document.getElementById("loginForm");
     const status = document.getElementById("status");
@@ -109,6 +97,22 @@
         window.location.href = "tasks/index.html"; // Redirect to the exercises page after successful login
       } catch (error) {
         status.textContent = "שגיאה: " + error.message;
+        // handle specific error messages
+       
+        if (error.code === 'auth/user-not-found') {
+          status.textContent = "משתמש לא נמצא. אנא בדוק את כתובת האימייל.";
+        } else if (error.code === 'auth/wrong-password') {
+          status.textContent = "סיסמה שגויה. אנא נסה שוב.";
+        } else if (error.code === 'auth/invalid-email') {
+          status.textContent = "כתובת אימייל לא תקינה.";
+        } else if (error.code === 'auth/too-many-requests') {
+          status.textContent = "יותר מדי ניסיונות כניסה. אנא נסה מאוחר יותר.";
+        } else if (error.code === 'auth/invalid-credential') {
+          status.textContent = "שם משתמש או סיסמה לא תקינים.";
+        } else {
+          status.textContent = "שגיאה לא צפויה: " + error.message;
+        }
+
         status.className = "error";
       }
     });
