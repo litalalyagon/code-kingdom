@@ -1,5 +1,5 @@
 import { hebrewDict } from './hebrew-dict.js';
-import { markStageAsCompleted } from './authHandler.js';
+import { markStageAsCompleted } from '../usersManagment/authHandler.js';
 
 export class Exercise {
   level = '';

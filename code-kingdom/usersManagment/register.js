@@ -1,32 +1,10 @@
-import { createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { auth, db } from "./firebaseConfig.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { db } from "../firebaseConfig.js";
+import { registerUser } from "./authHandler.js";
 
 const form = document.getElementById("registerForm");
 const status = document.getElementById("status");
 
-async function registerUser(email, password, childName) {
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  const user = userCredential.user;
-
-  const actionCodeSettings = {
-    // This is the URL your user will be redirected to AFTER email verification.
-    // url: 'https://www.btlines.co.il/code-kingdom/tasks',
-    url: 'http://localhost:8000/code-kingdom/tasks',
-    handleCodeInApp: false, 
-  };
-
-  // Send verification email
-  await sendEmailVerification(user, actionCodeSettings);
-
-  // Create a new user document in Firestore with emailVerified: false
-  await setDoc(doc(db, "users", user.uid), {
-    email: user.email,
-    childName: childName,
-    completedStages: [],
-    emailVerified: false
-  });
-}
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();

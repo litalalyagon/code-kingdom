@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אישור אימייל</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <script type="module" src="authHandler.js"></script>
+    <script type="module" src="./usersManagment/authHandler.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,24 +16,6 @@
         <button id="sendVerificationBtn" class="run-btn">שלח אימייל אישור</button>
         <p id="status"></p>
     </div>
-
-    <script type="module">
-        import { auth } from "./firebaseConfig.js";
-        import { sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-
-        document.getElementById("sendVerificationBtn").addEventListener("click", async () => {
-            const user = auth.currentUser;
-            if (user) {
-                try {
-                    await sendEmailVerification(user);
-                    document.getElementById("status").textContent = "אימייל אישור נשלח!";
-                } catch (error) {
-                    document.getElementById("status").textContent = "שגיאה בשליחת אימייל: " + error.message;
-                }
-            } else {
-                document.getElementById("status").textContent = "לא נמצא משתמש מחובר.";
-            }
-        });
-    </script>
+    <script type="module" src="./usersManagment/verifyEmail.js"></script>
 </body>
 </html>

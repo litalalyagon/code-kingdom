@@ -68,54 +68,6 @@
   <p>אין לך חשבון? <a href="register.html">צור חשבון חדש</a></p>
 
   <p id="status"></p>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-    import { auth } from "./firebaseConfig.js";
-
-    const form = document.getElementById("loginForm");
-    const status = document.getElementById("status");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      status.textContent = "";
-      status.className = "";
-
-      if (!form.checkValidity()) {
-        status.textContent = "אנא מלא/י את כל השדות כראוי.";
-        status.className = "error";
-        return;
-      }
-
-      const email = form.email.value.trim();
-      const password = form.password.value.trim();
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        status.textContent = "התחברת בהצלחה!";
-        status.className = "success";
-        window.location.href = "tasks/index.html"; // Redirect to the exercises page after successful login
-      } catch (error) {
-        status.textContent = "שגיאה: " + error.message;
-        // handle specific error messages
-       
-        if (error.code === 'auth/user-not-found') {
-          status.textContent = "משתמש לא נמצא. אנא בדוק את כתובת האימייל.";
-        } else if (error.code === 'auth/wrong-password') {
-          status.textContent = "סיסמה שגויה. אנא נסה שוב.";
-        } else if (error.code === 'auth/invalid-email') {
-          status.textContent = "כתובת אימייל לא תקינה.";
-        } else if (error.code === 'auth/too-many-requests') {
-          status.textContent = "יותר מדי ניסיונות כניסה. אנא נסה מאוחר יותר.";
-        } else if (error.code === 'auth/invalid-credential') {
-          status.textContent = "שם משתמש או סיסמה לא תקינים.";
-        } else {
-          status.textContent = "שגיאה לא צפויה: " + error.message;
-        }
-
-        status.className = "error";
-      }
-    });
-  </script>
+  <script type="module" src="./usersManagment/login.js"></script>   
 </body>
 </html>

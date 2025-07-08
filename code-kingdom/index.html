@@ -6,7 +6,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link
     rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -90,7 +90,7 @@
 
     <script type="text/javascript" src="main.js"></script>
     <script type="module">
-        import { isLoggedIn } from './auth.js';
+        import { isLoggedIn } from './usersManagment/auth.js';
 
         document.addEventListener('DOMContentLoaded', () => {
           const exercisePortalBtn = document.getElementById('exercisePortalBtn');
@@ -105,7 +105,7 @@
                     emailVerified = result.emailVerified;
                 }
                 if (!loggedIn) {
-                    window.location.href = "../login.html";
+                    window.location.href = "./login.html";
                 } else if (!emailVerified) {
                     window.location.href = "../verify-email.html";
                 } else {
