@@ -1,6 +1,6 @@
 import { renderMenu, setActiveMenu, setCompletedStages } from './menu.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { auth, db } from "../firebaseConfig.js";
 import { renderExercise } from './exercise.js';
 import { logout, getChildName } from '../usersManagment/authHandler.js';
@@ -64,6 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const childName = await getChildName();
         if (childName) {
           loginStatus.textContent = `שלום ${childName}!`;
+            // Listen for email verification and update Firestore when verified
+            if (user.emailVerified) {
+              try {
+                await updateDoc(doc(db, "users", user.uid), { emailVerified: true });
+              } catch (e) {
+                // Ignore update errors
+                console.error("Error updating email verification status:", e);
+              }
+            }  
         } else {
           loginStatus.textContent = `מחובר כ: ${user.email}`;
         }
