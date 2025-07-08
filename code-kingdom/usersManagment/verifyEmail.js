@@ -8,7 +8,11 @@ document.getElementById("sendVerificationBtn").addEventListener("click", async (
             await sendVerification(user);
             document.getElementById("status").textContent = "אימייל אישור נשלח! אם לא קיבלת את האימייל, בדוק את תיקיית הספאם שלך.";
         } catch (error) {
-            document.getElementById("status").textContent = "שגיאה בשליחת אימייל: " + error.message;
+            if (error.code === 'auth/too-many-requests') {
+                document.getElementById("status").textContent = "יותר מדי ניסיונות לשליחת אימייל. אנא נסה מאוחר יותר.";
+            } else {    
+                document.getElementById("status").textContent = "שגיאה בשליחת אימייל: " + error.message;
+            }
         }
     } else {
         document.getElementById("status").textContent = "לא נמצא משתמש מחובר.";

@@ -12,8 +12,13 @@ const firebaseConfig = {
   measurementId: "G-N0Y63EPX4T"
 };
 
+// This is the URL your user will be redirected to AFTER email verification.
+const verificationMailUrl = window.location.hostname === 'localhost' ?
+  'http://localhost:8000/code-kingdom/tasks' :
+  'https://www.btlines.co.il/code-kingdom/tasks';
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { app, auth, db };
+export { app, auth, db, verificationMailUrl };

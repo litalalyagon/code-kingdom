@@ -1,6 +1,6 @@
 import { signOut, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { auth, db } from "../firebaseConfig.js";
+import { auth, db, verificationMailUrl} from "../firebaseConfig.js";
 
 export async function logout() {
   try {
@@ -55,8 +55,7 @@ export async function registerUser(email, password, childName) {
 export async function sendVerification(user) {
     const actionCodeSettings = {
       // This is the URL your user will be redirected to AFTER email verification.
-      // url: 'https://www.btlines.co.il/code-kingdom/tasks',
-      url: 'http://localhost:8000/code-kingdom/tasks',
+      url: verificationMailUrl,
       handleCodeInApp: false, 
     };
 
