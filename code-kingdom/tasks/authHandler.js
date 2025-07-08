@@ -1,7 +1,9 @@
-import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { checkAuthentication } from "../authMiddleware.js";
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { checkAuthentication } from "../auth.js";
 import { auth, db } from "../firebaseConfig.js";
+import { isLoggedIn } from "../auth.js";
+
 
 document.addEventListener('DOMContentLoaded', () => {
   checkAuthentication();

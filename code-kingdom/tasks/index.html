@@ -6,7 +6,26 @@
   <title>אורי והדס בממלכת הקוד</title>
   <link rel="stylesheet" href="style-tasks.css">
   <link rel="icon" href="../../assets/favicon.ico">
-  <script type="module" src="authHandler.js"></script>
+  <script type="module">
+    import { isLoggedIn } from "../auth.js";
+    // Hide body until login is checked
+    document.documentElement.style.visibility = 'hidden';
+    isLoggedIn().then(result => {
+      // result can be: true (logged in & verified), false (not logged in), or { loggedIn, emailVerified }
+      let loggedIn, emailVerified;
+      if (result !== null) {
+        loggedIn = result.loggedIn;
+        emailVerified = result.emailVerified;
+      }
+      if (!loggedIn) {
+        window.location.href = "../login.html";
+      } else if (!emailVerified) {
+        window.location.href = "../verify-email.html";
+      } else {
+        document.documentElement.style.visibility = 'visible';
+      }
+    });
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>

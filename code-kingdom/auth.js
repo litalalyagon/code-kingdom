@@ -1,24 +1,33 @@
 import { auth } from "./firebaseConfig.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-// auth.js
-
-// Check if the user is logged in
-export function isLoggedIn() {
-  return new Promise((resolve) => {
-    onAuthStateChanged(auth, (user) => {
-      resolve(!!user); // Resolve with true if user is logged in, false otherwise
-    });
+export function checkAuthentication() {
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // Redirect to login page if not authenticated
+      if (!window.location.href.includes("login.html")) {
+        window.location.href = "../login.html";
+      }
+    } else {
+      // Allow authenticated users to proceed
+      if (!user.emailVerified) {
+        // Redirect to email verification page if email is not verified
+        window.location.href = "../verify-email.html";
+      } else {
+        console.log("User is authenticated:", user.email);
+      }
+    }
   });
 }
 
-// Log in the user
-export function logInUser() {
-  localStorage.setItem('userLoggedIn', 'true');
-}
-
-// Log out the user
-export function logOutUser() {
-  localStorage.removeItem('userLoggedIn');
-  console.log('User logged out, localStorage cleared.'); // Debugging log
+export function isLoggedIn() {
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve({ loggedIn: true, emailVerified: user.emailVerified });
+      } else {
+        resolve({ loggedIn: false, emailVerified: false });
+      }
+    });
+  });
 }

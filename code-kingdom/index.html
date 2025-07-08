@@ -95,12 +95,23 @@
         document.addEventListener('DOMContentLoaded', () => {
           const exercisePortalBtn = document.getElementById('exercisePortalBtn');
 
-          exercisePortalBtn.addEventListener('click', () => {
-            if (isLoggedIn()) {
-              window.location.href = './tasks/index.html';
-            } else {
-              window.location.href = './login.html'; // Redirect to login page instead of register
-            }
+          exercisePortalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Check if the user is logged in (isLoggedIn should be a function returning a Promise)
+            isLoggedIn().then(result => {
+                let loggedIn, emailVerified;
+                if (result !== null) {
+                    loggedIn = result.loggedIn;
+                    emailVerified = result.emailVerified;
+                }
+                if (!loggedIn) {
+                    window.location.href = "../login.html";
+                } else if (!emailVerified) {
+                    window.location.href = "../verify-email.html";
+                } else {
+                    window.location.href = './tasks/index.html'; // Redirect to the exercises page after successful login
+                }
+            });
           });
         });
     </script>

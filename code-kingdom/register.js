@@ -1,6 +1,5 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { logInUser } from './auth.js';
 import { auth, db } from "./firebaseConfig.js";
 
 const form = document.getElementById("registerForm");
@@ -10,11 +9,22 @@ async function registerUser(email, password, childName) {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
-  // creare a new user document in Firestore
+  const actionCodeSettings = {
+    // This is the URL your user will be redirected to AFTER email verification.
+    // url: 'https://www.btlines.co.il/code-kingdom/tasks',
+    url: 'http://localhost:8000/code-kingdom/tasks',
+    handleCodeInApp: false, 
+  };
+
+  // Send verification email
+  await sendEmailVerification(user, actionCodeSettings);
+
+  // Create a new user document in Firestore with emailVerified: false
   await setDoc(doc(db, "users", user.uid), {
     email: user.email,
     childName: childName,
-    completedStages: []
+    completedStages: [],
+    emailVerified: false
   });
 }
 
@@ -78,13 +88,10 @@ form.addEventListener("submit", async (e) => {
         // Step 3: Register user
         await registerUser(email, password, name);
 
-        status.textContent = "נרשמת בהצלחה!";
+        status.textContent = "נרשמת בהצלחה! נשלח מייל לאימות, יש לאשר את כתובת המייל לפני הכניסה לאתר. (בדקו גם את תיקיית הספאם).";
         status.className = "success";
         form.reset();
-
-        // Log in the user and redirect to exercise portal
-        logInUser();
-        window.location.href = './tasks/index.html';
+        
     } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
             status.innerHTML = "האימייל כבר קיים במערכת. <a href='./login.html'>התחבר כאן</a>.";
