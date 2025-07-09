@@ -1,0 +1,89 @@
+/* Feature Cards Styles (moved from style.css) */
+.features-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.features-section h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.features-section p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Ensure all feature cards have the same width */
+.feature-card {
+    width: 300px; /* Set a fixed width for uniformity */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    min-height: 200px; /* Ensure all cards have the same height */
+    text-align: center;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align content evenly */
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #7f8c8d;
+}
+
+/* Product Card Styles (for .product-card in products-section) */
+.product-card h3 {
+    margin: 12px 0 6px 0;
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+.product-card div {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.feature-card img {
+    max-width:120px; 
+    height:auto; 
+    border-radius:8px; 
+    box-shadow:0 2px 8px #0002; 
+    transition:transform 0.2s;
+}
+
+@media (max-width: 768px) {
+    .features-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .feature-card {
+        max-width: 100%;
+    }
+}

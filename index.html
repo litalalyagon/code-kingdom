@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/nav-bar.css">
   <link rel="stylesheet" href="./styles/hero.css">
+  <link rel="stylesheet" href="./styles/feature-cards.css">
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 
@@ -30,25 +31,22 @@
     <main class="landing-main">
         <section class="products-section" id="products-section">
             <h2>המוצרים שלנו</h2>
-            <ul class="products-list">
-                <li class="product-item" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-                    <div>
-                         <a href="./code-kingdom/" title="לעמוד המוצר" style="display:inline-block;">
-                            <img src="assets/book-cover.png" alt="כריכת ממלכת הקוד" style="max-width:120px; height:auto; border-radius:8px; box-shadow:0 2px 8px #0002; transition:transform 0.2s;">
-                        </a>
-                        <b>אורי והדס בממלכת הקוד</b> – ספר התכנות האינטראקטיבי הראשון לילדים
-                    </div>
-                </li>
-                <li class="product-item" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-                    
-                    <div>
-                        <a href="./school-challenge/" title="לעמוד האתגר" style="display:inline-block;">
-                            <img src="assets/school-challenge.png" alt="כריכת ממלכת הקוד" style="max-width:120px; height:auto; border-radius:8px; box-shadow:0 2px 8px #0002; transition:transform 0.2s;">
-                        </a>
-                        <b>אתגר הכיתות הארצי 2026</b>
-                    </div>
-                </li>
-            </ul>
+            <div class="features-container">
+                <div class="feature-card product-card">
+                    <a href="./code-kingdom/" title="לעמוד המוצר">
+                        <img src="assets/book-cover.png" alt="ממלכת הקוד">
+                    </a>
+                    <h3>אורי והדס בממלכת הקוד</h3>
+                    <div>ספר התכנות האינטראקטיבי הראשון לילדים</div>
+                </div>
+                <div class="feature-card product-card">
+                    <a href="./school-challenge/" title="לעמוד האתגר">
+                        <img src="assets/school-challenge.png" alt="אתגר הכיתות הארצי 2026">
+                    </a>
+                    <h3>אתגר הכיתות הארצי 2026</h3>
+                    <div>תחרות אתגרים וחידות לבתי ספר</div>
+                </div>
+            </div>
         </section>
         <!-- About Us Section -->
         <section class="about-us-section" id="about-us-section">
