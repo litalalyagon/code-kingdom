@@ -27,18 +27,18 @@ function sendForm(form, template) {
     });
 }
 
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        sendForm(this, templateID);
-    });
-}
+// const contactForm = document.getElementById('contact-form');
+// if (contactForm) {
+//     contactForm.addEventListener('submit', function(event) {
+//         event.preventDefault();
+//         // sendForm(this, templateID);
+//     });
+// }
 
-const codeKingdomForm = document.getElementById('contact-form-code-kingdom');
-if (codeKingdomForm) {
-    codeKingdomForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        sendForm(this, templateID_codeKingdom);
-    });
-}
+// const codeKingdomForm = document.getElementById('contact-form-code-kingdom');
+// if (codeKingdomForm) {
+//     codeKingdomForm.addEventListener('submit', function(event) {
+//         event.preventDefault();
+//         // sendForm(this, templateID_codeKingdom);
+//     });
+// }
