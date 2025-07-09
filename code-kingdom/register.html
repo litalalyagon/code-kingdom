@@ -6,7 +6,13 @@
   <link rel="stylesheet" href="./styles/login-style.css">
 </head>
 <body>
-  <h2>הרשמה</h2>
+  <header class="book-header">
+    <a href="index.html" class="book-home-logo" title="חזרה לעמוד הספר">
+      <img src="../assets/book-cover.png" alt="כריכת ממלכת הקוד" class="book-cover-logo">
+    </a>
+  </header>
+
+  <h2>הרשמה לאתר</h2>
 
   <form id="registerForm" novalidate>
     <input
@@ -43,8 +49,9 @@
     />
     <button type="submit">הרשם</button>
 
-    <p>כבר רשומים לאתר? <a href="login.html">התחברו כאן</a></p>
   </form>
+  <p>כבר רשומים לאתר? <a href="login.html">התחברו כאן</a></p>
+
 
   <p id="status"></p>
 

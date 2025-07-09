@@ -6,37 +6,40 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
-  <link rel="stylesheet" href="./styles/style.css">
-  <link rel="stylesheet" href="../../styles/hero.css">
-    <link rel="stylesheet" href="../../styles/style.css">
+  <link rel="stylesheet" href="./styles/school.css">
+  <link rel="stylesheet" href="../styles/hero.css">
+    <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/feature-cards.css">
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link
     rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     
-    <header class="landing-header">
-        <div style="width:100%;text-align:right;box-sizing:border-box;">
-        <a href="../index.html" title="לדף הבית">
-            <img src="../assets/logo.png" alt="Between the Lines Logo" style="max-width:80px;box-shadow:0 2px 8px #0002;border-radius:10px;vertical-align:middle;" />
-        </a>
-    </div>
+    <header class="hero">
+        <div class="hero-logo-bar">
+            <a href="../index.html" title="לדף הבית">
+                <img src="../assets/logo.png" alt="Between the Lines Logo" class="hero-logo-img" />
+            </a>
+        </div>
         <h1>אתגר הכיתות הארצי 2026</h1>
         <p class="tagline">הכירו את "אורי והדס בממלכת הקוד" - סדרת ספרי הרפתקאות לילדים המשלבים אתר ייעודי, שבעזרתם הילדים שלכם יצעדו את הצעדים הראשונים שלהם בעולם הקוד, ילמדו את יסודות התכנות, ויפתחו חשיבה תכנותית! <br>
         ממלכת הקוד היא ספר מודפס המשלב משחק אינטרנטי, שנועדו לילדים סקרנים בגילאי היסודי.</p>
     </header>
 
     <main class="landing-main">
-        <section class="book-cover-section">
-            
+
+        <section class="book-cover-section">           
             <section class="cta-section">
                 <p class="book-description">
                230% לאחר קמפיין מימון המונים מוצלח דרך הדסטארט, בו גייסנו מעל <br>
                 !מהיעד המקורי שלנו, הספר נמצא כעת במכירה מוקדמת<br>
                 </p>
+                <a href="https://headstart.co.il/project/81869" id="order-button" class="cta-button" target="_blank" rel="noopener" style="display:inline-block; text-align:center; padding:12px 32px; border-radius:24px; background:#2a7ae2; color:#fff; font-size:1.1em; font-weight:600; text-decoration:none; box-shadow:0 2px 8px #0002; transition:background 0.2s;">הזמן עכשיו</a>
             </section>
-            <img src="../assets/school-challenge.png" alt="כריכת הספר" class="book-cover">
+            <img src="../assets/school-challenge.png" class="book-cover">
         </section>
         
         <section class="features-section">
@@ -80,13 +83,17 @@
         </section>
     </main>
 
-    <footer class="landing-footer">
+      <footer class="landing-footer">
          <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">פייסבוק</a> | 
-            <a href="mailto:btlines.games@gmail.com">מייל</a>
+            
+            <a href="mailto:btlines.games@gmail.com">
+                btlines.games@gmail.com   <i class="fa-solid fa-envelope"></i>
+            </a> |
+            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">
+                <i class="fa-brands fa-facebook"></i>
+            </a> 
         </div>
         <p>בין השורות | Between the Lines. כל הזכויות שמורות 2025 &copy;</p>
-       
     </footer>
 
     <script type="text/javascript" src="../formSubmit.js"></script>

@@ -45,3 +45,19 @@
         font-size: 1em;
     }
 }
+
+.hero-logo-bar {
+  width: 100%;
+  text-align: right;
+  box-sizing: border-box;
+}
+.hero-logo-img {
+  max-width: 120px;
+  box-shadow: 0 2px 8px #0002;
+  border-radius: 10px;
+  vertical-align: middle;
+  transition: box-shadow 0.2s;
+}
+.hero-logo-bar a:hover .hero-logo-img {
+  box-shadow: 0 4px 16px #0003;
+}

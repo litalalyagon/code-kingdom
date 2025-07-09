@@ -7,19 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
     <link rel="stylesheet" href="../styles/style.css">
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/kingdom.css">
   <link rel="stylesheet" href="../styles/hero.css">
+  <link rel="stylesheet" href="../styles/feature-cards.css">
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link
-    rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="hero">
-         <div style="width:100%;text-align:right;box-sizing:border-box;">
+          <div class="hero-logo-bar">
             <a href="../index.html" title="לדף הבית">
-                <img src="../assets/logo.png" alt="Between the Lines Logo" style="max-width:80px;box-shadow:0 2px 8px #0002;border-radius:10px;vertical-align:middle;" />
+                <img src="../assets/logo.png" alt="Between the Lines Logo" class="hero-logo-img" />
             </a>
         </div>
         <h1>ברוכים הבאים לממלכת הקוד!</h1>
@@ -82,13 +82,17 @@
         </section>
     </main>
 
-    <footer class="landing-footer">
+     <footer class="landing-footer">
          <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">פייסבוק</a> | 
-            <a href="mailto:btlines.games@gmail.com">מייל</a>
+            
+            <a href="mailto:btlines.games@gmail.com">
+                btlines.games@gmail.com   <i class="fa-solid fa-envelope"></i>
+            </a> |
+            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">
+                <i class="fa-brands fa-facebook"></i>
+            </a> 
         </div>
         <p>בין השורות | Between the Lines. כל הזכויות שמורות 2025 &copy;</p>
-       
     </footer>
 
     <script type="text/javascript" src="../formSubmit.js"></script>
@@ -108,10 +112,8 @@
                     loggedIn = result.loggedIn;
                     emailVerified = result.emailVerified;
                 }
-                if (!loggedIn) {
+                if (!loggedIn || !emailVerified) {
                     window.location.href = "./login.html";
-                } else if (!emailVerified) {
-                    window.location.href = "../verify-email.html";
                 } else {
                     window.location.href = './tasks/index.html'; // Redirect to the exercises page after successful login
                 }

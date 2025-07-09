@@ -1,0 +1,61 @@
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensure padding and borders are included in width and height calculations */
+}
+
+/* Book Cover Section */
+.book-cover-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    direction: ltr;
+}
+
+.book-cover {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+}
+
+.book-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.book-description {
+    text-align: right; /* Align the book description text to the right */
+}
+
+#exercisePortalBtn {
+    background-color: #e68900;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .book-cover {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .book-description {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+
+
+
+    .book-cover-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
