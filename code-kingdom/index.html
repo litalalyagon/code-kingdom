@@ -110,10 +110,8 @@
                     loggedIn = result.loggedIn;
                     emailVerified = result.emailVerified;
                 }
-                if (!loggedIn) {
+                if (!loggedIn || !emailVerified) {
                     window.location.href = "./login.html";
-                } else if (!emailVerified) {
-                    window.location.href = "../verify-email.html";
                 } else {
                     window.location.href = './tasks/index.html'; // Redirect to the exercises page after successful login
                 }
