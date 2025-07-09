@@ -57,3 +57,64 @@ a {
 a:hover {
   color: #004999;
 }
+/* Book header for login/register/forgot/verify pages */
+.book-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 0 8px 0;
+  background: none;
+}
+.book-home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 0;
+  transition: color 0.2s;
+}
+.book-home-logo:hover .book-cover-logo {
+  box-shadow: 0 4px 16px #0003;
+}
+.book-cover-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px #0002;
+  margin-left: 0;
+  vertical-align: middle;
+  transition: box-shadow 0.2s;
+}
+.book-header-vertical {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  padding-bottom: 10px;
+}
+.book-header-vertical .book-home-logo {
+  margin-left: 0;
+  margin-bottom: 4px;
+}
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+  form#loginForm {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 18px 12px;
+    box-sizing: border-box;
+  }
+  form#loginForm input,
+  form#loginForm button {
+    width: 100%;
+    font-size: 1em;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+
+}
