@@ -87,17 +87,7 @@ a:hover {
   vertical-align: middle;
   transition: box-shadow 0.2s;
 }
-.book-header-vertical {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 4px;
-  padding-bottom: 10px;
-}
-.book-header-vertical .book-home-logo {
-  margin-left: 0;
-  margin-bottom: 4px;
-}
+
 @media (max-width: 600px) {
   body {
     padding: 12px;
