@@ -32,7 +32,6 @@
     text-align: right; /* Align the book description text to the right */
 }
 
-
 /* Features Section */
 .features-section {
     text-align: center;
@@ -92,6 +91,11 @@
     font-size: 1em;
     color: #7f8c8d;
 }
+
+#exercisePortalBtn {
+    background-color: #e68900;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
