@@ -46,8 +46,8 @@ h1 {
     transform: scale(1.05);
 }
 
-/* Details Section */
-.details-section {
+/* contact Section */
+.contact-section {
     background: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@ h1 {
     text-align: center;
 }
 
-.details-form input, .details-form textarea {
+.contact-form input, .contact-form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -67,7 +67,7 @@ h1 {
     font-family: Arial, sans-serif; /* Ensure consistent font across all form elements */
 }
 
-.details-form textarea {
+.contact-form textarea {
     resize: none; /* Prevent the message box from being resizable */
 }
 
@@ -170,7 +170,7 @@ h1 {
         font-size: 1em;
     }
 
-    .details-section {
+    .contact-section {
         width: 90%;
         padding: 0 20px; /* Add some padding for smaller screens */
     }
@@ -181,12 +181,12 @@ h1 {
         gap: 10px;
     }
 
-    .details-form input, .details-form textarea {
+    .contact-form input, .contact-form textarea {
         width: 100%;
         max-width: 100%;
     }
 
-    .details-form button {
+    .contact-form button {
         width: 100%;
     }
 
@@ -199,7 +199,7 @@ h1 {
         text-align: center;
     }
 
-    .details-section {
+    .contact-section {
         padding: 15px;
     }
 }
