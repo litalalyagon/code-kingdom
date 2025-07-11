@@ -1,4 +1,5 @@
 import { loginUser } from "./authHandler.js";
+import { auth } from "../firebaseConfig.js";
 
 const form = document.getElementById("loginForm");
 const status = document.getElementById("status");
@@ -19,9 +20,17 @@ form.addEventListener("submit", async (e) => {
 
     try {
         await loginUser(email, password);
-        status.textContent = "התחברת בהצלחה!";
-        status.className = "success";
-        window.location.href = "tasks/index.html"; // Redirect to the exercises page after successful login
+        // Check if email is verified before redirecting
+        const user = auth.currentUser;
+        if (user && user.emailVerified) {
+            status.textContent = "התחברת בהצלחה!";
+            status.className = "success";
+            window.location.href = "tasks/index.html"; // Redirect to the exercises page after successful login
+        } else {
+            status.textContent = "יש לאמת את כתובת האימייל שלך לפני הכניסה למשימות.";
+            status.className = "error";
+            window.location.href = "verify-email.html"; // Redirect to email verification page
+        }
     } catch (error) {
         // handle specific error messages
         const errorCode = error.message;

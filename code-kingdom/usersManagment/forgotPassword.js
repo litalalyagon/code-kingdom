@@ -1,4 +1,4 @@
-import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { auth } from "../firebaseConfig.js";
 
 document.getElementById("forgotPasswordForm").addEventListener("submit", async (e) => {
