@@ -239,9 +239,12 @@ main {
   display: flex;
   flex-direction: row-reverse; /* Button on the left in RTL */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 18px;
-  margin: 0 0 24px 0;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  margin: 0;
   font-size: 1.08em;
 }
 
@@ -319,6 +322,11 @@ main {
     max-width: 100%;
     width: 100%;
   }
+  .user-status-bar {
+    position: static;
+    margin: 12px auto 18px auto;
+    justify-content: center;
+  }
 }
 
 
@@ -327,4 +335,5 @@ main {
   width: auto !important;
   min-width: 0 !important;
   display: inline-block !important;
+
 }
