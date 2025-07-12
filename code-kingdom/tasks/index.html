@@ -4,28 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>אורי והדס בממלכת הקוד</title>
-  <link rel="stylesheet" href="style-tasks.css">
+  <link rel="stylesheet" href="styles/tasks.css">
+  <link rel="stylesheet" href="styles/menu.css">
+
   <link rel="icon" href="../../assets/favicon.ico">
-    <script type="module" src="main.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="main.js"></script>
+  <script type="module" src="sideMenu.js"></script>
 </head>
 <body>
 
-  <!-- Bootstrap burger button -->
-  <button class="burger navbar-toggler" id="burgerBtn" type="button" aria-label="תפריט">
-    <i class="fas fa-bars"></i>
-  </button>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ תרגילים</button>
   <div class="container">
-    <nav>
+    <nav id="sideMenu">
       <a href="../index.html">
         <img src="../assets/book-cover.png" alt="book cover" class="menu-cover-img" />
       </a>
-      <h2>תרגילים</h2>
       <ul id="exercise-list">
         <!-- Menu items will be injected here -->
       </ul>
     </nav>
-    <main>
+    <main class="content">
       <div class="user-status-bar">
         <button id="logoutBtn" style="display: none;">התנתק</button>
         <p id="loginStatus"></p>
@@ -38,7 +36,6 @@
 
     </main>
   </div>
-  <!-- Include burgerMenu.js -->
-  <script src="burgerMenu.js" defer></script>
+
 </body>
 </html>

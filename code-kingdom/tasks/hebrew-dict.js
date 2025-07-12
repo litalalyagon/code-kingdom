@@ -2,7 +2,7 @@ export const hebrewDict = {
     "task": "משימה",
     "easy": "קל",
     "hard": "קשה",
-    "run": "הרץ",
+    "run": "הרץ את הקוד",
     "no": "לא",
     "yes": "כן",
     "if": "אם",
