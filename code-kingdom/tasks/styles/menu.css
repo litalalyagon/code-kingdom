@@ -11,22 +11,24 @@ nav {
     transition: transform 0.3s ease-in-out;
     scrollbar-color: #888 #e1d7d7;
     scrollbar-width: thin;
-}
-
-nav h2 {
-    margin-bottom: 20px;
-    font-size: 1.3em;
+    direction: ltr;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 nav li {
     margin: 4px 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 nav button {
@@ -39,6 +41,7 @@ nav button {
     cursor: pointer;
     font-size: 1em;
     transition: background 0.2s;
+    text-align: center;
 }
 
 nav button.active,
@@ -96,13 +99,13 @@ nav button.completed::after {
     }
 
     .content {
-        margin-left: 0;
+        margin-right: 0;
     }
 
     .menu-toggle {
         position: fixed;
         top: 20px;
-        left: 20px;
+        right: 20px;
         z-index: 1100;
         background: #3498db;
         color: white;
