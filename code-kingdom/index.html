@@ -71,6 +71,9 @@
             <h2>רוצים לשמוע עוד? דברו איתנו</h2>
             <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
                 <span id="message-placeholder"></span>
+                <input type="text" name="_gotcha" style="display:none">
+                <!-- hidden input to know which form was sent -->
+                <input type="hidden" name="form-id" value="contact-code-kingdom">
                 <input type="text" id="name" name="name" placeholder="שם" required>
                 <input type="email" id="email" name="email" placeholder="אימייל" required>
                 <textarea id="message" name="message" rows="4" placeholder="הודעה" required></textarea>

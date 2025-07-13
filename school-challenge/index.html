@@ -23,8 +23,10 @@
             </a>
         </div>
         <h1>אתגר הכיתות הארצי 2026</h1>
-        <p class="tagline">הכירו את "אורי והדס בממלכת הקוד" - סדרת ספרי הרפתקאות לילדים המשלבים אתר ייעודי, שבעזרתם הילדים שלכם יצעדו את הצעדים הראשונים שלהם בעולם הקוד, ילמדו את יסודות התכנות, ויפתחו חשיבה תכנותית! <br>
-        ממלכת הקוד היא ספר מודפס המשלב משחק אינטרנטי, שנועדו לילדים סקרנים בגילאי היסודי.</p>
+       <p class="tagline">
+        תוכנית חינוכית אינטראקטיבית לבתי ספר יסודיים ברחבי הארץ<br>
+        משחק כיתתי מבוסס חידות ואתגרים לאורך כל שנת הלימודים – בהתאם לנושאים ולערכים מתכנית הלימודים השנתית
+        </p>
     </header>
 
     <main class="landing-main">
@@ -32,46 +34,52 @@
         <section class="book-cover-section">           
             <section class="cta-section">
                 <p class="book-description">
-               230% לאחר קמפיין מימון המונים מוצלח דרך הדסטארט, בו גייסנו מעל <br>
-                !מהיעד המקורי שלנו, הספר נמצא כעת במכירה מוקדמת<br>
+                התוכנית כוללת 10 אתגרים חודשיים, מערכת וירטואלית חדשנית, ומסמכי הפעלה עצמית למורה. <br>
+                מתאים לכל כיתה בחט"ב ותיכונים. <br>
+                ניתן להשתתף גם בטורניר ארצי בין כיתות מכל הארץ!
                 </p>
-                <a href="https://headstart.co.il/project/81869" id="order-button" class="cta-button" target="_blank" rel="noopener" style="display:inline-block; text-align:center; padding:12px 32px; border-radius:24px; background:#2a7ae2; color:#fff; font-size:1.1em; font-weight:600; text-decoration:none; box-shadow:0 2px 8px #0002; transition:background 0.2s;">הזמן עכשיו</a>
+                <a href="#contact-section" id="order-button" class="cta-button">
+                דברו איתנו
+                </a>
             </section>
             <img src="../assets/school-challenge.png" class="book-cover">
         </section>
         
-        <section class="features-section">
-            <h2>למה הספר שלנו מיוחד?</h2>
-            <p>הספר מעניק לילדים את הכלים הדרושים להבנת עולם התכנות באופן חוויתי ומהנה</p>
+         <section class="features-section">
+            <h2>מה מקבלים במסגרת התוכנית?</h2>
+            <p>למידה חווייתית, ערכית ומגבשת לאורך כל השנה</p>
             <div class="features-container">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-child-reaching"></i></div>
-                    <h3>תוכן מותאם גיל</h3>
-                    <p>תכנים מותאמים במיוחד לילדים בגילאי יסודי, עם רמות קושי משתנות</p>
+                    <div class="feature-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h3>עשרה אתגרים לאורך השנה</h3>
+                    <p>בכל חודש – נושא חדש, מסקרן ורלוונטי</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
-                    <h3>חשיבה יצירתית</h3>
-                    <p>פיתוח יכולת לוגית ויצירתית דרך אתגרי תכנות</p>
+                    <h3>למידה דרך חידות</h3>
+                    <p>פתרון חידות כיתתי המחזק חשיבה ויצירתיות</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-computer"></i></div>
-                    <h3>תרגילים אינטראקטיביים</h3>
-                    <p>פעילויות מעשיות להרגשת חווית הלמידה</p>
+                    <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>ערכים וידע עדכני</h3>
+                    <p>נושאים כמו גבורה ישראלית, בינה מלאכותית, יזמות ועוד</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>יסודות תכנות</h3>
-                    <p>לימוד מושגי יסוד בתכנות בשפה פשוטה ונגישה לילדים</p>
+                    <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>מערכת דיגיטלית</h3>
+                    <p>כל כיתה עוקבת אחר ההתקדמות, צוברת ניקוד ומתחרה בטורניר</p>
                 </div>
             </div>
-        </section>
+         </section>
 
         <!-- Contact Us Section -->
         <section class="contact-section" id="contact-section">
             <h2>רוצים לשמוע עוד? דברו איתנו</h2>
             <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
                 <span id="message-placeholder"></span>
+                <input type="text" name="_gotcha" style="display:none">
+                <!-- hidden input to know which form was sent -->
+                <input type="hidden" name="form-id" value="contact-school-challenge">
                 <input type="text" id="name" name="name" placeholder="שם" required>
                 <input type="email" id="email" name="email" placeholder="אימייל" required>
                 <textarea id="message" name="message" rows="4" placeholder="הודעה" required></textarea>
