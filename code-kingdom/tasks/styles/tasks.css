@@ -24,7 +24,7 @@ main {
 .exercise {
   /* background: #fff; */
   font-size: 1.15em;
-  padding: 32px 24px 24px 24px;
+  padding: 10px 24px 24px 24px;
   margin: 10px auto;
   max-width: 1100px;   /* Wide enough for side-by-side layout */
   width: 100%;
@@ -111,10 +111,10 @@ main {
     overflow: hidden;
 }
 .level-btn {
-  background: #eee;
-  color: #222;
-  border: 1px solid #bbb;
-  font-weight: normal;
+  background: #e0e7ff; /* Soft blue to match page bg */
+  color: #3579bd; /* Main blue for text */
+  border: 1.5px solid #3a5a98; /* Match main accent */
+  font-weight: 500;
   box-shadow: none;
   transition: background 0.2s, color 0.2s, border 0.2s;
   padding: 12px 32px;
@@ -122,13 +122,17 @@ main {
   font-size: 1.08em;
   margin-bottom: 0;
   margin-top: 0;
+  border-radius: 0 50px 50px 0; 
+}
+.level-btn:last-child {
+  border-radius: 50px 0 0 50px; 
 }
 .level-btn.selected {
-  background: #ffb300;
-  color: #222;
-  border: 2px solid #ff9800;
+  background: #3579bd; /* Main blue for selected */
+  color: #fff;
+  border: 2px solid #0a84ff; /* Highlight blue border */
   font-weight: bold;
-  box-shadow: 0 0 6px #ffb30044;
+  box-shadow: 0 0 6px #0a84ff44;
 }
 
 .answer-msg {
@@ -173,6 +177,21 @@ main {
     width: 98vw;
     max-width: 290px;
   }
+
+ .level-btn {
+    padding: 10px 20px;
+    min-width: 90px;
+    font-size: 1em;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .code-area {
+    font-size: 0.8em;
+  }
+  .run-btn {
+    font-size: 0.9em;
+  }
+
 }
 @media (max-width: 700px) {
   .exercise {
@@ -228,24 +247,23 @@ main {
   line-height: 1.5;
 }
 
+#level-selector {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
 .user-status-bar {
   display: flex;
   flex-direction: row-reverse; /* Button on the left in RTL */
   align-items: center;
   justify-content: flex-start;
   gap: 18px;
-  position: absolute;
   top: 18px;
   left: 18px;
   margin: 0;
   font-size: 1.08em;
-}
-
-#level-selector {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
 }
 
 #loginStatus {
@@ -294,6 +312,16 @@ main {
   align-items: stretch;
 }
 
+
+.code-wrap .run-btn {
+  align-self: center;
+  width: auto !important;
+  min-width: 0 !important;
+  display: inline-block !important;
+
+}
+
+
 /* On mobile, stack vertically */
 @media (max-width: 900px) {
   .exercise-flex-wrap {
@@ -306,17 +334,12 @@ main {
     width: 100%;
   }
   .user-status-bar {
-    position: static;
-    margin: 12px auto 18px auto;
-    justify-content: center;
+     position: static;
+    font-size: 0.9em;
+  }
+  .exercise h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.3em;
   }
 }
 
-
-.code-wrap .run-btn {
-  align-self: center;
-  width: auto !important;
-  min-width: 0 !important;
-  display: inline-block !important;
-
-}
