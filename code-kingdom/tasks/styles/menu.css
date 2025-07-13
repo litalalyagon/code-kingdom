@@ -34,24 +34,26 @@ nav li {
 
 nav button {
     width: 90%;
-    padding: 10px;
-    background: #444;
-    color: #fff;
+    padding: 10px 12px;
+    background: #e0e7ff; /* רקע כחול-בהיר */
+    color: #1e3a8a;       /* כחול כהה */
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1em;
-    transition: background 0.2s;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
     text-align: center;
 }
 
 nav button.active,
 nav button:hover {
-    background: #0a84ff;
+    background: #1e3a8a; /* כחול כהה */
+    color: #fff;
 }
 
 nav button.completed {
-    background: #1a7f37;
+    background: #10b981; /* ירוק נעים */
     color: #fff;
     position: relative;
 }
@@ -77,11 +79,11 @@ nav button.completed::after {
 }
 
 .exercise-menu-btn.selected {
-    background: #ffb300;
+    background: #e4c239; /* צהוב עדין */
     color: #222;
-    border: 2px solid #ff9800;
     font-weight: bold;
-    box-shadow: 0 0 6px #ffb30044;
+    box-shadow: 0 0 6px rgba(234, 179, 8, 0.4);
+    border: none;
 }
 
 .content {
