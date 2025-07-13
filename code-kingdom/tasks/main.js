@@ -93,6 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Automatically mark exercise 1 as selected in the menu after page load, even if menu items are injected dynamically.
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for menu items to be injected
+  const observer = new MutationObserver(function() {
+    const firstBtn = document.querySelector('.exercise-menu-btn');
+    if (firstBtn && !firstBtn.classList.contains('selected')) {
+      firstBtn.classList.add('selected');
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.getElementById('exercise-list'), { childList: true });
+});
+
 // Fetch completed stages from Firestore and update menu
 function fetchAndSetCompletedStages() {
   onAuthStateChanged(auth, async (user) => {
