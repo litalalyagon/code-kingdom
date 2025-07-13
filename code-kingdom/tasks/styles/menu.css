@@ -92,6 +92,13 @@ nav button.completed::after {
     flex-grow: 1;
 }
 
+.nav-close-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
 @media (max-width:900px) {
     nav {
         transform: translateX(100%);
@@ -99,6 +106,26 @@ nav button.completed::after {
 
     nav.open {
         transform: translateX(0);
+    }
+
+    .nav-close-btn {
+        display: block !important;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 1.3em;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 
     .content {
