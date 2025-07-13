@@ -31,29 +31,21 @@
     max-width: 600px;
 }
 
-
-
 #exercisePortalBtn {
     background-color: #e68900;
 }
 
-
 /* Responsive Design */
 @media (max-width: 768px) {
-
     .book-cover {
         width: 100%;
         max-width: 300px;
         height: auto;
     }
-
     .book-description {
         font-size: 1em;
         line-height: 1.4;
     }
-
-
-
     .book-cover-section {
         flex-direction: column;
         text-align: center;

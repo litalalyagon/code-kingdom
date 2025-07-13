@@ -12,6 +12,7 @@ nav {
     scrollbar-color: #888 #e1d7d7;
     scrollbar-width: thin;
     direction: ltr;
+    z-index: 999;
 }
 
 nav ul {
@@ -106,7 +107,6 @@ nav button.completed::after {
         position: fixed;
         top: 20px;
         right: 20px;
-        z-index: 1100;
         background: #3498db;
         color: white;
         border: none;

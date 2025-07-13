@@ -251,6 +251,11 @@ export function renderExercise(ex, idx) {
         result = ex.isCorrect();
         if (typeof ex.handleRun === 'function') {
           const outcome = ex.handleRun({ selects, inputs, ex });
+          // Animate the image div
+           imgDiv.classList.remove('animate');
+          void imgDiv.offsetWidth; 
+          imgDiv.classList.add('animate');
+    
           if (outcome !== null && outcome !== undefined) {
             imgDiv.innerHTML = outcome;
           }
