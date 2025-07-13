@@ -26,11 +26,12 @@
     font-size: 1.2em;
     line-height: 1.6;
     color: #555;
+     text-align: right; /* Align the book description text to the right */
+     direction: rtl; /* Set text direction to right-to-left */
+    max-width: 600px;
 }
 
-.book-description {
-    text-align: right; /* Align the book description text to the right */
-}
+
 
 #exercisePortalBtn {
     background-color: #e68900;

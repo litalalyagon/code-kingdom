@@ -93,6 +93,20 @@ h1 {
     color: #16a085;
 }
 
+#order-button {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 32px;
+    border-radius: 24px;
+    background: #2a7ae2;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #0002;
+    transition: background 0.2s;
+}   
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
