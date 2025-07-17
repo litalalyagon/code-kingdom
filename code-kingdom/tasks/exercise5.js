@@ -4,15 +4,15 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise5 extends Exercise {
   constructor() {
     super("ex5");
-    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
-    this.resultImgBg = '#d7e0eb'; 
+    this.input_sizes = { 'easy': 'small', 'hard': 'medium' };
+    this.resultImgBg = '#d7e0eb';
   }
   defaultHeight = 100;
   inputHeight; // number
-  
+
   getCodeParts() {
     if (this.level === 'easy') {
-      return this.createFieldDisplayDetails({pretext: `${hebrewDict.ex5.height} = `}); 
+      return this.createFieldDisplayDetails({ pretext: `${hebrewDict.ex5.height} = ` });
     } else {
       return this.createFieldDisplayDetails({});
     }
@@ -31,7 +31,7 @@ class Exercise5 extends Exercise {
     } else if (height < 301) {
       robiImg = this.path('robi_200.png');
     } else {
-      robiImg = this.path('robi_long_legs.png'); 
+      robiImg = this.path('robi_long_legs.png');
     }
     const gateStatus = this.isGateOpen(height) ? 'open' : 'close';
     const gateImg = this.path(`gate_${gateStatus}.png`);
@@ -40,7 +40,7 @@ class Exercise5 extends Exercise {
   }
 
   getDefaultHtml() {
-    return this.composeImageHtml({height: this.defaultHeight});
+    return this.composeImageHtml({ height: this.defaultHeight });
   }
 
   extractInputs(inputs) {
@@ -51,66 +51,59 @@ class Exercise5 extends Exercise {
     }
     else {
       const [input] = Array.from(inputs).map(i => i.value.trim());
-      [varName, val]  = this.extractSingleInput(input);
+      [varName, val] = this.extractSingleInput(input);
     }
-    return {varName, val};
+    return { varName, val };
   }
 
   extractSingleInput(input) {
-    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*(-?[0-9]+)\s*$/;
-      
-      const match = input.match(regex);
-      if (!match) {
-        return [null, null];
-      }
-      const varName = match[1].trim();
-      const val = match[2].trim();
-      return [ varName, val ];
+    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*(\S+)$/;
+
+    const match = input.match(regex);
+    if (!match) {
+      return [null, null];
+    }
+    const varName = match[1].trim();
+    const val = match[2].trim();
+    return [varName, val];
   }
 
   handleRun() {
-    return this.composeImageHtml({height: this.inputHeight});
+    return this.composeImageHtml({ height: this.inputHeight });
   }
 
 
   isCorrect() {
-     return { 
-      valid: true, 
-      message: this.isGateOpen(this.inputHeight) ? hebrewDict.ex5.success_open : hebrewDict.ex5.success_closed 
+    return {
+      valid: true,
+      message: this.isGateOpen(this.inputHeight) ? hebrewDict.ex5.success_open : hebrewDict.ex5.success_closed
     };
   }
 
-  isValid(color, spots) {
-    return (
-      this.validColors.includes(color) &&
-      this.validSpots.includes(spots)
-    );
-  }
-
   validate({ inputs }) {
-    const {varName, val} = this.extractInputs(inputs);
-     if (!varName || !val) {
-        return { valid: false, message: hebrewDict.ex5.error_message };
-     }
+    const { varName, val } = this.extractInputs(inputs);
+    if (!varName || !val) {
+      return { valid: false, message: hebrewDict.ex5.error_message };
+    }
 
-     if (varName !== hebrewDict.ex5.height) {
-        return { valid: false, message: hebrewDict.ex5.failure_var_doesnt_exist };
-      }
+    if (varName !== hebrewDict.ex5.height) {
+      return { valid: false, message: hebrewDict.ex5.failure_var_doesnt_exist };
+    }
 
     // check if the value is a number
-    if (isNaN(val) || val <= 0) {
+    if (isNaN(val) || parseInt(val, 10) <= 0) {
       return { valid: false, message: hebrewDict.ex5.height_error };
     }
 
     // set the values
     this.inputHeight = parseInt(val, 10);
 
-    return { valid: true, message: ""};
+    return { valid: true, message: "" };
   }
 
   isGateOpen(height) {
     return height < 200;
-  } 
+  }
 }
 
 export default new Exercise5();
