@@ -107,6 +107,64 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Fetch completed stages from Firestore and update menu
+// Mobile next/prev exercise navigation
+document.addEventListener('DOMContentLoaded', function() {
+  const nextBtn = document.getElementById('nextExerciseBtn');
+  const prevBtn = document.getElementById('prevExerciseBtn');
+  let currentIdx = 0;
+
+  function updateNavButtons(idx) {
+    if (prevBtn) {
+      if (idx <= 0) {
+        prevBtn.style.display = 'none';
+      } else {
+        prevBtn.style.display = '';
+      }
+    }
+    if (nextBtn) {
+      if (idx >= exerciseFiles.length - 1) {
+        nextBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = '';
+      }
+    }
+  }
+
+  // Find current exercise index from menu
+  function getCurrentIdx() {
+    const selected = document.querySelector('.exercise-menu-btn.selected');
+    if (selected && selected.dataset.idx) {
+      return parseInt(selected.dataset.idx, 10);
+    }
+    return currentIdx;
+  }
+
+  nextBtn && nextBtn.addEventListener('click', async function() {
+    currentIdx = getCurrentIdx();
+    if (currentIdx < exerciseFiles.length - 1) {
+      currentIdx++;
+      await showExercise(currentIdx);
+      updateNavButtons(currentIdx);
+    }
+  });
+  prevBtn && prevBtn.addEventListener('click', async function() {
+    currentIdx = getCurrentIdx();
+    if (currentIdx > 0) {
+      currentIdx--;
+      await showExercise(currentIdx);
+      updateNavButtons(currentIdx);
+    }
+  });
+
+  // Update nav buttons on exercise change
+  const observer = new MutationObserver(function() {
+    currentIdx = getCurrentIdx();
+    updateNavButtons(currentIdx);
+  });
+  observer.observe(document.getElementById('exercise-list'), { childList: true, subtree: true });
+  updateNavButtons(currentIdx);
+});
+
 function fetchAndSetCompletedStages() {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
