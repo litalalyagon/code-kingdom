@@ -17,7 +17,7 @@ class Exercise4 extends Exercise {
   
   getCodeParts() {
     let full_field;
-    const pretext = this.level === 'easy' ? `${hebrewDict.ex4.bridge} = ` : ''; 
+    const pretext = this.level === 'easy' ? `${hebrewDict.ex4.bridge_var} = ` : ''; 
     full_field = this.createFieldDisplayDetails({pretext: pretext});
     return full_field;
   }
@@ -85,7 +85,7 @@ class Exercise4 extends Exercise {
 
   isCorrect() {
     if (this.level === 'hard') {
-      if (this.inputVariable !== hebrewDict.ex4.bridge) {
+      if (this.inputVariable !== hebrewDict.ex4.bridge_var) {
         return {valid: false, message: hebrewDict.ex4.error_var_doesnt_exist};
       } 
       if (this.inputEqualSign !== '=') {
@@ -93,7 +93,7 @@ class Exercise4 extends Exercise {
       }
     }
     if (this.sign !== '+') {
-      return { valid: false, message: hebrewDict.ex4.error_no_plus_sign };
+      return { valid: false, message: hebrewDict.ex4.error_no_plus_sign};
     }
     if ((this.firstBridge === hebrewDict.ex4.first_bridge && this.secondBridge === hebrewDict.ex4.second_bridge) ||
         (this.firstBridge === hebrewDict.ex4.second_bridge && this.secondBridge === hebrewDict.ex4.first_bridge)) {
