@@ -142,7 +142,7 @@ class Exercise6 extends Exercise {
   validate({ inputs }) {
     const colors_directions = this.extractInputs(inputs);
     if (!colors_directions || colors_directions.length !== 3 || colors_directions.some(c => !c.color || !c.direction)) {
-      return { valid: false, message: hebrewDict.ex6.failure };
+      return { valid: false, message: hebrewDict.ex6.missing_fields_error };
     }
 
     // validation of the colors and directions
