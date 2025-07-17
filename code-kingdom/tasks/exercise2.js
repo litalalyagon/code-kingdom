@@ -104,9 +104,12 @@ class Exercise2 extends Exercise {
   validate({ inputs }) {
     let color, spots;
     const {varName1, val1, varName2, val2} = this.extractInputs(inputs);
-     if (!varName1 || !val1 || !varName2 || !val2) {
-        return { valid: false, message: hebrewDict.ex2.error_message };
+     if (!val1 || !val2) {
+        return { valid: false, message: hebrewDict.ex2.empty_value_error };
      }
+      if (!varName1 || !varName2) {
+        return { valid: false, message: hebrewDict.ex2.empty_key_error };
+      }
 
       // analyze the first input
       if (varName1 === hebrewDict.ex2.mushrooms_color) {
@@ -151,7 +154,12 @@ class Exercise2 extends Exercise {
       message.push(hebrewDict.ex2.color_error);
     }
     if (!this.validSpots.includes(spots)) {
-      message.push(hebrewDict.ex2.spots_error);
+      if (isNaN(spots)) {
+        message.push(hebrewDict.ex2.spots_not_number);
+      }
+      else {
+        message.push(hebrewDict.ex2.spots_error);
+      }
     }
     return message.join('<br>');
   }
