@@ -75,25 +75,42 @@ class Exercise3 extends Exercise {
   }
 
   isCorrect() {
-    if (hebrewDict.ex3.valid_tree_phrases.includes(this.inputTree) && 
-    this.inputBird === "3") {
-      return { valid: true, message: this.getValidMessage()};
+    console.log(this.sign);
+    console.log(this.inputBird);
+    if (this.sign === "+") {
+      if (this.inputBird === "3") {
+        return { valid: true, message: this.getValidMessage()};
+      }
+      if (this.inputBird < "3") {
+        return { valid: false, message: hebrewDict.ex3.too_short_error};
+      }
+      if (this.inputBird > "3") {
+        return { valid: false, message: hebrewDict.ex3.too_long_error};
+      }
     }
-    return { valid: false, message: "קלט תקין אבל לא"};
+    // At this point, the sign is surely '-' and we don't handle negative numbers
+    return { valid: false, message: hebrewDict.ex3.too_short_error};
+ //   return { valid: false, message: "קלט תקין אבל לא"};
   }
 
 
   isValid(tree, sign, bird) {
-    return (
+    if (
       hebrewDict.ex3.valid_tree_phrases.includes(tree) &&
       ['+', '-'].includes(sign) &&
-      !isNaN(bird) && bird.trim() !== ''
-    );
+      !isNaN(bird) && bird.trim() !== '') {
+      return true;
+    }
+    if (hebrewDict.ex3.valid_tree_phrases.includes(tree) && sign === '' && bird === '') {
+      return true;
+    }
+    return false;
   }
   validate({selects, inputs}) {
     const {tree, sign, bird} = this.extractInputs(selects, inputs);
     this.inputTree = tree;
     this.inputBird = bird;
+    this.sign = sign;
     if (!this.isValid(tree, sign, bird)) {
       return {valid: false, message: this.getErrorMessage()};
     } 
