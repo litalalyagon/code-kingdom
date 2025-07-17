@@ -3,83 +3,102 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise7 extends Exercise {
   constructor() {
     super("ex7");
-    this.input_sizes = {'easy': 'small', 'hard': 'medium'};
+    this.input_sizes = { 'easy': 'small', 'hard': 'medium' };
   }
 
+  inputIfWord;
   inputKey;
   inputSymbol;
   inputColor;
-getCodeParts() {
+
+  getCodeParts() {
     let key_field, color_field, unlock_line, combined;
     if (this.level === 'easy') {
-      key_field = this.createFieldDisplayDetails({pretext: `${hebrewDict.if} `, new_line: false}); 
-      color_field = this.createFieldDisplayDetails({pretext: ` == `, posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
+      key_field = this.createFieldDisplayDetails({ pretext: `${hebrewDict.if} `, new_line: false });
+      color_field = this.createFieldDisplayDetails({ pretext: ` == `, posttext: ':' });
+      unlock_line = this.createFieldDisplayDetails({ pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text" });
       combined = key_field.concat(color_field, unlock_line);
       return combined;
     } else {
-      key_field = this.createFieldDisplayDetails({posttext: ':'});
-      unlock_line = this.createFieldDisplayDetails({pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text"});
+      key_field = this.createFieldDisplayDetails({ posttext: ':' });
+      unlock_line = this.createFieldDisplayDetails({ pretext: `${hebrewDict.ex7.unlock_line}`, indentation: true, new_line: false, field_type: "text" });
       combined = key_field.concat(unlock_line);
       return combined;
     }
   }
 
-composeImageHtml(vars) {
+  composeImageHtml(vars) {
     let doorImg = this.isCorrect()["valid"] ? this.path('door_open.png') : this.path('door_closed.png');
     return this.generateImageHTML([doorImg]);
   }
 
-getDefaultHtml() {
+  getDefaultHtml() {
     return this.composeImageHtml();
   }
 
-extractInputs(selects, inputs) {
-  let key_string, symbol_string, color_string, full_string;
-  if (this.level === 'easy') {
-    [key_string, color_string] = Array.from(inputs).map(s => s.value.trim());
-  } else {
-    [full_string] = Array.from(inputs).map(s => s.value.trim());
-    const match = full_string.match(/^(.+?)\s*([=!<>]+)\s*(.+)$/);
-    if (match) {
-      key_string = match[1].trim();
-      symbol_string = match[2].trim();
-      color_string = match[3].trim();
+  extractInputs(inputs) {
+    let full_string, key_string, symbol_string, color_string, if_word;
+    if (this.level === 'easy') {
+      [key_string, color_string] = Array.from(inputs).map(s => s.value.trim());
+      if_word = hebrewDict.if;
+      symbol_string = '==';
     } else {
-      key_string = '';
-      symbol_string = '';
-      color_string = '';
+      [full_string] = Array.from(inputs).map(s => s.value.trim());
+      if (full_string.startsWith(hebrewDict.if)) {
+        full_string = full_string.slice(hebrewDict.if.length).trim();
+        if_word = hebrewDict.if;
+      }
+      const match = full_string.match(/^(\S+)\s*([<>=!]+)\s*(\S+)$/);
+    
+      if (match) {
+        key_string = match[1].trim();     // "מפתח"
+        symbol_string = match[2].trim();   // "=="
+        color_string = match[3].trim();    // צבע
+      }
     }
+    return { if_word, key_string, symbol_string, color_string };
   }
-  return {key_string, symbol_string, color_string};
-  }
-handleRun() {
+
+  handleRun() {
     return this.composeImageHtml();
   }
 
-isCorrect() {
-  if (this.level === "hard" && this.inputSymbol !== "==")
-  {
-    return{valid: false, message: hebrewDict.ex7.error_wrong_symbol}
-  }
-  if (this.inputKey === hebrewDict.ex7.key && this.inputColor === hebrewDict.colors.blue) {
-    return { valid: true, message: hebrewDict.ex7.success };
-  }
-  return { valid: false, message: hebrewDict.ex7.error_but_valid };
-  }
-  isValid() {
-    if (this.level === "hard" && this.inputSymbol !== "==")
-    {
-      return{valid: false, message: hebrewDict.ex7.error_wrong_symbol};
+  isCorrect() {
+    if (this.inputKey === hebrewDict.ex7.key && this.inputColor === hebrewDict.colors.blue) {
+      return { valid: true, message: hebrewDict.ex7.success };
     }
-    return ({valid: true, message: ''});
+    return { valid: false, message: hebrewDict.ex7.error_but_valid };
   }
-  validate({selects, inputs}) {
-    const { key_string, symbol_string, color_string } = this.extractInputs(selects, inputs);
+
+  validate({ inputs }) {
+    const { if_word, key_string, symbol_string, color_string } = this.extractInputs(inputs);
+    this.inputIfWord = if_word;
     this.inputKey = key_string;
     this.inputSymbol = symbol_string;
     this.inputColor = color_string;
-    return this.isValid();
+
+    if (this.inputIfWord !== hebrewDict.if) {
+      return { valid: false, message: hebrewDict.ex7.if_error };
+    }
+
+    if (!this.inputKey && !this.inputSymbol && !this.inputColor) {
+      return { valid: false, message: hebrewDict.ex7.error_message };
+    }
+
+    if (this.inputKey !== hebrewDict.ex7.key) {
+      return { valid: false, message: hebrewDict.ex7.key_error };
+    }
+
+    if (this.inputSymbol !== '==') {
+      return { valid: false, message: hebrewDict.ex7.error_wrong_symbol };
+    }
+
+    if (!this.inputColor) {
+      return { valid: false, message: hebrewDict.ex7.color_empty_error };
+    }
+    
+    return { valid: true, message: '' };
+
   }
 }
 export default new Exercise7();
