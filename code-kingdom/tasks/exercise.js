@@ -159,7 +159,7 @@ export function renderExercise(ex, idx) {
     // Description
     const description = document.createElement('p');
     description.className = 'exercise-description';
-    description.textContent = ex.description;
+    description.innerHTML = ex.description;
     exDiv.appendChild(description);
 
     // --- FLEX WRAP FOR IMAGE AND CODE ---
