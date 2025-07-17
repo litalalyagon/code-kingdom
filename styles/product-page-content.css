@@ -31,7 +31,11 @@
     max-width: 600px;
 }
 
-#exercisePortalBtn {
+.hero-button {
+    background-color: #e68900;
+    margin: 0 10px;
+}
+.hero-button:hover{
     background-color: #e68900;
 }
 
