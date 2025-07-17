@@ -219,7 +219,7 @@ export function renderExercise(ex, idx) {
     // Run button
     const runBtn = document.createElement('button');
     runBtn.className = 'run-btn';
-    runBtn.textContent = hebrewDict.run;
+    runBtn.innerHTML = hebrewDict.run + '  <i class="fa fa-play" style="margin-left:8px; transform:scaleX(-1)"></i>' ;
     codeWrap.appendChild(runBtn);
 
     codeArea.querySelectorAll('input').forEach(input => {

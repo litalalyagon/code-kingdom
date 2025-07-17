@@ -15,7 +15,7 @@ export function renderMenu(exercises, onSelect) {
     const li = document.createElement('li');
     const btn = document.createElement('button');
     btn.textContent = `${hebrewDict.task} ${idx + 1}`;
-    btn.className = 'exercise-menu-btn run-btn';
+    btn.className = 'exercise-menu-btn';
     const identifier = `ex${idx + 1}`;
     btn.setAttribute('data-level', identifier); // For reference
     console.log(`Rendering button for task ${identifier}`);
