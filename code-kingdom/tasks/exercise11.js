@@ -67,7 +67,7 @@ class Exercise11 extends Exercise {
   }
 
   extractSingleInput(input) {
-    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*([0-9]+)\s*$/;
+    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*(\S+)$/;
       
       const match = input.match(regex);
       if (!match) {
