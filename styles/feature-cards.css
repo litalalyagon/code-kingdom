@@ -1,3 +1,49 @@
+/* Product card clickable hover styling */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px #0001;
+    padding: 24px 18px 18px 18px;
+    text-decoration: none;
+    color: #222;
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+    cursor: pointer;
+    min-width: 220px;
+    max-width: 260px;
+}
+
+.product-card:hover, .product-card:focus {
+    box-shadow: 0 6px 24px #3a5a9840;
+    background: #f0f6ff;
+    transform: translateY(-6px) scale(1.03);
+    color: #1e3a8a;
+    text-decoration: none;
+}
+
+.product-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: #f7f7f7;
+    transition: box-shadow 0.2s;
+}
+
+.product-card:hover img {
+    box-shadow: 0 4px 16px #1e3a8a22;
+}
 /* Feature Cards Styles (moved from style.css) */
 .features-section {
     text-align: center;
