@@ -13,7 +13,13 @@
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="toggleMenu()">☰ תרגילים</button>
+  <div class="top-bar-row">
+    <button class="menu-toggle" onclick="toggleMenu()">☰ משימות</button>
+    <div class="user-status-bar">
+      <button id="logoutBtn" style="display: none;">התנתק</button>
+      <p id="loginStatus"></p>
+    </div>
+  </div>
   <div class="container">
     <nav id="sideMenu">
       <img src="../assets/book-cover.png" alt="book cover" class="menu-cover-img" onclick="window.location.href='../index.html'" style="cursor:pointer;" />
@@ -25,14 +31,11 @@
       </ul>
     </nav>
     <main class="content">
-      <div class="user-status-bar">
-        <button id="logoutBtn" style="display: none;">התנתק</button>
-        <p id="loginStatus"></p>
-      </div>
       <div id="level-selector">
         <button id="hardBtn" class="run-btn level-btn">רמה קשה</button>
         <button id="easyBtn" class="run-btn level-btn">רמה רגילה</button>
       </div>
+
       <div id="exercise-container"></div>
 
     </main>
