@@ -50,7 +50,6 @@ class Exercise7 extends Exercise {
         if_word = hebrewDict.if;
       }
       const match = full_string.match(/^(\S+)\s*([<>=!]+)\s*(\S+)$/);
-      console.log(match);
       if (match) {
         key_string = match[1].trim();     // "מפתח"
         symbol_string = match[2].trim();   // "=="
