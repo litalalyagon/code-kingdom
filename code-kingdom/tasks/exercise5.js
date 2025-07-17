@@ -56,7 +56,7 @@ class Exercise5 extends Exercise {
   }
 
   extractSingleInput(input) {
-    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*([0-9]+)\s*$/;
+    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*(-?[0-9]+)\s*$/;
       
       const match = input.match(regex);
       if (!match) {
@@ -97,7 +97,7 @@ class Exercise5 extends Exercise {
       }
 
     // check if the value is a number
-    if (isNaN(val) || val < 0) {
+    if (isNaN(val) || val <= 0) {
       return { valid: false, message: hebrewDict.ex5.height_error };
     }
 
