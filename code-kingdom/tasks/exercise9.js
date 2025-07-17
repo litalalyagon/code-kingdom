@@ -5,6 +5,7 @@ class Exercise9 extends Exercise {
   constructor() {
     super("ex9");
     this.input_sizes = {'easy': 'medium', 'hard': 'xlarge'};
+    this.resultImgBg = '#4f4f4f';
   }
 
   swords = 3;

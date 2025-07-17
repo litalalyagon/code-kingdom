@@ -5,6 +5,7 @@ class Exercise11 extends Exercise {
   constructor() {
     super("ex11"); 
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
+    this.resultImgBg = '#d7e0eb';
   }
 
   inputFlame = '';

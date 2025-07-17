@@ -5,6 +5,7 @@ class Exercise8 extends Exercise {
   constructor() {
     super("ex8");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
+    this.resultImgBg = '#4f4f4f';
   }
   validCrowns = ['0', '1', '2', '3', '4', '5', '6', '7'];
   defaultCrowns = 3;

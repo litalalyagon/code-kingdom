@@ -5,6 +5,7 @@ class Exercise4 extends Exercise {
   constructor() {
     super("ex4");
     this.input_sizes = {'easy': 'large', 'hard': 'large'};
+    this.resultImgBg = '#bfe5ef'; 
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
   defaultBridgeState = hebrewDict.ex4.first_bridge;

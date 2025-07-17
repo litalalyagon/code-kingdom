@@ -5,6 +5,7 @@ class Exercise12 extends Exercise {
     constructor() {
         super("ex12");
         this.input_sizes = { 'easy': 'small', 'hard': 'xlarge' };
+        this.resultImgBg = '#d9f4fe';
     }
     bagWeights = [30, 40, 55, 90];
     inputIfWord;

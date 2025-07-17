@@ -5,6 +5,7 @@ class Exercise5 extends Exercise {
   constructor() {
     super("ex5");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
+    this.resultImgBg = '#d7e0eb'; 
   }
   defaultHeight = 100;
   inputHeight; // number

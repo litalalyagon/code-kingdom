@@ -52,7 +52,7 @@ export class Exercise {
   }
 
   generateImageHTML(image_array) {
-    let html = `<div class="image-container">`;
+    let html = `<div class="image-container" style="background-color: ${this.resultImgBg};">`;
     for (let i = 0; i < image_array.length; i++) {
       const img_path = image_array[i];
       if (img_path) {

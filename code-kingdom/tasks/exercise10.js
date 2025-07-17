@@ -5,7 +5,7 @@ class Exercise10 extends Exercise {
   constructor() {
     super("ex10");
     this.input_sizes = {'easy': 'small', 'hard': 'medium'};
-
+    this.resultImgBg = '#4f4f4f';
   }
   validColors = [
     hebrewDict.colors.blue,

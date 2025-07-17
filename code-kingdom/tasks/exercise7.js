@@ -4,6 +4,7 @@ class Exercise7 extends Exercise {
   constructor() {
     super("ex7");
     this.input_sizes = { 'easy': 'small', 'hard': 'medium' };
+    this.resultImgBg = '#d4d4d4'; 
   }
 
   inputIfWord;
