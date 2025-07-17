@@ -112,7 +112,7 @@ class Exercise12 extends Exercise {
             return { valid: false, message: hebrewDict.ex12.signError };
         }
         // check if the value is a number
-        if (isNaN(this.inputWeightLimit)) {
+        if (!this.inputWeightLimit || isNaN(this.inputWeightLimit)) {
             return { valid: false, message: hebrewDict.ex12.weightError };
         }
         return { valid: true, message: '' };
