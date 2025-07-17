@@ -63,10 +63,16 @@ class Exercise3 extends Exercise {
     }
     else {
       [full_string] = Array.from(inputs).map(i => i.value.trim());
-      const match = full_string.match(/^(.+)\s*([+-])\s*(\d+)$/);
-      tree = match[1].trim();
-      sign = match[2];
-      bird = match[3].trim();
+      const match = full_string.match(/^(.+)\s*([+-])\s*(\S+)$/);
+      if (match) {
+        tree = match[1].trim();
+        sign = match[2];
+        bird = match[3].trim();
+      } else {
+        tree = '';
+        sign = '';
+        bird = '';
+      }
     }
     return {tree, sign, bird}
   }
@@ -78,14 +84,15 @@ class Exercise3 extends Exercise {
   isCorrect() {
     console.log(this.sign);
     console.log(this.inputBird);
+    const inputBirdNum = parseInt(this.inputBird, 10);
     if (this.sign === "+") {
-      if (this.inputBird === "3") {
+      if (inputBirdNum === 3) {
         return { valid: true, message: this.getValidMessage()};
       }
-      if (this.inputBird < "3") {
+      if (inputBirdNum < 3) {
         return { valid: false, message: hebrewDict.ex3.too_short_error};
       }
-      if (this.inputBird > "3") {
+      if (inputBirdNum > 3) {
         return { valid: false, message: hebrewDict.ex3.too_long_error};
       }
     }
@@ -95,29 +102,31 @@ class Exercise3 extends Exercise {
   }
 
 
-  isValid(tree, sign, bird) {
-    if (
-      hebrewDict.ex3.valid_tree_phrases.includes(tree) &&
-      ['+', '-'].includes(sign) &&
-      !isNaN(bird) && bird.trim() !== '') {
-      return true;
-    }
-    if (hebrewDict.ex3.valid_tree_phrases.includes(tree) && sign === '' && bird === '') {
-      return true;
-    }
-    return false;
-  }
   validate({selects, inputs}) {
     const {tree, sign, bird} = this.extractInputs(selects, inputs);
     this.inputTree = tree;
     this.inputBird = bird;
     this.sign = sign;
-    if (!this.isValid(tree, sign, bird)) {
-      return {valid: false, message: this.getErrorMessage()};
-    } 
+    
+    if (!tree && !sign && !bird) {
+      return {valid: false, message: hebrewDict.ex3.error_message};
+    }
+
+    if (!hebrewDict.ex3.valid_tree_phrases.includes(tree)) {
+      return {valid: false, message: hebrewDict.ex3.error_tree_phrase};
+    }
+
+    if (!(['+', '-'].includes(sign))) {
+      return {valid: false, message: hebrewDict.ex3.error_sign_phrase};
+    }
+
+    if (isNaN(bird)) {
+      return {valid: false, message: hebrewDict.ex3.error_bird_number};
+    }
 
     return { valid: true, message: ''};
   }
+
   getValidMessage() {
     return hebrewDict.ex3.success;
   }
