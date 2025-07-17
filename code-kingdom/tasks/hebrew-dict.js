@@ -57,8 +57,8 @@ export const hebrewDict = {
         "error_message": "נסה שוב.",
         "too_short_error": "הקלט תקין אך הסולם נמוך מדי.",
         "too_long_error": "הקלט תקין אך הסולם גבוה מדי.",
-        "error_tree_phrase": "יש להתשמש במשתנה \"עץ\" או \"גובה עץ\"",
-        "error_sign_phrase": "יש להתשמש בסימן \"-\" או \"+\"",
+        "error_tree_phrase": "יש להשתמש במשתנה \"עץ\" או \"גובה עץ\"",
+        "error_sign_phrase": "יש להשתמש בסימן \"-\" או \"+\"",
         "error_bird_number": "יש להוסיף לגובה העץ מספר",
     },
     "ex4": {
