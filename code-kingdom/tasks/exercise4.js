@@ -99,10 +99,13 @@ class Exercise4 extends Exercise {
         (this.firstBridge === hebrewDict.ex4.second_bridge && this.secondBridge === hebrewDict.ex4.first_bridge)) {
       return { valid: true, message: hebrewDict.ex4.success };
     }
-    return { valid: false, message: "קלט תקין אבל לא"};
+    return { valid: false, message: hebrewDict.ex4.valid_but_wrong};
   }
   isValidStringHelper(str) {
     let s = str;
+    if (s === '') {
+      return false;
+    }
     s = s.replaceAll(hebrewDict.ex4.first_bridge, '');
     s = s.replaceAll(hebrewDict.ex4.second_bridge, '');
     s = s.replace(/\d+/g, '');
@@ -130,7 +133,10 @@ class Exercise4 extends Exercise {
         this.isValidStringHelper(secondBridge)) {
       return { valid: true, message: hebrewDict.ex4.success};
     }
-    return { valid: false, message: "sad" };
+    if (firstBridge === '' && secondBridge === '' && sign === '') {
+      return { valid: false, message: hebrewDict.ex4.empty_error};
+    }
+    return { valid: false, message: hebrewDict.ex4.error_message};
   }
   validate({ selects, inputs }) {
     const vars = this.extractInputs(selects, inputs);
