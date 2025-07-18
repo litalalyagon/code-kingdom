@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אורי והדס בממלכת הקוד</title>
-  <link rel="stylesheet" href="../styles/style.css">
-  <link rel="stylesheet" href="../styles/product-page-content.css">
-  <link rel="stylesheet" href="../styles/hero.css">
-  <link rel="stylesheet" href="../styles/feature-cards.css">
-  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אורי והדס בממלכת הקוד</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/product-page-content.css">
+    <link rel="stylesheet" href="../styles/hero.css">
+    <link rel="stylesheet" href="../styles/feature-cards.css">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <header class="hero">
-          <div class="hero-logo-bar">
+        <div class="hero-logo-bar">
             <a href="../index.html" title="לדף הבית">
                 <img src="../assets/logo.png" alt="Between the Lines Logo" class="hero-logo-img" />
             </a>
         </div>
         <h1>ברוכים הבאים לממלכת הקוד!</h1>
-        <p class="tagline">הכירו את "אורי והדס בממלכת הקוד" - סדרת ספרי הרפתקאות לילדים המשלבים אתר ייעודי, שבעזרתם הילדים שלכם יצעדו את הצעדים הראשונים שלהם בעולם הקוד, ילמדו את יסודות התכנות, ויפתחו חשיבה תכנותית! <br>
-        ממלכת הקוד היא ספר מודפס המשלב משחק אינטרנטי, שנועדו לילדים סקרנים בגילאי היסודי.</p>
-        <button class="cta-button" id="exercisePortalBtn">
+        <p class="tagline">הכירו את "אורי והדס בממלכת הקוד" - סדרת ספרי הרפתקאות לילדים המשלבים אתר ייעודי, שבעזרתם
+            הילדים שלכם יצעדו את הצעדים הראשונים שלהם בעולם הקוד, ילמדו את יסודות התכנות, ויפתחו חשיבה תכנותית! <br>
+            ממלכת הקוד היא ספר מודפס המשלב משחק אינטרנטי, שנועדו לילדים סקרנים בגילאי היסודי.</p>
+        <div class="cta-button hero-button" id="exercisePortalBtn">
             <i class="fa-solid fa-puzzle-piece"></i>
             לעמוד המשימות
-        </button>
-        <button class="cta-button" id="exercisePortalBtn" action="https://headstart.co.il/project/81869" target="_blank" rel="noopener">
+        </div>
+        <a href="https://headstart.co.il/project/81869" class="cta-button hero-button" id="purchaseBtn" target="_blank"
+            rel="noopener">
+
             <i class="fa-solid fa-cart-shopping"></i>
             להזמנת הספר
-        </button>
+        </a>
     </header>
 
     <main class="landing-main">
         <section class="book-cover-section">
-            
+
             <section class="cta-section">
                 <p class="book-description">
-                    לאחר קמפיין מימון המונים מוצלח דרך הדסטארט, בו גייסנו כפול מהיעד המקורי שלנו, הספר נמצא כעת במכירה מוקדמת!
-                    
+                    לאחר קמפיין מימון המונים מוצלח דרך הדסטארט, בו גייסנו כפול מהיעד המקורי שלנו, הספר נמצא כעת במכירה
+                    מוקדמת!
+
                 </p>
-                <a href="https://headstart.co.il/project/81869" id="order-button" class="cta-button" target="_blank" rel="noopener" >הזמן עכשיו</a>
+                <a href="https://headstart.co.il/project/81869" id="order-button" class="cta-button" target="_blank"
+                    rel="noopener">הזמן עכשיו</a>
             </section>
             <img src="assets/book-cover.png" alt="כריכת הספר" class="book-cover">
         </section>
-        
+
         <section class="features-section">
             <h2>למה הספר שלנו מיוחד?</h2>
             <p>הספר מעניק לילדים את הכלים הדרושים להבנת עולם התכנות באופן חוויתי ומהנה</p>
@@ -91,15 +98,15 @@
         </section>
     </main>
 
-     <footer class="landing-footer">
-         <div class="social-links">
-            
+    <footer class="landing-footer">
+        <div class="social-links">
+
             <a href="mailto:btlines.games@gmail.com">
-                btlines.games@gmail.com   <i class="fa-solid fa-envelope"></i>
+                btlines.games@gmail.com <i class="fa-solid fa-envelope"></i>
             </a> |
             <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">
                 <i class="fa-brands fa-facebook"></i>
-            </a> 
+            </a>
         </div>
         <p>בין השורות | Between the Lines. כל הזכויות שמורות 2025 &copy;</p>
     </footer>
@@ -110,26 +117,33 @@
         import { isLoggedIn } from './usersManagment/auth.js';
 
         document.addEventListener('DOMContentLoaded', () => {
-          const exercisePortalBtn = document.getElementById('exercisePortalBtn');
+            const exercisePortalBtn = document.getElementById('exercisePortalBtn');
+            exercisePortalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Check if the user is logged in (isLoggedIn should be a function returning a Promise)
+                isLoggedIn().then(result => {
+                    let loggedIn, emailVerified;
+                    if (result !== null) {
+                        loggedIn = result.loggedIn;
+                        emailVerified = result.emailVerified;
+                    }
+                    if (!loggedIn || !emailVerified) {
+                        window.location.href = "./login.html";
+                    } else {
+                        window.location.href = './tasks/index.html'; // Redirect to the exercises page after successful login
+                    }
+                });
 
-          exercisePortalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Check if the user is logged in (isLoggedIn should be a function returning a Promise)
-            isLoggedIn().then(result => {
-                let loggedIn, emailVerified;
-                if (result !== null) {
-                    loggedIn = result.loggedIn;
-                    emailVerified = result.emailVerified;
-                }
-                if (!loggedIn || !emailVerified) {
-                    window.location.href = "./login.html";
-                } else {
-                    window.location.href = './tasks/index.html'; // Redirect to the exercises page after successful login
-                }
+                const purchaseBtn = document.getElementById('purchaseBtn');
+                purchaseBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Redirect to the purchase page 
+                    window.open(purchaseBtn.getAttribute('action'), '_blank');
+                });
             });
-          });
         });
     </script>
 
 </body>
+
 </html>
