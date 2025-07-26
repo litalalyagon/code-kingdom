@@ -70,7 +70,6 @@
         <section class="contact-section" id="contact-section">
             <h2>רוצים לשמוע עוד? דברו איתנו</h2>
             <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
-                <span id="message-placeholder"></span>
                 <input type="text" name="_gotcha" style="display:none">
                 <!-- hidden input to know which form was sent -->
                 <input type="hidden" name="form-id" value="contact-main-page">
@@ -79,6 +78,7 @@
                 <textarea id="message" name="message" rows="4" placeholder="איך נוכל לעזור?" required></textarea>
                 <div class="form-submit">
                     <button type="submit" class="cta-button">שליחה</button>
+                    <span id="message-placeholder"></span>
                 </div>
             </form>
         </section>

@@ -191,7 +191,7 @@ h1 {
 
     .form-submit {
         flex-direction: column;
-        align-items: flex-end; /* Align the submit button to the right */
+        align-items: flex-end; 
         gap: 10px;
     }
 
@@ -201,7 +201,7 @@ h1 {
     }
 
     .contact-form button {
-        width: 100%;
+        width: 30%;
     }
 
     .book-cover-section {
