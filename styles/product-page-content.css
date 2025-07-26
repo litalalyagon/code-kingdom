@@ -34,6 +34,8 @@
 .hero-button {
     background-color: #e68900;
     margin: 0 10px;
+    position: relative;
+    z-index: 2;
 }
 .hero-button:hover{
     background-color: #e68900;
@@ -53,6 +55,9 @@
     .book-cover-section {
         flex-direction: column;
         text-align: center;
+    }
+    .hero-button {
+        margin-bottom: 20px;
     }
 
 }
