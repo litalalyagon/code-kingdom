@@ -84,11 +84,12 @@ class Exercise11 extends Exercise {
 
 
   isCorrect() {
-    if (this.inputFlame > 25 && this.inputFlame < 50) {
-    return {valid: true, message: hebrewDict.ex11.success};
-    } else {
-      return {valid: false, message: hebrewDict.ex11.wrong_answer};
+    if (this.inputFlame <= 25) {
+      return {valid: false, message: hebrewDict.ex11.error_too_low};
+    } else if (this.inputFlame >= 50) {
+      return {valid: false, message: hebrewDict.ex11.error_too_high};
     }
+    return {valid: true, message: hebrewDict.ex11.success};
   }
   
   validate({ inputs }) {
@@ -103,7 +104,7 @@ class Exercise11 extends Exercise {
 
     // check if the value is a number
     if (isNaN(val) || val < 0) {
-      return { valid: false, message: hebrewDict.ex11.flame_error };
+      return { valid: false, message: hebrewDict.ex11.flame_value_error };
     }
 
     // set the values
