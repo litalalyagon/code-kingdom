@@ -84,7 +84,7 @@ class Exercise13 extends Exercise {
         inputs_array[0] = inputs_array[0].substring(hebrewDict.if.length).trim();
         conditionsWordExists = true;
       }
-      let conditions_inputs = inputs_array[0].split(hebrewDict.or);
+      let conditions_inputs = inputs_array[0].split(' ' + hebrewDict.or + ' ');
       conditions = conditions_inputs.map(input => this.extractConditionInput(input));
       
       // the second input is the action
