@@ -74,7 +74,7 @@ class Exercise9 extends Exercise {
     else {
       let [input] = Array.from(inputs).map(i => i.value.trim());
       // seperate into two inputs
-      let inputs_array = input.split(hebrewDict.and);
+      let inputs_array = input.split(' ' + hebrewDict.and + ' ');
       if (inputs_array.length !== 2) {
         return null;
       }
