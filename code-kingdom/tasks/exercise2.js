@@ -75,6 +75,7 @@ class Exercise2 extends Exercise {
       }
       const varName = match[1].trim();
       const val = match[2].trim();
+      console.log(varName + " = " + val);
       return [ varName, val ];
   }
 
