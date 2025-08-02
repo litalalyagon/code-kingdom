@@ -152,9 +152,6 @@ class Exercise13 extends Exercise {
     else if (this.action.val === hebrewDict.no) {
       return {valid:false, message: hebrewDict.ex13.failure_action_no};
     }
-    else {
-      return {valid:false, message: hebrewDict.ex13.failure_action_not_defined};
-    }
     if (isCorrect) {
       return { valid: true, message: hebrewDict.ex13.success };
     }
