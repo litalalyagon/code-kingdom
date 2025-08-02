@@ -161,7 +161,7 @@ class Exercise13 extends Exercise {
       return { valid: false, message: hebrewDict.ex13.failure_no_condition };
     }
     if (!conditions || conditions.some(c => !c) || !action) {
-      return { valid: false, message: hebrewDict.ex13.failure };
+      return { valid: false, message: hebrewDict.general_error_message};
     }
 
     // validation of the conditions

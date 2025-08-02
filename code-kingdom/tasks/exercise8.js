@@ -103,7 +103,7 @@ class Exercise8 extends Exercise {
     let crowns, flowers;
     const {varName1, val1, varName2, val2} = this.extractInputs(inputs);
      if (!varName1 || !val1 || !varName2 || !val2) {
-        return { valid: false, message: hebrewDict.ex8.failure };
+        return {valid: false, message: hebrewDict.general_error_message};
      }
 
       // analyze the first input

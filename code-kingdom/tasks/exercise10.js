@@ -142,7 +142,7 @@ class Exercise10 extends Exercise {
   validate({ inputs }) {
     const conditions = this.extractInputs(inputs);
     if (!conditions || conditions.length !== 2 || conditions.some(c => c === null)) {
-      return { valid: false, message: hebrewDict.ex10.failure };
+      return {valid: false, message: hebrewDict.general_error_message};
     }
 
     for (const cond of conditions) {

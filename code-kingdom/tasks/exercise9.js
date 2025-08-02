@@ -133,7 +133,7 @@ class Exercise9 extends Exercise {
   validate({ inputs }) {
     const conditions = this.extractInputs(inputs);
     if (!conditions || conditions.length !== 2 || !conditions[0] || !conditions[1]) {
-      return { valid: false, message: hebrewDict.ex9.failure };
+      return { valid: false, message: hebrewDict.general_error_message};
     }
     const [cond1, cond2] = conditions;
 
