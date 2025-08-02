@@ -248,8 +248,9 @@ main {
 }
 
 .answer-msg {
-  margin-top: 12px;
+  margin: 12px 10px;
   font-weight: bold;
+  text-align: center;
 }
 
 .answer-msg.success {
