@@ -102,7 +102,29 @@ export class Exercise {
       field_details.push({type: 'text', value: '\n'});
     }
     return field_details;
-  } 
+  }
+
+  showCompletionModal() {
+    // If modal already exists, don't add again
+    if (document.getElementById('completion-modal')) return;
+    const modal = document.createElement('div');
+    modal.id = 'completion-modal';
+    modal.innerHTML = `
+    <div class="completion-modal-content">
+      <span class="close-modal" id="close-completion-modal">&times;</span>
+      <h2>כל הכבוד!</h2>
+      <p>סיימתם את כל המשימות! אתם אלופי קוד אמיתיים 🎉</p>
+      <div style="font-size:2.5em;">🏆✨</div>
+    </div>
+  `;
+    document.body.appendChild(modal);
+    document.getElementById('close-completion-modal').onclick = () => {
+      modal.remove();
+    };
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.remove();
+    };
+  }
 
   markAsCompleted() {
     if (typeof markStageAsCompleted === 'function') {
@@ -112,6 +134,15 @@ export class Exercise {
       if (btn) {
         btn.classList.add('completed');
       }
+      // Check if all stages are now completed and show modal if so
+      try {
+        // Find all exercise buttons
+        const allBtns = document.querySelectorAll('.exercise-menu-btn');
+        const allCompleted = Array.from(allBtns).every(b => b.classList.contains('completed'));
+        if (allBtns.length > 0 && allCompleted) {
+          setTimeout(this.showCompletionModal, 400);
+        }
+      } catch (e) { /* ignore */ }
     } else {
       console.warn('markStageAsCompleted function is not defined.');
     }
