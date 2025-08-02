@@ -4,7 +4,7 @@ import { hebrewDict } from './hebrew-dict.js';
 class Exercise4 extends Exercise {
   constructor() {
     super("ex4");
-    this.input_sizes = {'easy': 'large', 'hard': 'large'};
+    this.input_sizes = {'easy': 'large', 'hard': 'xlarge'};
     this.resultImgBg = '#bfe5ef'; 
   }
   levelFieldTypes = {'easy': 'input', 'hard': 'input'};
