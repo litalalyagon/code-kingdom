@@ -75,7 +75,10 @@ class Exercise9 extends Exercise {
       let [input] = Array.from(inputs).map(i => i.value.trim());
       // seperate into two inputs
       let inputs_array = input.split(' ' + hebrewDict.and + ' ');
-      if (inputs_array.length !== 2) {
+      if (inputs_array.length == 1) {
+        input1 = inputs_array[0].trim();
+        input2 = '';
+      } else if (inputs_array.length !== 2) {
         return null;
       }
       [input1, input2] = inputs_array.map(i => i.trim());
@@ -88,6 +91,9 @@ class Exercise9 extends Exercise {
   }
 
   extractSingleInput(input) {
+    if (!input) {
+      return null;
+    }
     const regex = /^\s*([\u0590-\u05FF]+)\s*(<|>|==)\s*([0-9]+)\s*$/;
 
     const match = input.match(regex);
@@ -132,6 +138,9 @@ class Exercise9 extends Exercise {
 
   validate({ inputs }) {
     const conditions = this.extractInputs(inputs);
+    if (conditions && conditions[0] && !conditions[1]) {
+      return { valid: false, message: hebrewDict.ex9.failure_single_condition };
+    }
     if (!conditions || conditions.length !== 2 || !conditions[0] || !conditions[1]) {
       return { valid: false, message: hebrewDict.general_error_message};
     }
