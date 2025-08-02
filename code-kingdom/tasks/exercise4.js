@@ -122,7 +122,7 @@ class Exercise4 extends Exercise {
       this.inputSecondBridge = secondBridge;
     }
     else {
-      ({ variable, equal_sign, firstBridge, sign, secondBridge } = vars);
+      ({variable, equal_sign, firstBridge, sign, secondBridge } = vars);
       this.inputVariable = variable;
       this.inputEqualSign = equal_sign;
       this.inputFirstBridge = firstBridge;
@@ -131,12 +131,12 @@ class Exercise4 extends Exercise {
     }
     if (this.isValidStringHelper(firstBridge) &&
         this.isValidStringHelper(secondBridge)) {
-      return { valid: true, message: hebrewDict.ex4.success};
+      return {valid: true, message: hebrewDict.ex4.success};
     }
     if (firstBridge === '' && secondBridge === '' && sign === '') {
-      return { valid: false, message: hebrewDict.ex4.empty_error};
+      return {valid: false, message: hebrewDict.ex4.empty_error};
     }
-    return { valid: false, message: hebrewDict.ex4.error_message};
+    return {valid: false, message: hebrewDict.ex4.error_message};
   }
   validate({ selects, inputs }) {
     const vars = this.extractInputs(selects, inputs);
