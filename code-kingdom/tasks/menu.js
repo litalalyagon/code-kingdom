@@ -1,3 +1,4 @@
+import { setCompletionModalFlagIfAllCompleted } from './exercise.js';
 import { hebrewDict } from './hebrew-dict.js';
 // Store completed stages globally for menu rendering
 let completedStagesGlobal = [];
@@ -31,6 +32,8 @@ export function renderMenu(exercises, onSelect) {
     li.appendChild(btn);
     exerciseList.appendChild(li);
   });
+  // Check if all are completed and set the modal flag so it won't show again
+  setCompletionModalFlagIfAllCompleted(exercises.length, completedStagesGlobal);
 }
 
 export function setActiveMenu(idx) {
