@@ -41,6 +41,8 @@ class Exercise4 extends Exercise {
       if (number == 0) {
         bridgeImg = this.path('bridge_complete.png');
       }
+    } else if (!secondBridge) {
+      bridgeImg = this.path('bridge_broken.png');
     } else if (this.isCorrect()["valid"]) {
       bridgeImg = this.path('bridge_complete.png');
     } else {

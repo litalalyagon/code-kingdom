@@ -34,7 +34,7 @@ class Exercise7 extends Exercise {
   }
 
   getDefaultHtml() {
-    return this.composeImageHtml();
+    return this.generateImageHTML([this.path('door_closed.png')]);
   }
 
   extractInputs(inputs) {
