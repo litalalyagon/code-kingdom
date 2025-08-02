@@ -1,6 +1,15 @@
 import { hebrewDict } from './hebrew-dict.js';
 import { markStageAsCompleted } from '../usersManagment/authHandler.js';
 
+// Track if the completion modal was already shown to the user
+let completionModalAlreadyShown = false;
+
+// Helper to set the flag if all stages are already completed from DB
+export function setCompletionModalFlagIfAllCompleted(exerciseCount, completedStages) {
+  if (Array.isArray(completedStages) && completedStages.length === exerciseCount && exerciseCount > 0) {
+    completionModalAlreadyShown = true;
+  }
+}
 export class Exercise {
   level = '';
   description = '';
@@ -139,15 +148,17 @@ export class Exercise {
         // Find all exercise buttons
         const allBtns = document.querySelectorAll('.exercise-menu-btn');
         const allCompleted = Array.from(allBtns).every(b => b.classList.contains('completed'));
-        if (allBtns.length > 0 && allCompleted) {
-          setTimeout(this.showCompletionModal, 400);
+        if (allBtns.length > 0 && allCompleted && !completionModalAlreadyShown) {
+          setTimeout(() => {
+            this.showCompletionModal();
+            completionModalAlreadyShown = true;
+          }, 400);
         }
       } catch (e) { /* ignore */ }
     } else {
       console.warn('markStageAsCompleted function is not defined.');
     }
   }
-  
 }
 
 export function renderExercise(ex, idx) {
