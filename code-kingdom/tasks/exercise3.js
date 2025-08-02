@@ -82,10 +82,7 @@ class Exercise3 extends Exercise {
   }
 
   isCorrect() {
-    console.log(this.sign);
-    console.log(this.inputBird);
     const inputBirdNum = parseFloat(this.inputBird);
-    console.log("now " + inputBirdNum);
     if (this.sign === "+") {
       if (inputBirdNum === 3) {
         return { valid: true, message: this.getValidMessage()};
