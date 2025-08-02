@@ -49,7 +49,7 @@ class Exercise7 extends Exercise {
         full_string = full_string.slice(hebrewDict.if.length).trim();
         if_word = hebrewDict.if;
       }
-      const match = full_string.match(/^(\S+)\s*([<>=!]+)\s*(\S+)$/);
+      const match = full_string.match(/^(\S+?)\s*([<>=!]+)\s*(\S+)$/);
       if (match) {
         key_string = match[1].trim();     // "מפתח"
         symbol_string = match[2].trim();   // "=="
