@@ -67,8 +67,7 @@ class Exercise2 extends Exercise {
   }
 
   extractSingleInput(input) {
-    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*([\u0590-\u05FF0-9]+)\s*$/;
-      
+    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*([\u0590-\u05FF0-9.\-]+)\s*$/;
       const match = input.match(regex);
       if (!match) {
         return [null, null];
@@ -156,6 +155,9 @@ class Exercise2 extends Exercise {
     if (!this.validSpots.includes(spots)) {
       if (isNaN(spots)) {
         message.push(hebrewDict.ex2.spots_not_number);
+      }
+      else if (!Number.isInteger(Number(spots))) {
+        message.push(hebrewDict.ex2.spots_not_integer);
       }
       else {
         message.push(hebrewDict.ex2.spots_error);
