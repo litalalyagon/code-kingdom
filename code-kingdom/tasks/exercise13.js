@@ -149,6 +149,9 @@ class Exercise13 extends Exercise {
                     correctColores.every(color => colors.includes(color)); 
       }
     }
+    else if (this.action.val === hebrewDict.no) {
+      return {valid:false, message: hebrewDict.ex13.failure_action_no};
+    }
     if (isCorrect) {
       return { valid: true, message: hebrewDict.ex13.success };
     }
