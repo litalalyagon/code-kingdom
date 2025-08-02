@@ -83,7 +83,7 @@ class Exercise10 extends Exercise {
   }
 
   getDefaultHtml() {
-    return this.composeImageHtml();
+    return this.generateImageHTML([this.path('wall.png')]);
   }
   
   extractInputs(inputs) {
