@@ -175,7 +175,7 @@ export const hebrewDict = {
         "ifError": "שגיאה: חסר תנאי \"אם\"",
         "error_message": "שגיאה: שדות לא תקינים. אנא בדוק את השדות שוב.",
         "weightWordError": "שגיאה: חסר משתנה \"משקל\"",
-        "signError": "שגיאה: עליכם להשתמש בסימן \">\"",
+        "signError": "ודאו להשתמש בספר כדי לדעת את ההבדל בין הסימן \">\" לבין הסימן \"<\"",
         "weightError": "שגיאה: המשקל לא תקין",
         "weightLimitTooLowError": "שגיאה: המשקל שהגדרתם נמוך מדי",
         "weightLimitTooHighError": "שגיאה: המשקל שהגדרתם גבוה מדי",

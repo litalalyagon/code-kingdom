@@ -72,6 +72,16 @@ class Exercise12 extends Exercise {
                 weightValue = match[3].trim();    // "14"
             }
         }
+        if (weightValue == hebrewDict.ex12.weight) {
+            let temp = weightWord;
+            weightWord = weightValue;
+            weightValue = temp;
+            if (sign === '<') {
+                sign = '>';
+            } else if (sign === '>') {
+                sign = '<';
+            }
+        }
         return { ifWord, weightWord, sign, weightValue };
     }
 
