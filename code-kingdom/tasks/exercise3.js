@@ -63,7 +63,7 @@ class Exercise3 extends Exercise {
     }
     else {
       [full_string] = Array.from(inputs).map(i => i.value.trim());
-      const match = full_string.match(/^(.+)\s*([+-])\s*(\S+)$/);
+      const match = full_string.match(/^(.+)\s*([+-])\s*(\d+(?:\.\d+)?)$/);
       if (match) {
         tree = match[1].trim();
         sign = match[2];
@@ -82,9 +82,7 @@ class Exercise3 extends Exercise {
   }
 
   isCorrect() {
-    console.log(this.sign);
-    console.log(this.inputBird);
-    const inputBirdNum = parseInt(this.inputBird, 10);
+    const inputBirdNum = parseFloat(this.inputBird);
     if (this.sign === "+") {
       if (inputBirdNum === 3) {
         return { valid: true, message: this.getValidMessage()};
