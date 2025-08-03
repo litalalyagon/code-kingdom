@@ -96,9 +96,10 @@ h1 {
 #order-button {
     display: inline-block;
     text-align: center;
+    width: 200px;
     padding: 12px 32px;
     border-radius: 24px;
-    background: #2a7ae2;
+    background: #0ed034;
     color: #fff;
     font-size: 1.1em;
     font-weight: 600;
@@ -167,13 +168,13 @@ h1 {
         padding: 10px;
     }
 
-    .book-cover {
+    .product-img {
         width: 100%;
         max-width: 300px;
         height: auto;
     }
 
-    .book-description {
+    .product-description {
         font-size: 1em;
         line-height: 1.4;
     }
@@ -204,7 +205,7 @@ h1 {
         width: 30%;
     }
 
-    .book-cover-section {
+    .product-img-section {
         flex-direction: column;
         text-align: center;
     }
