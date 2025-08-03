@@ -1,3 +1,40 @@
+.website-section {
+  background: #ffffff;
+  border-radius: 18px;
+  margin: 48px auto 32px auto;
+  padding: 36px 18px 32px 18px;
+  max-width: 1000px;
+  box-shadow: 0 4px 24px #3a5a9811, 0 1.5px 4px #3a5a9811;
+  text-align: center;
+}
+.website-section h2 {
+  color: #1e3a8a;
+  font-size: 2em;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.website-section p {
+  color: #444;
+  font-size: 1.15em;
+  margin-bottom: 22px;
+  line-height: 1.7;
+}
+.website-section img {
+  max-width: 95%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  margin-top: 18px;
+}
+@media (max-width: 700px) {
+  .website-section {
+    padding: 18px 2vw 18px 2vw;
+    max-width: 98vw;
+  }
+  .website-section h2 {
+    font-size: 1.3em;
+  }
+}
 /* Landing Page Styles */
 body {
     margin: 0;
@@ -48,7 +85,7 @@ h1 {
 
 /* contact Section */
 .contact-section {
-    background: #f9f9f9;
+    background: #bfefe6;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -96,9 +133,10 @@ h1 {
 #order-button {
     display: inline-block;
     text-align: center;
+    width: 200px;
     padding: 12px 32px;
     border-radius: 24px;
-    background: #2a7ae2;
+    background: #0ed034;
     color: #fff;
     font-size: 1.1em;
     font-weight: 600;
@@ -167,13 +205,13 @@ h1 {
         padding: 10px;
     }
 
-    .book-cover {
+    .product-img {
         width: 100%;
         max-width: 300px;
         height: auto;
     }
 
-    .book-description {
+    .product-description {
         font-size: 1em;
         line-height: 1.4;
     }
@@ -204,7 +242,7 @@ h1 {
         width: 30%;
     }
 
-    .book-cover-section {
+    .product-img-section {
         flex-direction: column;
         text-align: center;
     }
