@@ -5,7 +5,7 @@ class Exercise3 extends Exercise {
   constructor() {
     super("ex3");
     this.input_sizes = {'easy': 'small', 'hard': 'large'};
-    this.resultImgBg = '#d6ebd9'
+    this.resultImgBg = '#d6ebd9';
   }
   inputTree;
   inputBird;
