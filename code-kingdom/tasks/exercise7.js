@@ -55,6 +55,11 @@ class Exercise7 extends Exercise {
         symbol_string = match[2].trim();   // "=="
         color_string = match[3].trim();    // צבע
       }
+      if (color_string == hebrewDict.ex7.key) {
+        let temp = key_string;
+        key_string = color_string;
+        color_string = temp;
+      }
     }
     return { if_word, key_string, symbol_string, color_string };
   }
