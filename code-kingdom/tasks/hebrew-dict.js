@@ -75,7 +75,7 @@ export const hebrewDict = {
         "error_no_plus_sign": "על הגשר להיות סכום של שני הגשרים הקצרים.",
         "valid_but_wrong": "הקלט תקין אך הגשר אינו באורך הנכון",
         "empty_error": "אין להשאיר את הסכום ריק",
-        "error_message": "שדות לא תקינים. אנא בדוק את השדות שוב.",
+        "empty_new_bridge_error": "חסר המשתנה \"גשר חדש\"",
     },
    "ex5": {
         "title": "משימה 5: תנאים - שער הטירה",
