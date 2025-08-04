@@ -11,11 +11,6 @@ form.addEventListener("submit", async (e) => {
     status.textContent = "";
     status.className = "";
 
-    console.log('Form validity:', form.checkValidity());
-    console.log('Email:', form.email.value.trim());
-    console.log('Password:', form.password.value.trim());
-    console.log('Signup Code:', form.signupCode.value.trim());
-
     // Perform custom validation first
     const name = form.name.value.trim()
     const email = form.email.value.trim();
@@ -46,7 +41,6 @@ form.addEventListener("submit", async (e) => {
         const codeRef = doc(db, "config", "signup");
         const codeDoc = await getDoc(codeRef);
     
-        console.log('Signup code document:', codeDoc.exists() ? 'exists' : 'does not exist');
         if (!codeDoc.exists()) {
             status.textContent = "Error: Signup code is not set.";
             status.className = "error";
@@ -54,7 +48,6 @@ form.addEventListener("submit", async (e) => {
         }
     
         const correctCode = codeDoc.data().code;
-        console.log('Correct signup code:', correctCode);
 
         // Step 2: Validate signup code
         if (signupCode.toUpperCase() !== correctCode) {
