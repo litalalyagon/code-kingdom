@@ -45,7 +45,7 @@ class Exercise3 extends Exercise {
     }
     else if (bird_num < 0) {
       ladderImg = this.path('ladder_short.png');
-    }  
+    }
     else {
       ladderImg = this.path('ladder_long.png');
     }
@@ -55,19 +55,57 @@ class Exercise3 extends Exercise {
     const backgroundImg = this.path('ex3_def.png');
     return this.generateImageHTML([backgroundImg]);
   }
-  extractInputs(selects, inputs, only_values=false) {
-    let tree, sign, bird, full_string;
+  extractInputs(selects, inputs, only_values = false) {
+    let tree = '', sign = '', bird = '', full_string;
     if (this.level === 'easy') {
-      [tree, bird] = Array.from(inputs).map(s => s.value.trim());
-      sign = '+';
-    }
-    else {
+      const [var1, var2] = Array.from(inputs).map(s => s.value.trim());
+      // Combine all input values into a single string for both levels
+      full_string = `${var1} + ${var2}`;
+    } else {
       [full_string] = Array.from(inputs).map(i => i.value.trim());
-      const match = full_string.match(/^(.+)\s*([+-])\s*(\d+(?:\.\d+)?)$/);
-      if (match) {
-        tree = match[1].trim();
-        sign = match[2];
-        bird = match[3].trim();
+    }
+
+    // Handle empty input
+    if (!full_string) {
+      return { tree: '', sign: '', bird: '' };
+    }
+
+    // Handle 'עץ+2+3' or 'עץ+2-1' (multiple + or -)
+    // We'll sum all numbers after the first variable
+    const match = full_string.match(/^([^+\-]+)((?:\s*[+\-]\s*\d+(?:\.\d+)?)+)?$/);
+    if (match) {
+      tree = match[1].trim();
+      let rest = match[2] || '';
+      // If there are no + or - parts, treat as just the tree
+      if (!rest) {
+        sign = '+';
+        bird = '0';
+      } else {
+        // Find all +n or -n parts
+        let sum = 0;
+        let found = false;
+        const parts = rest.match(/[+\-]\s*\d+(?:\.\d+)?/g);
+        if (parts) {
+          for (let p of parts) {
+            found = true;
+            sum += parseFloat(p.replace(/\s+/g, ''));
+          }
+        }
+        if (found) {
+          sign = sum >= 0 ? '+' : '-';
+          bird = Math.abs(sum).toString();
+        } else {
+          sign = '+';
+          bird = '0';
+        }
+      }
+    } else {
+      // fallback: try to match 'עץ +2' or 'עץ-2'
+      const fallback = full_string.match(/^(.+)\s*([+-])\s*(\d+(?:\.\d+)?)$/);
+      if (fallback) {
+        tree = fallback[1].trim();
+        sign = fallback[2];
+        bird = fallback[3].trim();
       } else {
         tree = '';
         sign = '';
@@ -88,41 +126,41 @@ class Exercise3 extends Exercise {
         return { valid: true, message: this.getValidMessage()};
       }
       if (inputBirdNum < 3) {
-        return { valid: false, message: hebrewDict.ex3.too_short_error};
+        return { valid: false, message: hebrewDict.ex3.too_short_error };
       }
       if (inputBirdNum > 3) {
-        return { valid: false, message: hebrewDict.ex3.too_long_error};
+        return { valid: false, message: hebrewDict.ex3.too_long_error };
       }
     }
     // At this point, the sign is surely '-' and we don't handle negative numbers
-    return { valid: false, message: hebrewDict.ex3.too_short_error};
- //   return { valid: false, message: "קלט תקין אבל לא"};
+    return { valid: false, message: hebrewDict.ex3.too_short_error };
+    //   return { valid: false, message: "קלט תקין אבל לא"};
   }
 
 
-  validate({selects, inputs}) {
-    const {tree, sign, bird} = this.extractInputs(selects, inputs);
+  validate({ selects, inputs }) {
+    const { tree, sign, bird } = this.extractInputs(selects, inputs);
     this.inputTree = tree;
     this.inputBird = bird;
     this.sign = sign;
-    
+
     if (!tree && !sign && !bird) {
-      return {valid: false, message: hebrewDict.ex3.error_message};
+      return { valid: false, message: hebrewDict.ex3.error_message };
     }
 
     if (!hebrewDict.ex3.valid_tree_phrases.includes(tree)) {
-      return {valid: false, message: hebrewDict.ex3.error_tree_phrase};
+      return { valid: false, message: hebrewDict.ex3.error_tree_phrase };
     }
 
     if (!(['+', '-'].includes(sign))) {
-      return {valid: false, message: hebrewDict.ex3.error_sign_phrase};
+      return { valid: false, message: hebrewDict.ex3.error_sign_phrase };
     }
 
-    if (isNaN(bird)) {
-      return {valid: false, message: hebrewDict.ex3.error_bird_number};
+    if (!bird || isNaN(bird)) {
+      return { valid: false, message: hebrewDict.ex3.error_bird_number };
     }
 
-    return { valid: true, message: ''};
+    return { valid: true, message: '' };
   }
 
   getValidMessage() {
