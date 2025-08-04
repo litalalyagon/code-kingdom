@@ -7,8 +7,6 @@ class Exercise3 extends Exercise {
     this.input_sizes = {'easy': 'small', 'hard': 'large'};
     this.resultImgBg = '#d6ebd9';
   }
-  inputTree;
-  inputBird;
 
   tree_exists = false;
   calculation_result;
