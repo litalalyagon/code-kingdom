@@ -85,6 +85,25 @@ export class Exercise {
     }
   }
 
+  calculateResultFromString(str) {
+    // Given a string of digits (including floats) and + or - signs, calculate the result
+    // Example: '1.5+2-3.25+4' => ((1.5+2)-3.25)+4
+    str = str.replace(/\s+/g, '');
+    // Match floats or ints, and + or -
+    const tokens = str.match(/\d+(?:\.\d+)?|[+\-]/g);
+    if (!tokens) return NaN;
+    let result = parseFloat(tokens[0]);
+    for (let i = 1; i < tokens.length; i += 2) {
+      const op = tokens[i];
+      const num = parseFloat(tokens[i + 1]);
+      if (op === '+') {
+        result += num;
+      } else if (op === '-') {
+        result -= num;
+      }
+    }
+    return result;
+  }
 
   createFieldDisplayDetails(data) {
     let field_type = data.field_type || 'input'; // input / dropdown / text
