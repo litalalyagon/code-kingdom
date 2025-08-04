@@ -122,7 +122,7 @@ export class Exercise {
     <div class="completion-modal-content">
       <span class="close-modal" id="close-completion-modal">&times;</span>
       <h2>כל הכבוד!</h2>
-      <p>סיימתם את כל המשימות! אתם אלופי קוד אמיתיים 🎉</p>
+      <p>סיימתם את כל המשימות! אתם אלופי ואלופות קוד אמיתיים 🎉</p>
       <div style="font-size:2.5em;">🏆✨</div>
     </div>
   `;
