@@ -30,7 +30,6 @@
     background: url('../code-kingdom/assets/hero.png') center center/cover no-repeat;
     background-color: #eaf6ff;
     min-height: 340px;
-    border-radius: 0 0 32px 32px;
     box-shadow: 0 4px 24px #0001;
     position: relative;
 }
@@ -75,8 +74,6 @@
     background: rgba(0, 0, 0, 0.4);
     /* Try 0.3 to 0.6 */
     z-index: 1;
-    border-radius: 0 0 32px 32px;
-
 }
 
 .hero-logo-bar {
