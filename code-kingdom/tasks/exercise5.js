@@ -22,7 +22,9 @@ class Exercise5 extends Exercise {
     const height = vars.height;
 
     let robiImg;
-    if (height < 100) {
+    if (height == 0) {
+      // do nothing
+    } else if (height < 100) {
       robiImg = this.path('robi_little.png');
     } else if (height == 100) {
       robiImg = this.path('robi_100.png');
@@ -74,6 +76,9 @@ class Exercise5 extends Exercise {
 
 
   isCorrect() {
+    if (this.inputHeight == 0) {
+      return {valid: true, message: hebrewDict.ex5.success_zero_height};
+    }
     return {
       valid: true,
       message: this.isGateOpen(this.inputHeight) ? hebrewDict.ex5.success_open : hebrewDict.ex5.success_closed
@@ -91,7 +96,7 @@ class Exercise5 extends Exercise {
     }
 
     // check if the value is a number
-    if (isNaN(val) || parseInt(val, 10) <= 0) {
+    if (isNaN(val) || parseInt(val, 10) < 0) {
       return { valid: false, message: hebrewDict.ex5.height_error };
     }
 
