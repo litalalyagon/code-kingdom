@@ -5,7 +5,6 @@ let completedStagesGlobal = [];
 
 // Call this after fetching completedStages from Firestore
 export function setCompletedStages(stages) {
-  console.log('Setting completed stages:', stages);
   completedStagesGlobal = Array.isArray(stages) ? stages : [];
 }
 
@@ -19,10 +18,9 @@ export function renderMenu(exercises, onSelect) {
     btn.className = 'exercise-menu-btn';
     const identifier = `ex${idx + 1}`;
     btn.setAttribute('data-level', identifier); // For reference
-    console.log(`Rendering button for task ${identifier}`);
+   
     // Mark as completed if in completedStagesGlobal
     if (completedStagesGlobal.includes(identifier)) {
-      console.log(`Task ${identifier} is completed.`);
       btn.classList.add('completed');
     }
     btn.onclick = () => {
