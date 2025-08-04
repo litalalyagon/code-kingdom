@@ -8,10 +8,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
+    padding: 50px;
     margin: 0 auto;
     direction: ltr;
+    width: 100%;
+    background-color: #ffffff;
 }
 
 .product-img {

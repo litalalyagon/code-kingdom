@@ -39,7 +39,7 @@
 body {
     margin: 0;
     font-family: 'Heebo', sans-serif;
-    background: #eafcf7;
+    background: #cfeff1;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@ h1 {
 
 /* CTA and Product Buttons */
 .cta-button {
-    background: #007bff;
+    background: #376ecb;
     color: white !important;
     border: none;
     border-radius: 5px;
@@ -85,7 +85,7 @@ h1 {
 
 /* contact Section */
 .contact-section {
-    background: #bfefe6;
+    background: #9893c3;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -201,10 +201,6 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
     .product-img {
         width: 100%;
         max-width: 300px;
@@ -240,11 +236,6 @@ h1 {
 
     .contact-form button {
         width: 30%;
-    }
-
-    .product-img-section {
-        flex-direction: column;
-        text-align: center;
     }
 
     .cta-section {
