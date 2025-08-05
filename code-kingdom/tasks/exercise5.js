@@ -95,7 +95,6 @@ class Exercise5 extends Exercise {
       return { valid: false, message: hebrewDict.ex5.failure_var_doesnt_exist };
     }
 
-    // check if the value is a number
     // we should check the value it's all numbers and signs, not letters
     if (!/^[\d.\s\+\-]+$/.test(val)) {
       return { valid: false, message: hebrewDict.ex5.height_error  };
