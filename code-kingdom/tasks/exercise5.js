@@ -88,7 +88,7 @@ class Exercise5 extends Exercise {
   validate({ inputs }) {
     const { varName, val } = this.extractInputs(inputs);
     if (!varName || !val) {
-      return { valid: false, message: hebrewDict.ex5.error_message };
+      return { valid: false, message: hebrewDict.general_error_message };
     }
 
     if (varName !== hebrewDict.ex5.height) {

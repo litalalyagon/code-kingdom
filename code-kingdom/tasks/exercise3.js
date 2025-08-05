@@ -132,10 +132,6 @@ class Exercise3 extends Exercise {
   getValidMessage() {
     return hebrewDict.ex3.success;
   }
-
-  getErrorMessage() {
-    return hebrewDict.ex3.error_message;
-  }
 }
 
 export default new Exercise3();
