@@ -96,12 +96,18 @@ class Exercise5 extends Exercise {
     }
 
     // check if the value is a number
-    if (isNaN(val) || parseInt(val, 10) < 0) {
+    // we should check the value it's all numbers and signs, not letters
+    if (!/^[\d.\s\+\-]+$/.test(val)) {
+      return { valid: false, message: hebrewDict.ex5.height_error  };
+    }
+
+    const calc_result = this.calculateResultFromString(val);
+    if (isNaN(calc_result) || calc_result < 0) {
       return { valid: false, message: hebrewDict.ex5.height_error };
     }
 
     // set the values
-    this.inputHeight = parseInt(val, 10);
+    this.inputHeight = calc_result;
 
     return { valid: true, message: "" };
   }
