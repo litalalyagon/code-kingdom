@@ -1,12 +1,15 @@
 .navbar {
       background-color: rgba(44, 62, 80, 0.98);
       display: flex;
+      align-items: center;
       justify-content: flex-start;
       padding: 1rem 2rem;
       gap: 2rem;
       z-index: 10;
       backdrop-filter: blur(8px);
       width: 100%;
+      position: sticky;
+      top: 0;
     }
 
     .navbar a {
