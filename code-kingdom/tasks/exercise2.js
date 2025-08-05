@@ -67,7 +67,7 @@ class Exercise2 extends Exercise {
   }
 
   extractSingleInput(input) {
-    const regex = /^\s*([\u0590-\u05FF]+)\s*=\s*([\u0590-\u05FF0-9.\-]+)\s*$/;
+    const regex = /^\s*([\u0590-\u05FF ]+)\s*=\s*([\u0590-\u05FF0-9.\-]+)\s*$/;
       const match = input.match(regex);
       if (!match) {
         return [null, null];
@@ -103,6 +103,9 @@ class Exercise2 extends Exercise {
   validate({ inputs }) {
     let color, spots;
     const {varName1, val1, varName2, val2} = this.extractInputs(inputs);
+     if ((!val1 && !varName1) || (!val2 && !varName2)) {
+        return { valid: false, message: hebrewDict.general_error_message };
+     }
      if (!val1 || !val2) {
         return { valid: false, message: hebrewDict.ex2.empty_value_error };
      }
