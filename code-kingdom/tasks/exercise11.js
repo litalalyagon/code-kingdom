@@ -95,20 +95,25 @@ class Exercise11 extends Exercise {
   validate({ inputs }) {
     const {varName, val} = this.extractInputs(inputs);
      if (!varName || !val) {
-        return { valid: false, message: hebrewDict.ex11.error_message };
+        return { valid: false, message: hebrewDict.general_error_message };
      }
 
      if (varName !== hebrewDict.ex11.flame) {
         return { valid: false, message: hebrewDict.ex11.failure_var_doesnt_exist };
       }
 
-    // check if the value is a number
-    if (isNaN(val) || val < 0) {
+    // we should check the value it's all numbers and signs, not letters
+    if (!/^[\d.\s\+\-]+$/.test(val)) {
+      return { valid: false, message: hebrewDict.ex11.flame_value_error  };
+    }
+
+    const calc_result = this.calculateResultFromString(val);
+    if (isNaN(calc_result) || calc_result < 0) {
       return { valid: false, message: hebrewDict.ex11.flame_value_error };
     }
 
     // set the values
-    this.inputFlame = parseInt(val, 10);
+    this.inputFlame = calc_result;
 
     return { valid: true, message: ""};
   }
