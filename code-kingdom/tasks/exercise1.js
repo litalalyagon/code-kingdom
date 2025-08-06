@@ -18,9 +18,9 @@ class Exercise1 extends Exercise {
     hebrewDict.colors.red,
     hebrewDict.colors.yellow
   ]
-  validClouds = ['0', '1', '2', '3', '4', '5', '6'];
+  validClouds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
-  
+
   defaultColor = hebrewDict.colors.blue;
   defaultClouds = '3';
   defaultRainbow = hebrewDict.no;
@@ -28,24 +28,24 @@ class Exercise1 extends Exercise {
   getCodeParts() {
     const field_type = this.level === 'easy' ? "dropdown" : "input";
     const color_field = this.createFieldDisplayDetails({
-      pretext: `${hebrewDict.ex1.trees_color} = `, 
-      valid_values: this.validColors, 
+      pretext: `${hebrewDict.ex1.trees_color} = `,
+      valid_values: this.validColors,
       default_value: this.defaultColor,
       field_type
     });
     const clouds_field = this.createFieldDisplayDetails({
-      pretext: `${hebrewDict.ex1.clouds} = `, 
-      valid_values: this.validClouds, 
+      pretext: `${hebrewDict.ex1.clouds} = `,
+      valid_values: this.validClouds,
       default_value: this.defaultClouds,
       field_type
     });
     const rainbow_field = this.createFieldDisplayDetails({
-      pretext: `${hebrewDict.ex1.rainbow} = `, 
-      valid_values: this.validRainbow, 
-      default_value: this.defaultRainbow, 
+      pretext: `${hebrewDict.ex1.rainbow} = `,
+      valid_values: this.validRainbow,
+      default_value: this.defaultRainbow,
       field_type,
       new_line: false
-    }); 
+    });
     const combined = color_field.concat(clouds_field, rainbow_field);
     return combined;
   }
@@ -80,6 +80,7 @@ class Exercise1 extends Exercise {
   isValid(color, clouds, rainbow) {
     return (
       this.validColors.includes(color) &&
+      this.isIntString(clouds) &&
       this.validClouds.includes(clouds) &&
       this.validRainbow.includes(rainbow)
     );
@@ -98,13 +99,20 @@ class Exercise1 extends Exercise {
     return { valid: false, message: this.getErrorMessage(color, clouds, rainbow) };
   }
 
+  isIntString(str) {
+    // Checks if str is a string representing a positive integer (including zero)
+    return /^\d+$/.test(str);
+  }
+
 
   getErrorMessage(color, clouds, rainbow) {
     let message = [];
     if (!this.validColors.includes(color)) {
       message.push(hebrewDict.ex1.color_error);
     }
-    if (!this.validClouds.includes(clouds)) {
+    if (!this.isIntString(clouds) || parseInt(clouds) < 0) {
+      message.push(hebrewDict.ex1.clouds_not_number);
+    } else if (!this.validClouds.includes(clouds)) {
       message.push(hebrewDict.ex1.clouds_error);
     }
     if (!this.validRainbow.includes(rainbow)) {
