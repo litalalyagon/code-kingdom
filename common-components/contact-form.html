@@ -1,0 +1,14 @@
+    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
+        <input type="text" name="_gotcha" style="display:none">
+        <!-- hidden input to know which form was sent -->
+        <input type="hidden" name="form-id" value="contact-main-page">
+        <input type="text" id="name" name="name" placeholder="שם" required>
+        <input type="email" id="email" name="email" placeholder="אימייל" required>
+        <input type="text" id="phone" name="phone" placeholder="טלפון (אופציונלי)">
+        <textarea id="message" name="message" rows="4" placeholder="איך נוכל לעזור?" required></textarea>
+        <div class="form-submit">
+            <button type="submit" class="cta-button">שליחה</button>
+            <span id="message-placeholder"></span>
+        </div>
+    </form>
+
