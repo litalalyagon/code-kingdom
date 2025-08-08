@@ -11,6 +11,7 @@
     <meta property="og:url" content="https://www.btlines.co.il/code-kingdom" />
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/nav-bar.css">
     <link rel="stylesheet" href="../styles/product-page-content.css">
     <link rel="stylesheet" href="../styles/hero.css">
     <link rel="stylesheet" href="../styles/feature-cards.css">
@@ -20,6 +21,14 @@
 </head>
 
 <body>
+    <nav class="navbar" id="navbar-placeholder"></nav>
+    <script>
+        fetch('/common-components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
 
     <header class="hero hero-book">
         <div class="hero-logo-bar">
@@ -43,7 +52,7 @@
         </a>
     </header>
 
-    <main class="landing-main">
+    <main>
         <section class="product-img-section">
 
             <section class="cta-section">
@@ -126,35 +135,24 @@
         <!-- Contact Us Section -->
         <section class="contact-section" id="contact-section">
             <h2>תרצו לשמוע עוד? דברו איתנו</h2>
-            <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
-                <input type="text" name="_gotcha" style="display:none">
-                <!-- hidden input to know which form was sent -->
-                <input type="hidden" name="form-id" value="contact-code-kingdom">
-                <input type="text" id="name" name="name" placeholder="שם" required>
-                <input type="email" id="email" name="email" placeholder="אימייל" required>
-                <textarea id="message" name="message" rows="4" placeholder="הודעה" required></textarea>
-                <div class="form-submit">
-                    <button type="submit" class="cta-button">שליחה</button>
-                    <span id="message-placeholder"></span>
-                </div>
-            </form>
         </section>
     </main>
 
-    <footer class="landing-footer">
-        <div class="social-links">
-
-            <a href="mailto:btlines.games@gmail.com">
-                btlines.games@gmail.com <i class="fa-solid fa-envelope"></i>
-            </a> |
-            <a href="https://www.facebook.com/profile.php?id=61572403636049" target="_blank">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-        </div>
-        <p>בין השורות | Between the Lines. כל הזכויות שמורות 2025 &copy;</p>
+    <footer class="footer" id="footer">
+        <script>
+            fetch('/common-components/footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('footer').innerHTML = html;
+                });
+        </script>
     </footer>
 
-    <script type="text/javascript" src="../mail.js"></script>
+    <script type="text/javascript" src="/common-components/contact-form.js"></script>
+        <script>
+        var formId = 'code-kingdom';
+        changeFormId(formId);
+     </script>
 
     <script type="module">
         import { isLoggedIn } from './usersManagment/auth.js';

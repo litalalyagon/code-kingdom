@@ -1,9 +1,20 @@
-var form = document.getElementById("contact-form");
+fetch('/common-components/contact-form.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('contact-section').innerHTML += html;
+        // Set the form-id value after loading
+        const formIdInput = document.querySelector('#contact-section input[name="form-id"]');
+        if (formIdInput) formIdInput.value = 'home-page';
+
+        const form = document.querySelector('#contact-form');
+        form.addEventListener('submit', handleSubmit);  
+});
 
 async function handleSubmit(event) {
   event.preventDefault();
   var messagePlaceholder = document.getElementById("message-placeholder");
   var data = new FormData(event.target);
+  const form = document.querySelector('#contact-form');
   fetch(event.target.action, {
     method: form.method,
     body: data,
@@ -31,4 +42,14 @@ async function handleSubmit(event) {
   });
 }
 
-form.addEventListener('submit', handleSubmit);  
+function changeFormId(formId) {
+   // wait for the contact form to be loaded before changing the id
+  const interval = setInterval(() => {
+    const formIdInput = document.querySelector('#contact-section input[name="form-id"]');
+    if (formIdInput) {
+      formIdInput.value = formId;
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+
