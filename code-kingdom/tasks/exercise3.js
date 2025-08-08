@@ -79,14 +79,9 @@ class Exercise3 extends Exercise {
     }
 
     // check if the tree varaible is present, and replace it with a default value
-    // if can be one of valid_tree_phrases
-    if (full_string.includes(hebrewDict.ex3.valid_tree_phrases[1])) {
-      tree_exists = true; 
-      full_string = full_string.replace(new RegExp(hebrewDict.ex3.valid_tree_phrases[1], 'g'), String(this.TREE_HEIGHT));
-    }
-    if (full_string.includes(hebrewDict.ex3.valid_tree_phrases[0])) {
+    if (full_string.includes(hebrewDict.ex3.tree_height_variable)) {
       tree_exists = true;
-      full_string = full_string.replace(new RegExp(hebrewDict.ex3.valid_tree_phrases[0], 'g'), String(this.TREE_HEIGHT));
+      full_string = full_string.replace(new RegExp(hebrewDict.ex3.tree_height_variable, 'g'), String(this.TREE_HEIGHT));
     }
 
     return { tree_exists, value: full_string };
