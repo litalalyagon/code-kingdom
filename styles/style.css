@@ -86,12 +86,13 @@ h1 {
 /* contact Section */
 .contact-section {
     background: #9893c3;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 500px;
-    margin: 40px auto;
+    width: 100vw;
     text-align: center;
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }
 
 .contact-form input, .contact-form textarea {
@@ -114,7 +115,7 @@ h1 {
     color: white;
     padding: 20px;
     text-align: center;
-    margin-top: 48px; /* Add extra space before the footer */
+    margin-top: 0; 
     width: 100%; /* Ensure the header and footer span the full width of the page */
     box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
@@ -158,7 +159,7 @@ h1 {
 
 
 /* Enhanced About Us Section */
-.about-us-section {
+.about-us-main-page-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,35 +170,28 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 40px auto;
     max-width: 800px;
+
+    h2 {
+        font-size: 2.5em;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+
+    p b {
+        color: #2c3e50;
+    }
 }
 
-.about-us-section h2 {
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
-}
 
-.about-us-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.about-us-section p {
-    font-size: 1.2em;
-    color: #555;
-    line-height: 1.8;
-    text-align: justify;
-    margin-bottom: 20px;
-}
-
-.about-us-section p b {
-    color: #2c3e50;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -219,7 +213,7 @@ h1 {
     }
 
     .contact-section {
-        width: 90%;
+        /* width: 90%; */
         padding: 0 20px; /* Add some padding for smaller screens */
     }
 
