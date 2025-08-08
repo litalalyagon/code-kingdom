@@ -117,6 +117,9 @@ class Exercise3 extends Exercise {
       return { valid: false, message: hebrewDict.ex3.error_tree_phrase };
     }
 
+    if (value.includes(hebrewDict.ex3.biraffe)) {
+      return { valid: false, message: hebrewDict.ex3.biraffe_error};
+    }
      // we should check the value it's all numbers and signs, not letters
     if (!/^[\d.\s\+\-]+$/.test(value)) {
       return { valid: false, message: hebrewDict.general_error_message };
