@@ -41,13 +41,11 @@ body {
     font-family: 'Heebo', sans-serif;
     background: #cfeff1;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
     min-height: 100vh;
+    width: 100vw;
     direction: rtl; /* Ensure the entire page follows RTL direction */
     text-align: center; /* Align all text to the center */
+    overflow-x: hidden; /* prevent horizontal scroll */
 }
 
 *, *::before, *::after {
@@ -87,7 +85,7 @@ h1 {
 .contact-section {
     background: #9893c3;
     padding: 20px;
-    width: 100vw;
+    width: 100%;
     text-align: center;
     form {
         max-width: 600px;
@@ -177,6 +175,7 @@ h1 {
         color: #2c3e50;
         margin-bottom: 20px;
         text-align: center;
+        margin-top: 0;
     }
 
     p {
@@ -207,14 +206,16 @@ h1 {
         line-height: 1.4;
     }
 
-    .cta-button {
-        width: 50vw;
+    .contact-form button {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        display: block;
         padding: 10px;
         font-size: 1em;
     }
 
     .contact-section {
-        /* width: 90%; */
         padding: 0 20px; /* Add some padding for smaller screens */
     }
 
@@ -229,16 +230,16 @@ h1 {
         max-width: 100%;
     }
 
-    .contact-form button {
-        width: 30%;
-    }
-
     .cta-section {
         text-align: center;
     }
 
     .contact-section {
         padding: 15px;
+    }
+
+    .about-us-main-page-section {
+        max-width: 80vw;
     }
 }
 
