@@ -1,3 +1,24 @@
+@media (max-width: 768px) {
+  .about-us-section {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 8px;
+    max-width: 98vw;
+  }
+  .about-us-photo {
+    margin-bottom: 12px;
+  }
+  .about-us-section h2 {
+    font-size: 2em;
+    margin-bottom: 12px;
+  }
+  .about-us-section p {
+    font-size: 1em;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+}
 .about-us-section {
     display: flex;
     flex-direction: row;
