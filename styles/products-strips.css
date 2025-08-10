@@ -130,6 +130,6 @@
   }
   .product-strip .product-media { justify-content: center; }
   .product-strip .product-actions { justify-content: center; }
-  .product-strip .product-image { width: 100%; max-width: 300px; }
+  .product-strip .product-image { width: 80%; max-width: 200px; }
 
 } 
