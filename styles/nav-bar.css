@@ -18,7 +18,14 @@
   margin-right: 0;
   flex-shrink: 0;
   display: inline-block;
-  vertical-align: middle; /* Ensures vertical centering with text */
+  vertical-align: middle;
+  transition: transform 0.2s;
+  border-radius: 8px;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.07);
+  cursor: pointer;
 }
 
 .navbar a {
