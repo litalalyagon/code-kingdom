@@ -346,6 +346,7 @@ h1 {
   font-family: serif;
   font-weight: bold;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .right-quote {

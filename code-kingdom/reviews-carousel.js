@@ -1,5 +1,5 @@
 const reviews = [
-            {text: "תודה רבה על הספר. הבן שלי מרותק. ישר כח על הרעיון והיישום!", author: "תמר, אמא של נועם בן ה-9"},
+            {text: "תודה רבה על הספר. הבן שלי מרותק. יישר כח על הרעיון והיישום!", author: "תמר, אמא של נועם בן ה-9"},
             {text: "הוא מאוד נהנה! אוהב את השילוב של הספר והמחשב", author: "אילנית, אמא של איל בן  ה-10"},
             {text: "הוא ישב על זה מהרגע שקם עד שהיינו צריכים לצאת מהבית", author: "אורי, אבא של איתמר בן ה-8"},
             {text: "הספר ניתן לאחיין שלי היום והוא בעננים", author: "תמי, דודה של אופיר בן ה-9"},
@@ -13,8 +13,7 @@ function reviewCard(review, isActive = false) {
     <div class="carousel-review${isActive ? ' active' : ''}">
       <div class="review-text">
         <span class="big-quote right-quote">”</span>
-        ${review.text}
-        <span class="big-quote left-quote">“</span>
+        ${review.text}&nbsp;<span class="big-quote left-quote">“</span>
       </div>
       <div class="review-author">(${review.author})</div>
     </div>
