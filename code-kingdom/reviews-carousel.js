@@ -21,6 +21,16 @@ function reviewCard(review, isActive = false) {
   `;
 }
 
+let autoRotate;
+
+function resetAutoRotate() {
+    clearInterval(autoRotate);
+    autoRotate = setInterval(() => {
+        current = (current + 1) % reviews.length;
+        renderCarousel();
+    }, 6000);
+}
+
 function renderCarousel() {
     const isMobile = window.innerWidth < 700;
     if (isMobile) {
@@ -41,19 +51,16 @@ function renderCarousel() {
     track.querySelector('.carousel-arrow.left').onclick = () => {
         current = (current + 1) % reviews.length;
         renderCarousel();
+        resetAutoRotate();
     };
     track.querySelector('.carousel-arrow.right').onclick = () => {
         current = (current - 1 + reviews.length) % reviews.length;
         renderCarousel();
+        resetAutoRotate();
     };
 }
 
 renderCarousel();
-
-// Auto-rotate every 6 seconds
-setInterval(() => {
-current = (current + 1) % reviews.length;
-renderCarousel();
-}, 6000);
+resetAutoRotate();
 
 window.addEventListener('resize', renderCarousel);
