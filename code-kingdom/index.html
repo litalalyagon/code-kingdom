@@ -197,13 +197,17 @@
         const track = document.getElementById('carousel-track');
 
         function reviewCard(review, isActive = false) {
-        return `
-            <div class="carousel-review${isActive ? ' active' : ''}">
-            <div class="review-text">${review.text}</div>
-            <div class="review-author">(${review.author})</div>
-            </div>
-        `;
-        }
+  return `
+    <div class="carousel-review${isActive ? ' active' : ''}">
+      <div class="review-text">
+        <span class="big-quote right-quote">”</span>
+        ${review.text}
+        <span class="big-quote left-quote">“</span>
+      </div>
+      <div class="review-author">(${review.author})</div>
+    </div>
+  `;
+}
 
     function renderCarousel() {
         track.innerHTML = `

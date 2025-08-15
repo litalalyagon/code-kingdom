@@ -333,7 +333,25 @@ h1 {
 }
 
 .carousel-review .review-text {
+  direction: rtl; /* For Hebrew, use rtl */
   width: 100%;
   text-align: center;
   display: block;
+}
+
+.big-quote {
+  font-size: 2em;
+  color: #2986cc; /* or any accent color you prefer */
+  vertical-align: middle;
+  font-family: serif;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.right-quote {
+  margin-right: 6px;
+}
+
+.left-quote {
+  margin-left: 6px;
 }
