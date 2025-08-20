@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תודה על הרכישה! | ממלכת הקוד</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/nav-bar.css">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        .thanks-container {
+            max-width: 600px;
+            margin: 48px auto;
+            padding: 32px 24px;
+            text-align: center;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+        .thanks-icon {
+            font-size: 48px;
+            color: #4CAF50;
+            margin-bottom: 24px;
+        }
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 24px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .whatsapp-button:hover {
+            background: #128C7E;
+        }
+        @media (max-width: 600px) {
+            .thanks-container {
+                margin: 24px 16px;
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar-placeholder"></nav>
+    <script>
+        fetch('/common-components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <main>
+        <div class="thanks-container">
+            <i class="fas fa-check-circle thanks-icon"></i>
+            <h1>תודה על הרכישה!</h1>
+            <p>אנחנו שמחים שהצטרפת למסע בממלכת הקוד.</p>
+            <p>הספר יישלח בימים הקרובים. <br> אם בחרת באיסוף עצמי, ניצור איתך קשר לתיאום.</p>
+            <p>בינתיים, אנחנו מזמינים אותך להצטרף לקבוצת הוואטסאפ שלנו, שבה אנחנו מפרסמים חידות לילדים ולנוער:</p>
+            
+            <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" 
+               class="whatsapp-button" 
+               target="_blank" 
+               rel="noopener">
+                <i class="fab fa-whatsapp"></i>
+                הצטרפו לקבוצה שלנו
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer" id="footer">
+
+    </footer>
+            <script>
+        fetch('/common-components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+    
+</body>
+</html>
