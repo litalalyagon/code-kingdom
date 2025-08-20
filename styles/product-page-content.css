@@ -6,8 +6,8 @@
 .product-img-section {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
     padding: 50px;
     margin: 0 auto;
     direction: ltr;
@@ -27,8 +27,8 @@
     font-size: 1.2em;
     line-height: 1.6;
     color: #555;
-     text-align: right; /* Align the book description text to the right */
-     direction: rtl; /* Set text direction to right-to-left */
+    text-align: right; /* Align the book description text to the right */
+    direction: rtl; /* Set text direction to right-to-left */
     max-width: 600px;
 }
 
