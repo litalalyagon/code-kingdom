@@ -1,4 +1,3 @@
-
 .product-strip {
   width: 100%;
   margin-inline: 0;
@@ -103,17 +102,28 @@
 }
 
 /* Button and accessibility enhancements */
-.cta-button { display: inline-flex; align-items: center; gap: 8px; }
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+}
+
 .product-strip .cta-button { margin: 0; min-height: 44px; }
 .cta-button:focus-visible { outline: 3px solid #1e3a8a; outline-offset: 2px; }
 
 /* Secondary button style to complement .cta-button */
-.cta-button.secondary { background: #0ed034; }
-.cta-button.secondary:hover { background: #0bb62d; }
+.cta-button.secondary { 
+  background: #fff; color: #376ecb !important; 
+  /* bold */
+  font-weight: 600;
+}
 
-  .product-strip.reverse .product-media {
+.product-strip.reverse .product-media {
   justify-content: center;
-  }
+}
   
 /* Responsive */
 @media (max-width: 900px) {
@@ -129,7 +139,21 @@
 
   }
   .product-strip .product-media { justify-content: center; }
+  .product-strip .product-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
   .product-strip .product-actions { justify-content: center; }
   .product-strip .product-image { width: 80%; max-width: 200px; }
-
-} 
+  .product-strip .cta-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .product-strip .cta-button.secondary {
+    margin-top: 8px;
+  }
+}
