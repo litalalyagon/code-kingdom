@@ -59,8 +59,9 @@ form.addEventListener("submit", async (e) => {
         // Step 3: Register user
         await registerUser(email, password, name);
 
-        status.textContent = "נרשמת בהצלחה! נשלח מייל לאימות, יש לאשר את כתובת המייל לפני הכניסה לאתר. \nבדקו גם את תיקיית הספאם.";
+        status.textContent = `נרשמת בהצלחה! נשלח מייל לאימות לכתובת ${email}. יש לאשר את כתובת המייל לפני הכניסה לאתר. \nבדקו גם את תיקיית הספאם.`;
         status.className = "success";
+        
         form.reset();
         
     } catch (error) {

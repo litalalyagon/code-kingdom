@@ -6,7 +6,7 @@ document.getElementById("sendVerificationBtn").addEventListener("click", async (
     if (user) {
         try {
             await sendVerification(user);
-            document.getElementById("status").textContent = "אימייל אישור נשלח! אם לא קיבלת את האימייל, בדוק את תיקיית הספאם שלך.";
+            document.getElementById("status").textContent = `אימייל אישור נשלח לכתובת ${user.email}. אם לא קיבלת את האימייל, בדוק את תיקיית הספאם שלך.`;
         } catch (error) {
             if (error.code === 'auth/too-many-requests') {
                 document.getElementById("status").textContent = "יותר מדי ניסיונות לשליחת אימייל. אנא נסה מאוחר יותר.";
