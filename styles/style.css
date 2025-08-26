@@ -252,14 +252,14 @@ h1 {
 }
 
 .reviews-carousel {
-  max-width: 700px;
-  margin: 0 auto 32px auto;
-  padding: 0; /* Remove padding */
-  background: none; /* Remove background */
-  border-radius: 0;
-  box-shadow: none;
-  min-height: 80px;
-  position: relative;
+    max-width: 700px;
+    margin: 0 auto 32px auto;
+    padding: 0; /* Remove padding */
+    background: none; /* Remove background */
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 80px;
+    position: relative;
 }
 
 .carousel-track {
