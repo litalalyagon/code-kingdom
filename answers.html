@@ -25,7 +25,7 @@
 
     <main>
         <header>
-            <h1 style="text-align:center; margin-top:2rem;">בדיקת תשובה לחידה מקבוצת הוואצאפ של "בין השורות"</h1>
+            <h1 style="text-align:center; margin-top:2rem;">בדיקת תשובה לחידה של קבוצת הוואצאפ של "בין השורות"</h1>
         </header>
         <section class="riddle-answer-section" style="max-width: 500px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); padding: 2rem;">
             <h2 id="riddle-title">חידה מספר 1: חוזרים לבית הספר</h2>
@@ -34,7 +34,8 @@
                 <input type="text" id="answerInput" name="answerInput" style="width:100%;margin:12px 0;padding:10px;border-radius:6px;border:1px solid #ccc;">
                 <button type="submit" class="cta-button" style="width:100%;margin-bottom:10px;">בדוק תשובה</button>
             </form>
-            <div id="answerMessage" style="margin-top:10px;min-height:24px;font-weight:bold;"></div>
+            <div id="answerMessage" style="margin-top:10px;min-height:24px;font-weight:bold;cursor:pointer;"></div>
+            <div id="clueMessage" style="margin-top:10px;min-height:24px;font-weight:bold;display:none;"></div>
         </section>
 
         <section class="product-strip product-strip--light" style="margin-top:2rem;">
@@ -72,20 +73,40 @@
         // Simple answer check logic
         document.addEventListener('DOMContentLoaded', function() {
             const correctAnswer = "ראשון"; // Change to the correct answer
+            const clueText = "הסתכלו טוב על החפצים שבחידה, כל חפץ מייצג אות אחת מהפתרון."; // Change to your clue
             const form = document.getElementById('answerForm');
             const input = document.getElementById('answerInput');
             const message = document.getElementById('answerMessage');
+            const clueMsg = document.getElementById('clueMessage');
+
+            let lastWrong = false;
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
+                clueMsg.style.display = "none";
                 if (input.value.trim() === "") {
                     message.textContent = "אנא הכניסו תשובה.";
                     message.style.color = "#e74c3c";
+                    message.style.cursor = "default";
+                    lastWrong = false;
                 } else if (input.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
                     message.textContent = "נכון! כל הכבוד 🎉";
                     message.style.color = "#27ae60";
+                    message.style.cursor = "default";
+                    lastWrong = false;
                 } else {
-                    message.textContent = "לא נכון, נסו שוב.";
+                    message.textContent = "תשובה לא נכונה, נסו שוב. לחצו כאן לקבלת רמז.";
                     message.style.color = "#e74c3c";
+                    message.style.cursor = "pointer";
+                    lastWrong = true;
+                }
+            });
+
+            message.addEventListener('click', function() {
+                if (lastWrong) {
+                    clueMsg.textContent = clueText;
+                    clueMsg.style.display = "block";
+                    clueMsg.style.color = "#376ecb";
                 }
             });
         });
