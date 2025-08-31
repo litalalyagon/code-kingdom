@@ -1,7 +1,7 @@
 import { renderMenu, setActiveMenu, setCompletedStages } from './menu.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { auth, db } from "../firebaseConfig.js";
+import { auth, db } from "../../firebase/firebaseConfig.js";
 import { renderExercise } from './exercise.js';
 import { logout, getChildName } from '../usersManagment/authHandler.js';
 import { isLoggedIn } from "../usersManagment/auth.js";
