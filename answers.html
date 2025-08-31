@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת תשובה לחידה | בין השורות</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/nav-bar.css">
+    <link rel="stylesheet" href="./styles/hero.css">
+    <link rel="stylesheet" href="./styles/feature-cards.css">
+    <link rel="stylesheet" href="./styles/products-strips.css">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <nav class="navbar" id="navbar-placeholder"></nav>
+    <script>
+        fetch('./common-components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <main>
+        <header>
+            <h1 style="text-align:center; margin-top:2rem;">בדיקת תשובה לחידה מקבוצת הוואצאפ של "בין השורות"</h1>
+        </header>
+        <section class="riddle-answer-section" style="max-width: 500px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); padding: 2rem;">
+            <h2 id="riddle-title">חידה מספר 1: חוזרים לבית הספר</h2>
+            <form id="answerForm" autocomplete="off">
+                <label for="answerInput">הכניסו את התשובה שלכם:</label>
+                <input type="text" id="answerInput" name="answerInput" style="width:100%;margin:12px 0;padding:10px;border-radius:6px;border:1px solid #ccc;">
+                <button type="submit" class="cta-button" style="width:100%;margin-bottom:10px;">בדוק תשובה</button>
+            </form>
+            <div id="answerMessage" style="margin-top:10px;min-height:24px;font-weight:bold;"></div>
+        </section>
+
+        <section class="product-strip product-strip--light" style="margin-top:2rem;">
+            <div class="product-content">
+                <div class="product-media">
+                    <img src="assets/book-cover.png" alt="ממלכת הקוד" class="product-image" loading="lazy" decoding="async" width="180" height="180">
+                </div>
+                <div class="product-info">
+                    <h3>אורי והדס בממלכת הקוד</h3>
+                    <p>ספר ההרפתקאות הראשון שמלמד ילדים בגילאי היסודי איך לתכנת!</p>
+                    <div class="product-actions">
+                        <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" class="cta-button" title="הזמנת הספר" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            הזמינו עכשיו
+                        </a>
+                        <a href="./code-kingdom/" class="cta-button secondary" title="לעמוד הספר">
+                            לפרטים נוספים
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <footer class="footer" id="footer">
+    <script>
+        fetch('./common-components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+        });
+        </script>
+</footer>
+ <script>
+        // Simple answer check logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctAnswer = "ראשון"; // Change to the correct answer
+            const form = document.getElementById('answerForm');
+            const input = document.getElementById('answerInput');
+            const message = document.getElementById('answerMessage');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (input.value.trim() === "") {
+                    message.textContent = "אנא הכניסו תשובה.";
+                    message.style.color = "#e74c3c";
+                } else if (input.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+                    message.textContent = "נכון! כל הכבוד 🎉";
+                    message.style.color = "#27ae60";
+                } else {
+                    message.textContent = "לא נכון, נסו שוב.";
+                    message.style.color = "#e74c3c";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
