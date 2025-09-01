@@ -40,13 +40,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         // puzzles.forEach((p) => {
         //     const option = document.createElement("option");
         //     option.value = p.id;
-        //     option.textContent = p.title;
+        //     option.textContent = `חידה ${p.id}: ${p.title}`;
         //     dropdown.appendChild(option);
         // });
 
         // select last puzzle by defualt
         if (puzzles.length > 0) {
-            selectPuzzle(puzzles[puzzles.length - 1].id);
+            const lastPuzzle = puzzles[puzzles.length - 1];
+            selectPuzzle(lastPuzzle.id);
+            // dropdown.value = lastPuzzle.id; 
         }
     }
 
