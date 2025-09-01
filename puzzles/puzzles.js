@@ -80,30 +80,37 @@ document.addEventListener('DOMContentLoaded', async function() {
             message.style.color = "#e74c3c";
             message.style.cursor = "default";
             lastWrong = false;
-        } else if (input.value.trim().toLowerCase() === currentPuzzle.answer.toLowerCase()) {
-            message.textContent = "נכון! כל הכבוד 🎉";
-            message.style.color = "#27ae60";
-            message.style.cursor = "default";
-            lastWrong = false;
-            
-           // Increment solve counter atomically
-            if (markRiddleCompleted(currentPuzzle.id)) {
-                try {
-                    const puzzleRef = doc(db, "whatsapp_puzzles", currentPuzzle.id);
-                    await updateDoc(puzzleRef, {
-                        solve_counter: increment(1)
-                    });
-                    currentPuzzle.solve_counter += 1; // Update local copy if needed
-                    counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
-                } catch (error) {
-                    console.error("Error updating solve counter:", error);
-                }
-            }
         } else {
-            message.textContent = "תשובה לא נכונה, נסו שוב. לחצו כאן לקבלת רמז.";
-            message.style.color = "#e74c3c";
-            message.style.cursor = "pointer";
-            lastWrong = true;
+            const userAnswer = input.value.trim().toLowerCase();
+            const isCorrect = currentPuzzle.answers.some(ans => ans.toLowerCase() === userAnswer);
+
+            if (isCorrect) {
+                message.textContent = "נכון! כל הכבוד 🎉";
+                message.style.color = "#27ae60";
+                message.style.cursor = "default";
+                lastWrong = false;
+                 message.style.textDecoration = "none";
+                
+                // Increment solve counter atomically
+                if (markRiddleCompleted(currentPuzzle.id)) {
+                    try {
+                        const puzzleRef = doc(db, "whatsapp_puzzles", currentPuzzle.id);
+                        await updateDoc(puzzleRef, {
+                            solve_counter: increment(1)
+                        });
+                        currentPuzzle.solve_counter += 1; // Update local copy if needed
+                        counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
+                    } catch (error) {
+                        console.error("Error updating solve counter:", error);
+                    }
+                }
+            } else {
+                message.textContent = "תשובה לא נכונה, נסו שוב. לחצו כאן לקבלת רמז.";
+                message.style.color = "#6921d5ff";
+                message.style.cursor = "pointer";
+                message.style.textDecoration = "underline";
+                lastWrong = true;
+            }
         }
     });
 
