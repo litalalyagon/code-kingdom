@@ -1,5 +1,5 @@
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { db } from "../firebaseConfig.js";
+import { db } from "../../firebase/firebaseConfig.js";
 import { registerUser } from "./authHandler.js";
 
 const form = document.getElementById("registerForm");
