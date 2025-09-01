@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בדיקת תשובה לחידה | בין השורות</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/nav-bar.css">
-    <link rel="stylesheet" href="./styles/hero.css">
-    <link rel="stylesheet" href="./styles/feature-cards.css">
-    <link rel="stylesheet" href="./styles/products-strips.css">
-    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <title>חידות | בין השורות</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/hero.css">
+    <link rel="stylesheet" href="/styles/feature-cards.css">
+    <link rel="stylesheet" href="/styles/products-strips.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js" type="module"></script>
 </head>
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
     <script>
-        fetch('./common-components/navbar.html')
+        fetch('/common-components/navbar.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-placeholder').innerHTML = html;
@@ -28,7 +30,13 @@
             <h1 style="text-align:center; margin-top:2rem;">"חידות בין השורות" - בדיקת תשובות</h1>
         </header>
         <section class="riddle-answer-section" style="max-width: 500px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); padding: 2rem;">
-            <h2 id="riddle-title">חידה מספר 1: חוזרים לבית הספר</h2>
+             <!-- <label for="puzzleDropdown">בחרו חידה:</label> -->
+            <!-- <select id="puzzleDropdown" style="width:100%; margin:12px 0; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            </select> -->
+
+            <h2 id="riddle-title"></h2>
+            <p id="solve-counter" style="font-weight:bold; margin-top:8px;"></p>
+
             <form id="answerForm" autocomplete="off">
                 <label for="answerInput">הכניסו את התשובה שלכם:</label>
                 <input type="text" id="answerInput" name="answerInput" style="width:100%;margin:12px 0;padding:10px;border-radius:6px;border:1px solid #ccc;">
@@ -41,7 +49,7 @@
         <section class="product-strip product-strip--light" style="margin-top:2rem;">
             <div class="product-content">
                 <div class="product-media">
-                    <img src="assets/book-cover.png" alt="ממלכת הקוד" class="product-image" loading="lazy" decoding="async" width="180" height="180">
+                    <img src="/assets/book-cover.png" alt="ממלכת הקוד" class="product-image" loading="lazy" decoding="async" width="180" height="180">
                 </div>
                 <div class="product-info">
                     <h3>אורי והדס בממלכת הקוד</h3>
@@ -51,7 +59,7 @@
                             <i class="fa-solid fa-cart-shopping"></i>
                             הזמינו עכשיו
                         </a>
-                        <a href="./code-kingdom/" class="cta-button secondary" title="לעמוד הספר">
+                        <a href="/code-kingdom/" class="cta-button secondary" title="לעמוד הספר">
                             לפרטים נוספים
                         </a>
                     </div>
@@ -62,54 +70,13 @@
 
      <footer class="footer" id="footer">
     <script>
-        fetch('./common-components/footer.html')
+        fetch('/common-components/footer.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('footer').innerHTML = html;
         });
         </script>
 </footer>
- <script>
-        // Simple answer check logic
-        document.addEventListener('DOMContentLoaded', function() {
-            const correctAnswer = "ראשון"; // Change to the correct answer
-            const clueText = "הסתכלו טוב על החפצים שבחידה, כל חפץ מייצג אות אחת מהפתרון."; // Change to your clue
-            const form = document.getElementById('answerForm');
-            const input = document.getElementById('answerInput');
-            const message = document.getElementById('answerMessage');
-            const clueMsg = document.getElementById('clueMessage');
-
-            let lastWrong = false;
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                clueMsg.style.display = "none";
-                if (input.value.trim() === "") {
-                    message.textContent = "אנא הכניסו תשובה.";
-                    message.style.color = "#e74c3c";
-                    message.style.cursor = "default";
-                    lastWrong = false;
-                } else if (input.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
-                    message.textContent = "נכון! כל הכבוד 🎉";
-                    message.style.color = "#27ae60";
-                    message.style.cursor = "default";
-                    lastWrong = false;
-                } else {
-                    message.textContent = "תשובה לא נכונה, נסו שוב. לחצו כאן לקבלת רמז.";
-                    message.style.color = "#e74c3c";
-                    message.style.cursor = "pointer";
-                    lastWrong = true;
-                }
-            });
-
-            message.addEventListener('click', function() {
-                if (lastWrong) {
-                    clueMsg.textContent = clueText;
-                    clueMsg.style.display = "block";
-                    clueMsg.style.color = "#376ecb";
-                }
-            });
-        });
-    </script>
+<script type="module" src="./puzzles.js"></script>
 </body>
 </html>

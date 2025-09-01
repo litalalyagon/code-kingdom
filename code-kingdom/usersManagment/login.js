@@ -1,5 +1,5 @@
 import { loginUser } from "./authHandler.js";
-import { auth } from "../firebaseConfig.js";
+import { auth } from "../../firebase/firebaseConfig.js";
 
 const form = document.getElementById("loginForm");
 const status = document.getElementById("status");

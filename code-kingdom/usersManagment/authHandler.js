@@ -1,6 +1,6 @@
 import { signOut, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import { auth, db, verificationMailUrl} from "../firebaseConfig.js";
+import { auth, db, verificationMailUrl} from "../../firebase/firebaseConfig.js";
 
 export async function logout() {
   try {

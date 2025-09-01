@@ -1,4 +1,4 @@
-import { auth } from "../firebaseConfig.js";
+import { auth } from "../../firebase/firebaseConfig.js";
 import { sendVerification } from "./authHandler.js";
 
 document.getElementById("sendVerificationBtn").addEventListener("click", async () => {
