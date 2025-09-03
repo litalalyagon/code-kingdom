@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     const clueMsg = document.getElementById('clueMessage');
     const dropdown = document.getElementById("puzzleDropdown");
     const counter = document.getElementById("solve-counter");
+    const hintButton = document.getElementById("hintButton");
 
     let puzzles = [];
     let currentPuzzle = null;
-    let lastWrong = false;
 
     async function loadPuzzles() {
         const puzzlesCol = collection(db, "whatsapp_puzzles");
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             ...docSnap.data()
         }));
 
-        // filter only the enbled puzzles
+        // filter only the enabled puzzles
         puzzles = puzzles.filter(p => p.enabled);
 
         dropdown.innerHTML = "";
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             dropdown.appendChild(option);
         });
 
-        // select last puzzle by defualt
+        // select last puzzle by default
         if (puzzles.length > 0) {
             const lastPuzzle = puzzles[puzzles.length - 1];
             selectPuzzle(lastPuzzle.id);
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // selec puzzle by id
+    // select puzzle by id
     function selectPuzzle(puzzleId) {
         currentPuzzle = puzzles.find((p) => p.id === puzzleId);
         if (currentPuzzle) {
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         selectPuzzle(e.target.value);
     });
 
-
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         if (!currentPuzzle) return;
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             message.textContent = "אנא הכניסו תשובה.";
             message.style.color = "#e74c3c";
             message.style.cursor = "default";
-            lastWrong = false;
         } else {
             const userAnswer = input.value.trim().toLowerCase();
             const isCorrect = currentPuzzle.answers.some(ans => ans.toLowerCase() === userAnswer);
@@ -91,9 +89,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 message.textContent = "נכון! כל הכבוד 🎉";
                 message.style.color = "#27ae60";
                 message.style.cursor = "default";
-                lastWrong = false;
-                 message.style.textDecoration = "none";
-                
+                message.style.textDecoration = "none";
+
                 // Increment solve counter atomically
                 if (markRiddleCompleted(currentPuzzle.id)) {
                     try {
@@ -108,18 +105,15 @@ document.addEventListener('DOMContentLoaded', async function() {
                     }
                 }
             } else {
-                message.textContent = "תשובה לא נכונה, נסו שוב. לחצו כאן לקבלת רמז.";
-                message.style.color = "#6921d5ff";
-                message.style.cursor = "pointer";
-                message.style.textDecoration = "underline";
-                lastWrong = true;
+                message.textContent = "תשובה לא נכונה, נסו שוב!";
+                message.style.color = "#ea3b28ff";
             }
         }
     });
 
-    // show clue
-    message.addEventListener('click', function() {
-        if (lastWrong && currentPuzzle) {
+    // show clue when hint button is clicked
+    hintButton.addEventListener('click', function() {
+        if (currentPuzzle) {
             clueMsg.textContent = currentPuzzle.clue;
             clueMsg.style.display = "block";
             clueMsg.style.color = "#376ecb";
