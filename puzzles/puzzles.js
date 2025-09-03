@@ -16,7 +16,7 @@ function markRiddleCompleted(riddleId) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    const riddleTitle = document.getElementById('riddle-title');
+    // const riddleTitle = document.getElementById('riddle-title');
     const form = document.getElementById('answerForm');
     const input = document.getElementById('answerInput');
     const message = document.getElementById('answerMessage');
@@ -32,23 +32,26 @@ document.addEventListener('DOMContentLoaded', async function() {
         const puzzlesCol = collection(db, "whatsapp_puzzles");
         const snapshot = await getDocs(puzzlesCol);
         puzzles = snapshot.docs.map((docSnap) => ({
-        id: docSnap.id,
-        ...docSnap.data()
+            id: docSnap.id,
+            ...docSnap.data()
         }));
 
-        // dropdown.innerHTML = "";
-        // puzzles.forEach((p) => {
-        //     const option = document.createElement("option");
-        //     option.value = p.id;
-        //     option.textContent = `חידה ${p.id}: ${p.title}`;
-        //     dropdown.appendChild(option);
-        // });
+        // filter only the enbled puzzles
+        puzzles = puzzles.filter(p => p.enabled);
+
+        dropdown.innerHTML = "";
+        puzzles.forEach((p) => {
+            const option = document.createElement("option");
+            option.value = p.id;
+            option.textContent = `חידה ${p.id}: ${p.title}`;
+            dropdown.appendChild(option);
+        });
 
         // select last puzzle by defualt
         if (puzzles.length > 0) {
             const lastPuzzle = puzzles[puzzles.length - 1];
             selectPuzzle(lastPuzzle.id);
-            // dropdown.value = lastPuzzle.id; 
+            dropdown.value = lastPuzzle.id; 
         }
     }
 
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     function selectPuzzle(puzzleId) {
         currentPuzzle = puzzles.find((p) => p.id === puzzleId);
         if (currentPuzzle) {
-            riddleTitle.textContent = `חידה מספר ${currentPuzzle.id}: ${currentPuzzle.title}`;
+            // riddleTitle.textContent = `חידה מספר ${currentPuzzle.id}: ${currentPuzzle.title}`;
             clueMsg.style.display = "none";
             message.textContent = "";
             input.value = "";
@@ -65,9 +68,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // listen for dropdown change
-    // dropdown.addEventListener("change", (e) => {
-    //     selectPuzzle(e.target.value);
-    // });
+    dropdown.addEventListener("change", (e) => {
+        selectPuzzle(e.target.value);
+    });
 
 
     form.addEventListener('submit', async function(e) {
