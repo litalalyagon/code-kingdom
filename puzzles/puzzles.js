@@ -31,10 +31,29 @@ document.addEventListener('DOMContentLoaded', async function() {
     async function loadPuzzles() {
         const puzzlesCol = collection(db, "whatsapp_puzzles");
         const snapshot = await getDocs(puzzlesCol);
-        puzzles = snapshot.docs.map((docSnap) => ({
-            id: docSnap.id,
-            ...docSnap.data()
-        }));
+        puzzles = snapshot.docs.map((docSnap) => {
+            const data = docSnap.data();
+            let parsedDate = "";
+            if (data.date) {
+                let d;
+                if (typeof data.date === 'object' && typeof data.date.toDate === 'function') {
+                    d = data.date.toDate();
+                } else {
+                    d = new Date(data.date);
+                }
+                if (d && !isNaN(d.getTime())) {
+                    let day = String(d.getDate()).padStart(2, '0');
+                    let month = String(d.getMonth() + 1).padStart(2, '0');
+                    let year = String(d.getFullYear()).slice(-2);
+                    parsedDate = `${day}/${month}/${year}`;
+                }
+            }
+            return {
+                id: docSnap.id,
+                ...data,
+                parsedDate
+            };
+        });
 
         // filter only the enabled puzzles
         puzzles = puzzles.filter(p => p.enabled);
@@ -43,7 +62,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         puzzles.forEach((p) => {
             const option = document.createElement("option");
             option.value = p.id;
-            option.textContent = `חידה ${p.id}: ${p.title}`;
+            let dateText = p.parsedDate ? ` (${p.parsedDate})` : "";
+            option.textContent = `חידה ${p.id}: ${p.title}${dateText}`;
             dropdown.appendChild(option);
         });
 
