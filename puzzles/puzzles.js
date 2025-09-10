@@ -31,23 +31,44 @@ document.addEventListener('DOMContentLoaded', async function() {
     async function loadPuzzles() {
         const puzzlesCol = collection(db, "whatsapp_puzzles");
         const snapshot = await getDocs(puzzlesCol);
-        puzzles = snapshot.docs.map((docSnap) => ({
-            id: docSnap.id,
-            ...docSnap.data()
-        }));
+        puzzles = snapshot.docs.map((docSnap) => {
+            const data = docSnap.data();
+            let parsedDate = "";
+            if (data.date) {
+                let d;
+                if (typeof data.date === 'object' && typeof data.date.toDate === 'function') {
+                    d = data.date.toDate();
+                } else {
+                    d = new Date(data.date);
+                }
+                if (d && !isNaN(d.getTime())) {
+                    let day = String(d.getDate()).padStart(2, '0');
+                    let month = String(d.getMonth() + 1).padStart(2, '0');
+                    let year = String(d.getFullYear()).slice(-2);
+                    parsedDate = `${day}/${month}/${year}`;
+                }
+            }
+            return {
+                id: docSnap.id,
+                ...data,
+                parsedDate
+            };
+        });
 
         // filter only the enabled puzzles
         puzzles = puzzles.filter(p => p.enabled);
 
         dropdown.innerHTML = "";
-        puzzles.forEach((p) => {
+        // Reverse order for display, but keep latest as default
+        puzzles.slice().reverse().forEach((p) => {
             const option = document.createElement("option");
             option.value = p.id;
-            option.textContent = `חידה ${p.id}: ${p.title}`;
+            let dateText = p.parsedDate ? ` (${p.parsedDate})` : "";
+            option.textContent = `חידה ${p.id}: ${p.title}${dateText}`;
             dropdown.appendChild(option);
         });
 
-        // select last puzzle by default
+        // select last puzzle by default (latest)
         if (puzzles.length > 0) {
             const lastPuzzle = puzzles[puzzles.length - 1];
             selectPuzzle(lastPuzzle.id);
