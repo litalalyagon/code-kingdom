@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         puzzles = puzzles.filter(p => p.enabled);
 
         dropdown.innerHTML = "";
-        puzzles.forEach((p) => {
+        // Reverse order for display, but keep latest as default
+        puzzles.slice().reverse().forEach((p) => {
             const option = document.createElement("option");
             option.value = p.id;
             let dateText = p.parsedDate ? ` (${p.parsedDate})` : "";
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             dropdown.appendChild(option);
         });
 
-        // select last puzzle by default
+        // select last puzzle by default (latest)
         if (puzzles.length > 0) {
             const lastPuzzle = puzzles[puzzles.length - 1];
             selectPuzzle(lastPuzzle.id);
