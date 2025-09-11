@@ -129,11 +129,6 @@ h1 {
     color: #16a085;
 }
 
-.terms-links {
-    margin-top: 10px;
-    font-size: 0.9em;
-}
-
 #order-button {
     display: inline-block;
     text-align: center;
@@ -156,7 +151,7 @@ h1 {
   font-size: 1.08em;
 }
 .footer-links a {
-  color: #3579bd;
+  color: white;
   text-decoration: none;
   margin: 0 8px;
   padding: 2px 8px;
@@ -164,7 +159,7 @@ h1 {
   transition: background 0.2s, color 0.2s;
 }
 .footer-links a:hover {
-  color: #005bb5;
+  color: #829ebb;
   text-decoration: underline;
 }
 

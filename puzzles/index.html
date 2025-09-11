@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/hero.css">
     <link rel="stylesheet" href="/styles/feature-cards.css">
     <link rel="stylesheet" href="/styles/products-strips.css">
+    <link rel="stylesheet" href="./puzzles.css">
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -26,18 +27,18 @@
     </script>
 
     <!-- Book Banner - Top of Page -->
-    <section class="product-strip product-strip--light" style="margin: 0 auto 1.5rem auto; max-width: 500px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1rem; display: flex; align-items: center;">
-        <img src="/assets/book-cover.png" alt="ממלכת הקוד" style="width:64px; height:64px; border-radius:8px; margin-left:16px;">
-        <div style="flex:1;">
-            <div style="font-size:1.05em; font-weight:bold; margin-bottom:6px;">
+    <section class="product-strip product-strip--light book-banner">
+        <img src="/assets/book-cover.png" alt="ממלכת הקוד">
+        <div class="book-banner-flex">
+            <div class="book-banner-text">
                 נהנים מהחידות שלנו? הכירו את ספר ההרפתקאות החידתי שמלמד ילדים לתכנת!
             </div>
-            <div style="display:flex; gap:8px;">
-                <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" class="cta-button" title="הזמנת הספר" target="_blank" rel="noopener" style="padding:6px 14px; font-size:0.95em;">
+            <div class="book-banner-buttons">
+                <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" class="cta-button book-banner-button" title="הזמנת הספר" target="_blank" rel="noopener">
                     <i class="fa-solid fa-cart-shopping"></i>
                     הזמינו עכשיו
                 </a>
-                <a href="/code-kingdom/" class="cta-button secondary" title="לעמוד הספר" style="padding:6px 14px; font-size:0.95em;">
+                <a href="/code-kingdom/" class="cta-button secondary book-banner-button" title="לעמוד הספר">
                     לפרטים נוספים
                 </a>
             </div>
@@ -46,35 +47,35 @@
 
     <main>
         <header>
-            <h1 style="text-align:center; margin-top:2rem;">"חידות בין השורות" - בדיקת תשובות</h1>
+            <h1>"חידות בין השורות" - בדיקת תשובות</h1>
         </header>
-        <section class="riddle-answer-section" style="max-width: 500px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); padding: 2rem;">
+        <section class="puzzle-answer-section">
             <label for="puzzleDropdown">בחרו חידה:</label>
-            <select id="puzzleDropdown" style="width:100%; margin:12px 0; padding:10px; border-radius:6px; border:1px solid #ccc;">
+            <select id="puzzleDropdown">
             </select>
 
             <!-- <h2 id="riddle-title"></h2> -->
-            <p id="solve-counter" style="font-weight:bold; margin-top:8px;"></p>
+            <p id="solve-counter"></p>
 
             <form id="answerForm" autocomplete="off">
                 <label for="answerInput">הכניסו את התשובה שלכם:</label>
-                <input type="text" id="answerInput" name="answerInput" style="width:100%;margin:12px 0;padding:10px;border-radius:6px;border:1px solid #ccc;">
-                <button type="submit" class="cta-button" style="width:100%;margin-bottom:10px;">בדיקה</button>
+                <input type="text" id="answerInput" name="answerInput" class="puzzle-answer-input">
+                <button type="submit" class="cta-button puzzle-btn">בדיקה</button>
             </form>
-            <button id="hintButton" type="button" class="cta-button" style="width:100%;margin-bottom:10px;background:#376ecb;color:#fff;">רמז</button>
-            <div id="answerMessage" style="margin-top:10px;min-height:24px;font-weight:bold;"></div>
-            <div id="clueMessage" style="margin-top:10px;min-height:24px;font-weight:bold;display:none;"></div>
+            <button id="hintButton" type="button" class="cta-button puzzle-btn">רמז</button>
+            <div id="answerMessage" class="puzzle-text-msg"></div>
+            <div id="clueMessage" class="puzzle-text-msg"></div>
         </section>
-        <div style="text-align:center; margin-top:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
-            <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" target="_blank" title="הצטרפו לקבוצת הוואטסאפ" style="display:inline-block;">
-                <img src="/assets/whatsapp.png" alt="Whatsapp" style="width:48px;height:48px;cursor:pointer;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+        <div class="whatsapp-section">
+            <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" target="_blank" title="הצטרפו לקבוצת הוואטסאפ">
+                <img src="/assets/whatsapp.png" alt="Whatsapp">
             </a>
-            <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" target="_blank" title="הצטרפו לקבוצת הוואטסאפ" style="font-size:1.1em; font-weight:bold; color:#25d366; text-decoration:none;">
+            <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" target="_blank" title="הצטרפו לקבוצת הוואטסאפ">
                 רוצים עוד חידות שתוכלו לפתור עם הילדים? הצטרפו לקבוצת הוואטסאפ "חידות בין השורות"!
             </a>
         </div>
 
-        <section class="product-strip product-strip--light" style="margin-top:2rem;">
+        <section class="product-strip product-strip--light">
             <div class="product-content">
                 <div class="product-media">
                     <img src="/assets/book-cover.png" alt="ממלכת הקוד" class="product-image" loading="lazy" decoding="async" width="180" height="180">
