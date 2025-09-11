@@ -1,0 +1,132 @@
+/* Puzzle page styles */
+
+.puzzle-answer-section {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+h1 {
+    text-align:center; 
+    margin-top:2rem;
+}
+
+#puzzleDropdown {
+    width: 100%;
+    margin: 12px 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#solve-counter {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
+.puzzle-answer-input {
+  width:100%;
+  margin:12px 0;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.puzzle-btn {
+    width:100%;
+    margin-bottom:10px;
+}
+
+.puzzle-text-msg{
+    margin-top:10px;
+    min-height:24px;
+    font-weight:bold;
+}
+
+#clueMessage {
+    display:none
+}
+
+.puzzle-answer-msg {
+  font-size: 1.08em;
+  margin-top: 0;
+  margin-right: 12px;
+  color: #1a7f37;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .puzzle-answer-section {
+    width: 90vw;
+    padding: 10px 5vw;
+    margin: 10px auto;
+  }
+}
+
+.book-banner {
+    margin: 0 auto 1.5rem auto; 
+    max-width: 500px; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07); 
+    padding: 1rem; display: flex; 
+    align-items: center;
+    background: #298142 !important;
+
+    .book-banner-flex {
+        flex:1
+    }
+    .book-banner-text {
+        font-size: 1.05em; 
+        font-weight: bold; 
+        margin-bottom: 6px;
+    }
+
+    img {
+        width: 64px; 
+        height: 64px; 
+        border-radius: 8px; 
+        margin-left: 16px;
+    }
+
+    .book-banner-buttons {
+       display:flex; 
+       gap:8px;
+    }
+
+    .book-banner-button {
+        padding: 6px 14px; 
+        font-size: 0.95em;
+        margin-top: auto;
+    }
+}
+
+
+.whatsapp-section {
+    text-align:center; 
+    margin-top:10px; 
+    margin-bottom:20px;
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center; 
+    gap:8px;
+
+    a {
+        display:inline-block;
+        font-size:1.1em; 
+        font-weight:bold; 
+        color:#25d366; 
+        text-decoration:none;
+        img {
+            width:48px;
+            height:48px;
+            cursor:pointer;
+            border-radius:16px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.10);
+        }
+    }
+}
