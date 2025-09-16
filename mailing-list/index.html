@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="הרשמה לרשימת תפוחצה | בין השורות" />
+    <meta property="og:description" content="הרשמה לרשימת התפוצה של בין השורות" />
+    <meta property="og:image" content="https://www.btlines.co.il/assets/btlines-header.png" />
+    <meta property="og:url" content="https://www.btlines.co.il/mailing-list" />
+    <meta property="og:type" content="profile" />
+    <title>יצירת קשר | בין השורות</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/mailing-list.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar" id="navbar-placeholder"></nav>
+    <script>
+        fetch('/common-components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
+
+    <main>
+        <div id="mailing-list-container"></div>
+        <script>
+            fetch('/common-components/mailing-list-form.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('mailing-list-container').innerHTML = html;
+                    // Initialize form handling after the form is loaded
+                    initializeMailingListForm();
+                });
+        </script>
+       
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <script>
+            fetch('/common-components/footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('footer').innerHTML = html;
+                });
+        </script>
+    </footer>
+
+    <script>
+        function initializeMailingListForm() {
+            const form = document.getElementById('mailingListForm');
+            if (!form) {
+                console.error('Mailing list form not found');
+                return;
+            }
+
+            const emailInput = document.getElementById('emailInput');
+            const statusDiv = document.getElementById('mailingFormStatus');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                statusDiv.textContent = '';
+
+                if (!emailInput.value) {
+                    statusDiv.textContent = 'אנא הזינו כתובת אימייל תקינה.';
+                    statusDiv.style.color = 'red';
+                    return;
+                }
+
+                const formData = new FormData(form);
+                const actionUrl = form.action;
+
+                fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                })
+                .then(() => {
+                    statusDiv.textContent = 'תודה שהצטרפתם לרשימת התפוצה שלנו!';
+                    statusDiv.style.color = 'green';
+                    form.reset();
+                })
+                .catch(() => {
+                    statusDiv.textContent = 'אירעה שגיאה. אנא נסו שוב מאוחר יותר.';
+                    statusDiv.style.color = 'red';
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+.mailing-list-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mailing-list-form h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+}
+
+.mailing-list-form p {
+    margin: 0 0 1rem 0;
+    color: #666;
+}
+
+.form-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-status {
+    min-height: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .form-group input,
+    .form-group button {
+        width: 100%;
+    }
+
+    .mailing-list-form {
+        width: 90vw;
+    }
+}
