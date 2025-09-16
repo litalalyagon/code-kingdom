@@ -1,4 +1,4 @@
-.mailing-list-form {
+.mailing-list-container {
     max-width: 400px;
     margin: 2rem auto;
     padding: 1.5rem;
@@ -35,6 +35,24 @@
     min-height: 20px;
     text-align: center;
     font-weight: bold;
+} 
+
+.mailing-list-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    /* margin-top: 24px; */
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.mailing-list-button:hover {
+    background: #128C7E;
 }
 
 @media (max-width: 480px) {

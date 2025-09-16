@@ -9,6 +9,8 @@
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../styles/mailing-list.css">
+    <script type="module" src="../scripts/mailing-list.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -40,7 +42,6 @@
         .thanks-icon {
             font-size: 48px;
             color: #4CAF50;
-            margin-bottom: 24px;
         }
         .whatsapp-button {
             display: inline-flex;
@@ -51,17 +52,26 @@
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            margin-top: 24px;
             font-weight: bold;
             transition: background-color 0.3s;
         }
         .whatsapp-button:hover {
             background: #128C7E;
         }
+        .mailing-list-button {
+            background: #2593d3;
+            max-width: 200px;
+        }
+        .mailing-list-button:hover {
+            background: #2067bd;
+        }
         @media (max-width: 600px) {
             .thanks-container {
                 margin: 24px 16px;
                 padding: 24px 16px;
+            }
+              .mailing-list-button {
+                max-width: 100%;
             }
         }
     </style>
@@ -91,6 +101,21 @@
                 <i class="fab fa-whatsapp"></i>
                 הצטרפו לקבוצה שלנו
             </a>
+
+            <!-- Add mailing list form -->
+            <div style="margin-top: 2rem;">
+                <div id="mailing-list-container">
+                     <h3>הרשמו כאן כדי לקבל עדכונים על מבצעים ומוצרים חדשים</h3>
+                </div>
+                <script>
+                    fetch('/common-components/mailing-list-form.html')
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('mailing-list-container').innerHTML += html;
+
+                        });
+                </script>
+            </div>
         </div>
     </main>
 

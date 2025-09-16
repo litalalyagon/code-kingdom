@@ -19,6 +19,8 @@
 </head>
 
 <body>
+    <script  type="text/javascript" src="/scripts/mailing-list.js"></script>
+
     <nav class="navbar" id="navbar-placeholder"></nav>
     <script>
         fetch('/common-components/navbar.html')
@@ -29,12 +31,15 @@
     </script>
 
     <main>
-        <div id="mailing-list-container"></div>
+        <div id="mailing-list-container" class="mailing-list-container">
+            <h3>הצטרפו לרשימת התפוצה שלנו</h3>
+            <p>קבלו עדכונים על מבצעים ומוצרים חדשים!</p>
+        </div>
         <script>
             fetch('/common-components/mailing-list-form.html')
                 .then(response => response.text())
                 .then(html => {
-                    document.getElementById('mailing-list-container').innerHTML = html;
+                    document.getElementById('mailing-list-container').innerHTML += html;
                     // Initialize form handling after the form is loaded
                     initializeMailingListForm();
                 });
@@ -53,47 +58,6 @@
         </script>
     </footer>
 
-    <script>
-        function initializeMailingListForm() {
-            const form = document.getElementById('mailingListForm');
-            if (!form) {
-                console.error('Mailing list form not found');
-                return;
-            }
-
-            const emailInput = document.getElementById('emailInput');
-            const statusDiv = document.getElementById('mailingFormStatus');
-
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                statusDiv.textContent = '';
-
-                if (!emailInput.value) {
-                    statusDiv.textContent = 'אנא הזינו כתובת אימייל תקינה.';
-                    statusDiv.style.color = 'red';
-                    return;
-                }
-
-                const formData = new FormData(form);
-                const actionUrl = form.action;
-
-                fetch(actionUrl, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                })
-                .then(() => {
-                    statusDiv.textContent = 'תודה שהצטרפתם לרשימת התפוצה שלנו!';
-                    statusDiv.style.color = 'green';
-                    form.reset();
-                })
-                .catch(() => {
-                    statusDiv.textContent = 'אירעה שגיאה. אנא נסו שוב מאוחר יותר.';
-                    statusDiv.style.color = 'red';
-                });
-            });
-        }
-    </script>
-
+    
 </body>
 </html>
