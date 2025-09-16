@@ -165,7 +165,7 @@ h1 {
 
 /* Add these styles to ensure footer stays at bottom */
 html, body {
-    height: 100%;
+    /* height: 100%; this line was removed to fix the code-kingdom hero section issue */
     margin: 0;
 }
 
