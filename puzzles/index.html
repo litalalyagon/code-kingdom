@@ -18,13 +18,6 @@
 </head>
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
 
     <!-- Book Banner - Top of Page -->
     <section class="product-strip product-strip--light book-banner">
@@ -106,6 +99,8 @@
         });
         </script>
 </footer>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
 <script type="module" src="./puzzles.js"></script>
 </body>
 </html>

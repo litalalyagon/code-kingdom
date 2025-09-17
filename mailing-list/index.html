@@ -23,14 +23,7 @@
 <body>
 
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
-
+    
     <main>
         <div id="mailing-list-container" class="mailing-list-container">
             <h3>הצטרפו לרשימת התפוצה שלנו</h3>
@@ -58,6 +51,7 @@
                 });
         </script>
     </footer>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
 
     
 </body>

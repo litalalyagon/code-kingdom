@@ -78,13 +78,6 @@
 </head>
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
 
     <main>
         <div class="thanks-container">
@@ -129,6 +122,8 @@
                 document.getElementById('footer').innerHTML = html;
         });
     </script>
+        <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
     
 </body>
 </html>

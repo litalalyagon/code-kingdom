@@ -12,13 +12,6 @@
 </head>
 <body>
   <nav class="navbar" id="navbar-placeholder"></nav>
-  <script>
-    fetch('/common-components/navbar.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('navbar-placeholder').innerHTML = html;
-      });
-  </script>
   <main style="max-width: 800px; margin: 40px auto; padding: 24px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0001; text-align: right;">
     <h1>תנאי שימוש</h1>
     <p>ברוכים הבאים לאתר בין השורות ("האתר"), המופעל על ידי ליטל אליגון ולי באלאן ("המפעילים").<br>
@@ -91,5 +84,7 @@
         document.getElementById('footer').innerHTML = html;
       });
   </script>
+      <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
 </body>
 </html>

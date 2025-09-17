@@ -28,13 +28,65 @@
   cursor: pointer;
 }
 
-.navbar a {
+.navbar-toggle {
+  display: none;
+  margin-right: auto; 
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar-toggle i {
+  font-size: 1.2rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navbar-links a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.navbar a:hover {
+.navbar-links a:hover {
   color: #ffcc00;
+}
+.navbar-toggle:hover {
+  color: #ffcc00;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: space-between; /* Space between logo and menu button */
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    background: rgba(44, 62, 80, 0.98); /* Match navbar background */
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
 }
