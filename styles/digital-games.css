@@ -1,12 +1,20 @@
 header {
-    padding: 20px 0;
+    padding: 20px 0 40px 0;
     text-align: center;
     margin-bottom: 20px;    
-    width: 80%;
-    /* center the content */
-    margin-left: auto;
-    margin-right: auto;
-    
+    /* background: rgb(114, 225, 196); */
+    background: #1a9eb3;
+    color: white;
+    box-shadow: 0 2px 8px #0002;
+    h1 {
+         font-size: 3em;
+        font-weight: bold;
+    }
+    p {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 1.2em;
+    }   
 }
 .feature-cards {
     display: grid;
@@ -58,17 +66,30 @@ header {
     gap: 1rem;
 }
 
-/* .game-card:hover {
-    transform: translateY(-5px);
-} */
-
-.game-image {
-    margin-bottom: 1rem;
+.game-card-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
+.game-card-header .game-header-text {
+    flex: 1;  
+}
+
+/* .game-card-header .game-details {
+    flex: 1;  
+} */
+.game-card-header .game-image {
+    flex: 1;  /* Take up half the space */
+    max-width: 50%;
+}
+/* .game-image {
+    margin-bottom: 1rem;
+   
+} */
 
 .game-image img {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     height: auto;
     border-radius: 8px;
 }
@@ -81,14 +102,19 @@ header {
 .additional-games-section .game-details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.2rem;
     margin: 1rem 0;
 }
+
 .main-game-section .game-details {
-     display: flex;
-    justify-content: center;
+    /* display: grid;
+    grid-template-columns:repeat(4, 1fr); */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 1.5rem;
-    margin: 1rem 0;
+    margin: 1rem auto;
 }
 
 .detail-item {
@@ -128,6 +154,7 @@ header {
         display: grid;
         grid-template-columns: 1fr;
         gap: 0.75rem;
+        margin-right: 0;
     }
     
 
@@ -138,5 +165,14 @@ header {
     
     .game-actions .cta-button {
         width: 100%;
+    }
+
+    .game-card-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .game-card-header .game-image {
+        max-width: 100%;
     }
 }
