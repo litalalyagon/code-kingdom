@@ -2,10 +2,6 @@ fetch('/common-components/contact-form.html')
     .then(response => response.text())
     .then(html => {
         document.getElementById('contact-section').innerHTML += html;
-        // Set the form-id value after loading
-        const formIdInput = document.querySelector('#contact-section input[name="form-id"]');
-        if (formIdInput) formIdInput.value = 'home-page';
-
         const form = document.querySelector('#contact-form');
         form.addEventListener('submit', handleSubmit);  
 });

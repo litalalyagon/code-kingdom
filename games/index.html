@@ -137,6 +137,10 @@
                 </div>
             </div>
         </section>
+        <!-- Contact Us Section -->
+        <section class="contact-section" id="contact-section">
+            <h2>מתלבטים איזה משחק מתאים לכם? דברו איתנו ונשמח לעזור</h2>
+        </section>
     </main>
 
     <footer class="footer" id="footer"></footer>
@@ -147,7 +151,12 @@
                 document.getElementById('footer').innerHTML = html;
         });       
     </script>
-        <script type="text/javascript" src="/scripts/navbar.js" ></script>
 
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
+    <script type="text/javascript" src="/scripts/contact-form.js"></script>
+    <script>
+        var formId = 'games-page';
+        changeFormId(formId);
+     </script>
 </body>
 </html>
