@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תודה על הרכישה! | ממלכת הקוד</title>
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/nav-bar.css">
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <title>תודה על הרכישה! | בין השורות</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/nav-bar.css">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="../styles/mailing-list.css">
-    <script type="module" src="../scripts/mailing-list.js"></script>
+    <link rel="stylesheet" href="./styles/mailing-list.css">
+    <script type="text/javascript" src="/scripts/mailing-list.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -90,8 +90,7 @@
         <div class="thanks-container">
             <i class="fas fa-check-circle thanks-icon"></i>
             <h1>תודה על הרכישה!</h1>
-            <p>אנחנו שמחים שהצטרפת למסע בממלכת הקוד.</p>
-            <p>הספר יישלח בימים הקרובים. <br> אם בחרת באיסוף עצמי, ניצור איתך קשר לתיאום.</p>
+            <p>אם בחרת באיסוף עצמי או במשחק דיגיטלי, ניצור איתך קשר בהקדם.</p>
             <p>בינתיים, אנחנו מזמינים אותך להצטרף לקבוצת הוואטסאפ שלנו, שבה אנחנו מפרסמים חידות לילדים ולנוער:</p>
             
             <a href="https://chat.whatsapp.com/IVSQTjiL5VF6L6puoOqb7a" 
@@ -112,7 +111,8 @@
                         .then(response => response.text())
                         .then(html => {
                             document.getElementById('mailing-list-container').innerHTML += html;
-
+                            // Initialize form handling after the form is loaded
+                            initializeMailingListForm();
                         });
                 </script>
             </div>

@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles/products-strips.css">
     <link rel="stylesheet" href="./styles/mailing-list.css">
+    <script type="text/javascript" src="/scripts/mailing-list.js"></script>
+
 </head>
 
 <body>
@@ -117,6 +119,8 @@
                         .then(response => response.text())
                         .then(html => {
                             document.getElementById('mailing-list-container').innerHTML += html;
+                            // Initialize form handling after the form is loaded
+                            initializeMailingListForm();
                         });
                 </script>
             </div>
