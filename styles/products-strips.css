@@ -57,6 +57,12 @@
   grid-template-areas: "info media";
 }
 
+.product-media a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} 
+
 .product-strip .product-media {
   display: flex;
   align-items: center;
