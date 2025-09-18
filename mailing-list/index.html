@@ -16,20 +16,14 @@
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script type="text/javascript" src="/scripts/mailing-list.js"></script>
+
 </head>
 
 <body>
-    <script  type="text/javascript" src="/scripts/mailing-list.js"></script>
 
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
-
+    
     <main>
         <div id="mailing-list-container" class="mailing-list-container">
             <h3>הצטרפו לרשימת התפוצה שלנו</h3>
@@ -57,6 +51,7 @@
                 });
         </script>
     </footer>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
 
     
 </body>

@@ -19,17 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles/products-strips.css">
     <link rel="stylesheet" href="./styles/mailing-list.css">
+    <script type="text/javascript" src="/scripts/mailing-list.js"></script>
+
 </head>
 
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
 
     <header class="hero">
         <img src="assets/logo.png" alt="Between the Lines Logo" class="hero-logo">
@@ -70,8 +65,28 @@
                 </div>
             </div>
 
-        
-            <div class="product-strip product-strip--accent reverse">
+             <div class="product-strip product-strip--accent reverse">
+                <div class="product-content">
+                    <div class="product-media">
+                        <img src="assets/digital-games/allgames.png" alt="משחקים דיגיטליים" class="product-image" loading="lazy" decoding="async" width="180" height="180">
+                    </div>
+                    <div class="product-info">
+                        <h3>משחקים דיגיטליים</h3>
+                        <p>
+                             כל הכיף של חידות וחדרי בריחה, מהנוחות של הסלון שלכם!
+                              בין אם אתם מחפשים משחקים לילדים, בני נוער או מבוגרים - תוכלו למצוא כאן משחק מושלם בשבילכם.
+
+                        </p>
+                        <div class="product-actions">
+                            <a href="./digital-games/" class="cta-button" title="לעמוד המשחקים">
+                                לפרטים נוספים
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <div class="product-strip product-strip--light">
                 <div class="product-content">
                     <div class="product-media">
                         <img src="assets/whatsapp.png" alt="קבוצת הוואטסאפ חידות בין השורות" class="product-image" loading="lazy" decoding="async" width="560" height="560">
@@ -89,43 +104,26 @@
                 </div>
             </div>
 
-             <div class="product-strip product-strip--light">
-                <div class="product-content">
-                    <div class="product-media">
-                        <img src="assets/school-challenge.png" alt="אתגר הכיתות הארצי 2026" class="product-image" loading="lazy" decoding="async" width="560" height="560">
-                    </div>
-                    <div class="product-info">
-                        <h3>אתגר הכיתות הארצי 2026</h3>
-                        <p>אתגר חידתי שנתי מבוסס ערכים לכיתות על-יסודיות</p>
-                        <div class="product-actions">
-                            <a href="./school-challenge/" class="cta-button" title="לעמוד האתגר">
-                             לפרטים נוספים
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="product-strip product-strip--accent">
                 <div id="mailing-list-container" class="mailing-list-container">
                     <h3>הצטרפו לרשימת התפוצה שלנו</h3>
                     <p>קבלו עדכונים על מבצעים ומוצרים חדשים!</p>
                 </div>
-                <script type="module" src="./scripts/mailing-list.js"></script>
                 <script>
                     fetch('/common-components/mailing-list-form.html')
                         .then(response => response.text())
                         .then(html => {
                             document.getElementById('mailing-list-container').innerHTML += html;
+                            // Initialize form handling after the form is loaded
+                            initializeMailingListForm();
                         });
                 </script>
             </div>
 
-
         </section>
 
         <!-- About Us Section -->
-        <!-- <section class="about-us-main-page-section">
+        <!-- <section class="about-us-main-page-section>
             <h2>קצת עלינו</h2>
             <p>
                 אנחנו ליטל ולי, שני מתכנתים עם אהבה גדולה לחינוך ולילדים. <br>
@@ -151,6 +149,7 @@
         </script>
     </footer>
 
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
     <script type="text/javascript" src="/scripts/contact-form.js"></script>
     <script>
         var formId = 'main-page';

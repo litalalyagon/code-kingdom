@@ -23,13 +23,6 @@
 
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
 
     <header class="hero hero-book">
         <div class="overlay"></div>
@@ -200,6 +193,8 @@
         });
     </script>
     <script src="reviews-carousel.js"></script>
+        <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
 </body>
 
 </html>

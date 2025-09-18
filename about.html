@@ -22,13 +22,6 @@
 
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
   
     <main>
        <!-- About Us Section -->
@@ -70,6 +63,7 @@
         </script>
     </footer>
 
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
     <script type="text/javascript" src="/scripts/contact-form.js"></script>
     <script>
         var formId = 'about-page';

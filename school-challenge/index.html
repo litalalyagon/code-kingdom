@@ -17,13 +17,6 @@
 </head>
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
-    <script>
-        fetch('/common-components/navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-        });
-    </script>
     <header class="hero">
         <h1>אתגר הכיתות הארצי 2026</h1>
        <p class="tagline">
@@ -100,5 +93,7 @@
         var formId = 'school-challenge';
         changeFormId(formId);
      </script>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
 </body>
 </html>
