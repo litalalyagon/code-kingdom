@@ -19,6 +19,25 @@
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0;n.version='2.0';
+        n.queue=[]; t=b.createElement(e); t.async=!0;
+        t.src=v; s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1686184801977470');  
+        fbq('track', 'PageView');  
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1686184801977470&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -34,7 +53,7 @@
             <i class="fa-solid fa-puzzle-piece"></i>
             לעמוד המשימות
         </div>
-        <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" class="cta-button hero-button"
+        <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" class="cta-button hero-button buy-btn"
             id="purchaseBtn" target="_blank" rel="noopener">
             <i class="fa-solid fa-cart-shopping"></i>
             להזמנת הספר
@@ -111,7 +130,7 @@
         </section>
 
         <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" id="order-button"
-            class="cta-button" target="_blank" rel="noopener">הזמינו עכשיו
+            class="cta-button buy-btn" target="_blank" rel="noopener">הזמינו עכשיו
         </a>
 
         <section class="website-section">
@@ -127,7 +146,7 @@
         </section>
 
     <a href="https://pay.grow.link/d6c5a89f34e864d573d0cab71059da42-MjMxOTIxMA" id="order-button"
-         class="cta-button" target="_blank" rel="noopener">הזמינו עכשיו
+         class="cta-button buy-btn" target="_blank" rel="noopener">הזמינו עכשיו
     </a>
 
       <!-- map -->
@@ -193,8 +212,45 @@
         });
     </script>
     <script src="reviews-carousel.js"></script>
-        <script type="text/javascript" src="/scripts/navbar.js" ></script>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
+    <script>
+        (function () {
+            var KEYS = ['fbclid','utm_source','utm_medium','utm_campaign','utm_content','utm_term','test_event_code'];
+            var params = new URLSearchParams(location.search);
+            KEYS.forEach(function(k){ var v = params.get(k); if (v) localStorage.setItem(k, v); });
 
+            function getStored(k){ return localStorage.getItem(k); }
+            function decorate(urlStr){
+                var u = new URL(urlStr, location.origin);
+                KEYS.forEach(function(k){
+                if (!u.searchParams.has(k)) {
+                    var v = getStored(k);
+                    if (v) u.searchParams.set(k, v);
+                }
+                });
+                return u.toString();
+            }
+
+            var btns = document.querySelectorAll('.buy-btn');
+            btns.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    var href = this.getAttribute('href');
+                    if (!href) return;
+
+                    e.preventDefault();
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'InitiateCheckout');
+                    }
+
+                    var target = decorate(href);
+                    setTimeout(function() {
+                        window.open(target, '_blank');
+                    }, 200);
+                    
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
