@@ -10,71 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles/mailing-list.css">
+    <link rel="stylesheet" href="./styles/thanks.css">
+
     <script type="text/javascript" src="/scripts/mailing-list.js"></script>
-    <style>
-        body {
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .footer {
-            margin-top: auto;
-        }
-
-        .thanks-container {
-            max-width: 600px;
-            margin: 48px auto;
-            padding: 32px 24px;
-            text-align: center;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
-        }
-        .thanks-icon {
-            font-size: 48px;
-            color: #4CAF50;
-        }
-        .whatsapp-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25D366;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .whatsapp-button:hover {
-            background: #128C7E;
-        }
-        .mailing-list-button {
-            background: #2593d3;
-            max-width: 170px;
-        }
-        .mailing-list-button:hover {
-            background: #2067bd;
-        }
-        @media (max-width: 600px) {
-            .thanks-container {
-                margin: 24px 16px;
-                padding: 24px 16px;
-            }
-              .mailing-list-button {
-                max-width: 100%;
-            }
-        }
-    </style>
+    <!-- Meta Pixel base -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1686184801977470');
+        fbq('track', 'PageView');
+    </script>
+   <script>
+        (function(){
+            if (sessionStorage.getItem('purchase_fired')) return;
+                // replace value with actual purchase values
+            fbq('track','Purchase', { value: 80.00, currency: 'ILS' });
+            sessionStorage.setItem('purchase_fired','1');
+        })();
+    </script>
 </head>
 <body>
     <nav class="navbar" id="navbar-placeholder"></nav>
