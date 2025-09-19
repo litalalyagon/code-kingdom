@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             dropdown.appendChild(option);
         });
 
-        // select last puzzle by default (latest)
+        // select latest puzzle by default (first in sorted array)
         if (puzzles.length > 0) {
-            const lastPuzzle = puzzles[puzzles.length - 1];
-            selectPuzzle(lastPuzzle.id);
-            dropdown.value = lastPuzzle.id; 
+            const latestPuzzle = puzzles[0];
+            selectPuzzle(latestPuzzle.id);
+            dropdown.value = latestPuzzle.id;
         }
     }
 
