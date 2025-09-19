@@ -58,9 +58,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         // filter only the enabled puzzles
         puzzles = puzzles.filter(p => p.enabled);
 
+        // Sort puzzles by date, newest first
+        puzzles.sort((a, b) => {
+            const dateA = a.date?.toDate?.() || new Date(a.date);
+            const dateB = b.date?.toDate?.() || new Date(b.date);
+            return dateB - dateA;
+        });
+
         dropdown.innerHTML = "";
-        // Reverse order for display, but keep latest as default
-        puzzles.slice().reverse().forEach((p) => {
+        puzzles.forEach((p) => {
             const option = document.createElement("option");
             option.value = p.id;
             let dateText = p.parsedDate ? ` (${p.parsedDate})` : "";
