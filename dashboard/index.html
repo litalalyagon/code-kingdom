@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דאשבורד - בין השורות</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="password-lock" style="max-width:400px;margin:4rem auto 0 auto;padding:2rem;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);text-align:center;">
+        <h2>הזן סיסמה לצפייה בדשבורד</h2>
+        <input type="password" id="dashboard-password" placeholder="סיסמה" style="padding:8px;width:70%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;">
+        <br>
+        <button id="dashboard-password-btn" style="padding:8px 24px;border-radius:6px;background:#376ecb;color:#fff;border:none;">כניסה</button>
+        <div id="dashboard-password-error" style="color:#e74c3c;margin-top:1rem;display:none;">סיסמה שגויה</div>
+    </div>
+    <div id="dashboard-content" style="display:none;">
+        <h1 style="text-align:center;">דשבורד - חידות בין השורות</h1>
+    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;">
+        <h2 style="text-align:center;">חידות בין השורות - מספר פותרים</h2>
+    <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script type="module" src="dashboard.js"></script>
+</div>
+</body>
+</html>
