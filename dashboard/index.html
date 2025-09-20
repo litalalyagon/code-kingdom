@@ -24,26 +24,6 @@
     </section>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script>
-    // Simple SHA-256 hash function for password check
-    async function hashString(str) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(str);
-        const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
-        return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-    const CORRECT_HASH = '532036ad06ac907f62286d563cb088336afa4ef78575529b9e56f6748127aa18';
-    document.getElementById('dashboard-password-btn').onclick = async function() {
-        const val = document.getElementById('dashboard-password').value;
-        const hash = await hashString(val);
-        if (hash === CORRECT_HASH) {
-            document.getElementById('password-lock').style.display = 'none';
-            document.getElementById('dashboard-content').style.display = '';
-        } else {
-            document.getElementById('dashboard-password-error').style.display = '';
-        }
-    };
-    </script>
     <script type="module" src="dashboard.js"></script>
 </div>
 </body>

@@ -1,3 +1,26 @@
+// Password lock logic (moved from index.html)
+async function hashString(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+const CORRECT_HASH = '532036ad06ac907f62286d563cb088336afa4ef78575529b9e56f6748127aa18';
+
+function setupPasswordLock() {
+    const btn = document.getElementById('dashboard-password-btn');
+    if (!btn) return; // If not on dashboard page
+    btn.onclick = async function() {
+        const val = document.getElementById('dashboard-password').value;
+        const hash = await hashString(val);
+        if (hash === CORRECT_HASH) {
+            document.getElementById('password-lock').style.display = 'none';
+            document.getElementById('dashboard-content').style.display = '';
+        } else {
+            document.getElementById('dashboard-password-error').style.display = '';
+        }
+    };
+}
 // Dashboard - Puzzle Solve Counter Graph
 // Uses modular Firebase API, assumes firebaseConfig.js exports db
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
@@ -77,4 +100,9 @@ async function renderPuzzleSolveChart() {
     });
 }
 
-window.addEventListener('DOMContentLoaded', renderPuzzleSolveChart);
+window.addEventListener('DOMContentLoaded', () => {
+    setupPasswordLock();
+    // Only render chart if dashboard-content is visible (after password)
+    // Or always render, but keep hidden until unlocked
+    renderPuzzleSolveChart();
+});
