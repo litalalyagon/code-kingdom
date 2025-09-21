@@ -145,22 +145,50 @@ h1 {
     margin-bottom: 25px;
 }   
 
+/* Footer links responsive row/column */
 .footer-links {
   margin-top: 18px;
   text-align: center;
   font-size: 1.08em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 16px;
 }
 .footer-links a {
   color: white;
   text-decoration: none;
-  margin: 0 8px;
+  margin: 0 8px 8px 8px;
   padding: 2px 8px;
   border-radius: 6px;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 .footer-links a:hover {
   color: #829ebb;
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .footer-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 0;
+    column-gap: 0;
+    justify-content: center;
+  }
+  .footer-links a {
+    flex: 1 1 45%;
+    margin: 0 4px 8px 4px;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  /* Hide mail text in footer on mobile */
+  .footer-mail-text {
+    display: none;
+  }
+
 }
 
 /* Add these styles to ensure footer stays at bottom */
