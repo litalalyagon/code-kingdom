@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדיניות משלוחים | ממלכת הקוד</title>
+    <link rel="stylesheet" href="./styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+ <style>
+    /* Delivery options list RTL fix */
+.legal-page-wrapper{
+  direction: rtl;
+  text-align: right;
+  list-style-position: inside;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+ </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar-placeholder"></nav>
+    <script>
+        fetch('/common-components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
+    <main class="legal-page-wrapper">
+        <h1 class="legal-title">מדיניות משלוחים</h1>
+        <section class="legal-section">
+            <h2>אפשרויות משלוח</h2>
+            <ul class="delivery-options-list">
+                    <li> דואר רשום: 25 ש"ח</li>
+                    <li> משלוח ללוקרים של חברת DONE בפריסה ארצית: 28 ש"ח <br>
+                        ניתן לצפות בפריסת הלוקרים כאן: <a href="https://done.co.il/maps/" target="_blank" rel="noopener">https://www.done.co.il/lockers</a> <br>
+                        אנחנו נשלח ללוקר הקרוב ביותר לכתובת שתזינו בפרטי המשלוח, אם תרצו נקודת מסוימת שלחו לנו הודעה בעת ההזמנה.
+
+                    </li>
+
+        </section>
+        <section class="legal-section">
+            <h2>איסוף עצמי</h2>
+            <p> איסוף עצמי בתיאום מראש בלבד, אפשרי מאחת מהכתובות הבאות:
+                <ul>
+                    <li>חדרה: רחוב לכיש</li>
+                    <li>גבעתיים: רחוב כצנלסון</li>
+                </ul>  
+            אם בחרתם באיסוף עצמי בתהליך ההזמנה, נשלח לכם הודעה לתיאום.
+            </p>
+        </section>
+        
+        <section class="legal-section">
+            <h2>פניות ושירות לקוחות</h2>
+            <p>
+                לכל שאלה או בירור בנוגע למשלוחים, ניתן לפנות אלינו באמצעות הדרכים המפורטות בעמוד <a href="/contact.html"> צור קשר</a>.
+            </p>
+        </section>
+    </main>
+    <footer class="footer" id="footer"></footer>
+    <script>
+        fetch('/common-components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+    <script type="text/javascript" src="/scripts/navbar.js" ></script>
+
+</body>
+</html>
