@@ -9,9 +9,11 @@ const CORRECT_HASH = '532036ad06ac907f62286d563cb088336afa4ef78575529b9e56f67481
 
 function setupPasswordLock() {
     const btn = document.getElementById('dashboard-password-btn');
-    if (!btn) return; // If not on dashboard page
-    btn.onclick = async function() {
-        const val = document.getElementById('dashboard-password').value;
+    const input = document.getElementById('dashboard-password');
+    if (!btn || !input) return; // If not on dashboard page
+
+    async function tryLogin() {
+        const val = input.value;
         const hash = await hashString(val);
         if (hash === CORRECT_HASH) {
             document.getElementById('password-lock').style.display = 'none';
@@ -19,7 +21,14 @@ function setupPasswordLock() {
         } else {
             document.getElementById('dashboard-password-error').style.display = '';
         }
-    };
+    }
+
+    btn.onclick = tryLogin;
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            tryLogin();
+        }
+    });
 }
 // Dashboard - Puzzle Solve Counter Graph
 // Uses modular Firebase API, assumes firebaseConfig.js exports db
