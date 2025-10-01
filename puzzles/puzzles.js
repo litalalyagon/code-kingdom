@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             clueMsg.style.display = "none";
             message.textContent = "";
             input.value = "";
-            counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
+        //    counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
         }
     }
 
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                             solve_counter: increment(1)
                         });
                         currentPuzzle.solve_counter += 1; // Update local copy if needed
-                        counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
+         //               counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
                     } catch (error) {
                         console.error("Error updating solve counter:", error);
                     }
