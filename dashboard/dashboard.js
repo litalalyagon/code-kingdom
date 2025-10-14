@@ -35,7 +35,12 @@ function setupPasswordLock() {
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { db } from "../firebase/firebaseConfig.js";
 
+
+let puzzleDataCache = null;
+let puzzleChart = null;
+
 async function loadPuzzleSolveData() {
+    if (puzzleDataCache) return puzzleDataCache;
     const puzzlesCol = collection(db, "whatsapp_puzzles");
     const snapshot = await getDocs(puzzlesCol);
     const data = [];
@@ -50,28 +55,53 @@ async function loadPuzzleSolveData() {
             });
         }
     });
-    // Sort by puzzle ID ascending
-    data.sort((a, b) => a.id - b.id);
+    puzzleDataCache = data;
     return data;
 }
 
-async function renderPuzzleSolveChart() {
-    const puzzleData = await loadPuzzleSolveData();
+function sortPuzzleData(data, bySolvers) {
+    const arr = [...data];
+    if (bySolvers) {
+        arr.sort((a, b) => a.solves - b.solves);
+    } else {
+        arr.sort((a, b) => a.id - b.id);
+    }
+    return arr;
+}
+
+function getLatestPuzzleId(data) {
+    // Find the puzzle with the highest id (assuming id is numeric or stringified number)
+    return data.reduce((max, d) => (+d.id > +max ? d.id : max), data[0]?.id);
+}
+
+async function renderPuzzleSolveChart(bySolvers = false) {
+    const allData = await loadPuzzleSolveData();
+    const puzzleData = sortPuzzleData(allData, bySolvers);
     const ctx = document.getElementById('puzzleSolveChart').getContext('2d');
-    new Chart(ctx, {
+    if (puzzleChart) {
+        puzzleChart.destroy();
+    }
+    // Find latest puzzle id
+    const latestId = getLatestPuzzleId(allData);
+    // For bySolvers mode, color the latest puzzle differently
+    let pointBackgroundColors = puzzleData.map(d => (bySolvers && d.id === latestId) ? '#e74c3c' : '#376ecb');
+    let borderColor = '#376ecb';
+    let backgroundColor = '#376ecb';
+    puzzleChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: puzzleData.map(d => d.id),
             datasets: [{
                 label: 'מספר פתרונות',
                 data: puzzleData.map(d => d.solves),
-                borderColor: '#376ecb',
-                backgroundColor: '#376ecb',
+                borderColor,
+                backgroundColor,
                 fill: false,
                 tension: 0.2,
                 pointRadius: 5,
                 pointHoverRadius: 7,
-                showLine: true
+                showLine: true,
+                pointBackgroundColor: pointBackgroundColors
             }]
         },
         options: {
@@ -82,7 +112,6 @@ async function renderPuzzleSolveChart() {
                 tooltip: {
                     callbacks: {
                         title: function(context) {
-                            // context[0].dataIndex gives the index in puzzleData
                             const idx = context[0].dataIndex;
                             const puzzle = puzzleData[idx];
                             return `חידה: ${puzzle.id}${puzzle.title ? ' - ' + puzzle.title : ''}`;
@@ -92,7 +121,7 @@ async function renderPuzzleSolveChart() {
             },
             scales: {
                 x: {
-                    title: { display: true, text: 'מספר חידה' }
+                    title: { display: true, text: bySolvers ? 'חידות (ממויינות לפי מספר פותרים)' : 'מספר חידה' }
                 },
                 y: {
                     title: { display: true, text: 'מספר פתרונות' },
@@ -111,7 +140,12 @@ async function renderPuzzleSolveChart() {
 
 window.addEventListener('DOMContentLoaded', () => {
     setupPasswordLock();
-    // Only render chart if dashboard-content is visible (after password)
-    // Or always render, but keep hidden until unlocked
+    // Setup chart switch
+    const switchEl = document.getElementById('sortBySolversSwitch');
+    if (switchEl) {
+        switchEl.addEventListener('change', (e) => {
+            renderPuzzleSolveChart(e.target.checked);
+        });
+    }
     renderPuzzleSolveChart();
 });
