@@ -18,9 +18,50 @@
     </div>
     <div id="dashboard-content" style="display:none;">
         <h1 style="text-align:center;">דשבורד - חידות בין השורות</h1>
-    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;">
+    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
         <h2 style="text-align:center;">חידות בין השורות - מספר פותרים</h2>
-    <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
+                <div style="position:absolute;top:1.5rem;left:1.5rem;z-index:2;">
+                        <label class="switch">
+                                <input type="checkbox" id="sortBySolversSwitch">
+                                <span class="slider round"></span>
+                        </label>
+                </div>
+                <style>
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 44px;
+                    height: 24px;
+                }
+                .switch input { display: none; }
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background-color: #ccc;
+                    transition: .4s;
+                    border-radius: 24px;
+                }
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 18px;
+                    width: 18px;
+                    left: 3px;
+                    bottom: 3px;
+                    background-color: white;
+                    transition: .4s;
+                    border-radius: 50%;
+                    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                }
+                input:checked + .slider {
+                    background-color: #376ecb;
+                }
+                input:checked + .slider:before {
+                    transform: translateX(20px);
+                }
+                </style>
+        <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
     </section>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
