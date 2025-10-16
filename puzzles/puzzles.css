@@ -67,7 +67,7 @@ h1 {
   }
 }
 
-.book-banner {
+.ad-banner {
     margin: 0 auto 1.5rem auto; 
     max-width: 500px; 
     border-radius: 12px; 
@@ -86,8 +86,8 @@ h1 {
     }
 
     img {
-        width: 64px; 
-        height: 64px; 
+        width: 120px;
+        height: 120px;
         border-radius: 8px; 
         margin-left: 16px;
     }
@@ -95,12 +95,20 @@ h1 {
     .book-banner-buttons {
        display:flex; 
        gap:8px;
+       justify-content: center;
     }
 
     .book-banner-button {
         padding: 6px 14px; 
         font-size: 0.95em;
         margin-top: auto;
+    }
+
+    @media (max-width: 768px) {  
+        img {
+            width: 64px;
+            height: 64px; 
+        }
     }
 }
 
