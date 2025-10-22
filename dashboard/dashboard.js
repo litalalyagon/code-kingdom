@@ -13,7 +13,7 @@ function setupPasswordLock() {
     if (!btn || !input) return; // If not on dashboard page
 
     async function tryLogin() {
-        const val = input.value;
+        const val = input.value.toUpperCase();
         const hash = await hashString(val);
         if (hash === CORRECT_HASH) {
             document.getElementById('password-lock').style.display = 'none';
