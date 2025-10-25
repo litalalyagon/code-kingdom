@@ -19,6 +19,7 @@ export const hebrewDict = {
         "pink": "ורוד",
         "grey": "אפור",
         "brown": "חום",
+        "white": "לבן"
     },
     "general_error_message": "קוד לא תקין, אנא נסו שוב",
     "ex1": {

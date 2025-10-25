@@ -16,7 +16,8 @@ class Exercise1 extends Exercise {
     hebrewDict.colors.purple,
     hebrewDict.colors.grey,
     hebrewDict.colors.red,
-    hebrewDict.colors.yellow
+    hebrewDict.colors.yellow,
+    hebrewDict.colors.white
   ]
   validClouds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   validRainbow = [hebrewDict.no, hebrewDict.yes];
