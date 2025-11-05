@@ -39,8 +39,8 @@ import { db } from "../firebase/firebaseConfig.js";
 let puzzleDataCache = null;
 let puzzleChart = null;
 
-async function loadPuzzleSolveData() {
-    if (puzzleDataCache) return puzzleDataCache;
+async function loadPuzzleSolveData(enableCache = true) {
+    if (enableCache && puzzleDataCache) return puzzleDataCache;
     const puzzlesCol = collection(db, "whatsapp_puzzles");
     const snapshot = await getDocs(puzzlesCol);
     const data = [];
@@ -74,8 +74,8 @@ function getLatestPuzzleId(data) {
     return data.reduce((max, d) => (+d.id > +max ? d.id : max), data[0]?.id);
 }
 
-async function renderPuzzleSolveChart(bySolvers = false) {
-    const allData = await loadPuzzleSolveData();
+async function renderPuzzleSolveChart(bySolvers = false, enableCache = true) {
+    const allData = await loadPuzzleSolveData(enableCache);
     const puzzleData = sortPuzzleData(allData, bySolvers);
     const ctx = document.getElementById('puzzleSolveChart').getContext('2d');
     if (puzzleChart) {
@@ -148,4 +148,35 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
     renderPuzzleSolveChart();
+
+    // Setup refresh button
+    const refreshButton = document.getElementById('refreshButton');
+    
+    refreshButton.addEventListener('click', async () => {
+        // Add rotating class for animation
+        refreshButton.classList.add('rotating');
+        
+        try {
+            // Reload data
+            await renderPuzzleSolveChart(switchEl.checked, false); // Bypass cache
+            
+            // Visual feedback for success
+            refreshButton.style.backgroundColor = '#27ae60';
+            setTimeout(() => {
+                refreshButton.style.backgroundColor = '';
+            }, 1000);
+        } catch (error) {
+            console.error('Error refreshing data:', error);
+            // Visual feedback for error
+            refreshButton.style.backgroundColor = '#e74c3c';
+            setTimeout(() => {
+                refreshButton.style.backgroundColor = '';
+            }, 1000);
+        } finally {
+            // Remove rotating class after animation
+            setTimeout(() => {
+                refreshButton.classList.remove('rotating');
+            }, 500);
+        }
+    });
 });
