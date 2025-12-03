@@ -113,10 +113,19 @@ document.addEventListener('DOMContentLoaded', async function() {
             const isCorrect = currentPuzzle.answers.some(ans => ans.toLowerCase() === userAnswer);
 
             if (isCorrect) {
-                message.textContent = "נכון! כל הכבוד 🎉";
-                message.style.color = "#27ae60";
-                message.style.cursor = "default";
-                message.style.textDecoration = "none";
+                message.innerHTML = `
+                    <div class="success-frame">
+                        <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
+                        <p>נהנתם מהחידה? יש לנו עוד הרבה תוכן מעניין בשבילכם:</p>
+                        <div class="success-links">
+                            <a href="/digital-games/" class="success-link">משחקי בריחה דיגיטליים</a>
+                            <a href="/code-kingdom/" class="success-link">ספר התכנות לילדים "אורי והדס בממלכת הקוד"</a>
+                        </div>
+                    </div>
+                `;
+                message.style.color = "";
+                message.style.cursor = "";
+                message.style.textDecoration = "";
 
                 // Increment solve counter atomically
                 if (markRiddleCompleted(currentPuzzle.id)) {
