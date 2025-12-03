@@ -190,6 +190,46 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+.discount-code {
+    margin: 20px 0 0 0 !important;
+    padding: 16px;
+    background: #fff3cd;
+    border: 2px dashed #ffc107;
+    border-radius: 8px;
+    color: #856404;
+    font-size: 1.1em !important;
+}
+
+.discount-code strong {
+    color: #d68910;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+.copy-code {
+    cursor: pointer;
+    position: relative;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.copy-code:hover {
+    background: rgba(255, 193, 7, 0.3);
+    transform: scale(1.05);
+}
+
+.copy-code:active {
+    transform: scale(0.98);
+}
+
+.copy-feedback {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
 @media (min-width: 500px) {
     .success-links {
         flex-direction: row;
