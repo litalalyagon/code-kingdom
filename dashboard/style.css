@@ -66,3 +66,134 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(20px);
 }
+
+/* Login form styles */
+#password-lock {
+    display: block;
+    max-width: 400px;
+    margin: 4rem auto 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+#password-lock[style*="display: none"] {
+    display: none !important;
+}
+
+#password-lock h2 {
+    margin: 0 0 1.5rem 0;
+}
+
+#password-lock input[type="email"],
+#password-lock input[type="password"] {
+    padding: 8px;
+    width: 90%;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#password-lock button {
+    padding: 8px 24px;
+    border-radius: 6px;
+    background: #376ecb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#password-lock button:hover {
+    background: #2855a3;
+}
+
+#dashboard-password-error {
+    color: #e74c3c;
+    margin-top: 1rem;
+    display: none;
+}
+
+/* Dashboard content */
+#dashboard-content {
+    display: none;
+}
+
+#dashboard-content h1 {
+    text-align: center;
+    margin: 2rem 0 1.5rem 0;
+}
+
+/* User counters container */
+.user-counters-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+/* User counter card */
+.user-counter-card {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    padding: 2rem;
+    text-align: center;
+}
+
+.user-counter-card h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.user-counter-card p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.user-counter-card.total p {
+    color: #376ecb;
+}
+
+.user-counter-card.completed p {
+    color: #27ae60;
+}
+
+/* Chart sections */
+.chart-section {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    padding: 2rem;
+    position: relative;
+}
+
+.chart-section h2 {
+    text-align: center;
+    margin: 0 0 1.5rem 0;
+}
+
+.chart-section canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Sort switch positioning */
+.chart-sort-toggle {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 2;
+}
