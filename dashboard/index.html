@@ -12,11 +12,13 @@
 </head>
 <body>
     <div id="password-lock" style="max-width:400px;margin:4rem auto 0 auto;padding:2rem;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);text-align:center;">
-        <h2>הזן סיסמה לצפייה בדשבורד</h2>
-        <input type="password" id="dashboard-password" placeholder="סיסמה" style="padding:8px;width:70%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;">
+        <h2>כניסה לדשבורד</h2>
+        <input type="email" id="dashboard-password" placeholder="דוא״ל" style="padding:8px;width:90%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;">
         <br>
-        <button id="dashboard-password-btn" style="padding:8px 24px;border-radius:6px;background:#376ecb;color:#fff;border:none;">כניסה</button>
-        <div id="dashboard-password-error" style="color:#e74c3c;margin-top:1rem;display:none;">סיסמה שגויה</div>
+        <input type="password" id="dashboard-password-password" placeholder="סיסמה" style="padding:8px;width:90%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;">
+        <br>
+        <button id="dashboard-password-btn" style="padding:8px 24px;border-radius:6px;background:#376ecb;color:#fff;border:none;cursor:pointer;">כניסה</button>
+        <div id="dashboard-password-error" style="color:#e74c3c;margin-top:1rem;display:none;">שגיאה בכניסה</div>
     </div>
     <div id="dashboard-content" style="display:none;">
         <h1 style="text-align:center;">דשבורד - חידות בין השורות</h1>
@@ -24,6 +26,18 @@
             <i class="fas fa-sync-alt"></i>
             רענן נתונים
         </button>
+    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;text-align:center;">
+        <h2>משתמשים רשומים</h2>
+        <p style="font-size:2rem;font-weight:bold;color:#376ecb;margin:1rem 0;">
+            <span id="userCount">--</span> משתמשים
+        </p>
+    </section>
+    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;text-align:center;">
+        <h2>משתמשים שסיימו את כל השלבים</h2>
+        <p style="font-size:2rem;font-weight:bold;color:#27ae60;margin:1rem 0;">
+            <span id="completedUserCount">--</span> משתמשים
+        </p>
+    </section>
     <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
         <h2 style="text-align:center;">חידות בין השורות - מספר פותרים</h2>
                 <div style="position:absolute;top:1.5rem;left:1.5rem;z-index:2;">
