@@ -11,49 +11,49 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id="password-lock" style="max-width:400px;margin:4rem auto 0 auto;padding:2rem;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);text-align:center;">
+    <div id="password-lock">
         <h2>כניסה לדשבורד</h2>
-        <input type="email" id="dashboard-password" placeholder="דוא״ל" style="padding:8px;width:90%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;">
+        <input type="email" id="dashboard-password" placeholder="דוא״ל">
         <br>
-        <input type="password" id="dashboard-password-password" placeholder="סיסמה" style="padding:8px;width:90%;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;">
+        <input type="password" id="dashboard-password-password" placeholder="סיסמה">
         <br>
-        <button id="dashboard-password-btn" style="padding:8px 24px;border-radius:6px;background:#376ecb;color:#fff;border:none;cursor:pointer;">כניסה</button>
-        <div id="dashboard-password-error" style="color:#e74c3c;margin-top:1rem;display:none;">שגיאה בכניסה</div>
+        <button id="dashboard-password-btn">כניסה</button>
+        <div id="dashboard-password-error">שגיאה בכניסה</div>
     </div>
-    <div id="dashboard-content" style="display:none;">
-        <h1 style="text-align:center;">דשבורד - חידות בין השורות</h1>
+    <div id="dashboard-content">
+        <h1>דשבורד - חידות בין השורות</h1>
         <button id="refreshButton" class="refresh-button" aria-label="רענון נתונים">
             <i class="fas fa-sync-alt"></i>
             רענן נתונים
         </button>
-    <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;max-width:1000px;margin:2rem auto;">
-        <section style="flex:1;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;text-align:center;">
-            <h2>משתמשים רשומים</h2>
-            <p style="font-size:2rem;font-weight:bold;color:#376ecb;margin:1rem 0;">
-                <span id="userCount">--</span> משתמשים
-            </p>
+        <div class="user-counters-container">
+            <section class="user-counter-card total">
+                <h2>משתמשים רשומים</h2>
+                <p>
+                    <span id="userCount">--</span> משתמשים
+                </p>
+            </section>
+            <section class="user-counter-card completed">
+                <h2>משתמשים שסיימו את כל השלבים</h2>
+                <p>
+                    <span id="completedUserCount">--</span> משתמשים
+                </p>
+            </section>
+        </div>
+        <section class="chart-section">
+            <h2>התפלגות משתמשים לפי שלבים שהושלמו</h2>
+            <canvas id="stagesHistogramChart" height="320" width="900"></canvas>
         </section>
-        <section style="flex:1;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;text-align:center;">
-            <h2>משתמשים שסיימו את כל השלבים</h2>
-            <p style="font-size:2rem;font-weight:bold;color:#27ae60;margin:1rem 0;">
-                <span id="completedUserCount">--</span> משתמשים
-            </p>
+        <section class="chart-section">
+            <h2>חידות בין השורות - מספר פותרים</h2>
+            <div class="chart-sort-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="sortBySolversSwitch">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
         </section>
-    </div>
-    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
-        <h2 style="text-align:center;">התפלגות משתמשים לפי שלבים שהושלמו</h2>
-        <canvas id="stagesHistogramChart" height="320" width="900"></canvas>
-    </section>
-    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
-        <h2 style="text-align:center;">חידות בין השורות - מספר פותרים</h2>
-                <div style="position:absolute;top:1.5rem;left:1.5rem;z-index:2;">
-                        <label class="switch">
-                                <input type="checkbox" id="sortBySolversSwitch">
-                                <span class="slider round"></span>
-                        </label>
-                </div>
-        <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
-    </section>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script type="module" src="dashboard.js"></script>

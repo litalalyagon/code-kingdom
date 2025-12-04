@@ -21,7 +21,7 @@ async function setupAuthLock() {
             if (idTokenResult.claims.admin === true) {
                 // User is admin, show dashboard
                 passwordLockEl.style.display = 'none';
-                document.getElementById('dashboard-content').style.display = '';
+                document.getElementById('dashboard-content').style.display = 'block';
                 setupSignOutButton();
                 // Load dashboard data
                 displayUserCount();
@@ -30,14 +30,14 @@ async function setupAuthLock() {
             } else {
                 // User is authenticated but not admin
                 errorEl.textContent = 'רק מנהלים יכולים לגשת לדשבורד';
-                errorEl.style.display = '';
+                errorEl.style.display = 'block';
                 btn.disabled = false;
                 btn.textContent = 'כניסה';
                 await signOut(auth);
             }
         } else {
             // No user signed in
-            passwordLockEl.style.display = '';
+            passwordLockEl.style.display = 'block';
             document.getElementById('dashboard-content').style.display = 'none';
             btn.disabled = false;
             btn.textContent = 'כניסה';
@@ -50,7 +50,7 @@ async function setupAuthLock() {
         
         if (!passwordInput) {
             errorEl.textContent = 'שדה הסיסמה לא נמצא';
-            errorEl.style.display = '';
+            errorEl.style.display = 'block';
             return;
         }
         
@@ -58,7 +58,7 @@ async function setupAuthLock() {
         
         if (!email || !password) {
             errorEl.textContent = 'אנא הזן דוא"ל וסיסמה';
-            errorEl.style.display = '';
+            errorEl.style.display = 'block';
             return;
         }
 
@@ -80,7 +80,7 @@ async function setupAuthLock() {
                 errorMsg = 'דוא"ל לא תקין';
             }
             errorEl.textContent = errorMsg;
-            errorEl.style.display = '';
+            errorEl.style.display = 'block';
             btn.disabled = false;
             btn.textContent = 'כניסה';
         }
