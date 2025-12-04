@@ -26,17 +26,23 @@
             <i class="fas fa-sync-alt"></i>
             רענן נתונים
         </button>
-    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;text-align:center;">
-        <h2>משתמשים רשומים</h2>
-        <p style="font-size:2rem;font-weight:bold;color:#376ecb;margin:1rem 0;">
-            <span id="userCount">--</span> משתמשים
-        </p>
-    </section>
-    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;text-align:center;">
-        <h2>משתמשים שסיימו את כל השלבים</h2>
-        <p style="font-size:2rem;font-weight:bold;color:#27ae60;margin:1rem 0;">
-            <span id="completedUserCount">--</span> משתמשים
-        </p>
+    <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;max-width:1000px;margin:2rem auto;">
+        <section style="flex:1;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;text-align:center;">
+            <h2>משתמשים רשומים</h2>
+            <p style="font-size:2rem;font-weight:bold;color:#376ecb;margin:1rem 0;">
+                <span id="userCount">--</span> משתמשים
+            </p>
+        </section>
+        <section style="flex:1;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;text-align:center;">
+            <h2>משתמשים שסיימו את כל השלבים</h2>
+            <p style="font-size:2rem;font-weight:bold;color:#27ae60;margin:1rem 0;">
+                <span id="completedUserCount">--</span> משתמשים
+            </p>
+        </section>
+    </div>
+    <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
+        <h2 style="text-align:center;">התפלגות משתמשים לפי שלבים שהושלמו</h2>
+        <canvas id="stagesHistogramChart" height="320" width="900"></canvas>
     </section>
     <section style="max-width:700px;margin:2rem auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:2rem;position:relative;">
         <h2 style="text-align:center;">חידות בין השורות - מספר פותרים</h2>

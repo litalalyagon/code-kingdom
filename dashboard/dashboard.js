@@ -26,6 +26,7 @@ async function setupAuthLock() {
                 // Load dashboard data
                 displayUserCount();
                 renderPuzzleSolveChart();
+                renderStagesHistogram();
             } else {
                 // User is authenticated but not admin
                 errorEl.textContent = 'רק מנהלים יכולים לגשת לדשבורד';
@@ -180,6 +181,71 @@ async function loadCompletedUserCount() {
     }
 }
 
+let stagesHistogramChart = null;
+
+async function renderStagesHistogram(enableCache = true) {
+    try {
+        const usersCol = collection(db, "users");
+        const snapshot = await getDocs(usersCol);
+        
+        // Initialize array to count users for each stage (0-13)
+        const stagesCounts = new Array(14).fill(0);
+        
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const stagesCount = Array.isArray(data.completedStages) ? data.completedStages.length : 0;
+            if (stagesCount >= 0 && stagesCount <= 13) {
+                stagesCounts[stagesCount]++;
+            }
+        });
+        
+        // Create chart
+        const ctx = document.getElementById('stagesHistogramChart');
+        if (!ctx) return;
+        
+        if (stagesHistogramChart) {
+            stagesHistogramChart.destroy();
+        }
+        
+        const labels = Array.from({length: 14}, (_, i) => `${i}/13`);
+        
+        stagesHistogramChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'מספר משתמשים',
+                    data: stagesCounts,
+                    backgroundColor: stagesCounts.map((_, i) => i === 13 ? '#27ae60' : '#376ecb'),
+                    borderColor: '#2c3e50',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: false }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'שלבים שהושלמו' }
+                    },
+                    y: {
+                        title: { display: true, text: 'מספר משתמשים' },
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error rendering stages histogram:', error);
+    }
+}
+
 async function loadPuzzleSolveData(enableCache = true) {
     if (enableCache && puzzleDataCache) return puzzleDataCache;
     const puzzlesCol = collection(db, "whatsapp_puzzles");
@@ -288,6 +354,9 @@ window.addEventListener('DOMContentLoaded', () => {
             renderPuzzleSolveChart(e.target.checked);
         });
     }
+    
+    // Initial render of charts (will happen after auth check)
+    // These will be called from setupAuthLock when user is authenticated as admin
 
     // Setup refresh button
     const refreshButton = document.getElementById('refreshButton');
@@ -299,6 +368,7 @@ window.addEventListener('DOMContentLoaded', () => {
         try {
             // Reload data
             await renderPuzzleSolveChart(switchEl.checked, false); // Bypass cache
+            await renderStagesHistogram();
             await displayUserCount();
             
             // Visual feedback for success
