@@ -88,7 +88,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (currentPuzzle) {
             // riddleTitle.textContent = `חידה מספר ${currentPuzzle.id}: ${currentPuzzle.title}`;
             clueMsg.style.display = "none";
-            message.textContent = "";
+            // clear any previous success message and show the form/hint again
+            message.innerHTML = "";
+            if (form) form.style.display = '';
+            if (hintButton) hintButton.style.display = '';
             input.value = "";
         //    counter.textContent = `נפתרה ${currentPuzzle.solve_counter} פעמים`;
         }
@@ -113,8 +116,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             const isCorrect = currentPuzzle.answers.some(ans => ans.toLowerCase() === userAnswer);
 
             if (isCorrect) {
+                // show success frame and hide the form so user sees the message clearly
                 message.innerHTML = `
                     <div class="success-frame">
+                        <button class="success-close" aria-label="סגור" title="סגור">&times;</button>
                         <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
                         <p>נהנתם מהחידה? יש לנו עוד הרבה תוכן מעניין בשבילכם:</p>
                         <div class="success-links">
@@ -129,8 +134,11 @@ document.addEventListener('DOMContentLoaded', async function() {
                         </p>
                     </div>
                 `;
+                // hide the riddle form and hint button while success frame is visible
+                if (form) form.style.display = 'none';
+                if (hintButton) hintButton.style.display = 'none';
                 message.style.color = "";
-                message.style.cursor = "";
+                message.style.cursor = "default";
                 message.style.textDecoration = "";
 
                 // Add click event for copying discount code
@@ -150,6 +158,20 @@ document.addEventListener('DOMContentLoaded', async function() {
                         feedbackElement.style.color = '#e74c3c';
                     }
                 });
+                // close (X) button to hide the success message and reveal the form again
+                const closeBtn = message.querySelector('.success-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        message.innerHTML = '';
+                        if (form) {
+                            form.style.display = '';
+                            // reset input and focus so user can try again
+                            if (input) input.value = '';
+                            if (input) input.focus();
+                        }
+                        if (hintButton) hintButton.style.display = '';
+                    });
+                }
 
                 // Increment solve counter atomically
                 if (markRiddleCompleted(currentPuzzle.id)) {
