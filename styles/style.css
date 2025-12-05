@@ -169,6 +169,12 @@ h1 {
   text-decoration: underline;
 }
 
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
 @media (max-width: 600px) {
   .footer-links {
     flex-direction: row;
