@@ -123,9 +123,15 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
                         <p>נהנתם מהחידה? יש לנו עוד הרבה תוכן מעניין בשבילכם:</p>
                         <div class="success-links">
-                            <a href="/digital-games/" class="success-link">משחקי בריחה דיגיטליים</a>
-                            <a href="/code-kingdom/" class="success-link">ספר התכנות לילדים \"אורי והדס בממלכת הקוד\"</a>
+                            <a href="/digital-games/" class="success-link">משחק בריחה דיגיטלי מיוחד לכבוד חנוכה</a>
+                            <a href="/code-kingdom/" class="success-link">ספר התכנות לילדים "אורי והדס בממלכת הקוד"</a>
                         </div>
+                        <p class="discount-code">
+                            השתמשו בקוד 
+                            <strong class="copy-code" data-code="PUZZLE10" title="לחצו להעתקה">PUZZLE10</strong> 
+                            לקבלת הנחה על כל האתר! 🎁
+                            <span class="copy-feedback"></span>
+                        </p>
                     </div>
                 `;
                 // hide the riddle form and hint button while success frame is visible
@@ -135,6 +141,23 @@ document.addEventListener('DOMContentLoaded', async function() {
                 message.style.cursor = "default";
                 message.style.textDecoration = "";
 
+                // Add click event for copying discount code
+                const codeElement = message.querySelector('.copy-code');
+                const feedbackElement = message.querySelector('.copy-feedback');
+                codeElement.addEventListener('click', async () => {
+                    const code = codeElement.dataset.code;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        feedbackElement.textContent = ' ✓ הועתק!';
+                        feedbackElement.style.color = '#27ae60';
+                        setTimeout(() => {
+                            feedbackElement.textContent = '';
+                        }, 2000);
+                    } catch (err) {
+                        feedbackElement.textContent = ' שגיאה בהעתקה';
+                        feedbackElement.style.color = '#e74c3c';
+                    }
+                });
                 // close (X) button to hide the success message and reveal the form again
                 const closeBtn = message.querySelector('.success-close');
                 if (closeBtn) {
