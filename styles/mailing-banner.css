@@ -1,0 +1,235 @@
+#mailing-banner-placeholder {
+    width: 100%;
+}
+
+.mailing-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.mailing-banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    position: relative;
+    padding: 0;
+}
+
+.mailing-banner-cell {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.mailing-banner-text-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.mailing-banner-text {
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.mailing-banner-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.mailing-banner-form form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.mailing-banner-form input[type="email"] {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    min-width: 200px;
+    color: #333;
+    background: white;
+}
+
+.mailing-banner-form input[type="email"]:focus {
+    outline: 2px solid #ffcc00;
+    outline-offset: 2px;
+}
+
+.mailing-banner-button {
+    padding: 0.5rem 1.5rem;
+    background: #ffcc00;
+    color: #2c3e50;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.mailing-banner-button:hover {
+    background: #ffd633;
+}
+
+.mailing-banner-button:active {
+    background: #ffcc00;
+}
+
+.mailing-banner-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+    padding: 0;
+    margin-left: auto;
+}
+
+.mailing-banner-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.mailing-banner-status {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    text-align: center;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+.mailing-banner-thankyou {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0;
+    justify-content: center;
+    position: relative;
+    height: auto;
+    line-height: 1.2;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.mailing-banner-thankyou i {
+    font-size: 1.2rem;
+    color: #ffcc00;
+}
+
+@media (max-width: 768px) {
+    .mailing-banner {
+        padding: 0.75rem 1rem;
+    }
+
+    .mailing-banner-content {
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+        padding: 0;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .mailing-banner-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    .mailing-banner-text-wrapper {
+        margin-bottom: 0;
+    }
+
+    .mailing-banner-text {
+        font-size: 0.85rem;
+        white-space: normal;
+        display: block;
+    }
+
+    .mailing-banner-form {
+        min-width: unset;
+        gap: 0.5rem;
+    }
+
+    .mailing-banner-form form {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .mailing-banner-form input[type="email"] {
+        width: 100%;
+        min-width: unset;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .mailing-banner-button {
+        width: 100%;
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .mailing-banner-close {
+        margin-left: 0;
+        margin-right: 0;
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        align-self: flex-start;
+    }
+
+    .mailing-banner-thankyou {
+        font-size: 0.75rem;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .mailing-banner-thankyou i {
+        font-size: 1rem;
+    }
+}
+

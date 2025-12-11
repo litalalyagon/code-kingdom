@@ -1,3 +1,4 @@
+// Load navbar
 fetch('/common-components/navbar.html')
     .then(response => response.text())
     .then(html => {

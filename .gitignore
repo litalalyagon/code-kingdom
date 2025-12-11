@@ -1,0 +1,8 @@
+serviceAccountKey.json
+DASHBOARD_ADMIN_SETUP.md
+FIRESTORE_RULES.md
+package.json
+package-lock.json
+set-admin.js
+
+node_modules/
