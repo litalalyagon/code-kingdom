@@ -93,17 +93,16 @@
     font-weight: 700;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s;
     white-space: nowrap;
 }
 
 .mailing-banner-button:hover {
     background: #ffd633;
-    transform: translateY(-1px);
 }
 
 .mailing-banner-button:active {
-    transform: translateY(0);
+    background: #ffcc00;
 }
 
 .mailing-banner-close {
