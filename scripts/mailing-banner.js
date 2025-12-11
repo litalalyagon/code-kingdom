@@ -1,6 +1,42 @@
 // Initialize banner height variable
 document.documentElement.style.setProperty('--banner-height', '0px');
 
+// Expiration time in days (change this value to set how often the banner reappears)
+const BANNER_EXPIRATION_DAYS = 30;
+
+// Function to close banner and save preference with expiration
+function closeBanner() {
+    const banner = document.querySelector('.mailing-banner');
+    if (banner) {
+        banner.style.display = 'none';
+        
+        // Set expiration time
+        const expirationTime = new Date().getTime() + (BANNER_EXPIRATION_DAYS * 24 * 60 * 60 * 1000);
+        localStorage.setItem('mailing-banner-closed', JSON.stringify({
+            closed: true,
+            expiresAt: expirationTime
+        }));
+        
+        document.documentElement.style.setProperty('--banner-height', '0px');
+        document.body.style.paddingTop = '0px';
+    }
+}
+
+// Function to check if banner closure has expired
+function isBannerClosureExpired() {
+    const storedData = localStorage.getItem('mailing-banner-closed');
+    if (!storedData) return true; // No data = expired (show banner)
+    
+    try {
+        const data = JSON.parse(storedData);
+        const currentTime = new Date().getTime();
+        return currentTime > data.expiresAt;
+    } catch (e) {
+        // If parsing fails, treat as expired
+        return true;
+    }
+}
+
 // Load mailing banner
 const navbarPlaceholder = document.getElementById('navbar-placeholder');
 if (navbarPlaceholder) {
@@ -9,7 +45,8 @@ if (navbarPlaceholder) {
     bannerPlaceholder.id = 'mailing-banner-placeholder';
     navbarPlaceholder.parentNode.insertBefore(bannerPlaceholder, navbarPlaceholder);
 
-    // Check if user has already registered
+    // Check if user has already closed or registered
+    const hasClosed = !isBannerClosureExpired(); // True if NOT expired
     const hasRegistered = localStorage.getItem('mailing-list-registered');
     
     // Store initial banner height to maintain it after registration
@@ -21,9 +58,9 @@ if (navbarPlaceholder) {
         .then(html => {
             bannerPlaceholder.innerHTML = html;
             
-            // Hide banner if user has already registered
+            // Hide banner if user has already closed it (and not expired) or registered
             const banner = document.querySelector('.mailing-banner');
-            if (banner && hasRegistered === 'true') {
+            if (banner && (hasClosed || hasRegistered === 'true')) {
                 banner.style.display = 'none';
                 document.documentElement.style.setProperty('--banner-height', '0px');
                 document.body.style.paddingTop = '0px';
