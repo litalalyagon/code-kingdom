@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -51,6 +53,15 @@ main {
 .mailing-list-button:hover {
     background: #2067bd;
 }
+
+.highlight-gift {
+    color: #ff6b35;
+    font-weight: 700;
+    font-size: 1.2em;
+    font-family: 'Fredoka', sans-serif;
+    letter-spacing: 0.5px;
+}
+
 @media (max-width: 600px) {
     .thanks-container {
         margin: 24px 16px;
