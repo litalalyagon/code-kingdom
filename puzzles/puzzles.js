@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
                         <p>נהנתם מהחידה? יש לנו עוד הרבה תוכן מעניין בשבילכם:</p>
                         <div class="success-links">
-                            <a href="/digital-games/" class="success-link">משחק בריחה דיגיטלי מיוחד לכבוד חנוכה</a>
+                            <a href="/digital-games/" class="success-link">משחקי בריחה דיגיטליים לכל המשפחה</a>
                             <a href="/code-kingdom/" class="success-link">ספר התכנות לילדים "אורי והדס בממלכת הקוד"</a>
                         </div>
                         <p class="discount-code">
