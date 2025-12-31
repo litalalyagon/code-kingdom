@@ -228,11 +228,11 @@ main {
   font-size: 1.08em;
   margin-bottom: 0;
   margin-top: 0;
-  border-radius: 0 50px 50px 0; 
+  border-radius: 50px 0 0 50px; 
 }
 
 .level-btn:last-child {
-  border-radius: 50px 0 0 50px; 
+  border-radius: 0 50px 50px 0; 
 }
 
 .level-btn.selected {

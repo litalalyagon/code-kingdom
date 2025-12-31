@@ -7,24 +7,25 @@ export function renderMenu(exercises, onSelect) {
   exercises.forEach((ex, menuIdx) => {
     const li = document.createElement('li');
     const btn = document.createElement('button');
-    btn.textContent = `${englishDict.task} ${ex.index}`;
+    btn.textContent = `${englishDict.task} ${menuIdx + 1}`;
     btn.className = 'exercise-menu-btn';
-    const identifier = `ex${ex.index}`;
+    const identifier = `ex${menuIdx + 1}`;
     btn.setAttribute('data-level', identifier);
     btn.setAttribute('data-idx', menuIdx);
     
-    // Disable all except 1 and 10
-    if (ex.index !== 1 && ex.index !== 10) {
-      btn.disabled = true;
-      btn.classList.add('disabled');
-    }
+    // Check if exercise is enabled
+    const isEnabled = ex && ex.enabled !== false;
     
-    btn.onclick = () => {
-      if (!btn.disabled) {
+    if (!isEnabled) {
+      btn.classList.add('disabled');
+      btn.disabled = true;
+    } else {
+      btn.onclick = () => {
         setActiveMenu(menuIdx);
         onSelect(menuIdx);
-      }
-    };
+      };
+    }
+    
     li.appendChild(btn);
     exerciseList.appendChild(li);
   });

@@ -5,21 +5,17 @@ This is an English demo version of the Code Kingdom educational coding platform.
 ## Features
 
 - **No Authentication Required**: Demo mode runs without login/signup
-- **Limited Access**: Only Tasks 1 and 10 are available
+- **Full Access**: All 13 tasks are available
 - **Fully Translated**: All UI and content translated to English
 - **LTR Layout**: Adapted for left-to-right reading
 
 ## Available Tasks
 
-1. **Task 1: Variables - Changing the Landscape**
-   - Introduction to variables
-   - Change tree colors, clouds, and rainbow
-   - Easy and Hard difficulty levels
+All 13 tasks are available covering:
 
-2. **Task 10: Conditions - Lighting Torches**
-   - Introduction to conditional logic with "OR" operator
-   - Light torches based on color, shape, and size properties
-   - Easy and Hard difficulty levels
+1. **Variables** (Tasks 1-4): Introduction to variables, changing values, calculations
+2. **Conditions** (Tasks 5-10): If statements, boolean logic, AND/OR operators
+3. **Summary** (Tasks 11-13): Combining concepts learned
 
 ## How to Run
 
@@ -39,8 +35,7 @@ This is an English demo version of the Code Kingdom educational coding platform.
 - `main.js` - Demo-specific logic (no auth)
 - `menu.js` - Menu rendering
 - `exercise.js` - Exercise base class
-- `exercise1.js` - Task 1 implementation
-- `exercise10.js` - Task 10 implementation
+- `exercise1.js` through `exercise13.js` - All task implementations
 - `english-dict.js` - English translations
 - `sideMenu.js` - Sidebar menu toggle
 - `styles/` - CSS files (LTR adapted)
@@ -50,9 +45,8 @@ This is an English demo version of the Code Kingdom educational coding platform.
 - No Firebase authentication
 - No user progress tracking
 - No completion saving
-- Only 2 exercises available (1 and 10)
-- All other tasks shown as disabled in menu
+- All exercises immediately available (no sequential unlocking)
 
 ## Purpose
 
-This demo is designed to showcase the Code Kingdom learning platform to English-speaking audiences without requiring full account setup or exposing all content.
+This demo is designed to showcase the complete Code Kingdom learning platform to English-speaking audiences without requiring full account setup.

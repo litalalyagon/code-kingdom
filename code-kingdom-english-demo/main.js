@@ -3,31 +3,40 @@ import { renderExercise } from './exercise.js';
 
 const exerciseFiles = [
   './exercise1.js',
+  './exercise2.js',
+  './exercise3.js',
+  './exercise4.js',
+  './exercise5.js',
+  './exercise6.js',
+  './exercise7.js',
+  './exercise8.js',
+  './exercise9.js',
   './exercise10.js',
+  './exercise11.js',
+  './exercise12.js',
+  './exercise13.js',
 ];
-
-// Map demo exercise indices to original indices
-const exerciseIndexMap = {
-  0: 0,  // exercise 1
-  1: 9   // exercise 10
-};
 
 let loadedExercises = Array(exerciseFiles.length).fill(null);
 
-document.addEventListener('DOMContentLoaded', () => {
+// Load all exercises at startup to check their enabled status
+async function loadAllExercises() {
+  const promises = exerciseFiles.map((file, idx) => loadExercise(idx));
+  await Promise.all(promises);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
   // Show demo message
   const loginStatus = document.getElementById("loginStatus");
   if (loginStatus) {
-    loginStatus.textContent = "Demo Mode - Tasks 1 & 10 Available";
+    loginStatus.textContent = "Demo Mode - All Tasks Available";
   }
 
-  // Initialize the menu
-  const demoExercises = [
-    { index: 1, title: "Task 1: Variables" },
-    { index: 10, title: "Task 10: Conditions" }
-  ];
-  
-  renderMenu(demoExercises, showExercise);
+  // Load all exercises first
+  await loadAllExercises();
+
+  // Initialize the menu with all exercises
+  renderMenu(loadedExercises, showExercise);
 });
 
 // Automatically mark exercise 1 as selected in the menu after page load
@@ -112,8 +121,7 @@ async function loadExercise(idx) {
 async function showExercise(idx) {
   setActiveMenu(idx);
   const ex = await loadExercise(idx);
-  const originalIdx = exerciseIndexMap[idx];
-  renderExercise(ex, originalIdx);
+  renderExercise(ex, idx);
 }
 
 // Start with exercise 1
