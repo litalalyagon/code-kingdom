@@ -54,6 +54,39 @@
             </div>
             <canvas id="puzzleSolveChart" height="320" width="900"></canvas>
         </section>
+        
+        <section class="chart-section add-puzzle-section">
+            <h2>הוספת חידה חדשה</h2>
+            <form id="addPuzzleForm" class="add-puzzle-form">
+                <div class="form-group">
+                    <label for="puzzleTitle">כותרת:</label>
+                    <input type="text" id="puzzleTitle" required placeholder="כותרת החידה">
+                </div>
+                
+                <div class="form-group">
+                    <label for="puzzleClue">רמז:</label>
+                    <textarea id="puzzleClue" required rows="3" placeholder="הרמז לחידה"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="puzzleAnswers">תשובות (מופרדות בפסיק):</label>
+                    <input type="text" id="puzzleAnswers" required placeholder="לדוגמה: תשובה1, תשובה2, תשובה3">
+                </div>
+                
+                <button type="submit" class="submit-puzzle-btn">
+                    <i class="fas fa-plus"></i>
+                    הוסף חידה
+                </button>
+                <div id="addPuzzleStatus" class="puzzle-status"></div>
+            </form>
+        </section>
+        
+        <section class="chart-section puzzle-list-section">
+            <h2>רשימת כל החידות</h2>
+            <div id="puzzleListContainer" class="puzzle-list">
+                <div class="loading">טוען חידות...</div>
+            </div>
+        </section>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script type="module" src="dashboard.js"></script>

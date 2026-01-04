@@ -1,5 +1,5 @@
 // Firebase Authentication for Dashboard
-import { collection, getDocs, getCountFromServer, doc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { collection, getDocs, getCountFromServer, doc, getDoc, query, where, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { db } from "../firebase/firebaseConfig.js";
 
@@ -27,6 +27,7 @@ async function setupAuthLock() {
                 displayUserCount();
                 renderPuzzleSolveChart();
                 renderStagesHistogram();
+                loadPuzzleList();
             } else {
                 // User is authenticated but not admin
                 errorEl.textContent = 'רק מנהלים יכולים לגשת לדשבורד';
@@ -129,6 +130,85 @@ function setupSignOutButton() {
 
 let puzzleDataCache = null;
 let puzzleChart = null;
+
+async function setupAddPuzzleForm() {
+    const form = document.getElementById('addPuzzleForm');
+    const statusEl = document.getElementById('addPuzzleStatus');
+    
+    if (!form || !statusEl) return;
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('.submit-puzzle-btn');
+        const title = document.getElementById('puzzleTitle').value.trim();
+        const clue = document.getElementById('puzzleClue').value.trim();
+        const answersInput = document.getElementById('puzzleAnswers').value.trim();
+        
+        // Parse answers from comma-separated string
+        const answers = answersInput.split(',').map(a => a.trim()).filter(a => a.length > 0);
+        
+        if (!title || !clue || answers.length === 0) {
+            statusEl.textContent = 'אנא מלא את כל השדות';
+            statusEl.className = 'puzzle-status error';
+            return;
+        }
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מוסיף...';
+            statusEl.style.display = 'none';
+            
+            // Get all existing puzzles to determine next ID
+            const puzzlesCol = collection(db, 'whatsapp_puzzles');
+            const snapshot = await getDocs(puzzlesCol);
+            
+            // Find the highest numeric ID
+            let maxId = 0;
+            snapshot.forEach((doc) => {
+                const id = parseInt(doc.id);
+                if (!isNaN(id) && id > maxId) {
+                    maxId = id;
+                }
+            });
+            
+            const newId = (maxId + 1).toString();
+            
+            // Create new puzzle object
+            const newPuzzle = {
+                answers: answers,
+                clue: clue,
+                title: title,
+                date: new Date(),
+                solve_counter: 0,
+                enabled: false
+            };
+            
+            // Add to Firestore
+            await setDoc(doc(db, 'whatsapp_puzzles', newId), newPuzzle);
+            
+            // Success feedback
+            statusEl.textContent = `החידה "${title}" נוספה בהצלחה! מזהה: ${newId}`;
+            statusEl.className = 'puzzle-status success';
+            
+            // Reset form
+            form.reset();
+            
+            // Clear cache and refresh chart
+            puzzleDataCache = null;
+            await renderPuzzleSolveChart();
+            await loadPuzzleList();
+            
+        } catch (error) {
+            console.error('Error adding puzzle:', error);
+            statusEl.textContent = 'שגיאה בהוספת החידה: ' + error.message;
+            statusEl.className = 'puzzle-status error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-plus"></i> הוסף חידה';
+        }
+    });
+}
 
 async function loadUserCount() {
     try {
@@ -390,4 +470,110 @@ window.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
     });
+    
+    // Setup add puzzle form
+    setupAddPuzzleForm();
 });
+
+async function loadPuzzleList() {
+    const container = document.getElementById('puzzleListContainer');
+    if (!container) return;
+    
+    try {
+        container.innerHTML = '<div class="loading">טוען חידות...</div>';
+        
+        const puzzlesCol = collection(db, 'whatsapp_puzzles');
+        const snapshot = await getDocs(puzzlesCol);
+        
+        if (snapshot.empty) {
+            container.innerHTML = '<div class="no-puzzles">אין חידות במערכת</div>';
+            return;
+        }
+        
+        const puzzles = [];
+        snapshot.forEach(doc => {
+            puzzles.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        
+        // Sort by ID (numeric)
+        puzzles.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+        
+        // Build HTML
+        let html = '<div class="puzzle-items">';
+        puzzles.forEach(puzzle => {
+            const enabled = puzzle.enabled !== false;
+            const statusClass = enabled ? 'enabled' : 'disabled';
+            const iconClass = enabled ? 'fa-toggle-on' : 'fa-toggle-off';
+            
+            html += `
+                <div class="puzzle-item">
+                    <div class="puzzle-info">
+                        <span class="puzzle-id">#${puzzle.id}</span>
+                        <span class="puzzle-title">${puzzle.title || 'ללא כותרת'}</span>
+                        <span class="puzzle-solves">${puzzle.solve_counter || 0} פתרונות</span>
+                    </div>
+                    <button class="toggle-puzzle-btn ${statusClass}" data-puzzle-id="${puzzle.id}" data-enabled="${enabled}">
+                        <i class="fas ${iconClass}"></i>
+                    </button>
+                </div>
+            `;
+        });
+        html += '</div>';
+        
+        container.innerHTML = html;
+        
+        // Add click handlers
+        container.querySelectorAll('.toggle-puzzle-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const button = e.currentTarget;
+                const puzzleId = button.dataset.puzzleId;
+                const currentEnabled = button.dataset.enabled === 'true';
+                
+                await togglePuzzleStatus(puzzleId, currentEnabled, button);
+            });
+        });
+        
+    } catch (error) {
+        console.error('Error loading puzzle list:', error);
+        container.innerHTML = '<div class="error">שגיאה בטעינת החידות</div>';
+    }
+}
+
+async function togglePuzzleStatus(puzzleId, currentEnabled, buttonEl) {
+    const newEnabled = !currentEnabled;
+    
+    try {
+        // Update button to show loading state
+        const originalHTML = buttonEl.innerHTML;
+        buttonEl.disabled = true;
+        buttonEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ...';
+        
+        // Update Firestore
+        const puzzleRef = doc(db, 'whatsapp_puzzles', puzzleId);
+        await updateDoc(puzzleRef, {
+            enabled: newEnabled
+        });
+        
+        // Update UI
+        const statusClass = newEnabled ? 'enabled' : 'disabled';
+        const iconClass = newEnabled ? 'fa-toggle-on' : 'fa-toggle-off';
+        
+        buttonEl.className = `toggle-puzzle-btn ${statusClass}`;
+        buttonEl.dataset.enabled = newEnabled;
+        buttonEl.innerHTML = `<i class="fas ${iconClass}"></i>`;
+        buttonEl.disabled = false;
+        
+        // Clear cache and refresh chart
+        puzzleDataCache = null;
+        await renderPuzzleSolveChart();
+        
+    } catch (error) {
+        console.error('Error toggling puzzle status:', error);
+        alert('שגיאה בעדכון סטטוס החידה');
+        buttonEl.disabled = false;
+        buttonEl.innerHTML = originalHTML;
+    }
+}
