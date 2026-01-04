@@ -35,7 +35,7 @@ All 13 tasks are available covering:
 - `main.js` - Demo-specific logic (no auth)
 - `menu.js` - Menu rendering
 - `exercise.js` - Exercise base class
-- `exercise1.js` through `exercise13.js` - All task implementations
+- `exercise1.js` through `exercise13.js`
 - `english-dict.js` - English translations
 - `sideMenu.js` - Sidebar menu toggle
 - `styles/` - CSS files (LTR adapted)

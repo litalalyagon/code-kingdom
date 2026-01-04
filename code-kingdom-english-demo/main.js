@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Show demo message
   const loginStatus = document.getElementById("loginStatus");
   if (loginStatus) {
-    loginStatus.textContent = "Demo Mode - All Tasks Available";
+    loginStatus.textContent = "Demo Mode";
   }
 
   // Load all exercises first
