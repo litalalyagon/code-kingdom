@@ -64,19 +64,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const childName = await getChildName();
         if (childName) {
           loginStatus.textContent = `שלום ${childName}!`;
-            // Listen for email verification and update Firestore when verified
-            if (user.emailVerified) {
-              try {
-                await updateDoc(doc(db, "users", user.uid), { emailVerified: true });
-              } catch (e) {
-                // Ignore update errors
-                console.error("Error updating email verification status:", e);
-              }
-            }  
         } else {
           loginStatus.textContent = `מחובר כ: ${user.email}`;
         }
-        logoutBtn.style.display = "block";        
+        logoutBtn.style.display = "block";
+        
+        // Always sync email verification status from Auth to Firestore
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+          if (userSnap.exists()) {
+            const firestoreEmailVerified = userSnap.data().emailVerified;
+            // Only update if there's a mismatch
+            if (firestoreEmailVerified !== user.emailVerified) {
+              await updateDoc(userRef, { emailVerified: user.emailVerified });
+              console.log(`Email verification status synced: ${user.emailVerified}`);
+            }
+          }
+        } catch (e) {
+          console.error("Error syncing email verification status:", e);
+        }
         
       } else {
         loginStatus.textContent = "לא מחובר.";
