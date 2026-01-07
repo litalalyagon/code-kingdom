@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uri and Hadas in the Kingdom of Code - Demo</title>
+  <link rel="stylesheet" href="styles/tasks.css">
+  <link rel="stylesheet" href="styles/menu.css">
+  <link rel="icon" href="../assets/favicon.ico">
+  <script type="module" src="main.js"></script>
+  <script type="module" src="sideMenu.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <div class="top-bar-row">
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Tasks</button>
+    <div class="user-status-bar">
+      <p id="loginStatus">Demo Mode</p>
+    </div>
+  </div>
+  <div class="container">
+    <nav id="sideMenu">
+      <img src="../assets/book-cover.png" alt="book cover" class="menu-cover-img" style="cursor:pointer;" />
+      <button class="nav-close-btn" onclick="document.querySelector('nav').classList.remove('open')" aria-label="Close menu" style="display:none;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <ul id="exercise-list">
+        <!-- Menu items will be injected here -->
+      </ul>
+    </nav>
+    <main class="content">
+      <div id="level-selector">
+        <button id="hardBtn" class="level-btn">Hard Level</button>
+        <button id="easyBtn" class="level-btn">Normal Level</button>
+      </div>
+
+      <div id="exercise-container"></div>
+      <div id="exercise-nav-mobile" class="exercise-nav-mobile" style="display:none;">
+        <button id="prevExerciseBtn" class="exercise-nav-btn"><i class="fa fa-chevron-left"></i> Previous</button>
+        <button id="nextExerciseBtn" class="exercise-nav-btn">Next <i class="fa fa-chevron-right"></i></button>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
