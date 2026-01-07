@@ -69,6 +69,23 @@ export async function loginUser(email, password) {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     console.log("User logged in:", user);
+    
+    // Defensive check: ensure Firestore document exists
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    
+    if (!userSnap.exists()) {
+      console.warn("User document missing in Firestore, creating now...");
+      // Create missing document with minimal data
+      await setDoc(userRef, {
+        email: user.email,
+        childName: "",
+        completedStages: [],
+        emailVerified: user.emailVerified
+      });
+      console.log("User document created successfully");
+    }
+    
     return user; // Return the user object
   } catch (error) {
     const errorCode = error.code;
