@@ -237,7 +237,7 @@ input:checked + .slider:before {
 }
 
 .form-group textarea {
-    resize: vertical;
+    resize: none;
     min-height: 80px;
 }
 
