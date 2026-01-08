@@ -137,6 +137,13 @@ async function setupAddPuzzleForm() {
     
     if (!form || !statusEl) return;
     
+    // Set default date to today
+    const dateInput = document.getElementById('puzzleDate');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+    }
+    
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -144,11 +151,12 @@ async function setupAddPuzzleForm() {
         const title = document.getElementById('puzzleTitle').value.trim();
         const clue = document.getElementById('puzzleClue').value.trim();
         const answersInput = document.getElementById('puzzleAnswers').value.trim();
+        const dateInput = document.getElementById('puzzleDate').value;
         
         // Parse answers from comma-separated string
         const answers = answersInput.split(',').map(a => a.trim()).filter(a => a.length > 0);
         
-        if (!title || !clue || answers.length === 0) {
+        if (!title || !clue || answers.length === 0 || !dateInput) {
             statusEl.textContent = 'אנא מלא את כל השדות';
             statusEl.className = 'puzzle-status error';
             return;
@@ -179,7 +187,7 @@ async function setupAddPuzzleForm() {
                 answers: answers,
                 clue: clue,
                 title: title,
-                date: new Date(),
+                date: new Date(dateInput + 'T00:00:00'),
                 solve_counter: 0,
                 enabled: false
             };
