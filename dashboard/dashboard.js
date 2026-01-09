@@ -478,10 +478,39 @@ window.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
     });
+
+    // Setup filter buttons
+    setupDashboardFilters();
     
     // Setup add puzzle form
     setupAddPuzzleForm();
 });
+
+function setupDashboardFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Show/hide sections based on filter
+            const sections = document.querySelectorAll('[data-category]');
+            sections.forEach(section => {
+                if (filter === 'all') {
+                    section.style.display = '';
+                } else if (section.dataset.category === filter) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    });
+}
 
 async function loadPuzzleList() {
     const container = document.getElementById('puzzleListContainer');
