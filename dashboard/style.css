@@ -1,3 +1,12 @@
+.dashboard-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
 .refresh-button {
     display: flex;
     align-items: center;
@@ -9,7 +18,6 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    margin: 0 auto;
 }
 
 .refresh-button:hover {
@@ -26,6 +34,34 @@
 
 .refresh-button.rotating i {
     transform: rotate(360deg);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: #376ecb;
+    color: #376ecb;
+}
+
+.filter-btn.active {
+    background: #376ecb;
+    color: white;
+    border-color: #376ecb;
 }
 
 .switch {
