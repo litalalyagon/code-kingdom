@@ -26,6 +26,20 @@ async function loadAllExercises() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Handle splash screen
+  const enterBtn = document.getElementById('enterBtn');
+  const splashScreen = document.getElementById('splashScreen');
+  const mainContent = document.getElementById('mainContent');
+  
+  enterBtn.addEventListener('click', () => {
+    splashScreen.style.opacity = '0';
+    splashScreen.style.transition = 'opacity 0.5s ease-out';
+    setTimeout(() => {
+      splashScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+    }, 500);
+  });
+  
   // Show demo message
   const loginStatus = document.getElementById("loginStatus");
   if (loginStatus) {
