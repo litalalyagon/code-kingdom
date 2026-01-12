@@ -57,22 +57,22 @@
   /* padding: 0 20px; */
 }
 .menu-toggle {
-  background: #10b981;
+  background: #4a9d5f;
   color: #fff;
   border: none;
   border-radius: 16px;
   padding: 10px 22px;
   font-size: 1.08em;
   font-weight: 500;
-  box-shadow: 0 1px 4px #217a4a22;
+  box-shadow: 0 1px 4px rgba(42, 77, 50, 0.3);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   margin-right: 0;
   margin-left: 10px;
 }
 .menu-toggle:hover {
-  background: #1e3a8a;
-  box-shadow: 0 2px 8px #217a4a33;
+  background: #2d6a3f;
+  box-shadow: 0 2px 8px rgba(42, 77, 50, 0.4);
 }
 
 
@@ -81,7 +81,7 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
-  background: #bdcbdf;
+  background: #c8e6d0;
   direction: ltr;
   height: 100vh;
 }
@@ -114,8 +114,8 @@ main {
 }
 
 .code-area {
-  background: #232a3a;
-  color: #e0e7ff;
+  background: #1a3a2e;
+  color: #e0ffe0;
   font-size: 0.9em;
   border-radius: 30px;
   padding: 20px 16px;
@@ -149,14 +149,14 @@ main {
 
 .code-area select:focus,
 .code-area input:focus {
-  border-color: #0a84ff;
-  box-shadow: 0 0 5px rgba(10, 132, 255, 0.5);
+  border-color: #4a9d5f;
+  box-shadow: 0 0 5px rgba(74, 157, 95, 0.5);
   outline: none;
 }
 
 .run-btn {
   padding: 12px 18px;
-  background: #0a84ff;
+  background: #4a9d5f;
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -168,7 +168,7 @@ main {
 }
 
 .run-btn:hover {
-  background: #005bb5;
+  background: #2d6a3f;
 }
 .image-container {
   overflow: hidden;
@@ -211,40 +211,53 @@ main {
 }
 
 @keyframes highlightFlash {
-  0% { box-shadow: 0 0 0px rgba(10,132,255,0.0); }
-  50% { box-shadow: 0 0 12px rgba(10,132,255,0.4); }
-  100% { box-shadow: 0 0 0px rgba(10,132,255,0.0); }
+  0% { box-shadow: 0 0 0px rgba(74,157,95,0.0); }
+  50% { box-shadow: 0 0 12px rgba(74,157,95,0.4); }
+  100% { box-shadow: 0 0 0px rgba(74,157,95,0.0); }
 }
 
 .level-btn {
-  background: #dbe0e7;
-  color: #1e40af; 
-  border: none; 
-  font-weight: 500;
-  box-shadow: none;
-  transition: background 0.2s, color 0.2s;
-  padding: 12px 32px;
-  min-width: 120px;
-  font-size: 1.08em;
+  background: #e8f5ec;
+  color: #1a4d2e; 
+  border: 2px solid #4a9d5f;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 14px 36px;
+  min-width: 130px;
+  font-size: 1.1em;
   margin-bottom: 0;
   margin-top: 0;
-  border-radius: 50px 0 0 50px; 
+  border-radius: 50px 0 0 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .level-btn:last-child {
-  border-radius: 0 50px 50px 0; 
+  border-radius: 0 50px 50px 0;
+  border-left: 1px solid #4a9d5f;
 }
 
 .level-btn.selected {
-  background: #45568b;
+  background: linear-gradient(135deg, #2d6a3f 0%, #4a9d5f 100%);
   color: #fff;
   font-weight: bold;
-  box-shadow: 0 0 6px rgba(30, 64, 175, 0.3);
+  box-shadow: 0 4px 12px rgba(45, 106, 63, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #2d6a3f;
+  transform: scale(1.05);
 }
-.level-btn:hover {
-  background: #168686;
+
+.level-btn:hover:not(.selected) {
+  background: #4a9d5f;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+  box-shadow: 0 4px 10px rgba(45, 106, 63, 0.4);
+  transform: translateY(-2px);
+  border-color: #2d6a3f;
+}
+
+.level-btn:active {
+  transform: scale(0.98);
 }
 
 .answer-msg {
@@ -361,13 +374,14 @@ main {
 }
 
 #loginStatus {
-  background: #d4d6dd;
-  color: #3a5a98;
+  background: #e8f5ec;
+  color: #1a4d2e;
   padding: 7px 18px;
   border-radius: 10px;
-  font-weight: 500;
-  box-shadow: 0 1px 4px #3a5a9811;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(45, 106, 63, 0.3);
   letter-spacing: 0.5px;
+  border: 2px solid #4a9d5f;
 }
 
 #logoutBtn {
@@ -446,14 +460,14 @@ main {
   display: none;
 }
 .exercise-nav-btn {
-  background: #e4c239;
-  color: #03180d;
+  background: #ff8c00;
+  color: #fff;
   border: none;
   border-radius: 24px;
   padding: 10px 28px;
   font-size: 1.08em;
   font-weight: 500;
-  box-shadow: 0 1px 4px #217a4a22;
+  box-shadow: 0 1px 4px rgba(42, 77, 50, 0.3);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   display: flex;
@@ -461,9 +475,9 @@ main {
   gap: 8px;
 }
 .exercise-nav-btn:hover {
-  background: #d2ae1e;
+  background: #e67e00;
   color: #fff;
-  box-shadow: 0 2px 8px #217a4a33;
+  box-shadow: 0 2px 8px rgba(42, 77, 50, 0.4);
 }
 
 @media (max-width: 900px) {
