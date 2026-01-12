@@ -258,6 +258,7 @@ export function renderExercise(ex, idx) {
       msgDiv.classList.remove('success', 'error');
       if (result && result.valid) {
         msgDiv.classList.add('success');
+        showCelebrationPopup();
       }
       else {
         msgDiv.classList.add('error');
@@ -268,4 +269,60 @@ export function renderExercise(ex, idx) {
   }
 
   switchLevel('hard');
+}
+
+function showCelebrationPopup() {
+  const celebrationMessages = [
+    "Excellent Work!",
+    "Amazing Job!",
+    "You Did It!",
+    "Brilliant!",
+    "Turtle Power!",
+    "Cowabunga!",
+    "Radical!",
+    "Totally Tubular, Dude!"
+  ];
+  
+  const randomMessage = celebrationMessages[Math.floor(Math.random() * celebrationMessages.length)];
+  
+  const modal = document.createElement('div');
+  modal.className = 'celebration-modal';
+  modal.innerHTML = `
+    <div class="celebration-overlay"></div>
+    <div class="celebration-content">
+      <h2 class="celebration-text">${randomMessage}</h2>
+      <img src="assets-tmnt/Group pose_16.png" alt="Congratulations!">
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  let autoCloseTimer;
+  
+  const closeModal = () => {
+    clearTimeout(autoCloseTimer);
+    modal.classList.add('fade-out');
+    setTimeout(() => modal.remove(), 400);
+    document.removeEventListener('keydown', handleEsc);
+    modal.removeEventListener('click', closeModal);
+  };
+  
+  // Close on any click on the modal
+  modal.addEventListener('click', closeModal);
+  
+  // Allow ESC key to close
+  const handleEsc = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  };
+  document.addEventListener('keydown', handleEsc);
+  
+  // Trigger fade-in animation
+  setTimeout(() => modal.classList.add('show'), 10);
+  
+  // Auto-close after 3 seconds
+  autoCloseTimer = setTimeout(() => {
+    closeModal();
+  }, 3000);
 }

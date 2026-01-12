@@ -2,7 +2,7 @@ export const englishDict = {
     "task": "Task",
     "easy": "Easy",
     "hard": "Hard",
-    "run": "Run the code",
+    "run": "Run",
     "no": "false",
     "yes": "true",
     "if": "if",
