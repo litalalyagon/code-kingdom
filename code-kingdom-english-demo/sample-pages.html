@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Pages - TMNT Code Dimension</title>
+  <link rel="icon" href="../assets/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a4d2e 0%, #0d2818 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      color: #fff;
+      font-size: 2em;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #ff6b00 0%, #ff5500 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 140, 0, 0.6);
+    }
+
+    .viewer-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 20px;
+    }
+
+    .page-viewer {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page img {
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 140, 0, 0.9);
+      color: #fff;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 107, 0, 1);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .prev-btn {
+      left: 20px;
+    }
+
+    .next-btn {
+      right: 20px;
+    }
+
+    .page-indicator {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1.1em;
+      z-index: 100;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.5em;
+      }
+
+      .nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .prev-btn {
+        left: 10px;
+      }
+
+      .next-btn {
+        right: 10px;
+      }
+
+      .page-indicator {
+        font-size: 1em;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📖 Sample Book Pages</h1>
+    <a href="index.html" class="back-btn">← Back to Game</a>
+  </div>
+
+  <div class="viewer-container">
+    <div class="page-viewer">
+      <div class="page active">
+        <img src="./assets-tmnt/sample1.png" alt="Sample Page 1">
+      </div>
+      <div class="page">
+        <img src="./assets-tmnt/sample2.png" alt="Sample Page 2">
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-btn prev-btn" aria-label="Previous page">‹</button>
+  <button class="nav-btn next-btn" aria-label="Next page">›</button>
+  <div class="page-indicator"><span id="currentPage">1</span> / <span id="totalPages">2</span></div>
+
+  <script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const totalPages = pages.length;
+    const currentPageSpan = document.getElementById('currentPage');
+    const totalPagesSpan = document.getElementById('totalPages');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    totalPagesSpan.textContent = totalPages;
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle('active', i === index);
+      });
+      currentPageSpan.textContent = index + 1;
+      currentPage = index;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const newPage = currentPage > 0 ? currentPage - 1 : totalPages - 1;
+      showPage(newPage);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const newPage = currentPage < totalPages - 1 ? currentPage + 1 : 0;
+      showPage(newPage);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        nextBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
