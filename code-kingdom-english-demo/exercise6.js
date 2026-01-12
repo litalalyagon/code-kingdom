@@ -4,7 +4,7 @@ import { englishDict } from './english-dict.js';
 class Exercise6 extends Exercise {
   constructor() {
     super("ex6");
-    this.enabled = true;
+    this.enabled = false;
     this.input_sizes = {'easy': 'small', 'hard': 'small'};
     this.resultImgBg = "#85d092"; 
  }
