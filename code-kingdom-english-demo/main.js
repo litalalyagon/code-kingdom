@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const observer = new MutationObserver(function() {
     const firstBtn = document.querySelector('.exercise-menu-btn');
     if (firstBtn && !firstBtn.classList.contains('selected')) {
-      firstBtn.classList.add('selected');
+      setActiveMenu(0);
       observer.disconnect();
     }
   });

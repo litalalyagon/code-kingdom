@@ -36,5 +36,20 @@ export function setActiveMenu(idx) {
   const buttons = document.querySelectorAll('.exercise-menu-btn');
   buttons.forEach((btn, i) => {
     btn.classList.toggle('selected', i === idx);
+    
+    // Remove existing indicator
+    const existingIndicator = btn.querySelector('.level-indicator');
+    if (existingIndicator) {
+      existingIndicator.remove();
+    }
+    
+    // Add indicator to selected button
+    if (i === idx && !btn.classList.contains('disabled')) {
+      const indicator = document.createElement('img');
+      indicator.src = 'assets-tmnt/head.png';
+      indicator.alt = 'Current Level';
+      indicator.className = 'level-indicator';
+      btn.appendChild(indicator);
+    }
   });
 }

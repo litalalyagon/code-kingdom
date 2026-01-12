@@ -45,6 +45,17 @@ nav li {
     margin-bottom: 10px;
     margin-top: 2px;
     transition: background 0.2s, color 0.2s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.level-indicator {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
 }
 
 .exercise-menu-btn.completed {
