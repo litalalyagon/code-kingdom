@@ -317,9 +317,9 @@ main {
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  padding: 14px 36px;
-  min-width: 130px;
-  font-size: 1.1em;
+  padding: 10px 24px;
+  min-width: 100px;
+  font-size: 0.95em;
   margin-bottom: 0;
   margin-top: 0;
   border-radius: 50px 0 0 50px;
@@ -334,12 +334,11 @@ main {
 }
 
 .level-btn.selected {
-  background: linear-gradient(135deg, #2d6a3f 0%, #4a9d5f 100%);
+  background: #2d6a3f;
   color: #fff;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(45, 106, 63, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(45, 106, 63, 0.5);
   border-color: #2d6a3f;
-  transform: scale(1.05);
 }
 
 .level-btn:hover:not(.selected) {
