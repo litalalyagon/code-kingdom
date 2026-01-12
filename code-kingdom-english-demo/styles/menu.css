@@ -75,6 +75,11 @@ nav li {
     color: #9ca3af;
 }
 
+.exercise-menu-btn.disabled i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
 .exercise-menu-btn.active,
 .exercise-menu-btn:hover {
      background: #005bb5;

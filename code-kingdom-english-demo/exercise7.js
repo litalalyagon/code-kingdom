@@ -3,7 +3,7 @@ import { englishDict } from './english-dict.js';
 class Exercise7 extends Exercise {
   constructor() {
     super("ex7");
-    this.enabled = true;
+    this.enabled = false;
     this.input_sizes = { 'easy': 'small', 'hard': 'medium' };
     this.resultImgBg = '#d7e0eb'; 
   }
