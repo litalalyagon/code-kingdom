@@ -291,7 +291,7 @@ function showCelebrationPopup() {
     <div class="celebration-overlay"></div>
     <div class="celebration-content">
       <h2 class="celebration-text">${randomMessage}</h2>
-      <img src="assets-tmnt/Group pose_16.png" alt="Congratulations!">
+      <img src="assets-tmnt/Group_pose_16.png" alt="Congratulations!">
     </div>
   `;
   
