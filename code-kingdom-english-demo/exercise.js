@@ -10,7 +10,7 @@ export class Exercise {
     this.ex_indentifier = ex_indentifier;
     this.title = englishDict[ex_indentifier].title;
     this.description = englishDict[ex_indentifier].description;
-    this.img_path = `../code-kingdom/assets/tasks_images/${ex_indentifier}/`;
+    this.img_path = `../code-kingdom-english-demo/assets/tasks_images/${ex_indentifier}/`;
   }
 
   path(img_name) {

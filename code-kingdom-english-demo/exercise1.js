@@ -17,8 +17,7 @@ class Exercise1 extends Exercise {
     englishDict.colors.purple,
     englishDict.colors.grey,
     englishDict.colors.red,
-    englishDict.colors.yellow,
-    englishDict.colors.white
+    englishDict.colors.yellow
   ]
   validClouds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   validRainbow = [englishDict.no, englishDict.yes];
@@ -55,10 +54,11 @@ class Exercise1 extends Exercise {
   composeImageHtml(vars) {
     const {color, clouds, rainbow} = vars;
     const colorKey = Object.keys(englishDict.colors).find(key => englishDict.colors[key] === color);
+    const forestBg = this.path('forest_bg.png');
     const rainbowImg = rainbow === englishDict.yes ? this.path('rainbow.png') : null;
     const forestImg = this.path(`forest_${colorKey}.png`);
     const cloudsImg = clouds !== '0' ? this.path(`clouds_${clouds}.png`) : null;
-    return this.generateImageHTML([rainbowImg, forestImg, cloudsImg]);
+    return this.generateImageHTML([forestBg, rainbowImg,cloudsImg, forestImg]);
   }
 
   getDefaultHtml() {
