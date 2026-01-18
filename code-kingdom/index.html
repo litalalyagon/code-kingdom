@@ -42,9 +42,9 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar-placeholder"></nav>
+    <nav class="navbar" id="navbar-placeholder" role="navigation" aria-label="תפריט ניווט ראשי"></nav>
 
-    <header class="hero hero-book">
+    <header class="hero hero-book" role="banner">
         <div class="overlay"></div>
 
         <h1>ברוכים הבאים לממלכת הקוד!</h1>
@@ -172,7 +172,7 @@
         </section>
     </main>
 
-    <footer class="footer" id="footer">
+    <footer class="footer" id="footer" role="contentinfo">
         <script>
             fetch('/common-components/footer.html')
                 .then(response => response.text())
@@ -254,6 +254,10 @@
             });
         })();
     </script>
+    
+    <!-- TabNav Accessibility Widget -->
+    <script src="https://widget.tabnav.com/limited-widget.min.js.gz" tnv-data-config='{"language":"he","color":"#405ec3","buttonColor":"#405ec3","buttonSize":"small","widgetSize":"small","widgetLocation":"right","buttonLocation":"bottom"}' defer></script>
+    <noscript>פתרונות נגישות לאתרי אינטרנט לפי התקן הישראלי 5568<a href="https://tabnav.com/he">הנגשת אתרים</a></noscript>
 </body>
 
 </html>

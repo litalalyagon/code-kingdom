@@ -44,10 +44,10 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar-placeholder"></nav>
+    <nav class="navbar" id="navbar-placeholder" role="navigation" aria-label="תפריט ניווט ראשי"></nav>
 
-    <header class="hero">
-        <img src="assets/logo.png" alt="Between the Lines Logo" class="hero-logo">
+    <header class="hero" role="banner">
+        <img src="assets/logo.png" alt="לוגו בין השורות - משחקים חינוכיים" class="hero-logo">
         <h1>משחקים. חינוך. חוויה.</h1>
         <p class="tagline">
             אנחנו מאמינים שהדרך הטובה ביותר ללמוד היא בעזרת משחקים, חידות ואתגרים - ובעזרתם נוכל לשנות את החינוך של דור
@@ -55,10 +55,10 @@
         </p>
     </header>
 
-    <main>
+    <main id="main-content" role="main">
 
         <!-- Products Section -->
-        <section class="products-section" id="products-section">
+        <section class="products-section" id="products-section" aria-label="המוצרים שלנו">
             
             <div class="product-strip product-strip--light">
                 <div class="product-content">
@@ -165,7 +165,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer" id="footer">
+    <footer class="footer" id="footer" role="contentinfo">
         <script>
             fetch('/common-components/footer.html')
                 .then(response => response.text())
@@ -178,6 +178,11 @@
     <script type="text/javascript" src="/scripts/navbar.js" ></script>
     <script type="text/javascript" src="/scripts/mailing-banner.js" ></script>
     <script type="text/javascript" src="/scripts/contact-form.js"></script>
+    
+    <!-- TabNav Accessibility Widget -->
+    <script src="https://widget.tabnav.com/limited-widget.min.js.gz" tnv-data-config='{"language":"he","color":"#405ec3","buttonColor":"#405ec3","buttonSize":"small","widgetSize":"small","widgetLocation":"right","buttonLocation":"bottom"}' defer></script>
+    <noscript>פתרונות נגישות לאתרי אינטרנט לפי התקן הישראלי 5568<a href="https://tabnav.com/he">הנגשת אתרים</a></noscript>
+    
     <script>
         var formId = 'main-page';
         changeFormId(formId);
