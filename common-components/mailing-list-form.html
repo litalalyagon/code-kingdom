@@ -1,12 +1,13 @@
 <div class="mailing-list-form">
-    <form id="mailingListForm" action="https://btlines.us16.list-manage.com/subscribe/post?u=74578b77b33703ea2b3d7a962&amp;id=d5732ba0d9&amp;f_id=00c7c2e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+    <form id="mailingListForm" action="https://btlines.us16.list-manage.com/subscribe/post?u=74578b77b33703ea2b3d7a962&amp;id=d5732ba0d9&amp;f_id=00c7c2e1f0" method="post" name="mc-embedded-subscribe-form" target="_blank" aria-label="טופס הרשמה לרשימת תפוצה">
           <div class="form-group">
-            <input type="email" id="emailInput" name="EMAIL" required placeholder="כתובת המייל שלכם">           
-            <input type="submit" name="subscribe" class="mailing-list-button" value="הרשמה">
+            <label for="emailInput" class="sr-only">כתובת אימייל להרשמה לרשימת תפוצה</label>
+            <input type="email" id="emailInput" name="EMAIL" required placeholder="כתובת המייל שלכם" aria-required="true">           
+            <input type="submit" name="subscribe" class="mailing-list-button" value="הרשמה" aria-label="הרשם לרשימת התפוצה">
         </div>
         <div style="position: absolute; left: -5000px; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
-            <input type="text" name="b_74578b77b33703ea2b3d7a962_d5732ba0d9" tabindex="-1" value="">
+            <input type="text" name="b_74578b77b33703ea2b3d7a962_d5732ba0d9" tabindex="-1" value="" aria-hidden="true">
         </div>
-        <div id="mailingFormStatus" class="form-status"></div>
+        <div id="mailingFormStatus" class="form-status" role="status" aria-live="polite"></div>
     </form>
 </div>

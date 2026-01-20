@@ -1,0 +1,156 @@
+.accessibility-statement {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.8;
+}
+
+.accessibility-statement h1 {
+    color: #405ec3;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #405ec3;
+    padding-bottom: 15px;
+}
+
+.accessibility-statement h2 {
+    color: #405ec3;
+    font-size: 1.8em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-right: 5px solid #405ec3;
+    padding-right: 15px;
+}
+
+.accessibility-statement h3 {
+    color: #333;
+    font-size: 1.4em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.accessibility-statement p {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.accessibility-statement ul {
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.accessibility-statement li {
+    margin-bottom: 12px;
+    color: #333;
+    font-size: 1.05em;
+}
+
+.update-date {
+    background-color: #f0f4ff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: #405ec3;
+    margin-bottom: 30px;
+}
+
+.feature-list {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.contact-box {
+    background-color: #7690e4;
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-box h2 {
+    color: white;
+    border: none;
+    padding: 0;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.contact-box p {
+    font-size: 1.15em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.contact-box strong {
+    display: inline-block;
+    min-width: 140px;
+    text-align: right;
+    font-size: 1.1em;
+    margin-left: 10px;
+}
+
+.contact-box a {
+    color: #511a58;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.15em;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+}
+
+.contact-box a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .accessibility-statement {
+        padding: 20px 15px;
+    }
+
+    .accessibility-statement h1 {
+        font-size: 2em;
+    }
+
+    .accessibility-statement h2 {
+        font-size: 1.5em;
+    }
+
+    .accessibility-statement h3 {
+        font-size: 1.2em;
+    }
+
+    .contact-box {
+        padding: 25px 20px;
+    }
+
+    .contact-box h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .contact-box p {
+        font-size: 1.05em;
+    }
+
+    .contact-box strong {
+        display: block;
+        min-width: auto;
+        margin-bottom: 5px;
+        margin-left: 0;
+    }
+
+    .contact-box a {
+        font-size: 1.05em;
+    }
+}

@@ -22,16 +22,16 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar-placeholder"></nav>
+    <nav class="navbar" id="navbar-placeholder" role="navigation" aria-label="תפריט ניווט ראשי"></nav>
   
-    <main>
+    <main id="main-content" role="main">
        <!-- About Us Section -->
-        <section class="about-us-section">
+        <section class="about-us-section" aria-label="מי אנחנו">
             <h2>מי אנחנו?</h2>
         </section>
 
         <section class="about-us-section">
-            <img src="assets/Lital.jpg" alt="Lital's Photo" class="about-us-photo">  
+            <img src="assets/Lital.jpg" alt="תמונת פרופיל של ליטל אליגון, מייסדת בין השורות" class="about-us-photo">  
             <p><b>ליטל אליגון: </b>אני ליטל, מתכנתת כעשר שנים, ובעבר מדריכת פסיכומטרי, מתרגלת באוניברסיטה ומכינה לבגרות.
                 אני אמא לשני ילדים מופלאים, שמגיל צעיר אוהבים חידות ואתגרים מחשבתיים.
                 המוצרים שלנו משלבים את האהבה שלי לטכנולוגיה ולחינוך, עם השראה מהתחביבים האהובים עליי - משחקים, חידות
@@ -39,7 +39,7 @@
         </section>
 
          <section class="about-us-section">
-            <img src="assets/Lee.jpg" alt="Lee' Photo" class="about-us-photo">  
+            <img src="assets/Lee.jpg" alt="תמונת פרופיל של לי באלאן, מייסד בין השורות" class="about-us-photo">  
 
             <p><b>לי באלאן: </b>היי! אני לי, בוגר 8200 ומתכנת לשעבר, עם אהבה עצומה לתחום החינוך לילדים.
                 בשנים האחרונות זכיתי לעבוד כחלק מעמותת בוגרי 8200, בהנגשת עולם התכנות לבני נוער בכל רחבי הארץ.
@@ -54,7 +54,7 @@
     </main>
 
     <!-- Footer -->
-     <footer class="footer" id="footer">
+     <footer class="footer" id="footer" role="contentinfo">
         <script>
             fetch('/common-components/footer.html')
                 .then(response => response.text())
@@ -67,6 +67,11 @@
     <script type="text/javascript" src="/scripts/navbar.js" ></script>
     <script type="text/javascript" src="/scripts/mailing-banner.js" ></script>
     <script type="text/javascript" src="/scripts/contact-form.js"></script>
+    
+    <!-- TabNav Accessibility Widget -->
+    <script src="https://widget.tabnav.com/limited-widget.min.js.gz" tnv-data-config='{"language":"he","color":"#405ec3","buttonColor":"#405ec3","buttonSize":"small","widgetSize":"small","widgetLocation":"right","buttonLocation":"bottom"}' defer></script>
+    <noscript>פתרונות נגישות לאתרי אינטרנט לפי התקן הישראלי 5568<a href="https://tabnav.com/he">הנגשת אתרים</a></noscript>
+    
     <script>
         var formId = 'about-page';
         changeFormId(formId);

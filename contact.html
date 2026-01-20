@@ -22,11 +22,11 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar-placeholder"></nav>
+    <nav class="navbar" id="navbar-placeholder" role="navigation" aria-label="תפריט ניווט ראשי"></nav>
 
-    <main>
+    <main id="main-content" role="main">
         <!-- Contact Us Section -->
-        <section class="contact-section" id="contact-section">
+        <section class="contact-section" id="contact-section" aria-label="מידע יצירת קשר">
             <h2>מוזמנים ליצור איתנו קשר</h2>
             
             <!-- Contact Information -->
@@ -71,7 +71,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer" id="footer">
+    <footer class="footer" id="footer" role="contentinfo">
         <script>
             fetch('/common-components/footer.html')
                 .then(response => response.text())
@@ -84,6 +84,11 @@
      <script type="text/javascript" src="/scripts/navbar.js" ></script>
     <script type="text/javascript" src="/scripts/mailing-banner.js" ></script>
     <script type="text/javascript" src="/scripts/contact-form.js"></script>
+    
+    <!-- TabNav Accessibility Widget -->
+    <script src="https://widget.tabnav.com/limited-widget.min.js.gz" tnv-data-config='{"language":"he","color":"#405ec3","buttonColor":"#405ec3","buttonSize":"small","widgetSize":"small","widgetLocation":"right","buttonLocation":"bottom"}' defer></script>
+    <noscript>פתרונות נגישות לאתרי אינטרנט לפי התקן הישראלי 5568<a href="https://tabnav.com/he">הנגשת אתרים</a></noscript>
+    
     <script>
         var formId = 'contact-page';
         changeFormId(formId);

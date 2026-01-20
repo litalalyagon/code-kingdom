@@ -1,14 +1,23 @@
-    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST">
-        <input type="text" name="_gotcha" style="display:none">
+    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xanjrnqg" method="POST" aria-label="טופס יצירת קשר">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
         <!-- hidden input to know which form was sent -->
         <input type="hidden" name="form-id" value="contact-main-page">
-        <input type="text" id="name" name="name" placeholder="שם" required>
-        <input type="email" id="email" name="email" placeholder="אימייל" required>
-        <input type="text" id="phone" name="phone" placeholder="טלפון (אופציונלי)">
-        <textarea id="message" name="message" rows="4" placeholder="איך נוכל לעזור?" required></textarea>
+        
+        <label for="name" class="sr-only">שם מלא</label>
+        <input type="text" id="name" name="name" placeholder="שם" required aria-required="true">
+        
+        <label for="email" class="sr-only">כתובת אימייל</label>
+        <input type="email" id="email" name="email" placeholder="אימייל" required aria-required="true">
+        
+        <label for="phone" class="sr-only">מספר טלפון (אופציונלי)</label>
+        <input type="text" id="phone" name="phone" placeholder="טלפון (אופציונלי)" aria-required="false">
+        
+        <label for="message" class="sr-only">הודעה</label>
+        <textarea id="message" name="message" rows="4" placeholder="איך נוכל לעזור?" required aria-required="true"></textarea>
+        
         <div class="form-submit">
-            <button type="submit" class="cta-button">שליחה</button>
-            <span id="message-placeholder"></span>
+            <button type="submit" class="cta-button" aria-label="שלח טופס יצירת קשר">שליחה</button>
+            <span id="message-placeholder" role="status" aria-live="polite"></span>
         </div>
     </form>
 
