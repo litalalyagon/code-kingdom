@@ -128,8 +128,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                         </div>
                         <p class="discount-code">
                             השתמשו בקוד 
-                            <strong class="copy-code" data-code="PUZZLE10" title="לחצו להעתקה">PUZZLE10</strong> 
-                            לקבלת הנחה על כל האתר! 🎁
+                            <strong class="copy-code" data-code="CARE" title="לחצו להעתקה">CARE</strong> 
+                            לקבלת הנחה של 50% על המשחק הדיגיטלי "מעבר לדלת"! 🎁
                             <span class="copy-feedback"></span>
                         </p>
                     </div>
