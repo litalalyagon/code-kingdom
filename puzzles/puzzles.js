@@ -121,15 +121,14 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <div class="success-frame">
                         <button class="success-close" aria-label="סגור" title="סגור">&times;</button>
                         <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
-                        <p>נהנתם מהחידה? יש לנו עוד הרבה תוכן מעניין בשבילכם:</p>
+                        <p>נהנתם מהחידה? יש לנו משחק חדש במיוחד לליל הסדר: משחק להדפסה ביתית עם חידות שכולן קשורות לחג ולהגדה:</p>
                         <div class="success-links">
-                            <a href="/digital-games/" class="success-link">משחקי בריחה דיגיטליים לכל המשפחה</a>
-                            <a href="/code-kingdom/" class="success-link">ספר התכנות לילדים "אורי והדס בממלכת הקוד"</a>
+                            <a href="/passover/" class="success-link">לפרטים נוספים</a>
                         </div>
                         <p class="discount-code">
                             השתמשו בקוד 
-                            <strong class="copy-code" data-code="CARE" title="לחצו להעתקה">CARE</strong> 
-                            לקבלת הנחה של 50% על המשחק הדיגיטלי "מעבר לדלת"! 🎁
+                            <strong class="copy-code" data-code="PASSOVER20 " title="לחצו להעתקה">PASSOVER20</strong> 
+                            לקבלת הנחה של 20% על משחק ליל הסדר שלנו! 🎁
                             <span class="copy-feedback"></span>
                         </p>
                     </div>
