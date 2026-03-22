@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <div class="success-frame">
                         <button class="success-close" aria-label="סגור" title="סגור">&times;</button>
                         <h3>🎉 כל הכבוד! פתרתם את החידה!</h3>
-                        <p>נהנתם מהחידה? יש לנו משחק חדש במיוחד לליל הסדר: משחק להדפסה ביתית עם חידות שכולן קשורות לחג ולהגדה:</p>
+                        <p>נהנתם מהחידה? יש לנו משחק חדש במיוחד לליל הסדר: משחק להדפסה ביתית עם חידות שכולן קשורות לחג ולהגדה 🍷</p>
                         <div class="success-links">
                             <a href="/passover/" class="success-link">לפרטים נוספים</a>
                         </div>
