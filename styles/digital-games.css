@@ -125,6 +125,23 @@
     min-width: 120px;
 }
 
+.bundle-promo {
+    text-align: center;
+    font-size: 1.1em;
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+.bundle-promo a {
+    color: #1e3a8a;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.bundle-promo a:hover {
+    color: #3b82f6;
+}
+
 @media (max-width: 768px) {
     .feature-cards {
         grid-template-columns: 1fr;
